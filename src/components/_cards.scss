@@ -1,0 +1,59 @@
+// Base card styles
+.card {
+  background-color: $card-background-color; 
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: $border-radius; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  &-header {
+    padding: 0.75rem 1.25rem;
+    background-color: $card-header-bg-color; 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  &-body {
+    padding: 1.25rem;
+  }
+
+  &-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: $card-footer-bg-color; 
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  &-title {
+    margin-bottom: 0.75rem;
+  }
+
+  &-text {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Image caps
+  &-img {
+    &-top {
+      width: 100%;
+      border-top-left-radius: calc($border-radius - 1px);
+      border-top-right-radius: calc($border-radius - 1px);
+    }
+
+    &-bottom {
+      width: 100%;
+      border-bottom-right-radius: calc($border-radius - 1px);
+      border-bottom-left-radius: calc($border-radius - 1px);
+    }
+  }
+
+  // Card link
+  &-link {
+    &:hover {
+      text-decoration: none;
+    }
+
+    &:not(:last-child) {
+      margin-right: 1.25rem;
+    }
+  }
+}

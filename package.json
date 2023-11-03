@@ -1,0 +1,38 @@
+{
+    "name": "minimacss",
+    "version": "0.1.0",
+    "description": "A minimalistic CSS framework for rapid web development.",
+    "main": "dist/minimacss.css",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "sass src/minimacss.scss dist/minimacss.css && npm run minify",
+        "minify": "postcss dist/minimacss.css -u cssnano -o dist/minimacss.min.css",
+        "watch": "sass --watch src/minimacss.scss:dist/minimacss.css"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yourusername/minimacss.git"
+    },
+    "keywords": [
+        "css",
+        "framework",
+        "minimalistic",
+        "web-development",
+        "front-end"
+    ],
+    "author": "Your Name",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/yourusername/minimacss/issues"
+    },
+    "homepage": "https://github.com/yourusername/minimacss#readme",
+    "devDependencies": {
+        "autoprefixer": "^10.4.16",
+        "concurrently": "^8.2.2",
+        "cssnano": "^4.1.11",
+        "live-server": "^1.2.2",
+        "postcss": "^8.4.31",
+        "postcss-cli": "^10.1.0",
+        "sass": "^1.69.5"
+    }
+}

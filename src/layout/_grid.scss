@@ -1,0 +1,76 @@
+// Container
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (min-width: 576px) {
+        max-width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        max-width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        max-width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        max-width: 1140px;
+    }
+}
+
+// Row
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+// Columns
+[class*="col-"] {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+// Setting up columns for different screen sizes
+@for $i from 1 through 12 {
+    .col-#{$i} {
+        flex: 0 0 percentage(calc($i / 12));
+        max-width: percentage(calc($i / 12));
+    }
+
+    @media (min-width: 576px) {
+        .col-sm-#{$i} {
+            flex: 0 0 percentage(calc($i / 12));
+            max-width: percentage(calc($i / 12));
+        }
+    }
+
+    @media (min-width: 768px) {
+        .col-md-#{$i} {
+            flex: 0 0 percentage(calc($i / 12));
+            max-width: percentage(calc($i / 12));
+        }
+    }
+
+    @media (min-width: 992px) {
+        .col-lg-#{$i} {
+            flex: 0 0 percentage(calc($i / 12));
+            max-width: percentage(calc($i / 12));
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .col-xl-#{$i} {
+            flex: 0 0 percentage(calc($i / 12));
+            max-width: percentage(calc($i / 12));
+        }
+    }
+}

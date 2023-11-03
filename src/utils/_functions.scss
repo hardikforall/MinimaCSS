@@ -1,0 +1,30 @@
+@function calculate-rem($size) {
+    $rem-size: $size / 16px;
+    @return #{$rem-size}rem;
+  }
+
+// Function to convert pixels to rems
+@function px-to-rem($pixels, $context: 16px) {
+  @return #{$pixels / $context}rem;
+}
+
+// Function to lighten a color
+@function lighten-color($color, $amount) {
+  @return lighten($color, $amount);
+}
+
+// Function to darken a color
+@function darken-color($color, $amount) {
+  @return darken($color, $amount);
+}
+
+// Function to calculate contrast color (basic version)
+@function contrast-color($color) {
+  @if (lightness($color) > 50) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+
+//have not done enough here :(

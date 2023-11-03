@@ -1,0 +1,83 @@
+
+// For Margin and Padding Utilities
+$spacers: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem,
+);
+
+$colors: (
+  primary: $primary-color,
+  error: $error-color,
+  success: $success-color,
+  info: $info-color,
+  "white": $white-color,
+  "black": $black-color,
+);
+
+// Margin utilities
+@each $size, $value in $spacers {
+  .m-#{$size} {
+    margin: $value !important;
+  }
+
+  .mt-#{$size},
+  .my-#{$size} {
+    margin-top: $value !important;
+  }
+
+  .mr-#{$size},
+  .mx-#{$size} {
+    margin-right: $value !important;
+  }
+
+  .mb-#{$size},
+  .my-#{$size} {
+    margin-bottom: $value !important;
+  }
+
+  .ml-#{$size},
+  .mx-#{$size} {
+    margin-left: $value !important;
+  }
+}
+
+// Padding utilities
+@each $size, $value in $spacers {
+  .p-#{$size} {
+    padding: $value !important;
+  }
+
+  .pt-#{$size},
+  .py-#{$size} {
+    padding-top: $value !important;
+  }
+
+  .pr-#{$size},
+  .px-#{$size} {
+    padding-right: $value !important;
+  }
+
+  .pb-#{$size},
+  .py-#{$size} {
+    padding-bottom: $value !important;
+  }
+
+  .pl-#{$size},
+  .px-#{$size} {
+    padding-left: $value !important;
+  }
+}
+
+// bg and text utilities
+@each $color, $value in $colors {
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+  .text-#{$color} {
+    color: $value !important;
+  }
+}

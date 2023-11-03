@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinimaCSS Framework Components</title>
+    <link rel="stylesheet" href="../dist/minimacss.css">
+</head>
+
+<body>
+
+    <header class="container my-4">
+        <h1 class="mt-0 mb-2">MinimaCSS Framework Components</h1>
+        <p>This is a showcase of all the components and their variations </p>
+        <hr>
+    </header>
+    <!-- Header -->
+    <section class="container mt-5">
+        <h2>Header Nav</h2>
+        <header class="header">
+            <div class="header-container">
+                <h1 class="mb-0">Brand</h1>
+                <nav class="header-nav">
+                    <div class="header-nav-item">
+                        <a href="#" class="header-nav-item-link">Home</a>
+                    </div>
+                    <div class="header-nav-item">
+                        <a href="#" class="header-nav-item-link">About</a>
+                    </div>
+                    <div class="header-nav-item">
+                        <a href="#" class="header-nav-item-link">Services</a>
+                    </div>
+                    <div class="header-nav-item">
+                        <a href="#" class="header-nav-item-link">Contact</a>
+                    </div>
+                </nav>
+                <div class="header-toggle">Mobile Toggle</div>
+            </div>
+        </header>
+    </section>
+    <!-- Typography -->
+    <section class="container mt-5">
+        <h2>Typography</h2>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <p class="mt-3">This is a paragraph with some <strong>bold text</strong>, <em>italic text</em>, and a <a
+                href="#">link</a>.</p>
+        <blockquote class="mt-3">This is a blockquote. It highlights your quotes from the main content.</blockquote>
+        <code>Sample Code Is here</code>
+        <pre>Preformatted text</pre>
+    </section>
+
+    <!-- Buttons -->
+    <section class="container mt-5">
+        <h2>Buttons</h2>
+        <button class="btn btn-primary m-1">Primary Button</button>
+        <button class="btn btn-error m-1">Error Button</button>
+        <button class="btn btn-success m-1">Success Button</button>
+        <button class="btn btn-info m-1">Info Button</button>
+        <button class="btn btn-primary btn-small m-1">Small Button</button>
+        <button class="btn btn-primary btn-large m-1">Large Button</button>
+        <button class="btn btn-primary btn-block m-1">Block Button</button>
+    </section>
+
+    <!-- Form Elements -->
+    <section class="container mt-5">
+        <h2>Form Elements</h2>
+        <label for="inputExample">Input</label>
+        <input type="text" class="input" id="inputExample" placeholder="Input text here">
+
+        <label for="selectExample" class="mt-3">Select</label>
+        <select class="select" id="selectExample">
+            <option>Option 1</option>
+            <option>Option 2</option>
+        </select>
+
+        <label for="textareaExample" class="mt-3">Textarea</label>
+        <textarea class="textarea" id="textareaExample" rows="3" placeholder="Enter text here"></textarea>
+
+        <div class="checkbox mt-3">
+            <input type="checkbox" id="checkboxExample">
+            <label for="checkboxExample">Checkbox</label>
+        </div>
+
+        <div class="radio mt-3">
+            <input type="radio" id="radioExample" name="radio">
+            <label for="radioExample">Radio Button</label>
+        </div>
+
+        <div class="file-input mt-3">
+            <input type="file" id="fileExample">
+            <label for="fileExample">Choose a file</label>
+        </div>
+
+        <div class="range mt-3">
+            <input type="range" id="rangeExample">
+        </div>
+    </section>
+
+    <!-- Cards -->
+    <section class="container mt-5">
+        <h2>Cards</h2>
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <div class="card">
+                    <img src="https://placehold.co/600x400" class="card-img-top" alt="Card Image">
+                    <div class="card-body">
+                        <h3 class="card-title">Card Title</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link">Card Link</a>
+                        <a href="#" class="card-link">Another Link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Grid System -->
+    <section class="container mt-5 mb-5">
+        <h2>Grid System</h2>
+        <div class="row">
+            <div class="col-md-3 p-3 mt-3 bg-info">.col-3</div>
+            <div class="col-md-3 p-3 mt-3 bg-primary">.col-3</div>
+            <div class="col-md-3 p-3 mt-3 bg-info">.col-3</div>
+            <div class="col-md-3 p-3 mt-3 bg-primary">.col-3</div>
+        </div>
+    </section>
+
+    <!-- BG and Text and spacing utilities -->
+    <section class="container mt-5 mb-5">
+        <h2>BG and Text and spacing utilities</h2>
+        <div class="p-4 my-4 bg-black text-white">This is showcase of bg and text utilities</div>
+        <div class="p-4 my-4 bg-primary text-white">This is showcase of bg and text utilities</div>
+        <div class="p-4 my-4 bg-error text-white">This is showcase of bg and text utilities</div>
+        <div class="p-4 my-4 bg-success text-white">This is showcase of bg and text utilities</div>
+    </section>
+
+</body>
+
+</html>

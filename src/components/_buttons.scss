@@ -1,0 +1,86 @@
+// Base button styles
+.btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: $primary-color;
+  color: white;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+}
+
+// Button variants
+.btn-primary {
+  background-color: $primary-color;
+  border-color: $primary-color;
+  &:hover,
+  &:focus {
+    background-color: darken($primary-color, 10%);
+  }
+  &:active {
+    background-color: darken($primary-color, 20%);
+  }
+}
+
+.btn-error {
+  background-color: $error-color;
+  border-color: $error-color;
+  &:hover,
+  &:focus {
+    background-color: darken($error-color, 10%);
+  }
+  &:active {
+    background-color: darken($error-color, 20%);
+  }
+}
+
+.btn-success {
+  background-color: $success-color;
+  border-color: $success-color;
+  &:hover,
+  &:focus {
+    background-color: darken($success-color, 10%);
+  }
+  &:active {
+    background-color: darken($success-color, 20%);
+  }
+}
+
+.btn-info {
+  background-color: $info-color;
+  border-color: $info-color;
+  &:hover,
+  &:focus {
+    background-color: darken($info-color, 10%);
+  }
+  &:active {
+    background-color: darken($info-color, 20%);
+  }
+}
+
+// Button sizes
+.btn-small {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-large {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+}
+
+// Button block (full-width)
+.btn-block {
+  display: block;
+  width: 100%;
+}

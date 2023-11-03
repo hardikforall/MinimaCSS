@@ -1,0 +1,145 @@
+// base font properties
+html {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 100%; 
+  line-height: 1.6;
+  color: $text-color;
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.75em;
+}
+h3 {
+  font-size: 1.5em;
+}
+h4 {
+  font-size: 1.35em;
+}
+h5 {
+  font-size: 1.25em;
+}
+h6 {
+  font-size: 1em;
+}
+
+// Paragraphs
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+// Links
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: darken($primary-color, 10%);
+  }
+}
+// Lists
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding-left: 2em;
+
+  li {
+    margin-bottom: 0.5em;
+  }
+}
+// Blockquotes
+blockquote {
+  margin: 1em 0;
+  padding-left: 1.5em;
+  border-left: 4px solid $blockquote-border-color;
+  color: $blockquote-color;
+  font-style: italic;
+}
+
+// Horizontal Rule
+hr {
+  border: none;
+  border-top: 1px solid $hr-color;
+  margin: 2em 0;
+}
+// Label -adding padding for use in forms
+label {
+  margin-bottom: 0.25rem;
+  display: inline-block;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+// Figures
+figure {
+  margin: 1em 0;
+
+  figcaption {
+    font-size: 0.875em;
+    color: $figcaption-color;
+    margin-top: 0.5em;
+  }
+}
+
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.5em;
+  border-bottom: 1px solid $table-border-color;
+}
+
+// Code
+code {
+  font-family: monospace;
+  font-size: 0.875em;
+  padding: 0.25em;
+  background-color: $code-bg-color;
+  border-radius: 4px;
+}
+
+// Preformatted Text
+pre {
+  font-family: monospace;
+  padding: 1em;
+  overflow: auto;
+  background-color: $pre-bg-color; 
+  border-radius: 4px;
+}
+
+// Small Print
+small {
+  font-size: 0.875em;
+}

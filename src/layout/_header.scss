@@ -1,0 +1,80 @@
+// Base header styles
+.header {
+    background-color: $primary-color;
+    color: white;
+    padding: 0.5rem 1rem;
+
+    &-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1140px;
+        margin: 0 auto;
+    }
+
+    &-logo {
+        display: flex;
+        align-items: center;
+
+        &-img {
+            max-height: 50px;
+        }
+
+        &-text {
+            margin-left: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+    }
+
+    &-nav {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+
+        &-item {
+            margin: 0 1rem;
+
+            &-link {
+                color: white;
+                text-decoration: none;
+                padding: 0.5rem 0;
+                transition: color 0.15s ease-in-out;
+
+                &:hover,
+                &:focus {
+                    color: darken(white, 10%);
+                }
+            }
+        }
+    }
+
+    &-toggle {
+        display: none;
+        cursor: pointer;
+
+        &-icon {
+            color: white;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+// Responsive behavior
+@media (max-width: 768px) {
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        padding: 1rem;
+
+        &-item {
+            margin: 0.5rem 0;
+        }
+    }
+
+    .header-toggle {
+        display: block;
+    }
+}

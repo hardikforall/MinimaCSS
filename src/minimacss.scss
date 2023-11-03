@@ -1,0 +1,14 @@
+//Combining all together
+@import 'utils/variables';
+@import 'utils/functions';
+@import 'utils/mixins';
+@import 'base/reset';
+@import 'utils/utilities';
+@import 'base/typography';
+@import 'components/buttons';
+@import 'components/inputs';
+@import 'components/cards';
+@import 'layout/grid';
+@import 'layout/header';
+@import 'layout/footer';
+

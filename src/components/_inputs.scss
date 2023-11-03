@@ -1,0 +1,77 @@
+// Base input styles
+.input,
+.select,
+.textarea {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: $text-color;
+    background-color: white;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: $border-radius;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.2rem rgba(red($primary-color), green($primary-color), blue($primary-color), 0.25);
+        }
+
+    &::placeholder {
+        color: $input-placeholder-color;
+    }
+
+    &:disabled {
+        background-color: $input-disabled-bg-color;
+        opacity: 1;
+    }
+}
+
+// Checkbox and radio styles
+.checkbox,
+.radio {
+    display: inline-block;
+    margin-right: 0.5rem;
+
+    & input[type='checkbox'],
+    & input[type='radio'] {
+        margin-right: 0.25rem;
+    }
+}
+
+// File input styles
+.file-input {
+    display: block;
+    width: 100%;
+    
+    & input[type='file'] {
+        display: none; // Hide the default input
+    }
+
+    & label {
+        display: block;
+        padding: 0.375rem 0.75rem;
+        background-color: $primary-color;
+        color: white;
+        text-align: center;
+        border-radius: $border-radius;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover,
+        &:focus {
+            background-color: darken($primary-color, $button-hover-darken-percentage);
+        }
+    }
+}
+
+// Range input styles
+.range {
+    & input[type='range'] {
+        display: block;
+        width: 100%;
+    }
+}
