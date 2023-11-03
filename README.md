@@ -1,3 +1,5 @@
+<img src="https://i.ibb.co/zhzg9v3/M.png" alt="MinimaCSS Logo" style="height: 100px; width:100px;"/>
+
 # MinimaCSS ✨
 
 MinimaCSS is a minimalist CSS framework designed for simplicity and ease of use. Born from an idea in 2017 and brought to life in 2018 for my personal projects, MinimaCSS is a reflection of a vision to create a foundational CSS framework that empowers new developers and suits projects that require just the basics.
