@@ -1,23 +1,4 @@
 
-// For Margin and Padding Utilities
-$spacers: (
-  0: 0,
-  1: 0.25rem,
-  2: 0.5rem,
-  3: 1rem,
-  4: 1.5rem,
-  5: 3rem,
-);
-
-$colors: (
-  primary: $primary-color,
-  error: $error-color,
-  success: $success-color,
-  info: $info-color,
-  "white": $white-color,
-  "black": $black-color,
-);
-
 // Margin utilities
 @each $size, $value in $spacers {
   .m-#{$size} {
@@ -72,6 +53,28 @@ $colors: (
   }
 }
 
+.surface-primary{
+  background-color: var(--surface-primary-color);
+}
+.surface-secondary{
+  background-color: var(--surface-secondary-color);
+}
+.surface-tertiary{
+  background-color: var(--surface-tertiary-color);
+}
+
+.text-primary{
+  color: var(--text-primary-color);
+}
+
+.text-secondary{
+  color: var(--text-secondary-color);
+}
+
+.text-tertiary{
+  color: var(--text-tertiary-color);
+}
+
 // bg and text utilities
 @each $color, $value in $colors {
   .bg-#{$color} {
@@ -79,5 +82,213 @@ $colors: (
   }
   .text-#{$color} {
     color: $value !important;
+  }
+  .border-#{$color} {
+    border-color: $value !important;
+  }
+}
+
+@each $name, $value in $shadows {
+  .shadow-#{$name} {
+    box-shadow: #{$value};
+  }
+}
+
+// Text Utilities
+.font-weight-bold {
+  font-weight: bold !important;
+}
+
+.font-weight-normal {
+  font-weight: normal !important;
+}
+
+// Visibility Utilities
+.hidden {
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}
+
+// Flex Utilities
+.justify-content-start {
+  justify-content: flex-start !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.align-items-start {
+  align-items: flex-start !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.align-items-end {
+  align-items: flex-end !important;
+}
+
+// Text Alignment Utilities
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+// Display Utilities
+.d-inline {
+  display: inline !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-none {
+  display: none !important;
+}
+
+// Width and Height Utilities
+
+@each $size-name, $size-value in $sizes {
+  .w-#{$size-name} {
+    width: $size-value !important;
+  }
+
+  .h-#{$size-name} {
+    height: $size-value !important;
+  }
+
+  .max-w-#{$size-name} {
+    max-width: $size-value !important;
+  }
+
+  .max-h-#{$size-name} {
+    max-height: $size-value !important;
+  }
+
+  .min-w-#{$size-name} {
+    min-width: $size-value !important;
+  }
+
+  .min-h-#{$size-name} {
+    min-height: $size-value !important;
+  }
+}
+
+
+// Border Utilities
+.border {
+  border: 1px solid !important;
+}
+
+.border-top {
+  border-top: 1px solid !important;
+}
+
+.border-right {
+  border-right: 1px solid !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid !important;
+}
+
+.border-left {
+  border-left: 1px solid !important;
+}
+
+.border-0 {
+  border: 0 !important;
+}
+
+.border-top-0 {
+  border-top: 0 !important;
+}
+
+.border-right-0 {
+  border-right: 0 !important;
+}
+
+.border-bottom-0 {
+  border-bottom: 0 !important;
+}
+
+.border-left-0 {
+  border-left: 0 !important;
+}
+
+// Border Radius Utilities
+@for $i from 0 through 3 {
+  .rounded-#{$i} {
+    border-radius: #{$i * 0.25rem} !important;
+  }
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+
+// Overflow Utilities
+.overflow-auto {
+  overflow: auto !important;
+}
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+
+// Position Utilities
+.position-static {
+  position: static !important;
+}
+
+.position-relative {
+  position: relative !important;
+}
+
+.position-absolute {
+  position: absolute !important;
+}
+
+.position-fixed {
+  position: fixed !important;
+}
+
+.position-sticky {
+  position: sticky !important;
+}
+
+// Opacity Utilities
+@for $i from 0 through 10 {
+  .opacity-#{$i} {
+    opacity: $i * 0.1 !important;
   }
 }

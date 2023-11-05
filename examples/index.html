@@ -3,41 +3,141 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MinimaCSS Framework Components</title>
     <link rel="stylesheet" href="../dist/minimacss.css">
+    <style>
+        /* Theme Switcher Styles */
+        .theme-switcher {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+
+        /* Switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body>
-
+    <div class="theme-switcher">
+        Dark Theme
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+           <span class="slider round"></span>
+        </label>
+    </div>
     <header class="container my-4">
         <h1 class="mt-0 mb-2">MinimaCSS Framework Components</h1>
         <p>This is a showcase of all the components and their variations </p>
         <hr>
     </header>
-    <!-- Header -->
+
     <section class="container mt-5">
-        <h2>Header Nav</h2>
-        <header class="header">
-            <div class="header-container">
-                <h1 class="mb-0">Brand</h1>
-                <nav class="header-nav">
-                    <div class="header-nav-item">
-                        <a href="#" class="header-nav-item-link">Home</a>
-                    </div>
-                    <div class="header-nav-item">
-                        <a href="#" class="header-nav-item-link">About</a>
-                    </div>
-                    <div class="header-nav-item">
-                        <a href="#" class="header-nav-item-link">Services</a>
-                    </div>
-                    <div class="header-nav-item">
-                        <a href="#" class="header-nav-item-link">Contact</a>
-                    </div>
-                </nav>
-                <div class="header-toggle">Mobile Toggle</div>
-            </div>
-        </header>
+        <!-- Navigation Bar -->
+        <nav class="nav">
+            <div class="nav-container">
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <img src="https://placehold.co/100x100" alt="Logo" class="nav-logo-img">
+                    <span class="nav-logo-text">Brand</span>
+                </div>
+                <!-- Mobile Menu Toggle -->
+                <div class="nav-toggle">
+                    <span class="nav-toggle-icon">☰</span>
+                </div>
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li class="nav-links-item">
+                        <a href="#" class="nav-links-item-link">Home</a>
+                    </li>
+                    <li class="nav-links-item">
+                        <a href="#" class="nav-links-item-link">About</a>
+                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-links-item">
+                        <a href="#" class="nav-links-item-link">Services</a>
+                        <div class="dropdown-content shadow-md">
+                            <a href="#" class="dropdown-content-item">Web Design</a>
+                            <a href="#" class="dropdown-content-item">Web Development</a>
+                            <a href="#" class="dropdown-content-item">Graphic Design</a>
+                        </div>
+                    </li>
+                    <li class="nav-links-item">
+                        <a href="#" class="nav-links-item-link">Contact</a>
+                    </li>
+                </ul>
+
+
+        </nav>
+        <h6 class="mt-5">Breadcrumbs</h6>
+        <!-- Breadcrumbs -->
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumbs">
+                <li class="breadcrumbs-item"><a href="#">Home</a></li>
+                <li class="breadcrumbs-item"><a href="#">Library</a></li>
+                <li class="breadcrumbs-item active" aria-current="page">Data</li>
+            </ol>
+        </nav>
     </section>
     <!-- Typography -->
     <section class="container mt-5">
@@ -58,21 +158,66 @@
     <!-- Buttons -->
     <section class="container mt-5">
         <h2>Buttons</h2>
-        <button class="btn btn-primary m-1">Primary Button</button>
-        <button class="btn btn-error m-1">Error Button</button>
-        <button class="btn btn-success m-1">Success Button</button>
-        <button class="btn btn-info m-1">Info Button</button>
-        <button class="btn btn-primary btn-small m-1">Small Button</button>
-        <button class="btn btn-primary btn-large m-1">Large Button</button>
-        <button class="btn btn-primary btn-block m-1">Block Button</button>
+        <div>
+            <button class="btn btn-primary btn-outline m-1 ">Primary Button</button>
+            <button class="btn btn-error m-1">Error Button</button>
+            <button class="btn btn-success m-1">Success Button</button>
+            <button class="btn btn-warning m-1">Warning Button</button>
+            <button class="btn btn-info m-1">Info Button</button>
+            <button class="btn btn-light m-1">Light Button</button>
+            <button class="btn btn-dark m-1">Dark Button</button>
+            <button class="btn btn-link m-1">Link Button</button>
+        </div>
+        <div>
+            <button class="btn btn-outline-primary btn-outline m-1">Primary Button</button>
+            <button class="btn btn-outline-error m-1">Error Button</button>
+            <button class="btn btn-outline-success m-1">Success Button</button>
+            <button class="btn btn-outline-warning m-1">Warning Button</button>
+            <button class="btn btn-outline-info m-1">Info Button</button>
+            <button class="btn btn-outline-light m-1">Light Button</button>
+            <button class="btn btn-outline-dark m-1">Dark Button</button>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-small m-1">Small Button</button>
+            <button class="btn btn-primary m-1">Base Button</button>
+            <button class="btn btn-primary btn-large m-1">Large Button</button>
+        </div>
+        <div>
+            <button class="btn btn-primary btn-block m-1">Block Button</button>
+        </div>
+        <div class="btn-group mt-2">
+            <button class="btn btn-primary ">Left</button>
+            <button class="btn btn-primary">Middle</button>
+            <button class="btn btn-primary">Right</button>
+        </div>
+
     </section>
 
     <!-- Form Elements -->
     <section class="container mt-5">
         <h2>Form Elements</h2>
-        <label for="inputExample">Input</label>
-        <input type="text" class="input" id="inputExample" placeholder="Input text here">
-
+        <div class="input-group">
+            <label for="inputExample">Input Label</label>
+            <input type="text" class="input" id="inputExample" placeholder="Input text here">
+            <div class="helper-text">
+                This is Helper text: Your username must be 8-20 characters long.
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="inputExample">Input Label</label>
+            <input type="text" class="input is-valid" id="inputExample" placeholder="Input text here" value="Valid Entry">
+            <div class="helper-text-valid">
+                This is Helper text: Your username must be 8-20 characters long.
+            </div>
+        </div>
+        <div class="input-group">
+            <label for="inputExample">Input Label</label>
+            <input type="text" class="input is-invalid" id="inputExample" placeholder="Input text here" value="Invalid Entry">
+            <div class="helper-text-invalid">
+                This is Helper text: Your username must be 8-20 characters long.
+            </div>
+        </div>
+        
         <label for="selectExample" class="mt-3">Select</label>
         <select class="select" id="selectExample">
             <option>Option 1</option>
@@ -87,10 +232,17 @@
             <label for="checkboxExample">Checkbox</label>
         </div>
 
-        <div class="radio mt-3">
-            <input type="radio" id="radioExample" name="radio">
-            <label for="radioExample">Radio Button</label>
+        <div class="d-flex mt-3">
+            <div class="radio">
+                <input type="radio" id="radioExample" name="radio" value="1">
+                <label for="radioExample">Radio Button</label>
+            </div>
+            <div class="radio ml-3">
+                <input type="radio" id="radioExample2" name="radio" value="2">
+                <label for="radioExample2">Radio Button</label>
+            </div>
         </div>
+
 
         <div class="file-input mt-3">
             <input type="file" id="fileExample">
@@ -100,14 +252,15 @@
         <div class="range mt-3">
             <input type="range" id="rangeExample">
         </div>
+        <progress class="progress" value="40" max="100"></progress>
     </section>
 
     <!-- Cards -->
     <section class="container mt-5">
         <h2>Cards</h2>
         <div class="row">
-            <div class="col-md-6 mt-3">
-                <div class="card">
+            <div class="col-md-3 mt-3">
+                <div class="card shadow-sm">
                     <img src="https://placehold.co/600x400" class="card-img-top" alt="Card Image">
                     <div class="card-body">
                         <h3 class="card-title">Card Title</h3>
@@ -120,30 +273,127 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3 mt-3">
+                <div class="card shadow-sm">
+                    <img src="https://placehold.co/600x400" class="card-img-top" alt="Card Image">
+                    <div class="card-body">
+                        <h3 class="card-title">Card Title</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3">
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        This is Card Title
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Card Title</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="card-title">Card Title</h3>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </section>
 
     <!-- Grid System -->
     <section class="container mt-5 mb-5">
-        <h2>Grid System</h2>
-        <div class="row">
-            <div class="col-md-3 p-3 mt-3 bg-info">.col-3</div>
-            <div class="col-md-3 p-3 mt-3 bg-primary">.col-3</div>
-            <div class="col-md-3 p-3 mt-3 bg-info">.col-3</div>
-            <div class="col-md-3 p-3 mt-3 bg-primary">.col-3</div>
+        <h2>Flexbox Column System</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-6 mt-2"><div class="surface-secondary p-1">.col-12 .col-md-8 .col-lg-6</div></div>
+                <div class="col-6 col-lg-3 mt-2"><div class="surface-secondary p-1">.col-6 .col-lg-3</div></div>
+                <div class="col-6 col-lg-3 mt-2"><div class="surface-secondary p-1">.col-6 .col-lg-3</div></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-4"><div class="surface-secondary p-1">.col-4</div></div>
+                <div class="col-4"><div class="surface-secondary p-1">.col-4</div></div>
+                <div class="col-4"><div class="surface-secondary p-1">.col-4</div></div>
+            </div>
         </div>
     </section>
 
     <!-- BG and Text and spacing utilities -->
-    <section class="container mt-5 mb-5">
+    <section class="container mt-5">
         <h2>BG and Text and spacing utilities</h2>
-        <div class="p-4 my-4 bg-black text-white">This is showcase of bg and text utilities</div>
-        <div class="p-4 my-4 bg-primary text-white">This is showcase of bg and text utilities</div>
-        <div class="p-4 my-4 bg-error text-white">This is showcase of bg and text utilities</div>
-        <div class="p-4 my-4 bg-success text-white">This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-black text-white rounded-2">This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-primary text-white rounded-2">This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-error text-white rounded-2">This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-success text-white rounded-2">This is showcase of bg and text utilities</div>
     </section>
 
+    <section class="container mt-5 mb-5">
+        <div class="table-responsive rounded-2">
+            <table class="table table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const toggleSwitch = document.querySelector('#theme-toggle');
+
+            function switchTheme(e) {
+                if (e.target.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem('theme', 'light');
+                }
+            }
+
+            toggleSwitch.addEventListener('change', switchTheme, false);
+
+            const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+            if (currentTheme) {
+                document.documentElement.setAttribute('data-theme', currentTheme);
+                if (currentTheme === 'dark') {
+                    toggleSwitch.checked = true;
+                }
+            }
+        });
+
+    </script>
 </body>
 
 </html>

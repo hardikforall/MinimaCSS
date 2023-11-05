@@ -1,76 +1,65 @@
+// Variables
+$grid-columns: 12;
+$grid-gutter-width: 15px; // Base gutter width for all breakpoints
+
+
+// Mixins
+@mixin make-row() {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(#{$grid-gutter-width} / -2);
+  margin-left: calc(#{$grid-gutter-width} / -2);
+}
+
+@mixin make-column($columns) {
+  flex: 0 0 calc((100% / #{$grid-columns}) * #{$columns});
+  max-width: calc((100% / #{$grid-columns}) * #{$columns});
+  padding-right: calc(#{$grid-gutter-width} / 2);
+  padding-left: calc(#{$grid-gutter-width} / 2);
+}
+
 // Container
 .container {
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  width: 100%;
+  padding-right: calc(#{$grid-gutter-width} * 1.5);
+  padding-left: calc(#{$grid-gutter-width} * 1.5);
+  margin-right: auto;
+  margin-left: auto;
 
-    @media (min-width: 576px) {
-        max-width: 540px;
+  @each $break, $size in $breakpoints {
+    @media (min-width: $size) {
+      max-width: calc(#{$size} - #{$grid-gutter-width});
     }
+  }
+}
 
-    @media (min-width: 768px) {
-        max-width: 720px;
-    }
-
-    @media (min-width: 992px) {
-        max-width: 960px;
-    }
-
-    @media (min-width: 1200px) {
-        max-width: 1140px;
-    }
+.container-fluid {
+  width: 100%;
+  padding-right: calc(#{$grid-gutter-width} / 2);
+  padding-left: calc(#{$grid-gutter-width} / 2);
+  margin-right: auto;
+  margin-left: auto;
 }
 
 // Row
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
+  @include make-row();
 }
 
 // Columns
-[class*="col-"] {
-    position: relative;
-    width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    @include make-column($i);
+  }
 }
 
-// Setting up columns for different screen sizes
-@for $i from 1 through 12 {
-    .col-#{$i} {
-        flex: 0 0 percentage(calc($i / 12));
-        max-width: percentage(calc($i / 12));
+// Responsive columns
+@each $breakpoint, $breakpoint-width in $breakpoints {
+  @media (min-width: $breakpoint-width) {
+    @for $i from 1 through $grid-columns {
+      .col-#{$breakpoint}-#{$i} {
+        @include make-column($i);
+      }
     }
-
-    @media (min-width: 576px) {
-        .col-sm-#{$i} {
-            flex: 0 0 percentage(calc($i / 12));
-            max-width: percentage(calc($i / 12));
-        }
-    }
-
-    @media (min-width: 768px) {
-        .col-md-#{$i} {
-            flex: 0 0 percentage(calc($i / 12));
-            max-width: percentage(calc($i / 12));
-        }
-    }
-
-    @media (min-width: 992px) {
-        .col-lg-#{$i} {
-            flex: 0 0 percentage(calc($i / 12));
-            max-width: percentage(calc($i / 12));
-        }
-    }
-
-    @media (min-width: 1200px) {
-        .col-xl-#{$i} {
-            flex: 0 0 percentage(calc($i / 12));
-            max-width: percentage(calc($i / 12));
-        }
-    }
+  }
 }

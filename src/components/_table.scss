@@ -1,0 +1,68 @@
+$table-cell-padding: 0.75rem;
+$table-striped-index: odd;
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--table-bg-color);
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: $table-cell-padding;
+    vertical-align: top;
+    border-top: 1px solid var(--table-border-color);
+  }
+
+  thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid var(--table-border-color);
+  }
+
+  tbody + tbody {
+    border-top: 2px solid var(--table-border-color);
+  }
+
+  // Striped rows
+  &.table-striped {
+    tbody tr:nth-of-type(#{$table-striped-index}) {
+      background-color: var(--table-accent-bg-color);
+    }
+  }
+
+  // Hover effect
+  &.table-hover {
+    tbody tr:hover {
+      background-color: var(--table-hover-bg-color);
+    }
+  }
+
+  // Bordered version
+  &.table-bordered {
+    border: 1px solidvar(--table-border-color);
+    th,
+    td {
+      border: 1px solid var(--table-border-color);
+    }
+    thead {
+      th,
+      td {
+        border-bottom-width: 2px;
+      }
+    }
+  }
+
+  // Responsive table
+  &.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    // Fix for browsers that don't support border-radius on table
+    > .table {
+      border: 0;
+    }
+  }
+}

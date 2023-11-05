@@ -1,9 +1,28 @@
-// base font properties
-html {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 100%; 
+@import url('https://rsms.me/inter/inter.css');
+
+// Base font properties
+body {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  @supports (font-variation-settings: normal) {
+    :root { font-family: 'Inter var', sans-serif; }
+  }
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 100%; // 16px
   line-height: 1.6;
-  color: $text-color;
+  color: var(--text-primary-color);
+  background-color: var(--surface-primary-color);
+}
+
+// Define font size variables
+:root {
+  --font-size-h1: 2.5rem; // 40px
+  --font-size-h2: 2rem; // 32px
+  --font-size-h3: 1.75rem; // 28px
+  --font-size-h4: 1.5rem; // 24px
+  --font-size-h5: 1.25rem; // 20px
+  --font-size-h6: 1rem; // 16px
 }
 
 // Headings
@@ -15,27 +34,38 @@ h5,
 h6 {
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: clamp(1.875rem, 5vw + 1rem, var(--font-size-h1));
+  font-weight: 800;
 }
+
 h2 {
-  font-size: 1.75em;
+  font-size: clamp(1.5rem, 4vw + 1rem, var(--font-size-h2));
+  font-weight: 700;
 }
+
 h3 {
-  font-size: 1.5em;
+  font-size: clamp(1.375rem, 3.5vw + 1rem, var(--font-size-h3));
+  font-weight: 600;
 }
+
 h4 {
-  font-size: 1.35em;
+  font-size: clamp(1.25rem, 3vw + 1rem, var(--font-size-h4));
+  font-weight: 500;
 }
+
 h5 {
-  font-size: 1.25em;
+  font-size: clamp(1.125rem, 2.5vw + 1rem, var(--font-size-h5));
+  font-weight: 400;
 }
+
 h6 {
-  font-size: 1em;
+  font-size: clamp(1rem, 2vw + 1rem, var(--font-size-h6));
+  font-weight: 400;
 }
 
 // Paragraphs
@@ -46,18 +76,20 @@ p {
 
 // Links
 a {
-  color: $primary-color;
+  color: var(--link-text-color);
   text-decoration: none;
-
+  font-weight: 500;
   &:hover,
   &:focus {
     text-decoration: underline;
+    color: var(--link-hover-color);
   }
 
   &:active {
-    color: darken($primary-color, 10%);
+    color: var(--link-hover-color);
   }
 }
+
 // Lists
 ul,
 ol {
@@ -69,25 +101,29 @@ ol {
     margin-bottom: 0.5em;
   }
 }
+
 // Blockquotes
 blockquote {
   margin: 1em 0;
-  padding-left: 1.5em;
-  border-left: 4px solid $blockquote-border-color;
-  color: $blockquote-color;
+  padding: 1em;
+  border-left: 4px solid var(--blockquote-border-color);
+  color: var(--blockquote-text-color);
   font-style: italic;
+  background-color: var(--blockquote-bg-color);
 }
 
 // Horizontal Rule
 hr {
   border: none;
-  border-top: 1px solid $hr-color;
+  border-top: 1px solid var(--hr-border-color);
   margin: 2em 0;
 }
+
 // Label -adding padding for use in forms
 label {
   margin-bottom: 0.25rem;
   display: inline-block;
+  font-weight: 500;
 }
 
 // Images
@@ -102,32 +138,18 @@ figure {
 
   figcaption {
     font-size: 0.875em;
-    color: $figcaption-color;
+    color: var(--figcaption-text-color);
     margin-top: 0.5em;
   }
-}
-
-// Tables
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1em;
-}
-
-th,
-td {
-  text-align: left;
-  padding: 0.5em;
-  border-bottom: 1px solid $table-border-color;
 }
 
 // Code
 code {
   font-family: monospace;
-  font-size: 0.875em;
+  font-size: 1em;
   padding: 0.25em;
-  background-color: $code-bg-color;
-  border-radius: 4px;
+  background-color: var(--code-bg-color);
+  border-radius: $border-radius;
 }
 
 // Preformatted Text
@@ -135,8 +157,8 @@ pre {
   font-family: monospace;
   padding: 1em;
   overflow: auto;
-  background-color: $pre-bg-color; 
-  border-radius: 4px;
+  background-color: var(--code-bg-color);
+  border-radius: $border-radius;
 }
 
 // Small Print

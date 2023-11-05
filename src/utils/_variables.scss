@@ -1,23 +1,132 @@
-$primary-color: #007bff;
-$error-color: #dc3545;
-$success-color: #28a745;
-$info-color: #17a2b8;
-$white-color: #fff;
-$black-color:#000;
-$border-radius: 0.25rem;
-$text-color: #1e1e1d;
-$blockquote-border-color: $primary-color;
-$blockquote-color: $text-color;
-$hr-color: #1e1e1d;
-$figcaption-color: $text-color;
-$table-border-color: $text-color;
-$code-bg-color: #dedede;
-$pre-bg-color: #f2ecec;
-$button-hover-darken-percentage: 10%;
+$primary-50:#f6f5fc;
+$primary-100:#eae8fc;
+$primary-200:#bfbbf7;
+$primary-300:#948ef1;
+$primary-400:#6960eb;
+$primary-500:#3e33e6;
+$primary-600:#2419cc;
+$primary-700:#1c149f;
+$primary-800:#140e71;
+$primary-900:#0c0844;
+
+$white: #ffffff;
+$black: #212429;
+
+$gray-50: #f7f7f7;
+$gray-100: #f1f2f4;
+$gray-200: #d5d8dd;
+$gray-300: #d5d8dd;
+$gray-400: #9ca3af;
+$gray-500: #808999;
+$gray-600: #66707f;
+$gray-700: #505763;
+$gray-800: #393e47;
+$gray-900: #22252a;
+
+$red-50: #ffebee;
+$red-100: #ffcdd2;
+$red-200: #ef9a9a;
+$red-300: #e57373;
+$red-400: #ef5350;
+$red-500: #f44336;
+$red-600: #e53935;
+$red-700: #d32f2f;
+$red-800: #c62828;
+$red-900: #b71c1c;
+
+
+$green-50: #E3F9E5;
+$green-100: #C1EAC5;
+$green-200: #A3D9A5;
+$green-300: #7BC47F;
+$green-400: #57AE5B;
+$green-500: #3F9142;
+$green-600: #2F8132;
+$green-700: #207227;
+$green-800: #0E5814;
+$green-900: #05400A;
+
+$orange-50: #FFE8D9;
+$orange-100: #FFD0B5;
+$orange-200: #FFB088;
+$orange-300: #FF9466;
+$orange-400: #F9703E;
+$orange-500: #F35627;
+$orange-600: #DE3A11;
+$orange-700: #C52707;
+$orange-800: #AD1D07;
+$orange-900: #841003;
+
+$blue-50: #e3f2fd;
+$blue-100: #bbdefb;
+$blue-200: #90caf9;
+$blue-300: #64b5f6;
+$blue-400: #42a5f5;
+$blue-500: #2196f3;
+$blue-600: #1e88e5;
+$blue-700: #1976d2;
+$blue-800: #1565c0;
+$blue-900: #0d47a1;
+
+$border-radius: 0.5rem;
+$table-cell-padding: 0.75rem;
+$table-striped-index: odd;
 $card-padding: 1.5rem;
-$card-background-color: #ffffff;
-$card-header-bg-color: rgba(0, 0, 0, 0.03);
-$card-footer-bg-color: rgba(0, 0, 0, 0.03);
-$input-placeholder-color: rgba(0, 0, 0, 0.6);
-$input-disabled-bg-color: #e9ecef;
-$footer-background-color: $primary-color; 
+
+$breakpoints: (
+  'sm': 576px,
+  'md': 768px,
+  'lg': 992px,
+  'xl': 1200px,
+  'xxl': 1400px
+);
+
+$spacers: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem,
+);
+
+$colors: (
+  primary: $primary-500,
+  error: $red-500,
+  success: $green-500,
+  info: $blue-500,
+  "white": $white,
+  "black": $black,
+  "gray": $gray-500,
+  "gray-light": $gray-200,
+);
+
+$shadows: (
+  'sm': "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+  'default': "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+  'md': "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+  'lg': "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+  'xl': "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+  '2xl': "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+  'inner': "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
+  'none': "none"
+);
+
+$sizes: (
+  '0': 0,
+  '1': 1rem,
+  '2': 2rem,
+  '3': 3rem,
+  '4': 4rem,
+  '5': 5rem,
+  '6': 6rem,
+  '8': 8rem,
+  '10': 10rem,
+  '12': 12rem,
+  '16': 16rem,
+  '20': 20rem,
+  '24': 24rem,
+  '32': 32rem,
+  'auto': auto,
+  'full': 100%
+);

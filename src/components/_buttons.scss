@@ -1,15 +1,48 @@
+// Button Base Mixin
+@mixin button-variant(
+  $color,
+  $hover-color,
+  $text-color,
+  $focus-ring,
+  $type: solid
+) {
+  @if $type ==solid {
+    background-color: var($color);
+    border-color: var($color);
+    color: var($text-color);
+  } @else if $type ==outline {
+    background-color: transparent;
+    border-color: var($color);
+    color: var($color);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.25rem var($focus-ring);
+  }
+
+  &:hover,
+  &:active,
+  &.active {
+    @if $type ==solid {
+      background-color: var($hover-color);
+      border-color: var($hover-color);
+    } @else if $type ==outline {
+      background-color: var($color);
+      color: var($text-color);
+    }
+  }
+}
+
 // Base button styles
 .btn {
   padding: 0.5rem 1rem;
   border: 1px solid transparent;
   border-radius: $border-radius;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  background-color: $primary-color;
-  color: white;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     color 0.15s ease-in-out;
 
@@ -19,56 +52,156 @@
   }
 }
 
-// Button variants
+// Button Variants
 .btn-primary {
-  background-color: $primary-color;
-  border-color: $primary-color;
-  &:hover,
-  &:focus {
-    background-color: darken($primary-color, 10%);
-  }
-  &:active {
-    background-color: darken($primary-color, 20%);
-  }
+  @include button-variant(
+    --button-primary-color,
+    --button-primary-hover-color,
+    --button-primary-text-color,
+    --button-primary-focus-ring-color
+  );
 }
 
 .btn-error {
-  background-color: $error-color;
-  border-color: $error-color;
-  &:hover,
-  &:focus {
-    background-color: darken($error-color, 10%);
-  }
-  &:active {
-    background-color: darken($error-color, 20%);
-  }
+  @include button-variant(
+    --button-error-color,
+    --button-error-hover-color,
+    --button-error-text-color,
+    --button-error-focus-ring-color
+  );
 }
 
 .btn-success {
-  background-color: $success-color;
-  border-color: $success-color;
-  &:hover,
-  &:focus {
-    background-color: darken($success-color, 10%);
-  }
-  &:active {
-    background-color: darken($success-color, 20%);
-  }
+  @include button-variant(
+    --button-success-color,
+    --button-success-hover-color,
+    --button-success-text-color,
+    --button-success-focus-ring-color
+  );
+}
+
+.btn-warning {
+  @include button-variant(
+    --button-warning-color,
+    --button-warning-hover-color,
+    --button-warning-text-color,
+    --button-warning-focus-ring-color
+  );
 }
 
 .btn-info {
-  background-color: $info-color;
-  border-color: $info-color;
+  @include button-variant(
+    --button-info-color,
+    --button-info-hover-color,
+    --button-info-text-color,
+    --button-info-focus-ring-color
+  );
+}
+
+.btn-dark {
+  @include button-variant(
+    --button-dark-color,
+    --button-dark-hover-color,
+    --button-dark-text-color,
+    --button-dark-focus-ring-color
+  );
+}
+
+.btn-light {
+  @include button-variant(
+    --button-light-color,
+    --button-light-hover-color,
+    --button-light-text-color,
+    --button-light-focus-ring-color
+  );
+}
+
+// Outline Buttons
+// Outline Buttons
+.btn-outline-primary {
+  @include button-variant(
+    --button-primary-color,
+    --button-primary-hover-color,
+    --button-primary-text-color,
+    --button-primary-focus-ring-color,
+    outline
+  );
+}
+
+.btn-outline-error {
+  @include button-variant(
+    --button-error-color,
+    --button-error-hover-color,
+    --button-error-text-color,
+    --button-error-focus-ring-color,
+    outline
+  );
+}
+
+.btn-outline-success {
+  @include button-variant(
+    --button-success-color,
+    --button-success-hover-color,
+    --button-success-text-color,
+    --button-success-focus-ring-color,
+    outline
+  );
+}
+
+.btn-outline-warning {
+  @include button-variant(
+    --button-warning-color,
+    --button-warning-hover-color,
+    --button-warning-text-color,
+    --button-warning-focus-ring-color,
+    outline
+  );
+}
+
+.btn-outline-info {
+  @include button-variant(
+    --button-info-color,
+    --button-info-hover-color,
+    --button-info-text-color,
+    --button-info-focus-ring-color,
+    outline
+  );
+}
+
+.btn-outline-dark {
+  @include button-variant(
+    --button-dark-color,
+    --button-dark-hover-color,
+    --button-dark-text-color,
+    --button-dark-focus-ring-color,
+    outline
+  );
+}
+
+.btn-outline-light {
+  @include button-variant(
+    --button-light-color,
+    --button-light-hover-color,
+    --button-light-text-color,
+    --button-light-focus-ring-color,
+    outline
+  );
+}
+
+// Link Button
+.btn-link {
+  color: var(--button-link-text-color);
+  text-decoration: underline;
+  background: transparent;
+
   &:hover,
-  &:focus {
-    background-color: darken($info-color, 10%);
-  }
+  &:focus,
   &:active {
-    background-color: darken($info-color, 20%);
+    color: var(--button-link-hover-color);
   }
 }
 
-// Button sizes
+// Button Sizes
 .btn-small {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
@@ -83,4 +216,38 @@
 .btn-block {
   display: block;
   width: 100%;
+}
+
+// Button Group
+.btn-group {
+  display: inline-flex;
+  vertical-align: middle;
+
+  .btn {
+    position: relative;
+    border-radius: 0;
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+
+    &:last-child {
+      border-top-right-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+
+    &:not(:first-child) {
+      border-left: none;
+    }
+  }
+}
+
+// Optional: Spacing between button groups if they stack
+.btn-group + .btn-group {
+  margin-left: 0.5rem;
 }

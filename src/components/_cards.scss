@@ -1,14 +1,13 @@
 // Base card styles
 .card {
-  background-color: $card-background-color; 
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  background-color: var(--card-bg-color); 
+  border: 1px solid var(--border-primary-color);
   border-radius: $border-radius; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   &-header {
     padding: 0.75rem 1.25rem;
-    background-color: $card-header-bg-color; 
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: var(--card-header-bg-color); 
+    border-bottom: 1px solid var(--border-primary-color);
   }
 
   &-body {
@@ -17,8 +16,8 @@
 
   &-footer {
     padding: 0.75rem 1.25rem;
-    background-color: $card-footer-bg-color; 
-    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: var(--card-footer-bg-color); 
+    border-top: 1px solid var(--border-primary-color);
   }
 
   &-title {

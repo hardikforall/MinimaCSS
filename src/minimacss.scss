@@ -1,14 +1,24 @@
 //Combining all together
 @import 'utils/variables';
 @import 'utils/functions';
-@import 'utils/mixins';
 @import 'base/reset';
-@import 'utils/utilities';
+@import 'themes/light';
+@import "themes/dark";
+@media only screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    @include dark;
+  }
+}
+[data-theme="dark"] {
+  @include dark;
+}
+@import 'themes/dark';
 @import 'base/typography';
 @import 'components/buttons';
 @import 'components/inputs';
+@import 'components/nav';
 @import 'components/cards';
+@import 'components/table';
 @import 'layout/grid';
-@import 'layout/header';
-@import 'layout/footer';
+@import 'utils/utilities';
 
