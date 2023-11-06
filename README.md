@@ -2,7 +2,7 @@
 
 # MinimaCSS ✨
 
-MinimaCSS is a minimalist CSS framework designed for simplicity and ease of use. Born from an idea in 2017 and brought to life in 2018 for my personal projects, MinimaCSS is a reflection of a vision to create a foundational CSS framework that empowers new developers and suits projects that require just the basics.
+MinimaCSS is a minimalist CSS framework designed for simplicity and ease of use (Opinionated). Born from an idea in 2017 and brought to life in 2018 for my personal projects, MinimaCSS is a reflection of a vision to create a foundational CSS framework that empowers new developers and suits projects that require just the basics.
 
 While it may not cater to the complexities of large-scale applications, its streamlined approach is ideal for budding developers, simple projects, and anyone in need of a lightweight, straightforward starting point.
 
@@ -18,6 +18,8 @@ In a world where front-end frameworks are often bloated and overly complex, Mini
 - Forms: Simple form elements for quick integration.
 - Utilities: Handy utility classes for spacing, visibility, backgrounds, text colors, and more.
 - Responsive: Built with a mobile-first approach.
+- Dark Mode : Dark mode Included by default
+- Size : Less than 10 kB minified and gzipped
 
 ### Examples 📚
 

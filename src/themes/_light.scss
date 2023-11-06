@@ -3,6 +3,9 @@
 :root:not([data-theme="dark"]) {
     --accent-color: #{$primary-600};
 
+    --light-color: #{$white};
+    --dark-color: #{$black};
+
     --text-primary-color: #{$gray-800};
     --text-secondary-color: #{$gray-400};
     --text-tertiary-color: #{$gray-200};
@@ -80,7 +83,7 @@
     --input-invalid-text-color:#{$red-500};
     --input-invalid-border-color: #{$red-500};
     --input-focus-invalid-ring-color: #{hex-to-rgba($red-500, 0.25)};
-
+    --input-disabled-bg-color:var(--surface-tertiary-color);
 
     //table
     --table-bg-color: var(--surface-primary-color);
@@ -89,10 +92,16 @@
     --table-border-color: var(--border-primary-color);
 
     //Nav
-    --nav-bg-color: #{$primary-500};
-    --nav-text-color: #{$white};
-    --nav-link-color: #{$white};
-    --nav-link-hover-color: #{hex-to-rgba($white, 0.8)};
-    --nav-dropdown-link-color: var(--text-primary-color);
-    --nav-dropdown-bg-color: var(--surface-secondary-color);
+    --nav-primary-bg-color: #{$primary-500};
+    --nav-primary-text-color: #{$white};
+    --nav-primary-link-hover-color: #{hex-to-rgba($white, 0.2)};
+    --nav-primary-dropdown-link-color: var(--text-primary-color);
+    --nav-primary-dropdown-bg-color: var(--surface-secondary-color);
+
+    //Circle Loader
+    --loader-light-bg-color:#{hex-to-rgba($white, 0.7)};
+    --loader-light-border-color:#{hex-to-rgba($white, 0.4)};
+
+    --loader-dark-bg-color:#{hex-to-rgba($primary-500, 0.5)};;
+    --loader-dark-border-color:#{hex-to-rgba($primary-500, 0.2)};
 }

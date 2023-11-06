@@ -14,10 +14,13 @@
 }
 @import 'themes/dark';
 @import 'base/typography';
+@import 'components/accordion';
+@import 'components/modal';
 @import 'components/buttons';
 @import 'components/inputs';
 @import 'components/nav';
 @import 'components/cards';
+@import 'components/loader';
 @import 'components/table';
 @import 'layout/grid';
 @import 'utils/utilities';

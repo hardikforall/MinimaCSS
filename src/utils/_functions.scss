@@ -3,6 +3,5 @@
   $g: green($hex);
   $b: blue($hex);
   $a: alpha($hex) * $opacity; // Preserve existing alpha and multiply by new opacity
-
   @return rgba($r, $g, $b, $a);
 }

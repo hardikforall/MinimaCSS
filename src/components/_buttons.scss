@@ -43,13 +43,18 @@
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
+  //to make element in it look aligned
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
     color 0.15s ease-in-out;
-
   &:disabled {
     opacity: 0.65;
     cursor: not-allowed;
   }
+  
 }
 
 // Button Variants
@@ -218,6 +223,15 @@
   width: 100%;
 }
 
+.btn-round{
+  border-radius: 1000px;
+  padding: 1em; 
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+  aspect-ratio: 1 / 1;
+}
 // Button Group
 .btn-group {
   display: inline-flex;
@@ -250,4 +264,86 @@
 // Optional: Spacing between button groups if they stack
 .btn-group + .btn-group {
   margin-left: 0.5rem;
+}
+
+
+// Dropdown Base Styles
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  user-select: none;
+  .dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center; 
+    padding-right: 2rem;
+    &:after {
+      content: "";
+      position: absolute;
+      border: solid currentColor; 
+      border-width: 0 2px 2px 0;
+      padding: 3px;
+      top: 46%;
+      right: 1rem;
+      transform: translateY(-50%) rotate(45deg);
+      transition: transform .3s ease;
+    }
+  
+    &[aria-expanded="true"]::after {
+      transform: translateY(50%) rotate(-135deg);
+    }
+    
+    // Remove the default arrow that comes with summary element
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+  &[open] .dropdown-toggle::after {
+    transform: rotate(225deg); // Rotates the pseudo-element by 225deg
+  }
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: var(--surface-primary-color);
+    min-width: 160px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 0.5rem;
+    border-radius: $border-radius;
+    border: 1px solid var(--border-primary-color);
+    padding: 0.5rem 0;
+  }
+
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    color: var(--text-primary-color);
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    text-decoration: none;
+    &:hover {
+      background-color: var(--surface-tertiary-color);
+    }
+  }
+
+  // When details is open, display the dropdown menu
+  &[open] .dropdown-menu {
+    display: block;
+  }
+  
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdown-menu {
+  animation: fadeIn 0.3s ease-out;
 }

@@ -1,0 +1,95 @@
+$modal-widths: (
+    'sm': 300px,
+    'md': 500px,
+    'lg': 800px,
+    'xl': 1000px,
+    'xxl': 1200px
+);
+
+// Base modal styling
+dialog {
+    z-index: 999;
+    border: 0;
+    border-radius: none;
+    background-color: transparent;
+    padding: 5px;
+    display: block; // Fallback for browsers that don't support <dialog>
+    &:not([open]) {
+        display: none;
+    }
+
+    &::backdrop {
+        background: rgba(0, 0, 0, 0.374);
+    }
+
+    &:open+body {
+        overflow: hidden;
+    }
+}
+
+.modal-content {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.139);
+    border-radius: $border-radius;
+    
+}
+.modal-header,
+.modal-body,
+.modal-footer {
+    padding: 20px;
+}
+.modal-body {
+    background-color: var(--surface-primary-color);
+    color: var(--text-primary-color);
+}
+.modal-header {
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+    background-color: var(--surface-secondary-color);
+    position: relative;
+    border-bottom: 1px solid var(--border-secondary-color);
+    color: var(--text-primary-color);
+    .close-icon {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary-color);
+    }
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-secondary-color);
+    background-color: var(--surface-secondary-color);
+    color: var(--text-primary-color);
+    border-bottom-right-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    text-align: end;
+}
+
+// Size variations with default padding
+@each $size, $width in $modal-widths {
+    .modal-#{$size} {
+        width: $width;
+        max-width: 95%;
+    }
+}
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+    }
+}
+
+// Dynamic width based on breakpoints
+@each $breakpoint, $width in $modal-widths {
+    @include respond-to($breakpoint) {
+        dialog {
+            width: $width;
+        }
+    }
+}

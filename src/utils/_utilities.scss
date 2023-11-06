@@ -111,6 +111,96 @@
 .visible {
   display: block !important;
 }
+// Generates responsive classes for visibility
+@each $bp-name, $bp-size in $breakpoints {
+  // Visible utility
+  .visible-#{$bp-name} {
+    display: none !important; // Hide by default
+
+    @media (min-width: $bp-size) {
+      display: block !important; // Show at the breakpoint and up
+    }
+  }
+
+  // Hidden utility
+  .hidden-#{$bp-name} {
+    @media (min-width: $bp-size) {
+      display: none !important; // Hide at the breakpoint and up
+    }
+  }
+}
+
+
+// Text Alignment Utilities
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.text-clip {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+.text-break {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.font-normal {
+  font-weight: normal;
+}
+.font-bold {
+  font-weight: bold;
+}
+.font-italic {
+  font-style: italic;
+}
+
+// Display Utilities
+.d-inline {
+  display: inline !important;
+}
+
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.d-none {
+  display: none !important;
+}
 
 // Flex Utilities
 .justify-content-start {
@@ -137,42 +227,44 @@
   align-items: flex-end !important;
 }
 
-// Text Alignment Utilities
-.text-left {
-  text-align: left !important;
+// Positioning Utilities
+
+// Position utility
+.position-static { position: static; }
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+.position-sticky { position: sticky; }
+
+// Top / Right / Bottom / Left utilities with rem units // Position utilities using `rem` units with 0.5 increments
+@for $i from 1 through 20 {
+  $size: $i * 0.5;
+  .top-#{$i} { top: #{$size}rem; }
+  .right-#{$i} { right: #{$size}rem; }
+  .bottom-#{$i} { bottom: #{$size}rem; }
+  .left-#{$i} { left: #{$size}rem; }
 }
 
-.text-center {
-  text-align: center !important;
+// Z-index utilities from 10 to 100, increment by 10
+@for $i from 1 through 10 {
+  .z-#{$i * 10} { z-index: $i * 10; }
 }
 
-.text-right {
-  text-align: right !important;
+// Full positioning shortcut
+.full-position {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 
-.text-justify {
-  text-align: justify !important;
-}
-
-// Display Utilities
-.d-inline {
-  display: inline !important;
-}
-
-.d-inline-block {
-  display: inline-block !important;
-}
-
-.d-block {
-  display: block !important;
-}
-
-.d-flex {
-  display: flex !important;
-}
-
-.d-none {
-  display: none !important;
+// Centering utility - absolute center
+.center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 // Width and Height Utilities
@@ -202,7 +294,6 @@
     min-height: $size-value !important;
   }
 }
-
 
 // Border Utilities
 .border {
@@ -265,30 +356,91 @@
   overflow: hidden !important;
 }
 
-// Position Utilities
-.position-static {
-  position: static !important;
-}
-
-.position-relative {
-  position: relative !important;
-}
-
-.position-absolute {
-  position: absolute !important;
-}
-
-.position-fixed {
-  position: fixed !important;
-}
-
-.position-sticky {
-  position: sticky !important;
-}
-
 // Opacity Utilities
 @for $i from 0 through 10 {
   .opacity-#{$i} {
     opacity: $i * 0.1 !important;
   }
+}
+
+// Cursor utilities
+$cursors: (
+  'auto', 'default', 'none', 'context-menu', 'help', 'pointer', 'progress', 
+  'wait', 'cell', 'crosshair', 'text', 'vertical-text', 'alias', 'copy', 
+  'move', 'no-drop', 'not-allowed', 'grab', 'grabbing', 'all-scroll', 
+  'col-resize', 'row-resize', 'n-resize', 'e-resize', 's-resize', 
+  'w-resize', 'ne-resize', 'nw-resize', 'se-resize', 'sw-resize', 
+  'ew-resize', 'ns-resize', 'nesw-resize', 'nwse-resize', 'zoom-in', 'zoom-out'
+);
+
+@each $cursor in $cursors {
+  .cursor-#{$cursor} { cursor: $cursor; }
+}
+
+
+// Media Utilites
+
+// Responsive image
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+// Disable dragging of image
+.img-non-draggable {
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+// Aspect Ratio Boxes
+// Uses padding-top trick to maintain aspect ratio
+$aspect-ratios: (
+  '16-9': 56.25%,  // 16:9
+  '4-3': 75%,      // 4:3
+  '1-1': 100%      // 1:1
+);
+
+@each $ratio-name, $ratio in $aspect-ratios {
+  .aspect-#{$ratio-name} {
+    position: relative;
+    display: block;
+    width: 100%;
+    
+    &::before {
+      content: "";
+      display: block;
+      padding-top: $ratio;
+    }
+  
+    > img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// Utility for image shapes
+.img-circle {
+  border-radius: 50%;
+}
+
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: var(--surface-primary-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+
+// Utility for image shadow
+.img-shadow {
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
 }

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MinimaCSS Framework Components</title>
     <link rel="stylesheet" href="../dist/minimacss.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,1,-25" />
     <style>
         /* Theme Switcher Styles */
         .theme-switcher {
@@ -14,76 +16,15 @@
             right: 10px;
             z-index: 1000;
         }
-
-        /* Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked+.slider {
-            background-color: #2196F3;
-        }
-
-        input:focus+.slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input:checked+.slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
     </style>
 </head>
 
 <body>
     <div class="theme-switcher">
-        Dark Theme
         <label class="switch">
             <input type="checkbox" id="theme-toggle">
-           <span class="slider round"></span>
+            <span class="slider"></span>
+            <span class="label-text">Dark mode</span>
         </label>
     </div>
     <header class="container my-4">
@@ -94,12 +35,13 @@
 
     <section class="container mt-5">
         <!-- Navigation Bar -->
-        <nav class="nav">
+        <nav class="nav nav-primary rounded-3">
             <div class="nav-container">
                 <!-- Logo -->
                 <div class="nav-logo">
-                    <img src="https://placehold.co/100x100" alt="Logo" class="nav-logo-img">
-                    <span class="nav-logo-text">Brand</span>
+                    <img src="https://camo.githubusercontent.com/c606dbcb46fd8e055677968286b429f454245afc8d5c5b73eb8efd3be429acc8/68747470733a2f2f692e6962622e636f2f7a687a673976332f4d2e706e67"
+                        alt="Logo" class="nav-logo-img">
+                    <span class="nav-logo-text">MinimaCSS</span>
                 </div>
                 <!-- Mobile Menu Toggle -->
                 <div class="nav-toggle">
@@ -108,27 +50,76 @@
                 <!-- Navigation Links -->
                 <ul class="nav-links">
                     <li class="nav-links-item">
-                        <a href="#" class="nav-links-item-link">Home</a>
+                        <a href="#" class="nav-links-item-link active">
+                            <span class="material-symbols-rounded">home</span> Home</a>
                     </li>
                     <li class="nav-links-item">
-                        <a href="#" class="nav-links-item-link">About</a>
+                        <a href="#" class="nav-links-item-link"><span class="material-symbols-rounded">
+                                feed
+                            </span>About</a>
                     </li>
                     <!-- Dropdown -->
                     <li class="nav-links-item">
-                        <a href="#" class="nav-links-item-link">Services</a>
-                        <div class="dropdown-content shadow-md">
-                            <a href="#" class="dropdown-content-item">Web Design</a>
-                            <a href="#" class="dropdown-content-item">Web Development</a>
-                            <a href="#" class="dropdown-content-item">Graphic Design</a>
-                        </div>
+                        <details class="dropdown">
+                            <summary class="dropdown-toggle nav-links-item-link">
+                                <span class="material-symbols-rounded">
+                                    feed
+                                </span> Dropdown Menu
+                            </summary>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </details>
                     </li>
                     <li class="nav-links-item">
-                        <a href="#" class="nav-links-item-link">Contact</a>
+                        <a href="#" class="nav-links-item-link"><span class="material-symbols-rounded">
+                                mail
+                            </span>Contact</a>
                     </li>
                 </ul>
-
-
         </nav>
+
+        <div class="row">
+            <div class="col-md-3">
+                <nav class="nav-vertical nav-secondary mt-5 rounded-3">
+                    <div class="nav-container">
+                        <!-- Logo -->
+                        <div class="nav-logo">
+                            <img src="https://camo.githubusercontent.com/c606dbcb46fd8e055677968286b429f454245afc8d5c5b73eb8efd3be429acc8/68747470733a2f2f692e6962622e636f2f7a687a673976332f4d2e706e67"
+                                alt="Logo" class="nav-logo-img">
+                            <span class="nav-logo-text">MinimaCSS</span>
+                        </div>
+                        <!-- Navigation Links -->
+                        <ul class="nav-links">
+                            <li class="nav-links-item">
+                                <a href="#" class="nav-links-item-link active">Home</a>
+                            </li>
+                            <li class="nav-links-item">
+                                <a href="#" class="nav-links-item-link">About</a>
+                            </li>
+                            <!-- Dropdown -->
+                            <li class="nav-links-item">
+                                <details class="dropdown">
+                                    <summary class="dropdown-toggle nav-links-item-link">
+                                         Dropdown Menu
+                                    </summary>
+                                    <div class="dropdown-menu">
+                                      <a class="dropdown-item" href="#">Action</a>
+                                      <a class="dropdown-item" href="#">Another action</a>
+                                      <a class="dropdown-item" href="#">Something else here</a>
+                                    </div>
+                                  </details>
+                            </li>
+                            <li class="nav-links-item">
+                                <a href="#" class="nav-links-item-link">Contact</a>
+                            </li>
+                        </ul>
+                </nav>
+            </div>
+        </div>
+
         <h6 class="mt-5">Breadcrumbs</h6>
         <!-- Breadcrumbs -->
         <nav aria-label="breadcrumb">
@@ -159,7 +150,7 @@
     <section class="container mt-5">
         <h2>Buttons</h2>
         <div>
-            <button class="btn btn-primary btn-outline m-1 ">Primary Button</button>
+            <button class="btn btn-primary m-1 ">Primary Button</button>
             <button class="btn btn-error m-1">Error Button</button>
             <button class="btn btn-success m-1">Success Button</button>
             <button class="btn btn-warning m-1">Warning Button</button>
@@ -169,7 +160,7 @@
             <button class="btn btn-link m-1">Link Button</button>
         </div>
         <div>
-            <button class="btn btn-outline-primary btn-outline m-1">Primary Button</button>
+            <button class="btn btn-outline-primary m-1">Primary Button</button>
             <button class="btn btn-outline-error m-1">Error Button</button>
             <button class="btn btn-outline-success m-1">Success Button</button>
             <button class="btn btn-outline-warning m-1">Warning Button</button>
@@ -183,6 +174,19 @@
             <button class="btn btn-primary btn-large m-1">Large Button</button>
         </div>
         <div>
+            <details class="dropdown">
+                <summary class="dropdown-toggle btn btn-outline-primary">
+                  Dropdown Button
+                </summary>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </details>
+              
+        </div>
+        <div>
             <button class="btn btn-primary btn-block m-1">Block Button</button>
         </div>
         <div class="btn-group mt-2">
@@ -190,6 +194,48 @@
             <button class="btn btn-primary">Middle</button>
             <button class="btn btn-primary">Right</button>
         </div>
+        <div class="btn-group mt-2">
+            <button class="btn btn-outline-primary ">Left</button>
+            <button class="btn btn-outline-primary">Middle</button>
+            <button class="btn btn-outline-primary">Right</button>
+        </div>
+        <div class="mt-3">
+            <button class="btn btn-primary m-1 "><span class="material-symbols-rounded">
+                    add_circle
+                </span>Primary Button</button>
+            <button class="btn btn-primary btn-round m-1"><span class="material-symbols-rounded">
+                    add
+                </span></button>
+            <button class="btn btn-outline-primary btn-round m-1"><span class="material-symbols-rounded">
+                    shopping_cart
+                </span></button>
+        </div>
+    </section>
+
+    <section class="container mt-5">
+        <h2>Accordians</h2>
+        <details class="accordion-item">
+            <summary class="accordion-title">Accordion Title #1</summary>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna diam, tincidunt nec porta
+                sed, auctor id velit. Etiam venenatis nisl ut orci consequat, vitae tempus quam commodo. Nulla non
+                mauris ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam hendrerit, in facilisis elit
+                sollicitudin. Mauris pulvinar pulvinar mi, dictum tristique elit auctor quis. Maecenas ac ipsum
+                ultrices, porta turpis sit amet, congue turpis.
+            </div>
+        </details>
+
+        <details class="accordion-item">
+            <summary class="accordion-title">Accordion Title #2</summary>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna diam, tincidunt nec porta
+                sed, auctor id velit. Etiam venenatis nisl ut orci consequat, vitae tempus quam commodo. Nulla non
+                mauris ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam hendrerit, in facilisis elit
+                sollicitudin. Mauris pulvinar pulvinar mi, dictum tristique elit auctor quis. Maecenas ac ipsum
+                ultrices, porta turpis sit amet, congue turpis.
+            </div>
+        </details>
+
 
     </section>
 
@@ -205,56 +251,137 @@
         </div>
         <div class="input-group">
             <label for="inputExample">Input Label</label>
-            <input type="text" class="input is-valid" id="inputExample" placeholder="Input text here" value="Valid Entry">
+            <input type="text" class="input is-valid" id="inputExample" placeholder="Input text here"
+                value="Valid Entry">
             <div class="helper-text-valid">
                 This is Helper text: Your username must be 8-20 characters long.
             </div>
         </div>
         <div class="input-group">
             <label for="inputExample">Input Label</label>
-            <input type="text" class="input is-invalid" id="inputExample" placeholder="Input text here" value="Invalid Entry">
+            <input type="text" class="input is-invalid" id="inputExample" placeholder="Input text here"
+                value="Invalid Entry">
             <div class="helper-text-invalid">
                 This is Helper text: Your username must be 8-20 characters long.
             </div>
         </div>
-        
+
         <label for="selectExample" class="mt-3">Select</label>
         <select class="select" id="selectExample">
             <option>Option 1</option>
             <option>Option 2</option>
         </select>
 
-        <label for="textareaExample" class="mt-3">Textarea</label>
-        <textarea class="textarea" id="textareaExample" rows="3" placeholder="Enter text here"></textarea>
-
-        <div class="checkbox mt-3">
-            <input type="checkbox" id="checkboxExample">
-            <label for="checkboxExample">Checkbox</label>
+        <div class="mt-3">
+            <details class="dropdown w-full">
+                <summary class="dropdown-toggle input">Select using Dropdown
+                </summary>
+                <div class="dropdown-menu w-full">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </details>
         </div>
 
-        <div class="d-flex mt-3">
-            <div class="radio">
-                <input type="radio" id="radioExample" name="radio" value="1">
-                <label for="radioExample">Radio Button</label>
-            </div>
-            <div class="radio ml-3">
-                <input type="radio" id="radioExample2" name="radio" value="2">
-                <label for="radioExample2">Radio Button</label>
-            </div>
-        </div>
-
+        <label for="textareaExample" class="mt-3">Textarea disabled</label>
+        <textarea class="textarea" id="textareaExample" rows="3" placeholder="Enter text here" disabled></textarea>
 
         <div class="file-input mt-3">
             <input type="file" id="fileExample">
-            <label for="fileExample">Choose a file</label>
         </div>
 
-        <div class="range mt-3">
-            <input type="range" id="rangeExample">
+        <div class="mt-3">
+            <label class="switch">
+                <input type="checkbox" checked="true">
+                <span class="label-text">Switch Label</span>
+            </label>
         </div>
-        <progress class="progress" value="40" max="100"></progress>
+
+        <div class="d-flex mt-3">
+            <label class="checkbox">
+                <input type="checkbox" name="example"> checkbox 1
+            </label>
+            <label class="checkbox ml-2">
+                <input type="checkbox" name="example"> checkbox 2
+            </label>
+            <label class="checkbox ml-2">
+                <input type="checkbox" name="example" disabled checked="true"> checkbox 2
+            </label>
+
+        </div>
+
+        <div class="d-flex mt-3">
+            <label class="radio ">
+                <input type="radio" name="example"> Radio 1
+            </label>
+            <label class="radio ml-2">
+                <input type="radio" name="example"> Radio 2
+            </label>
+            <label class="radio ml-2">
+                <input type="radio" name="example" disabled> Radio 2
+            </label>
+        </div>
+
+        <div class="mt-3">
+            <button class="btn btn-primary"><span class="circular-loader-sm light"></span> Loading</button>
+            <span class="circular-loader-sm dark mx-3"></span>
+            <span class="circular-loader-md dark mx-3"></span>
+            <span class="circular-loader-lg dark mx-3"></span>
+            <span class="circular-loader-xl dark mx-3"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-4 mt-3">
+                <!-- Range Slider -->
+                <div class="">
+                    <label for="rangeSlider">Range Slider:</label>
+                    <input type="range" class="range" id="rangeSlider" min="0" max="100">
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <label>Progress</label>
+                <div class="progress ">
+                    <div class="progress-bar" style="width: 50%;"></div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3">
+                <label>Progress Loader</label>
+                <div class="progress progress-loader">
+                    <div class="progress-bar" style="width: 50%;"></div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
     </section>
 
+    <section class="container mt-5">
+        <h2>Modal</h2>
+        <button onclick="document.getElementById('myModal').showModal()" class="btn btn-primary">Open Modal</button>
+        <!-- The Modal -->
+        <dialog id="myModal" class="modal-lg">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h4 class="mb-0">Modal Header</h4>
+                    <p class="mb-0">This is long Modal sub title</p>
+                    <button class="close-icon" onclick="document.getElementById('myModal').close();"
+                        aria-label="Close">&times;</button>
+                </header>
+                <div class="modal-body">
+                    <p>Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas
+                        vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                </div>
+                <footer class="modal-footer">
+                    <button class="btn btn-outline-primary">Cancel</button>
+                    <button class="btn btn-primary ml-3">Save</button>
+                </footer>
+            </div>
+        </dialog>
+    </section>
     <!-- Cards -->
     <section class="container mt-5">
         <h2>Cards</h2>
@@ -312,14 +439,26 @@
         <h2>Flexbox Column System</h2>
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-8 col-lg-6 mt-2"><div class="surface-secondary p-1">.col-12 .col-md-8 .col-lg-6</div></div>
-                <div class="col-6 col-lg-3 mt-2"><div class="surface-secondary p-1">.col-6 .col-lg-3</div></div>
-                <div class="col-6 col-lg-3 mt-2"><div class="surface-secondary p-1">.col-6 .col-lg-3</div></div>
+                <div class="col-12 col-md-8 col-lg-6 mt-2">
+                    <div class="surface-secondary p-1">.col-12 .col-md-8 .col-lg-6</div>
+                </div>
+                <div class="col-6 col-lg-3 mt-2">
+                    <div class="surface-secondary p-1">.col-6 .col-lg-3</div>
+                </div>
+                <div class="col-6 col-lg-3 mt-2">
+                    <div class="surface-secondary p-1">.col-6 .col-lg-3</div>
+                </div>
             </div>
             <div class="row mt-2">
-                <div class="col-4"><div class="surface-secondary p-1">.col-4</div></div>
-                <div class="col-4"><div class="surface-secondary p-1">.col-4</div></div>
-                <div class="col-4"><div class="surface-secondary p-1">.col-4</div></div>
+                <div class="col-4">
+                    <div class="surface-secondary p-1">.col-4</div>
+                </div>
+                <div class="col-4">
+                    <div class="surface-secondary p-1">.col-4</div>
+                </div>
+                <div class="col-4">
+                    <div class="surface-secondary p-1">.col-4</div>
+                </div>
             </div>
         </div>
     </section>
@@ -327,10 +466,18 @@
     <!-- BG and Text and spacing utilities -->
     <section class="container mt-5">
         <h2>BG and Text and spacing utilities</h2>
-        <div class="p-3 my-4 bg-black text-white rounded-2">This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-primary text-white rounded-2">This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-error text-white rounded-2">This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-success text-white rounded-2">This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-black text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+                error
+            </span> This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-primary text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+                error
+            </span>This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-error text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+                error
+            </span>This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-success text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+                error
+            </span>This is showcase of bg and text utilities</div>
     </section>
 
     <section class="container mt-5 mb-5">
