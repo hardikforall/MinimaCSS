@@ -68,6 +68,17 @@ And you're done! You now have a version of MinimaCSS that's tailored specificall
 
 As MinimaCSS originated as a personal project, extensive documentation was not a priority. Therefore, detailed documentation is not available at this time. The provided example is intended to be self-explanatory and should suffice for understanding how to use the framework effectively.
 
+### About Documentation
+
+- [ ]  Badges/chips Component
+- [ ]  Avatars Component
+- [ ]  Panels Component
+- [ ]  Steps Component
+- [ ]  Tabs Component
+- [ ]  Tooltip Support
+- [ ]  Dividers Component
+- [ ]  Create Documentation
+
 ### Contributions
 
 Contributions are welcome! If you'd like to improve MinimaCSS, feel free to fork the repository, make your changes, and submit a pull request.
