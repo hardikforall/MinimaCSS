@@ -68,7 +68,7 @@ And you're done! You now have a version of MinimaCSS that's tailored specificall
 
 As MinimaCSS originated as a personal project, extensive documentation was not a priority. Therefore, detailed documentation is not available at this time. The provided example is intended to be self-explanatory and should suffice for understanding how to use the framework effectively.
 
-### About Documentation
+### Todo
 
 - [ ]  Badges/chips Component
 - [ ]  Avatars Component
