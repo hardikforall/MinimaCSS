@@ -79,6 +79,25 @@ select {
     scroll-behavior: auto !important;
   }
 }
+* {
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 10px;
+  border: 3px solid var(--scrollbarBG);
+}
+
 [data-theme=light],
 :root:not([data-theme=dark]) {
   --accent-color: #214ddf;
@@ -90,6 +109,8 @@ select {
   --surface-primary-color: #ffffff;
   --surface-secondary-color: #f9f9fa;
   --surface-tertiary-color: #d9dbe0;
+  --scrollbarBG: var(--surface-secondary-color);
+  --thumbBG: var(--surface-tertiary-color);
   --border-primary-color: #d9dbe0;
   --border-secondary-color: #b9bcc7;
   --border-tertiary-color: #989ead;
@@ -173,6 +194,8 @@ select {
     --surface-primary-color: #111a33;
     --surface-secondary-color: #182447;
     --surface-tertiary-color: #384261;
+    --scrollbarBG: var(--surface-secondary-color);
+    --thumbBG: var(--surface-tertiary-color);
     --border-primary-color: #384261;
     --border-secondary-color: #182447;
     --border-tertiary-color: #151f3d;
@@ -254,6 +277,8 @@ select {
   --surface-primary-color: #111a33;
   --surface-secondary-color: #182447;
   --surface-tertiary-color: #384261;
+  --scrollbarBG: var(--surface-secondary-color);
+  --thumbBG: var(--surface-tertiary-color);
   --border-primary-color: #384261;
   --border-secondary-color: #182447;
   --border-tertiary-color: #151f3d;

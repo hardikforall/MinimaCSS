@@ -12,6 +12,8 @@
     --surface-secondary-color: #{$gray-700};
     --surface-tertiary-color: #{$gray-600};
 
+    --scrollbarBG: var(--surface-secondary-color);
+    --thumbBG: var(--surface-tertiary-color);;
     //border
     --border-primary-color: #{$gray-600};
     --border-secondary-color: #{$gray-700};

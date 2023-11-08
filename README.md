@@ -29,6 +29,22 @@ Check out the directory called `/example` where all the components are used
 
 To get started with MinimaCSS, you have two options: download the compiled CSS directly or download the project, customise it and build your own css.
 
+### CDN Include
+
+You can directly use latest minimacss from CDN use the below link in your html
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hardikforall/MinimaCSS/dist/minimacss.css">
+
+```
+or you can use Minified css
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hardikforall/MinimaCSS/dist/minimacss.min.css">
+
+```
+
+
 ### Direct Download 📦
 
 Download the `minimacss.css` file from the `/dist` folder and include it in your project:
