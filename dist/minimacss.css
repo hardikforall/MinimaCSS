@@ -1511,6 +1511,7 @@ html:has(.modal[open]) {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
+  opacity: 0;
   display: flex;
   flex-direction: column;
 }
@@ -1525,6 +1526,10 @@ html:has(.modal[open]) {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+.slideover.active {
+  transform: translateX(0) translateY(0);
+  opacity: 1;
 }
 .slideover.active ~ .slideover-backdrop {
   visibility: visible;
