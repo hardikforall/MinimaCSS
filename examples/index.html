@@ -67,11 +67,11 @@
                                 </span> Dropdown Menu
                             </summary>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
                             </div>
-                          </details>
+                        </details>
                     </li>
                     <li class="nav-links-item">
                         <a href="#" class="nav-links-item-link"><span class="material-symbols-rounded">
@@ -103,14 +103,14 @@
                             <li class="nav-links-item">
                                 <details class="dropdown">
                                     <summary class="dropdown-toggle nav-links-item-link">
-                                         Dropdown Menu
+                                        Dropdown Menu
                                     </summary>
                                     <div class="dropdown-menu">
-                                      <a class="dropdown-item" href="#">Action</a>
-                                      <a class="dropdown-item" href="#">Another action</a>
-                                      <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
                                     </div>
-                                  </details>
+                                </details>
                             </li>
                             <li class="nav-links-item">
                                 <a href="#" class="nav-links-item-link">Contact</a>
@@ -132,7 +132,7 @@
     </section>
     <!-- Typography -->
     <section class="container mt-5">
-        <h2>Typography</h2>
+        <h2 class="mb-6">Typography</h2>
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
         <h3>Heading 3</h3>
@@ -174,31 +174,21 @@
             <button class="btn btn-primary btn-large m-1">Large Button</button>
         </div>
         <div>
-            <details class="dropdown">
-                <summary class="dropdown-toggle btn btn-outline-primary">
-                  Dropdown Button
-                </summary>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </details>
-              
-        </div>
-        <div>
             <button class="btn btn-primary btn-block m-1">Block Button</button>
         </div>
-        <div class="btn-group mt-2">
-            <button class="btn btn-primary ">Left</button>
-            <button class="btn btn-primary">Middle</button>
-            <button class="btn btn-primary">Right</button>
+        <div>
+            <div class="btn-group mt-2">
+                <button class="btn btn-primary ">Left</button>
+                <button class="btn btn-primary">Middle</button>
+                <button class="btn btn-primary">Right</button>
+            </div>
+            <div class="btn-group mt-2">
+                <button class="btn btn-outline-primary ">Left</button>
+                <button class="btn btn-outline-primary">Middle</button>
+                <button class="btn btn-outline-primary">Right</button>
+            </div>
         </div>
-        <div class="btn-group mt-2">
-            <button class="btn btn-outline-primary ">Left</button>
-            <button class="btn btn-outline-primary">Middle</button>
-            <button class="btn btn-outline-primary">Right</button>
-        </div>
+
         <div class="mt-3">
             <button class="btn btn-primary m-1 "><span class="material-symbols-rounded">
                     add_circle
@@ -210,45 +200,93 @@
                     shopping_cart
                 </span></button>
         </div>
-    </section>
+        <div>
+            <details class="dropdown">
+                <summary class="dropdown-toggle btn btn-outline-primary">
+                    Dropdown Button
+                </summary>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </details>
 
-    <section class="container mt-5">
-        <h2>Accordians</h2>
-        <details class="accordion-item">
-            <summary class="accordion-title">Accordion Title #1</summary>
-            <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna diam, tincidunt nec porta
-                sed, auctor id velit. Etiam venenatis nisl ut orci consequat, vitae tempus quam commodo. Nulla non
-                mauris ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam hendrerit, in facilisis elit
-                sollicitudin. Mauris pulvinar pulvinar mi, dictum tristique elit auctor quis. Maecenas ac ipsum
-                ultrices, porta turpis sit amet, congue turpis.
-            </div>
-        </details>
-
-        <details class="accordion-item">
-            <summary class="accordion-title">Accordion Title #2</summary>
-            <div class="accordion-content">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna diam, tincidunt nec porta
-                sed, auctor id velit. Etiam venenatis nisl ut orci consequat, vitae tempus quam commodo. Nulla non
-                mauris ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam hendrerit, in facilisis elit
-                sollicitudin. Mauris pulvinar pulvinar mi, dictum tristique elit auctor quis. Maecenas ac ipsum
-                ultrices, porta turpis sit amet, congue turpis.
-            </div>
-        </details>
-
-
+        </div>
     </section>
 
     <!-- Form Elements -->
     <section class="container mt-5">
         <h2>Form Elements</h2>
-        <div class="input-group">
-            <label for="inputExample">Input Label</label>
-            <input type="text" class="input" id="inputExample" placeholder="Input text here">
-            <div class="helper-text">
-                This is Helper text: Your username must be 8-20 characters long.
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <label for="inputExample">Input Label</label>
+                    <input type="text" class="input" id="inputExample" placeholder="Input text here">
+                    <div class="helper-text">
+                        This is Helper text: Your username must be 8-20 characters long.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <label for="inputExample">Input Small Label</label>
+                    <input type="text" class="input input-small" id="inputExample" placeholder="Input text here">
+                    <div class="helper-text">
+                        This is Helper text: Your username must be 8-20 characters long.
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <label for="inputExample">Input Addon</label>
+                    <div class="input-addon">
+                        <span class="pl-2 leading-addon material-symbols-rounded text-secondary">
+                            search
+                        </span>
+                        <input type="text" class="input pl-6 py-2" id="inputExample" placeholder="Input text here">
+                        <button class="trailing-addon btn btn-primary btn-small">Search</button>
+                    </div>
+                    <div class="helper-text">
+                        This is Helper text: Your username must be 8-20 characters long.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <label for="inputExample">Input Addon</label>
+                    <div class="input-addon">
+                        <span class="pl-2 text-secondary leading-addon material-symbols-rounded">
+                            search
+                        </span>
+                        <input type="text" class="input pl-6 py-2" id="inputExample" placeholder="Input text here">
+                        <span class="trailing-addon pr-3 text-secondary">$</span>
+                    </div>
+                    <div class="helper-text">
+                        This is Helper text: Your username must be 8-20 characters long.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <label for="inputExample">Input Addon</label>
+                    <div class="input-addon">
+                        <span class="pl-2 text-secondary leading-addon material-symbols-rounded">
+                            search
+                        </span>
+                        <input type="text" class="input pl-6 py-2" id="inputExample" placeholder="Input text here">
+                        <div class="trailing-addon pr-2"><span class="circular-loader-sm dark"></span></div>
+                    </div>
+                    <div class="helper-text">
+                        This is Helper text: Your username must be 8-20 characters long.
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="input-group">
             <label for="inputExample">Input Label</label>
             <input type="text" class="input is-valid" id="inputExample" placeholder="Input text here"
@@ -277,11 +315,11 @@
                 <summary class="dropdown-toggle input">Select using Dropdown
                 </summary>
                 <div class="dropdown-menu w-full">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-              </details>
+            </details>
         </div>
 
         <label for="textareaExample" class="mt-3">Textarea disabled</label>
@@ -298,20 +336,19 @@
             </label>
         </div>
 
-        <div class="d-flex mt-3">
+        <div class="d-flex mt-5">
             <label class="checkbox">
                 <input type="checkbox" name="example"> checkbox 1
             </label>
             <label class="checkbox ml-2">
-                <input type="checkbox" name="example"> checkbox 2
+                <input type="checkbox" name="example" id="myCheckbox"> checkbox 2
             </label>
             <label class="checkbox ml-2">
                 <input type="checkbox" name="example" disabled checked="true"> checkbox 2
             </label>
-
         </div>
 
-        <div class="d-flex mt-3">
+        <div class="d-flex mt-5">
             <label class="radio ">
                 <input type="radio" name="example"> Radio 1
             </label>
@@ -323,65 +360,412 @@
             </label>
         </div>
 
-        <div class="mt-3">
-            <button class="btn btn-primary"><span class="circular-loader-sm light"></span> Loading</button>
-            <span class="circular-loader-sm dark mx-3"></span>
-            <span class="circular-loader-md dark mx-3"></span>
-            <span class="circular-loader-lg dark mx-3"></span>
-            <span class="circular-loader-xl dark mx-3"></span>
-        </div>
         <div class="row">
-            <div class="col-md-4 mt-3">
-                <!-- Range Slider -->
+            <div class="col-12 col-md-4 mt-3">
                 <div class="">
                     <label for="rangeSlider">Range Slider:</label>
                     <input type="range" class="range" id="rangeSlider" min="0" max="100">
                 </div>
             </div>
-            <div class="col-md-4 mt-3">
+        </div>
+    </section>
+
+    <!-- Loaders -->
+    <section class="container mt-6">
+        <h2>Loaders</h2>
+        <div class="row">
+            <div class="mt-3">
+                <button class="btn btn-primary"><span class="circular-loader-sm light"></span> Loading</button>
+                <span class="circular-loader-sm dark mx-3"></span>
+                <span class="circular-loader-md dark mx-3"></span>
+                <span class="circular-loader-lg dark mx-3"></span>
+                <span class="circular-loader-xl dark mx-3"></span>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-4 mt-3">
                 <label>Progress</label>
                 <div class="progress ">
                     <div class="progress-bar" style="width: 50%;"></div>
                 </div>
             </div>
-            <div class="col-md-4 mt-3">
+            <div class="col-12 col-md-4 mt-3">
                 <label>Progress Loader</label>
-                <div class="progress progress-loader">
+                <div class="progress progress-loader dark">
                     <div class="progress-bar" style="width: 50%;"></div>
                 </div>
             </div>
         </div>
+    </section>
+    
+    <!-- Avatar -->
+    <section class="container mt-5">
+        <h2>Avatar</h2>
+        <div class="avatar avatar-md">
+            <img src="https://i.pravatar.cc/300" alt="Cat">
+        </div>
+        <div class="avatar avatar-md avatar-primary-outline"><span class="material-symbols-rounded">
+                group
+            </span></div>
+        <div class="avatar avatar-md avatar-primary"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-primary-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-secondary"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-secondary-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-success"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-success-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-danger"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-danger-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-warning"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-warning-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-info"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-info-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-light"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-light-outline"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-dark"><span>AB</span></div>
+        <div class="avatar avatar-md avatar-dark-outline"><span>AB</span></div>
+        <br><br>
+        <div class="avatar avatar-sm avatar-primary-outline"><span>SM</span></div>
+        <div class="avatar avatar-md avatar-primary-outline"><span>MD</span></div>
+        <div class="avatar avatar-lg avatar-primary-outline"><span>LG</span></div>
+        <div class="avatar avatar-xl avatar-primary-outline"><span>XL</span></div>
+        <br>
+        <h5>Avatar Stack</h5>
+        <div class="avatar-stack">
+            <div class="avatar avatar-md avatar-primary"><span>AB</span></div>
+            <div class="avatar avatar-md">
+                <img src="https://i.pravatar.cc/300" alt="Cat">
+            </div>
+            <div class="avatar avatar-md avatar-info"><span>AB</span></div>
+            <div class="avatar avatar-md avatar-secondary"><span>+4</span></div>
+        </div>
+    </section>
 
+    <!-- Steps -->
+    <section class="container mt-5">
+        <h2>Steps</h2>
+        <nav aria-label="Progress">
+            <ol class="progress-stepper">
+                <li class="progress-step completed">
+                    <!-- Completed Step -->
+                    <a href="#" class="group">
+                        <span class="step-title">Step 1</span>
+                        <span class="step-description">Basic Details</span>
+                    </a>
+                </li>
+                <li class="progress-step current">
+                    <!-- Current Step -->
+                    <a href="#" aria-current="step">
+                        <span class="step-title">Step 2</span>
+                        <span class="step-description">Company Details</span>
+                    </a>
+                </li>
+                <li class="progress-step upcoming">
+                    <!-- Upcoming Step -->
+                    <a href="#" class="group">
+                        <span class="step-title">Step 3</span>
+                        <span class="step-description">Location Details</span>
+                    </a>
+                </li>
+                <li class="progress-step upcoming">
+                    <!-- Upcoming Step -->
+                    <a href="#" class="group">
+                        <span class="step-title">Step 4</span>
+                        <span class="step-description">Last Submission</span>
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </section>
 
-
-
+    <!-- Tabs -->
+    <section class="container mt-5">
+        <h2>Tabs</h2>
+        <div class="tabs-container">
+            <nav class="tabs" aria-label="Tabs">
+                <a href="#" class="tab active" onclick="changeTab(event, 'tab1')" aria-current="page">Profile</a>
+                <a href="#" class="tab" onclick="changeTab(event, 'tab2')">Account</a>
+                <a href="#" class="tab " onclick="changeTab(event, 'tab3')">History Log</a>
+                <a href="#" class="tab" onclick="changeTab(event, 'tab4')">Notification</a>
+            </nav>
+        </div>
+        <!-- Tab content -->
+        <div id="tab1" class="tab-content p-4">
+            Content for Profile
+        </div>
+        <div id="tab2" class="tab-content p-4" style="display: none;">
+            Content for Account
+        </div>
+        <div id="tab3" class="tab-content p-4" style="display: none;">
+            Content for History
+        </div>
+        <div id="tab4" class="tab-content p-4" style="display: none;">
+            Content for Notification
+        </div>
 
 
     </section>
 
+    <!-- Badges -->
+    <section class="container mt-5">
+        <h2>Badges</h2>
+        <div>
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-secondary">Secondary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-danger">Danger</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-info">Info</span>
+            <span class="badge badge-light">Light</span>
+            <span class="badge badge-dark">Dark</span>
+        </div>
+        <div class="mt-3">
+            <span class="badge badge-primary badge-pill">Primary</span>
+            <span class="badge badge-secondary badge-pill">Secondary</span>
+            <span class="badge badge-success badge-pill">Success</span>
+            <span class="badge badge-danger badge-pill">Danger</span>
+            <span class="badge badge-warning badge-pill">Warning</span>
+            <span class="badge badge-info badge-pill">Info</span>
+            <span class="badge badge-light badge-pill">Light</span>
+            <span class="badge badge-dark badge-pill">Dark</span>
+        </div>
+        <div class="mt-3">
+            <span class="badge badge-outline-primary">Primary</span>
+            <span class="badge badge-outline-secondary ">Secondary</span>
+            <span class="badge badge-outline-success">Success</span>
+            <span class="badge badge-outline-danger">Danger</span>
+            <span class="badge badge-outline-warning">Warning</span>
+            <span class="badge badge-outline-info">Info</span>
+            <span class="badge badge-outline-light">Light</span>
+            <span class="badge badge-outline-dark">Dark</span>
+        </div>
+        <div class="mt-3">
+            <span class="badge badge-outline-primary badge-pill">Primary</span>
+            <span class="badge badge-outline-secondary badge-pill">Secondary</span>
+            <span class="badge badge-outline-success badge-pill">Success</span>
+            <span class="badge badge-outline-danger badge-pill">Danger</span>
+            <span class="badge badge-outline-warning badge-pill">Warning</span>
+            <span class="badge badge-outline-info badge-pill">Info</span>
+            <span class="badge badge-outline-light badge-pill">Light</span>
+            <span class="badge badge-outline-dark badge-pill">Dark</span>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <section class="container mt-5">
+        <h2>Divider</h2>
+        <!-- Horizontal Divider -->
+        <hr class="hr-divider">
+        <!-- Ensure the parent container has height for the vertical divider to show -->
+        <div style="display: flex; align-items: center; height: 50px;">
+            <div>Content on the left</div>
+            <span class="vr-divider"></span>
+            <div>Content on the right</div>
+        </div>
+        <!-- Dashed Divider -->
+        <hr class="dashed-divider">
+        <!-- Text Divider -->
+        <div class="text-divider">Section Title</div>
+
+    </section>
+
+    <!-- Tooltip -->
+    <section class="container mt-5">
+        <h2>Tooltip</h2>
+        <!-- Tooltip on top -->
+        <div class="tooltip mx-4" data-tooltip="This is a tooltip on top" data-placement="top">
+            Hover over me
+        </div>
+
+        <!-- Tooltip on bottom -->
+        <div class="tooltip mx-4" data-tooltip="This is a tooltip on bottom" data-placement="bottom">
+            Hover over me
+        </div>
+
+        <!-- Tooltip on left -->
+        <div class="tooltip mx-4" data-tooltip="This is a tooltip on the left" data-placement="left">
+            Hover over me
+        </div>
+
+        <!-- Tooltip on right -->
+        <div class="tooltip mx-4" data-tooltip="This is a tooltip on the right" data-placement="right">
+            Hover over me
+        </div>
+
+
+    </section>
+
+    <!-- Slideovers -->
+    <section class="container mt-5">
+        <h2>Slideovers</h2>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#left')">Open Left</button>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#right')">Open Right sm</button>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#rightmd')">Open Right md</button>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#rightlg')">Open Right lg</button>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#rightxl')">Open Right xl</button>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#top')">Open Top</button>
+        <button class="btn btn-primary m-1" onclick="toggleSlideover('#bottom')">Open Bottom</button>
+        <!-- Right Aligned Slideover -->
+        <div class="slideover left size-sm" id="left">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#left')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#left')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#left')">Save</button>
+            </div>
+        </div>
+        <div class="slideover right size-sm" id="right">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#right')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#right')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#right')">Save</button>
+            </div>
+        </div>
+        <div class="slideover right size-md" id="rightmd">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#rightmd')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#rightmd')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#rightmd')">Save</button>
+            </div>
+        </div>
+        <div class="slideover right size-lg" id="rightlg">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#rightlg')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#rightlg')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#rightlg')">Save</button>
+            </div>
+        </div>
+        <div class="slideover right size-xl" id="rightxl">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#rightxl')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#rightxl')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#rightxl')">Save</button>
+            </div>
+        </div>
+        <div class="slideover top size-sm" id="top">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#top')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#top')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#top')">Save</button>
+            </div>
+        </div>
+        <div class="slideover bottom size-sm" id="bottom">
+            <div class="slideover-header">
+                <h5 class="mb-0 font-semibold">Slideover Header</h5>
+                <p class="mb-0 text-secondary">This is long Slideover sub title</p>
+                <button class="close-icon" onclick="toggleSlideover('#bottom')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+                Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas vehicula.
+                Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.
+            </div>
+            <div class="slideover-footer">
+                <button class="btn btn-outline-primary" onclick="toggleSlideover('#bottom')">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="toggleSlideover('#bottom')">Save</button>
+            </div>
+        </div>
+        <div class="slideover-backdrop blur-backdrop " onclick="toggleSlideover()"></div>
+    </section>
+
+    <!-- Modal -->
     <section class="container mt-5">
         <h2>Modal</h2>
         <button onclick="document.getElementById('myModal').showModal()" class="btn btn-primary">Open Modal</button>
         <!-- The Modal -->
-        <dialog id="myModal" class="modal-lg">
-            <div class="modal-content">
-                <header class="modal-header">
-                    <h4 class="mb-0">Modal Header</h4>
-                    <p class="mb-0">This is long Modal sub title</p>
-                    <button class="close-icon" onclick="document.getElementById('myModal').close();"
-                        aria-label="Close">&times;</button>
-                </header>
-                <div class="modal-body">
-                    <p>Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est egestas
-                        vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                </div>
-                <footer class="modal-footer">
-                    <button class="btn btn-outline-primary">Cancel</button>
-                    <button class="btn btn-primary ml-3">Save</button>
-                </footer>
+        <dialog id="myModal" class="modal modal-lg">
+            <header class="modal-header">
+                <h5 class="mb-0 font-semibold">Modal Header</h5>
+                <p class="mb-0 text-secondary">This is long Modal sub title</p>
+                <button class="close-icon" onclick="document.getElementById('myModal').close();"
+                    aria-label="Close">&times;</button>
+            </header>
+            <div class="modal-body">
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
             </div>
+            <footer class="modal-footer">
+                <button class="btn btn-outline-primary"
+                    onclick="document.getElementById('myModal').close();">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModal').close();">Save</button>
+            </footer>
         </dialog>
     </section>
+
     <!-- Cards -->
     <section class="container mt-5">
         <h2>Cards</h2>
@@ -463,19 +847,51 @@
         </div>
     </section>
 
+    <!-- Accordians -->
+    <section class="container mt-5">
+        <h2>Accordians</h2>
+        <details class="accordion-item">
+            <summary class="accordion-title">Accordion Title #1</summary>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna diam, tincidunt nec porta
+                sed, auctor id velit. Etiam venenatis nisl ut orci consequat, vitae tempus quam commodo. Nulla non
+                mauris ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam hendrerit, in facilisis elit
+                sollicitudin. Mauris pulvinar pulvinar mi, dictum tristique elit auctor quis. Maecenas ac ipsum
+                ultrices, porta turpis sit amet, congue turpis.
+            </div>
+        </details>
+
+        <details class="accordion-item">
+            <summary class="accordion-title">Accordion Title #2</summary>
+            <div class="accordion-content">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque urna diam, tincidunt nec porta
+                sed, auctor id velit. Etiam venenatis nisl ut orci consequat, vitae tempus quam commodo. Nulla non
+                mauris ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam hendrerit, in facilisis elit
+                sollicitudin. Mauris pulvinar pulvinar mi, dictum tristique elit auctor quis. Maecenas ac ipsum
+                ultrices, porta turpis sit amet, congue turpis.
+            </div>
+        </details>
+
+
+    </section>
+
     <!-- BG and Text and spacing utilities -->
     <section class="container mt-5">
+
         <h2>BG and Text and spacing utilities</h2>
-        <div class="p-3 my-4 bg-black text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+        <div class="p-3 my-4 bg-dark text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
                 error
             </span> This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-primary text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+        <div class="p-3 my-4 bg-primary text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
                 error
             </span>This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-error text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+        <div class="p-3 my-4 bg-warning text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
                 error
             </span>This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-success text-white rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+        <div class="p-3 my-4 bg-success text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+                error
+            </span>This is showcase of bg and text utilities</div>
+        <div class="p-3 my-4 bg-danger text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
                 error
             </span>This is showcase of bg and text utilities</div>
     </section>
@@ -516,7 +932,60 @@
     </section>
 
     <script>
+        var currentSlideoverelement
+        function toggleSlideover(selector) {
+            if (selector) {
+                currentSlideoverelement = selector;
+            } else {
+                selector = currentSlideoverelement;
+            }
+            var slideover = document.querySelector(selector);
+            var body = document.body;
+            slideover.classList.toggle('active');
+            // If the slideover is now active, prevent body scrolling
+            if (slideover.classList.contains('active')) {
+                body.classList.add('body-no-scroll');
+
+            } else {
+                body.classList.remove('body-no-scroll');
+            }
+        }
+
+        function changeTab(event, tabId) {
+            // Prevent the page from jumping when anchor is clicked
+            event.preventDefault();
+
+            // Get all tabs and tab contents
+            const tabs = document.querySelectorAll('.tabs .tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Remove active class and aria-current from all tabs
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.removeAttribute('aria-current');
+            });
+
+            // Hide all tab contents
+            tabContents.forEach(content => {
+                content.style.display = 'none';
+            });
+
+            // Set the clicked tab as active
+            event.currentTarget.classList.add('active');
+            event.currentTarget.setAttribute('aria-current', 'page');
+
+            // Show the current tab's content
+            const activeTabContent = document.getElementById(tabId);
+            if (activeTabContent) {
+                activeTabContent.style.display = 'block';
+            }
+        }
+
+
         document.addEventListener('DOMContentLoaded', (event) => {
+
+            document.getElementById('myCheckbox').indeterminate = true;
+
             const toggleSwitch = document.querySelector('#theme-toggle');
 
             function switchTheme(e) {

@@ -1,95 +1,113 @@
-$modal-widths: (
-    'sm': 300px,
-    'md': 500px,
-    'lg': 800px,
-    'xl': 1000px,
-    'xxl': 1200px
-);
 
 // Base modal styling
-dialog {
+.modal {
     z-index: 999;
     border: 0;
-    border-radius: none;
+    border-radius: $border-radius;
+    position: fixed;
     background-color: transparent;
-    padding: 5px;
+    padding: 0;
+    inset: 0;
+    margin: auto;
+    overflow: hidden;
+    animation: hideModal 0.5s ease normal;
+    transition: opacity .5s ease;
+    border-block-start: 1px solid var(--border-primary-color);
     display: block; // Fallback for browsers that don't support <dialog>
+    overscroll-behavior: contain;
+
+    &-header,
+    &-body,
+    &-footer {
+        padding: 20px;
+    }
+
+    &-body {
+        background-color: var(--surface-primary-color);
+        color: var(--text-primary-color);
+        overflow-y: auto;
+        max-block-size: 60vh;
+        max-block-size: 60dvb;
+    }
+
+    &-header {
+        background-color: var(--surface-secondary-color);
+        position: relative;
+        border-bottom: 1px solid var(--border-primary-color);
+        color: var(--text-primary-color);
+
+        .close-icon {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary-color);
+        }
+    }
+
+    &-footer {
+        border-top: 1px solid var(--border-primary-color);
+        background-color: var(--surface-secondary-color);
+        color: var(--text-primary-color);
+        text-align: end;
+    }
+
     &:not([open]) {
-        display: none;
+        pointer-events: none;
+        opacity: 0;
     }
 
     &::backdrop {
-        background: rgba(0, 0, 0, 0.374);
+        backdrop-filter: blur(5px);
+        transition: backdrop-filter .5s ease;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        overscroll-behavior: contain;
     }
 
-    &:open+body {
-        overflow: hidden;
+    &[open] {
+        animation: showModal 0.5s forwards;
     }
-}
 
-.modal-content {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.139);
-    border-radius: $border-radius;
-    
-}
-.modal-header,
-.modal-body,
-.modal-footer {
-    padding: 20px;
-}
-.modal-body {
-    background-color: var(--surface-primary-color);
-    color: var(--text-primary-color);
-}
-.modal-header {
-    border-top-right-radius: $border-radius;
-    border-top-left-radius: $border-radius;
-    background-color: var(--surface-secondary-color);
-    position: relative;
-    border-bottom: 1px solid var(--border-secondary-color);
-    color: var(--text-primary-color);
-    .close-icon {
-        position: absolute;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-        font-size: 1.5rem;
-        cursor: pointer;
-        border: none;
-        background: transparent;
-        color: var(--text-secondary-color);
+    &[open]::backdrop {
+        opacity: 1;
     }
 }
 
-.modal-footer {
-    border-top: 1px solid var(--border-secondary-color);
-    background-color: var(--surface-secondary-color);
-    color: var(--text-primary-color);
-    border-bottom-right-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
-    text-align: end;
+html:has(.modal[open]) {
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        margin-block-end: 0;
+        border-end-end-radius: 0;
+        border-end-start-radius: 0;
+    }
+}
+
+@keyframes showModal {
+    0% {
+        transform: translateY(100%);
+    }
+}
+
+@keyframes hideModal {
+    to {
+        transform: scale(0.75);
+    }
 }
 
 // Size variations with default padding
 @each $size, $width in $modal-widths {
     .modal-#{$size} {
-        width: $width;
-        max-width: 95%;
-    }
-}
-
-// Responsive breakpoints
-@mixin respond-to($breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
-        @content;
-    }
-}
-
-// Dynamic width based on breakpoints
-@each $breakpoint, $width in $modal-widths {
-    @include respond-to($breakpoint) {
-        dialog {
-            width: $width;
-        }
+        max-inline-size: min($width, 95%);
+        max-block-size: min($width, 95%);
+        max-block-size: min($width, 95%);
     }
 }

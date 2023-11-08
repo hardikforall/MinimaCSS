@@ -1,0 +1,47 @@
+
+// Horizontal Divider
+.hr-divider {
+  border: none;
+  height: 1px;
+  background-color: var(--border-primary-color);
+  margin: 1em 0;
+}
+
+// Vertical Divider
+.vr-divider {
+    border-left: 1px solid var(--border-primary-color); 
+    width: 0; 
+    height: 100%; 
+    display: inline-block; 
+    margin: 0 1em; 
+  }
+
+// Dashed Divider
+.dashed-divider {
+  border-top: 2px dashed var(--border-primary-color);
+  height: 0;
+}
+
+// Text Divider
+.text-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text-secondary-color);
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-primary-color);
+  }
+
+  &:not(:empty)::before {
+    margin-right: .25em;
+  }
+
+  &:not(:empty)::after {
+    margin-left: .25em;
+  }
+}
+

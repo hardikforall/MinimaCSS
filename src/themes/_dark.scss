@@ -1,36 +1,39 @@
 @mixin dark {
-    --accent-color:#{$primary-400};
+    --accent-color:#{$primary-500};
 
     --light-color: #{$white};
     --dark-color: #{$black};
 
-    --text-primary-color: #{$gray-100};
-    --text-secondary-color: #{$gray-400};
-    --text-tertiary-color: #{$gray-600};
+    --text-primary-color: #{$primary-50};
+    --text-secondary-color: #{hex-to-rgba($primary-50, 0.75)};
+    --text-tertiary-color:  #{hex-to-rgba($primary-50, 0.5)};
 
     --surface-primary-color:  #{$gray-900};
-    --surface-secondary-color: #{$gray-800};
-    --surface-tertiary-color: #{$gray-700};
+    --surface-secondary-color: #{$gray-700};
+    --surface-tertiary-color: #{$gray-600};
 
     //border
-    --border-primary-color: #{$gray-700};
-    --border-secondary-color: #{$gray-800};
+    --border-primary-color: #{$gray-600};
+    --border-secondary-color: #{$gray-700};
+    --border-tertiary-color: #{$gray-800};
 
     // Typography
-    --link-text-color: #{$primary-300};
-    --link-hover-color: #{$primary-400};
+    --link-text-color: #{$primary-400};
+    --link-hover-color: #{$primary-500};
     --blockquote-border-color: #{$primary-600};
     --blockquote-text-color: var(--text-primary-color);
     --blockquote-bg-color: var(--surface-secondary-color);
-    --hr-border-color: #{$gray-300};
+    --hr-border-color:var(--border-primary-color);
     --figcaption-text-color: var(--text-secondary-color);
     --code-bg-color: var(--surface-secondary-color);
 
     //Button
-    --button-primary-color: #{$primary-400};
+    --button-primary-color: #{$primary-500};
     --button-primary-hover-color: #{$primary-300};
     --button-primary-text-color: #{$white};
-    --button-primary-focus-ring-color: #{hex-to-rgba($primary-400,0.4)};
+    --button-primary-focus-ring-color: #{hex-to-rgba($primary-500,0.4)};
+
+    --button-highlight-border-color: #{hex-to-rgba($white, 0.2)};
 
     --button-error-color: #{$red-400};
     --button-error-hover-color: #{$red-300};
@@ -53,16 +56,16 @@
     --button-warning-focus-ring-color: #{hex-to-rgba($orange-400,0.4)};
 
     --button-light-color: #{$gray-100};
-    --button-light-hover-color: #{$gray-300};
+    --button-light-hover-color: #{$gray-200};
     --button-light-text-color: #{$gray-900};
-    --button-light-focus-ring-color: #{hex-to-rgba($gray-500,0.4)};
+    --button-light-focus-ring-color: #{hex-to-rgba($gray-300,0.4)};
 
-    --button-dark-color: #{$gray-800};
-    --button-dark-hover-color: #{$gray-700};
+    --button-dark-color: #{$gray-600};
+    --button-dark-hover-color: #{$gray-500};
     --button-dark-text-color: #{$white};
     --button-dark-focus-ring-color: #{hex-to-rgba($gray-500,0.4)};
     
-    --button-link-hover-color: #{$primary-400};
+    --button-link-hover-color: #{$primary-500};
     --button-link-text-color: #{$primary-500};
 
     //Cards
@@ -73,8 +76,8 @@
      //inputs
      --input-bg-color:var(--surface-primary-color);
      --input-focus-ring-color: #{hex-to-rgba($primary-500,0.25)};
-     --input-focus-border-color: #{$primary-400};
-
+     --input-focus-border-color: #{$primary-500};
+     --input-shadow-color:#{hex-to-rgba($black,1)};
      --input-valid-text-color:#{$green-500};
      --input-valid-border-color: #{$green-500};
      --input-focus-valid-ring-color: #{hex-to-rgba($green-400, 0.5)};
@@ -86,11 +89,11 @@
       //table
     --table-bg-color:var(--surface-primary-color);
     --table-accent-bg-color:var(--surface-secondary-color);
-    --table-hover-bg-color:#{$gray-700};
+    --table-hover-bg-color:#{$gray-600};
     --table-border-color:var(--border-primary-color);
 
      //Nav
-     --nav-primary-bg-color: #{$primary-400};
+     --nav-primary-bg-color: #{$primary-500};
      --nav-primary-text-color: #{$white};
      --nav-primary-link-hover-color: #{hex-to-rgba($white, 0.2)};
      --nav-primary-dropdown-link-color: var(--text-primary-color);
@@ -102,4 +105,6 @@
 
     --loader-dark-bg-color:#{hex-to-rgba($primary-300, 0.7)};;
     --loader-dark-border-color:#{hex-to-rgba($primary-300, 0.4)};
+
+    
 }

@@ -1,0 +1,29 @@
+
+.tabs-container {
+  border-bottom: 1px solid var(--border-primary-color);
+
+  .tabs {
+    display: flex;
+    margin-bottom: -1px; // Align tabs with bottom border
+
+    .tab {
+      margin-right: 2rem; 
+      padding: 1rem 0.5rem; 
+      
+      font-weight: 500; 
+      text-decoration: none;
+      color: var(--text-secondary-color);
+      border-bottom: 3px solid transparent; 
+
+      &:hover {
+        border-color: var(--border-primary-color);
+        color: var(--text-primary-color);
+      }
+
+      &.active {
+        color: var(--accent-color);
+        border-color: var(--accent-color);
+      }
+    }
+  }
+}

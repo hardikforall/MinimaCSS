@@ -1,0 +1,72 @@
+// Progress stepper container
+.progress-stepper {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  gap: 1rem;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+}
+
+.progress-step {
+  flex: 1;
+  // Adjust border for horizontal layout on medium screens and above
+  // Completed Step
+  &.completed a {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+
+    &:hover {
+      border-color: var(--text-secondary-color);
+      color:  var(--text-secondary-color);
+    }
+  }
+
+  // Current Step
+  &.current a {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+  }
+
+  // Upcoming Step
+  &.upcoming a {
+    border-color: var(--text-tertiary-color);
+    color: var(--text-tertiary-color);
+
+    &:hover {
+      border-color: var(--text-secondary-color);
+      color: var(--text-secondary-color);
+    }
+  }
+
+  // Step link
+  a {
+    display: flex;
+    flex-direction: column;
+    border-left-style: solid;
+    border-top-style: solid;
+    text-decoration: none;
+
+    padding: 0rem 1rem;
+    border-left-width: 5px;
+    border-top-width: 0;
+
+    @media (min-width: 768px) {
+        padding: 0.5rem 0rem;
+        border-left-width: 0;
+        border-top-width: 5px;
+    }
+    // Step title
+    .step-title {
+    }
+
+    // Step description
+    .step-description {
+      font-size: 0.875rem; 
+      color: var(--text-secondary-color);
+    }
+  }
+}

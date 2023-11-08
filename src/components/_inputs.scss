@@ -13,9 +13,16 @@
   background-clip: padding-box;
   border: 1px solid var(--border-primary-color);
   border-radius: $border-radius;
+  box-shadow: 0 1px 2px 0 var(--input-shadow-color);
+  -webkit-box-shadow: 0 1px 2px 0 var(--input-shadow-color);
+  -moz-box-shadow: 0 1px 2px 0 var(--input-shadow-color);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   appearance: none; // Normalize appearance
-
+  &.input-small{
+    padding: 0.2rem 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
   &:focus {
     outline: none;
     border-color: var(--input-focus-border-color);
@@ -32,6 +39,7 @@
     opacity: 0.5;
   }
 }
+
 
 // Custom select styles
 .select {
@@ -72,8 +80,29 @@
     color: var(--input-valid-text-color);
   }
 
+  .input-addon{
+    position: relative;
+    display: flex;
+    align-items: center;
+    
+  }
+  .leading-addon{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0.25rem;
+    user-select: none;
+  }
+
+  .trailing-addon{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0.25rem;
+    user-select: none;
+  }
+
   .is-valid {
-    color: var(--input-valid-text-color);
     border: 2px solid var(--input-valid-border-color);
 
     &:focus {
@@ -83,7 +112,6 @@
   }
 
   .is-invalid {
-    color: var(--input-invalid-text-color);
     border: 2px solid var(--input-invalid-border-color);
 
     &:focus {
@@ -96,13 +124,19 @@
 /* Switch styles */
 .switch {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
   cursor: pointer;
   padding-left: 3rem;
+  align-items: center;
+  line-height: 1.2;
   input[type="checkbox"] {
-    -moz-appearance: initial;
-    width: 0;
-    height: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: transparent;
+    -moz-appearance: none;
+    width: 0px;
+    height: 0px;
     // Slider
     &::before {
       cursor: pointer;
@@ -111,7 +145,7 @@
       height: 1rem;
       width: 1rem;
       left: 4px;
-      bottom: 4px;
+      top: 4px;
       background-color: var(--light-color);
       transition: 0.4s;
       border-radius: 50%;
@@ -127,7 +161,7 @@
       width: 2.7rem;
       height: 1.5rem;
       left: 0;
-      bottom: 0;
+      top: 0;
       background-color: var(--border-secondary-color);
       border: 2px solid var(--border-primary-color);
       transition: 0.4s;
@@ -165,11 +199,17 @@
 // Checkbox and radio styles
 .radio {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
   padding-left: 1.5rem;
+ line-height: 1.2;
   input[type="radio"] {
-    -moz-appearance: initial;
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: transparent;
+    -moz-appearance: none;
     width: 0;
     height: 0;
     &:before {
@@ -179,7 +219,7 @@
       height: 1.3rem;
       width: 1.3rem;
       left: 3px;
-      bottom: 3px;
+      top: 0;
       background-color: var(--input-bg-color);
       transition: 0.4s;
       border-radius: 50%;
@@ -209,11 +249,17 @@
 
 .checkbox {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
   padding-left: 1.5rem;
+  line-height: 1.2;
   input[type="checkbox"] {
-    -moz-appearance: initial;
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: transparent;
+    -moz-appearance: none;
     width: 0;
     height: 0;
     &:before {
@@ -223,7 +269,7 @@
       height: 1.3rem;
       width: 1.3rem;
       left: 3px;
-      bottom: 3px;
+      top: 0;
       border-radius: 20%;
       background-color: var(--input-bg-color);
       transition: 0.4s;
@@ -239,6 +285,13 @@
         background-position: center;
         background-size: 15px;
       }
+    }
+    &:indeterminate:before {
+      background-color: var(--accent-color);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='24' width='24'%3E%3Cpath fill='%23ffffff' d='M19,13H5v-2h14v2Z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 15px;
     }
     &:disabled {
       &:before {
@@ -290,48 +343,5 @@
     background: var(--accent-color);
 
     border-radius: 50%;
-  }
-}
-
-/* Progress Bar Styles */
-.progress {
-  background-color: var(--border-primary-color);
-  border-radius: $border-radius;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  height: 0.7rem;
-}
-
-.progress-bar {
-  background-color: var(--accent-color);
-  height: 100%;
-  transition: width 0.4s ease;
-}
-/* Loader variation */
-.progress-loader {
-  .progress-bar {
-    width: 0%; // Start with 0 width
-    animation: loading-animation 1.5s ease-in-out infinite;
-  }
-}
-
-@keyframes loading-animation {
-  0%, 100% {
-    width: 0%;
-     transform: translateX(0);
-  }
-  50% {
-    width: 100%;
-     transform: translateX(100%);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
   }
 }

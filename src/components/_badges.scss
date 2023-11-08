@@ -1,0 +1,37 @@
+
+// Base badge styles
+.badge {
+  font-size: 75%;
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+// Generate color-specific badge classes
+@each $color-name, $color-value in $colors {
+  .badge-#{$color-name} {
+    color: var(--light-color);
+    @if $color-name=="light" {
+        color: var(--dark-color);
+    }
+    background-color: $color-value;
+  }
+  .badge-outline-#{$color-name} {
+    color: $color-value;
+    background-color: hex-to-rgba($color-value, 0.07);
+    border: 1px solid hex-to-rgba($color-value, 0.1);
+  }
+}
+
+// Pill badge for more rounded corners
+.badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: 10rem;
+}

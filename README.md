@@ -19,7 +19,7 @@ In a world where front-end frameworks are often bloated and overly complex, Mini
 - Utilities: Handy utility classes for spacing, visibility, backgrounds, text colors, and more.
 - Responsive: Built with a mobile-first approach.
 - Dark Mode : Dark mode Included by default
-- Size : Less than 10 kB minified and gzipped
+- Size : Less than ~15 kB minified and gzipped
 
 ### Examples 📚
 
@@ -70,13 +70,6 @@ As MinimaCSS originated as a personal project, extensive documentation was not a
 
 ### Todo
 
-- [ ]  Badges/chips Component
-- [ ]  Avatars Component
-- [ ]  Panels Component
-- [ ]  Steps Component
-- [ ]  Tabs Component
-- [ ]  Tooltip Support
-- [ ]  Dividers Component
 - [ ]  Create Documentation
 
 ### Contributions

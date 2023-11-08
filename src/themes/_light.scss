@@ -1,22 +1,23 @@
 // _light.scss
 [data-theme="light"],
 :root:not([data-theme="dark"]) {
-    --accent-color: #{$primary-600};
+    --accent-color: #{$primary-500};
 
     --light-color: #{$white};
     --dark-color: #{$black};
 
-    --text-primary-color: #{$gray-800};
+    --text-primary-color: #{$gray-600};
     --text-secondary-color: #{$gray-400};
-    --text-tertiary-color: #{$gray-200};
+    --text-tertiary-color: #{$gray-300};
 
     --surface-primary-color: #{$white};
     --surface-secondary-color: #{$gray-50};
     --surface-tertiary-color: #{$gray-100};
 
     //border
-    --border-primary-color: #{$gray-300};
+    --border-primary-color: #{$gray-100};
     --border-secondary-color: #{$gray-200};
+    --border-tertiary-color: #{$gray-300};
 
     // Typography
     --link-text-color: #{$primary-600};
@@ -24,7 +25,7 @@
     --blockquote-border-color: #{$primary-600};
     --blockquote-text-color: var(--text-primary-color);
     --blockquote-bg-color: var(--surface-secondary-color);
-    --hr-border-color: #{$gray-300};
+    --hr-border-color: var(--border-primary-color);
     --figcaption-text-color: var(--text-secondary-color);
     --code-bg-color: var(--surface-secondary-color);
 
@@ -33,6 +34,8 @@
     --button-primary-hover-color: #{$primary-400};
     --button-primary-text-color: #{$white};
     --button-primary-focus-ring-color: #{hex-to-rgba($primary-500, 0.25)};
+
+    --button-highlight-border-color: "transparent";
 
     --button-error-color: #{$red-500};
     --button-error-hover-color: #{$red-400};
@@ -55,14 +58,14 @@
     --button-warning-focus-ring-color: #{hex-to-rgba($orange-500, 0.25)};
 
     --button-light-color: #{$gray-100};
-    --button-light-hover-color: #{$gray-300};
+    --button-light-hover-color: #{$gray-200};
     --button-light-text-color: #{$gray-900};
-    --button-light-focus-ring-color: #{hex-to-rgba($gray-500, 0.25)};
+    --button-light-focus-ring-color: #{hex-to-rgba($gray-300, 0.25)};
 
-    --button-dark-color: #{$gray-800};
-    --button-dark-hover-color: #{$gray-700};
+    --button-dark-color: #{$gray-600};
+    --button-dark-hover-color: #{$gray-500};
     --button-dark-text-color: #{$white};
-    --button-dark-focus-ring-color: #{hex-to-rgba($gray-500, 0.25)};
+    --button-dark-focus-ring-color: #{hex-to-rgba($gray-300, 0.25)};
 
     --button-link-hover-color: #{$primary-400};
     --button-link-text-color: #{$primary-500};
@@ -76,19 +79,19 @@
     --input-bg-color: var(--surface-primary-color);
     --input-focus-ring-color: #{hex-to-rgba($primary-500, 0.25)};
     --input-focus-border-color: #{$primary-500};
-
+    --input-shadow-color:#{hex-to-rgba($black,0.05)};
     --input-valid-text-color:#{$green-500};
     --input-valid-border-color: #{$green-500};
     --input-focus-valid-ring-color: #{hex-to-rgba($green-400, 0.5)};
     --input-invalid-text-color:#{$red-500};
     --input-invalid-border-color: #{$red-500};
     --input-focus-invalid-ring-color: #{hex-to-rgba($red-500, 0.25)};
-    --input-disabled-bg-color:var(--surface-tertiary-color);
+    --input-disabled-bg-color:var(--surface-secondary-color);
 
     //table
     --table-bg-color: var(--surface-primary-color);
-    --table-accent-bg-color: #{$gray-100};
-    --table-hover-bg-color: var(--surface-secondary-color);
+    --table-accent-bg-color: #{$gray-50};
+    --table-hover-bg-color: var(--surface-tertiary-color);
     --table-border-color: var(--border-primary-color);
 
     //Nav
@@ -104,4 +107,7 @@
 
     --loader-dark-bg-color:#{hex-to-rgba($primary-500, 0.5)};;
     --loader-dark-border-color:#{hex-to-rgba($primary-500, 0.2)};
+
+    //Steps 
+    --steps-accent-color:
 }

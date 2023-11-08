@@ -1,0 +1,104 @@
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+  // Define the common styles for all tooltips
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    background: var(--surface-tertiary-color);
+    color: var(--text-primary-color);
+    padding: $tooltip-padding;
+    border-radius: $tooltip-border-radius;
+    white-space: nowrap;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
+    visibility: hidden;
+    font-size: 0.875rem;
+  }
+
+  // Positioning the tooltip
+  &[data-placement='top']::after {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-$tooltip-margin);
+  }
+
+  &[data-placement='bottom']::after {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY($tooltip-margin);
+  }
+
+  &[data-placement='left']::after {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-$tooltip-margin);
+  }
+
+  &[data-placement='right']::after {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%) translateX($tooltip-margin);
+  }
+
+  // Showing the tooltip on hover
+  &:hover::after {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  // Tooltip arrow
+  &::before {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    opacity: 0;
+    transition: opacity 0.3s;
+    visibility: hidden;
+  }
+
+  // Arrow for top
+&[data-placement='top']::before {
+    bottom: 100%;
+    left: 50%;
+    border-width: $tooltip-arrow-size $tooltip-arrow-size 0 $tooltip-arrow-size;
+    border-color: var(--surface-tertiary-color) transparent transparent transparent;
+    transform: translateX(-50%) translateY(- calc($tooltip-arrow-size/ 2));
+  }
+  
+  // Arrow for bottom
+  &[data-placement='bottom']::before {
+    top: 100%;
+    left: 50%;
+    border-width: 0 $tooltip-arrow-size $tooltip-arrow-size $tooltip-arrow-size;
+    border-color: transparent transparent var(--surface-tertiary-color) transparent;
+    transform: translateX(-50%) translateY(calc($tooltip-arrow-size / 2));
+  }
+  
+  // Arrow for left
+  &[data-placement='left']::before {
+    top: 50%;
+    right: 100%;
+    border-width: $tooltip-arrow-size 0 $tooltip-arrow-size $tooltip-arrow-size;
+    border-color: transparent transparent transparent var(--surface-tertiary-color);
+    transform: translateY(-50%) translateX(- calc($tooltip-arrow-size / 2));
+  }
+  
+  // Arrow for right
+  &[data-placement='right']::before {
+    top: 50%;
+    left: 100%;
+    border-width: $tooltip-arrow-size $tooltip-arrow-size $tooltip-arrow-size 0;
+  border-color: transparent var(--surface-tertiary-color) transparent transparent;
+    transform: translateY(-50%) translateX(calc($tooltip-arrow-size/2));
+  }
+  // Showing the arrow on hover
+  &:hover::before {
+    visibility: visible;
+    opacity: 1;
+  }
+}

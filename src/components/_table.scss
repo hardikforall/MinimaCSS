@@ -1,5 +1,4 @@
-$table-cell-padding: 0.75rem;
-$table-striped-index: odd;
+
 
 .table {
   width: 100%;
@@ -40,7 +39,7 @@ $table-striped-index: odd;
 
   // Bordered version
   &.table-bordered {
-    border: 1px solidvar(--table-border-color);
+    border: 1px solid var(--table-border-color);
     th,
     td {
       border: 1px solid var(--table-border-color);

@@ -1,0 +1,58 @@
+
+// Base avatar styles
+.avatar {
+  display: inline-flex;
+  vertical-align: middle;
+  border-radius: 50%; // Circular avatars
+  overflow: hidden; // Ensures nothing spills outside the border-radius
+  position: relative;
+  text-align: center;
+  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-color);
+  font-weight: 600;
+  border: 3px solid var(--border-primary-color); 
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; // Ensures the image is circular
+    aspect-ratio: 1/1;
+   
+  }
+  
+  // Size utilities
+  @each $size, $dimensions in $avatar-sizes {
+    &.avatar-#{$size} {
+      width: $dimensions;
+      height: $dimensions;
+      font-size: calc($dimensions / 2.5); // Adjust font size relative to avatar size
+    }
+  }
+}
+
+.avatar-stack{
+    display: inline-flex;
+    align-items: center;
+    .avatar {
+        margin-right: -10px;
+        border: 3px solid var(--surface-primary-color); 
+    }
+    &:last-child {
+        margin-right: 0;
+      }
+}
+
+@each $color-name, $color-value in $colors {
+  .avatar-#{$color-name} {
+    @if $color-name=="light" {
+        color: var(--dark-color);
+    }
+    background-color: $color-value;
+  }
+  .avatar-#{$color-name}-outline {
+    color: $color-value;
+    border: 1px solid $color-value;
+    background-color: hex-to-rgba($color-value, 0.1);
+  }
+}

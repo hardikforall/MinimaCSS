@@ -1,0 +1,139 @@
+
+
+// Base slideover styles
+.slideover {
+  position: fixed;
+  background-color: var(--surface-primary-color);
+  z-index: 1040; // Make sure it's above most content
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+  transition: transform $slideover-transition-duration ease-in-out;
+  display: flex;
+  flex-direction: column;
+  &-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1030; // Backdrop should be below the slideover but above other content
+    visibility: hidden; // Start hidden
+    opacity: 0;
+    transition: opacity $slideover-transition-duration ease-in-out;
+  }
+  
+  &.active {
+    ~ .slideover-backdrop {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+  // Header, body, and footer sections
+  &-header, &-footer {
+    position: relative;
+    padding: 20px;
+    background-color: var(--surface-secondary-color);
+    border-bottom: 1px solid var(--border-primary-color);
+    border-top: 1px solid var(--border-primary-color);
+    .close-icon {
+      position: absolute;
+      top: 40%;
+      right: 20px;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary-color);
+   }
+  }
+  &-footer{
+    text-align: end;
+  }
+  &-body {
+    padding: 1rem;
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  // Right and left positions take full height and configurable width
+  &.right, &.left {
+    top: 0;
+    bottom: 0;
+    max-width: map-get($slideover-sizes, 'md'); // Default width
+    @each $size, $value in $slideover-sizes {
+      &.size-#{$size} {
+        max-width: $value;
+      }
+    }
+  }
+
+  // Top and bottom positions take full width and configurable height
+  &.top, &.bottom {
+    left: 0;
+    right: 0;
+    height: map-get($slideover-sizes, 'md'); // Default height
+    @each $size, $value in $slideover-sizes {
+      &.size-#{$size} {
+        height: $value;
+      }
+    }
+  }
+
+  // Alignment classes with animation
+  &.right {
+    right: 0;
+    margin-left: 40px;
+    transform: translateX(150%);
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
+  &.left {
+    margin-right: 40px;
+    left: 0;
+    transform: translateX(-150%);
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
+  &.top {
+    top: 0;
+    transform: translateY(-150%);
+    &.active {
+      transform: translateY(0);
+    }
+  }
+
+  &.bottom {
+    bottom: 0;
+    transform: translateY(150%);
+    &.active {
+      transform: translateY(0);
+    }
+  }
+}
+
+.blur-backdrop.slideover-backdrop {
+  backdrop-filter: blur(5px);
+  transition: backdrop-filter $slideover-transition-duration ease;
+}
+// Close button
+.slideover-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+// Disabling scroll on the body when slideover is active
+.body-no-scroll {
+  overflow: hidden;
+  width: 100%; // To prevent width re-adjustment when scrollbar disappears
+}

@@ -3,7 +3,7 @@
     background-color: var(--nav-primary-bg-color);
     color: var(--nav-primary-text-color);
     padding: 0.5rem 0.5rem;
-
+    border-top: 1px solid var(--button-highlight-border-color);
     &-container {
         display: flex;
         align-items: center;

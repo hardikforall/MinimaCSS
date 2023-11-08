@@ -95,11 +95,13 @@
 }
 
 // Text Utilities
-.font-weight-bold {
+.font-bold {
   font-weight: bold !important;
 }
-
-.font-weight-normal {
+.font-semibold {
+  font-weight: 500 !important;
+}
+.font-normal {
   font-weight: normal !important;
 }
 
@@ -171,12 +173,7 @@
   word-break: break-all;
   word-wrap: break-word;
 }
-.font-normal {
-  font-weight: normal;
-}
-.font-bold {
-  font-weight: bold;
-}
+
 .font-italic {
   font-style: italic;
 }

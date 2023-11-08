@@ -1,61 +1,63 @@
 .accordion-item {
-    border-bottom: 1px solid var(--border-primary-color);
-    padding: 1em;
-    transition: background-color 0.3s ease;
-  
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  
-    &[open] {
-      .accordion-title {
-        color: var(--text-secondary-color);
-        &::after {
-          transform: rotate(-180deg);
-        }
-      }
-    }
-  
+  border-bottom: 1px solid var(--border-primary-color);
+  padding: 1em;
+  transition: background-color 0.3s ease;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &[open] {
     .accordion-title {
-      cursor: pointer;
-      font-weight: bold;
-      margin: 0; // Remove default margin
-      list-style: none; // Remove default list style
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-  
+      color: var(--text-primary-color);
+
       &::after {
-        content: '';
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
-        background-image: $chevron-icon-data-url;
-        background-repeat: no-repeat;
-        background-position: center;
-        transition: transform 0.3s ease;
-      }
-  
-      &:focus {
-        outline: none;
+        transform: rotate(-180deg);
       }
     }
-    .accordion-content {
-      padding-top: 0.5em;
-      max-height: 0;
-      overflow: hidden;
+  }
+
+  .accordion-title {
+    cursor: pointer;
+    font-weight: bold;
+    margin: 0; // Remove default margin
+    list-style: none; // Remove default list style
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary-color);
+
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      background-image: $chevron-icon-data-url;
+      background-repeat: no-repeat;
+      background-position: center;
+      transition: transform 0.3s ease;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
-  
-  // Remove the default arrow marker in summary
-  summary::-webkit-details-marker {
-    display: none;
+
+  .accordion-content {
+    padding-top: 0.5em;
+    max-height: 0;
+    overflow: hidden;
   }
-  
-  // Styling when <details> is open
-  .accordion-item[open] .accordion-content {
-    max-height: 1000px; // max-height higher than you expect the content to ever be
-    
-  }
-  
+}
+
+// Remove the default arrow marker in summary
+summary::-webkit-details-marker {
+  display: none;
+}
+
+// Styling when <details> is open
+.accordion-item[open] .accordion-content {
+  max-height: 1000px; // max-height higher than you expect the content to ever be
+
+}

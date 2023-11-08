@@ -1,27 +1,30 @@
-$primary-50:#f6f5fc;
-$primary-100:#eae8fc;
-$primary-200:#bfbbf7;
-$primary-300:#948ef1;
-$primary-400:#6960eb;
-$primary-500:#3e33e6;
-$primary-600:#2419cc;
-$primary-700:#1c149f;
-$primary-800:#140e71;
-$primary-900:#0c0844;
+// https://noeldelgado.github.io/shadowlord/#214ddf  15%
+
+$primary-50:#c8d3f7;
+$primary-100:#a6b8f2;
+$primary-200:#859ded;
+$primary-300:#6482e9;
+$primary-400:#4268e4;
+$primary-500:#214ddf;
+$primary-600:#1c41be;
+$primary-700:#17369c;
+$primary-800:#122a7b;
+$primary-900:#0d1f59;
 
 $white: #ffffff;
-$black: #212429;
+$black: #111a33;
 
-$gray-50: #f7f7f7;
-$gray-100: #f1f2f4;
-$gray-200: #d5d8dd;
-$gray-300: #d5d8dd;
-$gray-400: #9ca3af;
-$gray-500: #808999;
-$gray-600: #66707f;
-$gray-700: #505763;
-$gray-800: #393e47;
-$gray-900: #22252a;
+/* for grays https://noeldelgado.github.io/shadowlord/#182447 13.9% */
+$gray-50: #f9f9fa;
+$gray-100: #d9dbe0;
+$gray-200: #b9bcc7;
+$gray-300: #989ead;
+$gray-400: #787f94;
+$gray-500: #58617a;
+$gray-600: #384261;
+$gray-700: #182447;
+$gray-800: #151f3d;
+$gray-900: #111a33; 
 
 $red-50: #ffebee;
 $red-100: #ffcdd2;
@@ -68,13 +71,44 @@ $blue-700: #1976d2;
 $blue-800: #1565c0;
 $blue-900: #0d47a1;
 
-
 $chevron-icon-data-url:url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="%23cccccc" stroke-width="2" fill="none"/></svg>');
 
 $border-radius: 0.5rem;
 $table-cell-padding: 0.75rem;
 $table-striped-index: odd;
 $card-padding: 1.5rem;
+
+$tooltip-padding: 10px;
+$tooltip-margin: 15px; // Distance from the element
+$tooltip-border-radius: 4px;
+$tooltip-arrow-size: 10px;
+
+// Avatar sizes
+$avatar-sizes: (
+  'sm': 30px,
+  'md': 50px,
+  'lg': 70px,
+  'xl': 100px,
+);
+
+$modal-widths: (
+    'sm': 400px,
+    'md': 700px,
+    'lg': 900px,
+    'xl': 1100px,
+    'xxl': 1300px
+);
+
+// Slideover sizes
+$slideover-sizes: (
+  'sm': 400px,
+  'md': 500px,
+  'lg': 600px,
+  'xl': 700px,
+);
+
+// Slideover transition duration
+$slideover-transition-duration: 0.3s;
 
 $breakpoints: (
   'sm': 576px,
@@ -90,18 +124,24 @@ $spacers: (
   2: 0.5rem,
   3: 1rem,
   4: 1.5rem,
-  5: 3rem,
+  5: 2rem,
+  6: 2.5rem,
+  7: 3rem,
+  8: 3.5rem,
+  9: 4rem,
+  10: 4.5rem,
 );
 
+
 $colors: (
-  primary: $primary-500,
-  error: $red-500,
-  success: $green-500,
-  info: $blue-500,
-  "white": $white,
-  "black": $black,
-  "gray": $gray-500,
-  "gray-light": $gray-200,
+  "primary": $primary-500,
+  "secondary": $gray-500,
+  "success": $green-500,
+  "danger": $red-500,
+  "warning": $orange-400,
+  "info": $blue-400,
+  "light": $gray-50,
+  "dark": $gray-800
 );
 
 $shadows: (
