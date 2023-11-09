@@ -1440,7 +1440,7 @@ html:has(.modal[open]) {
   position: relative;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .nav-container {
     flex-wrap: wrap;
   }
@@ -2255,6 +2255,11 @@ html:has(.modal[open]) {
   opacity: 1;
 }
 
+@media (max-width: 600px) {
+  .tooltip::after {
+    font-size: 0.75rem; /* Reduce font size */
+  }
+}
 .container {
   width: 100%;
   padding-right: calc(15px * 1.5);

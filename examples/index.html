@@ -82,7 +82,7 @@
         </nav>
 
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12 col-12">
                 <nav class="nav-vertical nav-secondary mt-5 rounded-3">
                     <div class="nav-container">
                         <!-- Logo -->
@@ -398,7 +398,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- Avatar -->
     <section class="container mt-5">
         <h2>Avatar</h2>
@@ -486,7 +486,6 @@
                 <a href="#" class="tab active" onclick="changeTab(event, 'tab1')" aria-current="page">Profile</a>
                 <a href="#" class="tab" onclick="changeTab(event, 'tab2')">Account</a>
                 <a href="#" class="tab " onclick="changeTab(event, 'tab3')">History Log</a>
-                <a href="#" class="tab" onclick="changeTab(event, 'tab4')">Notification</a>
             </nav>
         </div>
         <!-- Tab content -->
@@ -499,10 +498,6 @@
         <div id="tab3" class="tab-content p-4" style="display: none;">
             Content for History
         </div>
-        <div id="tab4" class="tab-content p-4" style="display: none;">
-            Content for Notification
-        </div>
-
 
     </section>
 
@@ -573,26 +568,25 @@
     <section class="container mt-5">
         <h2>Tooltip</h2>
         <!-- Tooltip on top -->
-        <div class="tooltip mx-4" data-tooltip="This is a tooltip on top" data-placement="top">
+        <div class="tooltip mx-5" data-tooltip="Tooltip on top" data-placement="top">
             Hover over me
         </div>
+
+         <!-- Tooltip on left -->
+         <div class="tooltip mx-5" data-tooltip="Tooltip on the left" data-placement="left">
+            Hover over me
+        </div>
+        <!-- Tooltip on right -->
+        <div class="tooltip mx-5" data-tooltip="Tooltip on the right" data-placement="right">
+            Hover over me
+        </div>
+
+       
 
         <!-- Tooltip on bottom -->
-        <div class="tooltip mx-4" data-tooltip="This is a tooltip on bottom" data-placement="bottom">
+        <div class="tooltip mx-5" data-tooltip="Tooltip on bottom" data-placement="bottom">
             Hover over me
         </div>
-
-        <!-- Tooltip on left -->
-        <div class="tooltip mx-4" data-tooltip="This is a tooltip on the left" data-placement="left">
-            Hover over me
-        </div>
-
-        <!-- Tooltip on right -->
-        <div class="tooltip mx-4" data-tooltip="This is a tooltip on the right" data-placement="right">
-            Hover over me
-        </div>
-
-
     </section>
 
     <!-- Slideovers -->

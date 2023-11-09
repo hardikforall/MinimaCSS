@@ -102,3 +102,10 @@
     opacity: 1;
   }
 }
+@media (max-width: 600px) { 
+  .tooltip::after {
+    font-size: 0.75rem; /* Reduce font size */
+  }
+
+  
+}
