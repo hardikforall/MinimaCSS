@@ -107,7 +107,6 @@ html:has(.modal[open]) {
 @each $size, $width in $modal-widths {
     .modal-#{$size} {
         max-inline-size: min($width, 95%);
-        max-block-size: min($width, 95%);
-        max-block-size: min($width, 95%);
+        max-block-size: min(100%, 95%);
     }
 }

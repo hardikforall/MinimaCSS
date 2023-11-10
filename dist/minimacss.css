@@ -484,7 +484,6 @@ figure figcaption {
 code {
   font-family: monospace;
   font-size: 1em;
-  padding: 0.25em;
   background-color: var(--code-bg-color);
   border-radius: 0.5rem;
 }
@@ -644,32 +643,27 @@ html:has(.modal[open]) {
 }
 .modal-sm {
   max-inline-size: min(400px, 95%);
-  max-block-size: min(400px, 95%);
-  max-block-size: min(400px, 95%);
+  max-block-size: 95%;
 }
 
 .modal-md {
   max-inline-size: min(700px, 95%);
-  max-block-size: min(700px, 95%);
-  max-block-size: min(700px, 95%);
+  max-block-size: 95%;
 }
 
 .modal-lg {
   max-inline-size: min(900px, 95%);
-  max-block-size: min(900px, 95%);
-  max-block-size: min(900px, 95%);
+  max-block-size: 95%;
 }
 
 .modal-xl {
   max-inline-size: min(1100px, 95%);
-  max-block-size: min(1100px, 95%);
-  max-block-size: min(1100px, 95%);
+  max-block-size: 95%;
 }
 
 .modal-xxl {
   max-inline-size: min(1300px, 95%);
-  max-block-size: min(1300px, 95%);
-  max-block-size: min(1300px, 95%);
+  max-block-size: 95%;
 }
 
 .btn {

@@ -711,51 +711,66 @@
     <!-- Modal -->
     <section class="container mt-5">
         <h2>Modal</h2>
-        <button onclick="document.getElementById('myModal').showModal()" class="btn btn-primary">Open Modal</button>
-        <!-- The Modal -->
-        <dialog id="myModal" class="modal modal-lg">
+        <button onclick="document.getElementById('myModalsm').showModal()" class="btn btn-primary">Open Small Modal</button>
+        <button onclick="document.getElementById('myModallg').showModal()" class="btn btn-primary">Open Large Modal</button>
+        <button onclick="document.getElementById('myModalxl').showModal()" class="btn btn-primary">Open Extra Large Modal</button>
+        
+        <dialog id="myModalsm" class="modal modal-sm">
             <header class="modal-header">
                 <h5 class="mb-0 font-semibold">Modal Header</h5>
                 <p class="mb-0 text-secondary">This is long Modal sub title</p>
-                <button class="close-icon" onclick="document.getElementById('myModal').close();"
+                <button class="close-icon" onclick="document.getElementById('myModalsm').close();"
                     aria-label="Close">&times;</button>
             </header>
             <div class="modal-body">
                 <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
                     egestas
                     vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-                    egestas
-                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+            </div>
+            <footer class="modal-footer">
+                <button class="btn btn-outline-primary"
+                    onclick="document.getElementById('myModalsm').close();">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModalsm').close();">Save</button>
+            </footer>
+        </dialog>
+        
+        
+        <dialog id="myModallg" class="modal modal-lg">
+            <header class="modal-header">
+                <h5 class="mb-0 font-semibold">Modal Header</h5>
+                <p class="mb-0 text-secondary">This is long Modal sub title</p>
+                <button class="close-icon" onclick="document.getElementById('myModallg').close();"
+                    aria-label="Close">&times;</button>
+            </header>
+            <div class="modal-body">
                 <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
                     egestas
                     vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
             </div>
             <footer class="modal-footer">
                 <button class="btn btn-outline-primary"
-                    onclick="document.getElementById('myModal').close();">Cancel</button>
-                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModal').close();">Save</button>
+                    onclick="document.getElementById('myModallg').close();">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModallg').close();">Save</button>
+            </footer>
+        </dialog>
+        
+        
+        <dialog id="myModalxl" class="modal modal-xl">
+            <header class="modal-header">
+                <h5 class="mb-0 font-semibold">Modal Header</h5>
+                <p class="mb-0 text-secondary">This is long Modal sub title</p>
+                <button class="close-icon" onclick="document.getElementById('myModalxl').close();"
+                    aria-label="Close">&times;</button>
+            </header>
+            <div class="modal-body">
+                <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
+                    egestas
+                    vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
+            </div>
+            <footer class="modal-footer">
+                <button class="btn btn-outline-primary"
+                    onclick="document.getElementById('myModalxl').close();">Cancel</button>
+                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModalxl').close();">Save</button>
             </footer>
         </dialog>
     </section>
