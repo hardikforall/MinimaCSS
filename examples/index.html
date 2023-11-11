@@ -572,8 +572,8 @@
             Hover over me
         </div>
 
-         <!-- Tooltip on left -->
-         <div class="tooltip mx-5" data-tooltip="Tooltip on the left" data-placement="left">
+        <!-- Tooltip on left -->
+        <div class="tooltip mx-5" data-tooltip="Tooltip on the left" data-placement="left">
             Hover over me
         </div>
         <!-- Tooltip on right -->
@@ -581,7 +581,7 @@
             Hover over me
         </div>
 
-       
+
 
         <!-- Tooltip on bottom -->
         <div class="tooltip mx-5" data-tooltip="Tooltip on bottom" data-placement="bottom">
@@ -711,10 +711,13 @@
     <!-- Modal -->
     <section class="container mt-5">
         <h2>Modal</h2>
-        <button onclick="document.getElementById('myModalsm').showModal()" class="btn btn-primary">Open Small Modal</button>
-        <button onclick="document.getElementById('myModallg').showModal()" class="btn btn-primary">Open Large Modal</button>
-        <button onclick="document.getElementById('myModalxl').showModal()" class="btn btn-primary">Open Extra Large Modal</button>
-        
+        <button onclick="document.getElementById('myModalsm').showModal()" class="btn btn-primary">Open Small
+            Modal</button>
+        <button onclick="document.getElementById('myModallg').showModal()" class="btn btn-primary">Open Large
+            Modal</button>
+        <button onclick="document.getElementById('myModalxl').showModal()" class="btn btn-primary">Open Extra Large
+            Modal</button>
+
         <dialog id="myModalsm" class="modal modal-sm">
             <header class="modal-header">
                 <h5 class="mb-0 font-semibold">Modal Header</h5>
@@ -730,11 +733,12 @@
             <footer class="modal-footer">
                 <button class="btn btn-outline-primary"
                     onclick="document.getElementById('myModalsm').close();">Cancel</button>
-                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModalsm').close();">Save</button>
+                <button class="btn btn-primary ml-3"
+                    onclick="document.getElementById('myModalsm').close();">Save</button>
             </footer>
         </dialog>
-        
-        
+
+
         <dialog id="myModallg" class="modal modal-lg">
             <header class="modal-header">
                 <h5 class="mb-0 font-semibold">Modal Header</h5>
@@ -750,11 +754,12 @@
             <footer class="modal-footer">
                 <button class="btn btn-outline-primary"
                     onclick="document.getElementById('myModallg').close();">Cancel</button>
-                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModallg').close();">Save</button>
+                <button class="btn btn-primary ml-3"
+                    onclick="document.getElementById('myModallg').close();">Save</button>
             </footer>
         </dialog>
-        
-        
+
+
         <dialog id="myModalxl" class="modal modal-xl">
             <header class="modal-header">
                 <h5 class="mb-0 font-semibold">Modal Header</h5>
@@ -770,7 +775,8 @@
             <footer class="modal-footer">
                 <button class="btn btn-outline-primary"
                     onclick="document.getElementById('myModalxl').close();">Cancel</button>
-                <button class="btn btn-primary ml-3" onclick="document.getElementById('myModalxl').close();">Save</button>
+                <button class="btn btn-primary ml-3"
+                    onclick="document.getElementById('myModalxl').close();">Save</button>
             </footer>
         </dialog>
     </section>
@@ -884,28 +890,81 @@
 
     </section>
 
-    <!-- BG and Text and spacing utilities -->
+    <!-- Alert -->
     <section class="container mt-5">
-
-        <h2>BG and Text and spacing utilities</h2>
-        <div class="p-3 my-4 bg-dark text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+        <h2>Alerts</h2>
+       
+        <div class="alert alert-warning">
+            <span class="alert-icon material-symbols-rounded">
                 error
-            </span> This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-primary text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+            </span><!-- Replace with your icon -->
+            <div class="alert-body">
+                <div class="alert-body-title">Attention needed</div>
+                <div class="alert-body-description">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam
+                    quo totam eius aperiam dolorum.
+                </div>
+            </div>
+            <button class="alert-close">&times;</button>
+        </div>
+        <div class="alert alert-outline-danger">
+            <span class="alert-icon material-symbols-rounded">
                 error
-            </span>This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-warning text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+            </span><!-- Replace with your icon -->
+            <div class="alert-body">
+                <div class="alert-body-title">There were 2 errors with your submission</div>
+                <div class="alert-body-description">
+                    <ul role="list">
+                        <li>Your password must be at least 8 characters</li>
+                        <li>Your password must include at least one pro wrestling finishing move</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="alert-close">&times;</button>
+        </div>
+        <div class="alert alert-outline-success">
+            <span class="alert-icon material-symbols-rounded">
                 error
-            </span>This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-success text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+            </span><!-- Replace with your icon -->
+            <div class="alert-body">
+                <div class="alert-body-title">Order completed</div>
+                <div class="alert-body-description">
+                    <p>ipsum dolor sit amet consectetur adipisicing elit. Aliquid pariatur, ipsum similique veniam.</p>
+                    <a href="">Download Receipt</a> <a href="" class="ml-3">Dismiss</a>
+                </div>
+            </div>
+        </div>
+        <div class="alert alert-info">
+            <span class="alert-icon material-symbols-rounded">
                 error
-            </span>This is showcase of bg and text utilities</div>
-        <div class="p-3 my-4 bg-danger text-light rounded-2 d-flex"><span class="material-symbols-rounded mr-1">
+            </span><!-- Replace with your icon -->
+            <div class="alert-body">
+                <div class="alert-body-title">New Update Received</div>
+                <div class="alert-body-description">
+                    <p>A new software update is available. See what’s new in version 2.0.4.</p>
+                    <a href="">Get Details →</a> 
+                </div>
+            </div>
+            <button class="alert-close">&times;</button>
+        </div>
+        <div class="alert alert-outline-info">
+            <span class="alert-icon material-symbols-rounded">
                 error
-            </span>This is showcase of bg and text utilities</div>
+            </span><!-- Replace with your icon -->
+            <div class="alert-body">
+                <div class="alert-body-title">New Update Received</div>
+                <div class="alert-body-description">
+                    <p>A new software update is available. See what’s new in version 2.0.4.</p>
+                    <a href="">Get Details →</a> 
+                </div>
+            </div>
+            <button class="alert-close">&times;</button>
+        </div>
     </section>
-
+   
+    <!-- Table -->
     <section class="container mt-5 mb-5">
+        <h2>Table</h2>
         <div class="table-responsive rounded-2">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
