@@ -1,4 +1,4 @@
-<img src="https://i.ibb.co/zhzg9v3/M.png" alt="MinimaCSS Logo" style="height: 100px; width:100px;"/>
+<img src="https://i.ibb.co/BBw7NLd/M-2.png" alt="MinimaCSS Logo" style="height: 100px; width:100px;"/>
 
 # MinimaCSS ✨
 

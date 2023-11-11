@@ -57,10 +57,10 @@
     --button-warning-text-color: #{$white};
     --button-warning-focus-ring-color: #{hex-to-rgba($orange-400,0.4)};
 
-    --button-light-color: #{$gray-100};
-    --button-light-hover-color: #{$gray-200};
+    --button-light-color: #{$gray-50};
+    --button-light-hover-color: #{$gray-100};
     --button-light-text-color: #{$gray-900};
-    --button-light-focus-ring-color: #{hex-to-rgba($gray-300,0.4)};
+    --button-light-focus-ring-color: #{hex-to-rgba($gray-200, 0.4)};
 
     --button-dark-color: #{$gray-600};
     --button-dark-hover-color: #{$gray-500};
