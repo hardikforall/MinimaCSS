@@ -1,0 +1,64 @@
+// Responsive image
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+// Disable dragging of image
+.img-non-draggable {
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+// Aspect Ratio Boxes
+// Uses padding-top trick to maintain aspect ratio
+$aspect-ratios: (
+  '16-9': 56.25%,  // 16:9
+  '4-3': 75%,      // 4:3
+  '1-1': 100%      // 1:1
+);
+
+@each $ratio-name, $ratio in $aspect-ratios {
+  .aspect-#{$ratio-name} {
+    position: relative;
+    display: block;
+    width: 100%;
+    
+    &::before {
+      content: "";
+      display: block;
+      padding-top: $ratio;
+    }
+  
+    > img {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+// Utility for image shapes
+.img-circle {
+  border-radius: 50%;
+}
+
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: var(--surface-primary-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: $border-radius-small;
+  max-width: 100%;
+  height: auto;
+}
+
+// Utility for image shadow
+.img-shadow {
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+}

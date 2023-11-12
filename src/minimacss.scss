@@ -1,6 +1,6 @@
 //Combining all together
-@import 'utils/variables';
-@import 'utils/functions';
+@import 'common/variables';
+@import 'common/functions';
 @import 'base/reset';
 @import 'themes/light';
 @import "themes/dark";
@@ -30,5 +30,17 @@
 @import 'components/divider';
 @import 'components/tooltips';
 @import 'layout/grid';
-@import 'utils/utilities';
+
+@import 'utilities/borders';
+@import 'utilities/colors';
+@import 'utilities/flexbox';
+@import 'utilities/grid';
+@import 'utilities/interactive';
+@import 'utilities/position';
+@import 'utilities/sizing';
+@import 'utilities/typography';
+@import 'utilities/visibility';
+@import 'utilities/media';
+@import 'utilities/shadows';
+@import 'utilities/clearfix';
 

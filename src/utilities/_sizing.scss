@@ -1,0 +1,111 @@
+  // Width and Height Utilities
+  @each $size, $value in $sizes {
+      .w-#{$size} {
+          width: $value !important;
+      }
+
+      .h-#{$size} {
+          height: $value !important;
+      }
+
+      .min-w-#{$size} {
+          min-width: $value !important;
+      }
+
+      .min-h-#{$size} {
+          min-height: $value !important;
+      }
+
+      .max-w-#{$size} {
+          max-width: $value !important;
+      }
+
+      .max-h-#{$size} {
+          max-height: $value !important;
+      }
+  }
+
+  @each $size, $value in $spacers {
+      .m-#{$size} {
+          margin: $value !important;
+      }
+
+      .mt-#{$size},
+      .my-#{$size} {
+          margin-top: $value !important;
+      }
+
+      .mr-#{$size},
+      .mx-#{$size} {
+          margin-right: $value !important;
+      }
+
+      .mb-#{$size},
+      .my-#{$size} {
+          margin-bottom: $value !important;
+      }
+
+      .ml-#{$size},
+      .mx-#{$size} {
+          margin-left: $value !important;
+      }
+
+      .p-#{$size} {
+          padding: $value !important;
+      }
+
+      .pt-#{$size},
+      .py-#{$size} {
+          padding-top: $value !important;
+      }
+
+      .pr-#{$size},
+      .px-#{$size} {
+          padding-right: $value !important;
+      }
+
+      .pb-#{$size},
+      .py-#{$size} {
+          padding-bottom: $value !important;
+      }
+
+      .pl-#{$size},
+      .px-#{$size} {
+          padding-left: $value !important;
+      }
+  }
+
+
+  @each $breakpoint, $bp-value in $breakpoints {
+      @media (min-width: $bp-value) {
+          @each $size, $value in $spacers {
+              .m-#{$size}-#{$breakpoint} {
+                  margin: $value !important;
+              }
+
+              .p-#{$size}-#{$breakpoint} {
+                  padding: $value !important;
+              }
+          }
+      }
+  }
+
+  @each $display in $displays {
+    .d-#{$display} {
+      display: $display !important;
+    }
+  }
+
+  @each $overflow in $overflows {
+    .overflow-#{$overflow} {
+      overflow: $overflow !important;
+    }
+  
+    .overflow-x-#{$overflow} {
+      overflow-x: $overflow !important;
+    }
+  
+    .overflow-y-#{$overflow} {
+      overflow-y: $overflow !important;
+    }
+  }

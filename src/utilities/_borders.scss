@@ -1,0 +1,55 @@
+// Border Width Utilities
+@each $size, $value in $border-widths {
+  .border-#{$size} {
+    border-width: $value !important;
+    border-style: solid;
+    border-color: var(--border-primary-color);
+  }
+}
+
+// Border Style Utilities
+@each $style in $border-styles {
+  .border-#{$style} {
+    border-style: $style !important;
+  }
+}
+
+
+// Border Radius Utilities
+@each $name, $value in $border-radius-values {
+  .rounded-#{$name} {
+    border-radius: $value !important;
+  }
+}
+
+// Individual Side Border Utilities
+
+@each $side in $border-sides {
+  @each $size, $value in $border-widths {
+    .border-#{$side}-#{$size} {
+      border-#{$side}-width: $value !important;
+    }
+  }
+
+  @each $color-name, $color-value in $colors {
+    .border-#{$side}-#{$color-name} {
+      border-#{$side}-color: $color-value !important;
+    }
+  }
+}
+
+// Border Reset Utility
+.border-none {
+  border: none !important;
+}
+
+@for $i from 0 through 3 {
+  .rounded-#{$i} {
+    border-radius: #{$i * 0.25rem} !important;
+  }
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
+

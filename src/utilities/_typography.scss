@@ -1,0 +1,108 @@
+// Font Size Utilities
+@each $size, $value in $font-sizes {
+  .text-#{$size} {
+    font-size: $value !important;
+  }
+}
+
+// Font Weight Utilities
+@each $weight-name, $weight-value in $font-weights {
+  .font-#{$weight-name} {
+    font-weight: $weight-value !important;
+  }
+}
+
+// Text Alignment Utilities
+$text-alignments: (
+  left,
+  right,
+  center,
+  justify
+);
+
+@each $alignment in $text-alignments {
+  .text-#{$alignment} {
+    text-align: $alignment !important;
+  }
+}
+
+// Line Height Utilities
+@each $height, $value in $line-heights {
+  .line-height-#{$height} {
+    line-height: $value !important;
+  }
+}
+
+// Letter Spacing Utilities
+@each $spacing, $value in $letter-spacings {
+  .letter-spacing-#{$spacing} {
+    letter-spacing: $value !important;
+  }
+}
+
+// Text Transformation Utilities
+$text-transforms: (
+  uppercase,
+  lowercase,
+  capitalize,
+  none
+);
+
+@each $transform in $text-transforms {
+  .text-#{$transform} {
+    text-transform: $transform !important;
+  }
+}
+
+// Font Style Utilities
+.font-italic {
+  font-style: italic !important;
+}
+
+.font-normal {
+  font-style: normal !important;
+}
+
+// Text Decoration Utilities
+.text-decoration-none {
+  text-decoration: none !important;
+}
+
+.text-decoration-underline {
+  text-decoration: underline !important;
+}
+
+.text-decoration-line-through {
+  text-decoration: line-through !important;
+}
+
+.text-decoration-overline {
+  text-decoration: overline !important;
+}
+
+// Word Wrap and Text Overflow
+.text-wrap {
+  word-wrap: break-word !important;
+}
+
+.text-nowrap {
+  white-space: nowrap !important;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.text-clip {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}

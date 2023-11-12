@@ -1,0 +1,58 @@
+
+@each $position in $positions {
+  .position-#{$position} {
+    position: $position !important;
+  }
+}
+
+@each $size, $value in $spacers {
+  .top-#{$size} {
+    top: $value !important;
+  }
+
+  .right-#{$size} {
+    right: $value !important;
+  }
+
+  .bottom-#{$size} {
+    bottom: $value !important;
+  }
+
+  .left-#{$size} {
+    left: $value !important;
+  }
+}
+
+@for $i from 1 through 10 {
+  .z-#{$i * 10} { z-index: $i * 10; }
+}
+
+@each $object-fit in $object-fits {
+  .object-fit-#{$object-fit} {
+    object-fit: $object-fit !important;
+  }
+}
+
+
+@each $object-position in $object-positions {
+  .object-position-#{$object-position} {
+    object-position: $object-position !important;
+  }
+}
+
+// Full positioning shortcut
+.full-position {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// Centering utility - absolute center
+.center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

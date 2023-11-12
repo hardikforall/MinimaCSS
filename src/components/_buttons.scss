@@ -188,12 +188,16 @@
 }
 
 // Button Sizes
-.btn-small {
+.btn-sm {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
 }
+.btn-md {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.875rem;
+}
 
-.btn-large {
+.btn-lg {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
 }

@@ -1,0 +1,107 @@
+
+.grid {
+    display: grid !important;
+  }
+  
+  .grid-inline {
+    display: inline-grid !important;
+  }
+  
+  // Grid Template Columns
+  @each $col in $grid-columns {
+    .grid-cols-#{$col} {
+      grid-template-columns: repeat($col, minmax(0, 1fr)) !important;
+    }
+  }
+  
+  // Grid Template Rows
+  @each $row in $grid-columns { // Assuming similar range as columns
+    .grid-rows-#{$row} {
+      grid-template-rows: repeat($row, minmax(0, 1fr)) !important;
+    }
+  }
+  
+  // Grid Gap Utilities
+  @each $gap-name, $gap-size in $grid-gaps {
+    .gap-#{$gap-name} {
+      gap: $gap-size !important;
+    }
+    .gap-x-#{$gap-name} {
+      column-gap: $gap-size !important;
+    }
+    .gap-y-#{$gap-name} {
+      row-gap: $gap-size !important;
+    }
+  }
+  
+  // Grid Alignment and Justification
+  .align-grid-items-start {
+    align-items: start !important;
+  }
+  
+  .align-grid-items-end {
+    align-items: end !important;
+  }
+  
+  .align-grid-items-center {
+    align-items: center !important;
+  }
+  
+  .justify-grid-items-start {
+    justify-items: start !important;
+  }
+  
+  .justify-grid-items-end {
+    justify-items: end !important;
+  }
+  
+  .justify-grid-items-center {
+    justify-items: center !important;
+  }
+  
+  .align-grid-content-start {
+    align-content: start !important;
+  }
+  
+  .align-grid-content-end {
+    align-content: end !important;
+  }
+  
+  .align-grid-content-center {
+    align-content: center !important;
+  }
+  
+  .align-grid-content-stretch {
+    align-content: stretch !important;
+  }
+  
+  .justify-grid-content-start {
+    justify-content: start !important;
+  }
+  
+  .justify-grid-content-end {
+    justify-content: end !important;
+  }
+  
+  .justify-grid-content-center {
+    justify-content: center !important;
+  }
+  
+  .justify-grid-content-between {
+    justify-content: space-between !important;
+  }
+  
+  .justify-grid-content-around {
+    justify-content: space-around !important;
+  }
+  
+
+  @each $breakpoint, $bp-value in $breakpoints {
+    @media (min-width: $bp-value) {
+      @each $col in $grid-columns {
+        .grid-cols-#{$col}-#{$breakpoint} {
+          grid-template-columns: repeat($col, minmax(0, 1fr)) !important;
+        }
+      }
+    }
+  }
