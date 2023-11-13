@@ -1,0 +1,5 @@
+@each $display in $displays {
+    .d-#{$display} {
+      display: $display !important;
+    }
+  }

@@ -112,6 +112,10 @@ blockquote {
   background-color: var(--blockquote-bg-color);
 }
 
+blockquote p{
+margin-bottom: 0;
+}
+
 // Horizontal Rule
 hr {
   border: none;

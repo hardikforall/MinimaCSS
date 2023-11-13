@@ -90,11 +90,6 @@
       }
   }
 
-  @each $display in $displays {
-    .d-#{$display} {
-      display: $display !important;
-    }
-  }
 
   @each $overflow in $overflows {
     .overflow-#{$overflow} {

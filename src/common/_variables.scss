@@ -122,16 +122,8 @@ $breakpoints: (
   'xxl': 1400px
 );
 
-$grid-columns: 1 through 12;
+$grid-columns-row: (1,2,3,4,5,6,7,8,9,10,11,12);
 
-$grid-gaps: (
-  '0': 0,           // No gap
-  '1': 0.25rem,     // Small gap
-  '2': 0.5rem,      // Medium gap
-  '3': 1rem,        // Large gap
-  '4': 1.5rem,      // Extra Large gap
-  '5': 2rem         // XXL gap
-);
 
 $spacers: (
   0: 0,
@@ -165,7 +157,7 @@ $shadows: (
   'md': "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
   'lg': "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
   'xl': "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-  '2xl': "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+  '2xl': "0 20px 25px -5px rgba(0, 0, 0, 0.25)",
   'inner': "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
   'none': "none"
 );
@@ -187,8 +179,12 @@ $sizes: (
   '13': 13rem,
   '14': 14rem,
   '15': 15rem,
+  '16': 16rem,
   '20': 20rem,
+  '18': 18rem,
   '24': 24rem,
+  '28': 28rem,
+  '32': 32rem,
   '25': 25%,
   '50': 50%,
   '75': 75%,
@@ -300,11 +296,13 @@ $displays: (
   none,
   inline,
   inline-block,
-  inline-flex,
   block,
   flex,
+  inline-flex,
   grid,
-  table
+  table,
+  table-cell,
+  table-row,
 );
 
 $object-fits: (
