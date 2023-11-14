@@ -5,26 +5,24 @@
   -webkit-text-size-adjust: none;
   -webkit-touch-callout: none;
   box-sizing: border-box;
-
 }
-pre{
+pre {
   position: relative;
   overflow-x: hidden;
   width: 100%;
 }
-pre > code{
+pre > code {
   overflow-x: auto !important;
 }
 .markdown-section pre[data-lang] code {
   display: block;
   overflow: auto;
-  
 }
-.docsify-copy-code-button{
+.docsify-copy-code-button {
   top: 5px !important;
   right: 5px !important;
   font-size: 0.8rem !important;
-  padding: .2em .5em !important;
+  padding: 0.2em 0.5em !important;
   background: var(--surface-tertiary-color) !important;
   color: var(--text-primary-color) !important;
   border-radius: 0.5rem !important;
@@ -35,7 +33,7 @@ body:not(.ready) {
 
 body:not(.ready) [data-cloak],
 body:not(.ready) .app-nav,
-body:not(.ready)>nav {
+body:not(.ready) > nav {
   display: none;
 }
 
@@ -49,7 +47,7 @@ div#app {
 }
 
 div#app:empty::before {
-  content: 'Loading...';
+  content: "Loading...";
 }
 
 img.emoji {
@@ -58,7 +56,8 @@ img.emoji {
 }
 
 span.emoji {
-  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   font-size: 1.2em;
   vertical-align: middle;
 }
@@ -74,30 +73,30 @@ span.emoji {
   width: 0%;
   z-index: 999999;
 }
-.search{
-  border-bottom: 1px solid var(--border-primary-color)!important;
+.search {
+  border-bottom: 1px solid var(--border-primary-color) !important;
 }
-.search .clear-button{
-  width: 20px!important;
+.search .clear-button {
+  width: 20px !important;
   text-align: right;
-  height: 20px!important;
+  height: 20px !important;
 }
-.search .clear-button svg{
+.search .clear-button svg {
   transform: scale(0.9) !important;
 }
-.search .clear-button svg circle{
-  fill: var(--surface-tertiary-color)!important;
+.search .clear-button svg circle {
+  fill: var(--surface-tertiary-color) !important;
 }
-.results-panel{
-  border-top: 1px solid var(--border-primary-color)!important;
+.results-panel {
+  border-top: 1px solid var(--border-primary-color) !important;
   margin-top: 12px;
   padding-top: 12px;
 }
-.search input{
+.search input {
   background: transparent;
   color: var(--text-primary-color);
 }
-.search input:focus{
+.search input:focus {
   box-shadow: none !important;
   border: 0 !important;
 }
@@ -145,7 +144,7 @@ kbd {
   vertical-align: middle;
 }
 
-li input[type='checkbox'] {
+li input[type="checkbox"] {
   margin: 0 0.2em 0.25em 0;
   vertical-align: middle;
 }
@@ -159,7 +158,7 @@ li input[type='checkbox'] {
   /* navbar dropdown */
 }
 
-.app-name-link img{
+.app-name-link img {
   width: 200px;
   margin: 0 auto;
 }
@@ -171,7 +170,7 @@ li input[type='checkbox'] {
   margin: 0;
 }
 
-.app-nav>a {
+.app-nav > a {
   margin: 0 1rem;
   padding: 5px 0;
 }
@@ -309,19 +308,19 @@ main.hidden {
   background-color: var(--surface-primary-color);
 }
 
-.sidebar>h1 {
+.sidebar > h1 {
   margin: 0 auto 1rem;
   font-size: 1.5rem;
   font-weight: 300;
   text-align: center;
 }
 
-.sidebar>h1 a {
+.sidebar > h1 a {
   color: inherit;
   text-decoration: none;
 }
 
-.sidebar>h1 .app-nav {
+.sidebar > h1 .app-nav {
   display: block;
   position: static;
 }
@@ -342,7 +341,7 @@ main.hidden {
   margin-bottom: 0.7rem;
 }
 
-.sidebar li>p {
+.sidebar li > p {
   font-weight: 700;
   margin: 0;
 }
@@ -353,13 +352,12 @@ main.hidden {
   margin-bottom: 0.3rem;
 }
 
-
 .sidebar ul li a {
   padding: 0.5rem 0.75rem;
   margin-bottom: 0px;
   border-radius: 0.3rem;
   line-height: 1.3;
-  font-size: .875rem;
+  font-size: 0.875rem;
   border-bottom: none;
   display: block;
   color: var(--text-primary-color);
@@ -378,13 +376,13 @@ main.hidden {
   border-radius: 0.3rem;
   border: 1px solid var(--border-primary-color);
 }
-.sidebar-nav ul > li > ul > li > ul >.app-sub-sidebar{
+.sidebar-nav ul > li > ul > li > ul > .app-sub-sidebar {
   margin-left: 10px;
   border: none;
   padding: 0.2rem;
 }
 
-.sidebar ul li.active> :first-child:is(a) {
+.sidebar ul li.active > :first-child:is(a) {
   background-color: var(--button-primary-color);
   color: var(--button-primary-text-color);
   font-weight: 600;
@@ -398,13 +396,13 @@ main.hidden {
 
 .sidebar ul li a {
   position: relative;
-
 }
 
-
-.sidebar-nav li>a[href^="/"]:not([href*="?id="]):only-child::before,
-.sidebar-nav li>a[href^="#/"]:not([href*="?id="]):only-child::before,
-.sidebar-nav li.collapse>a[href^="#/"]:not([href*="?id="]):not(:only-child)::before {
+.sidebar-nav li > a[href^="/"]:not([href*="?id="]):only-child::before,
+.sidebar-nav li > a[href^="#/"]:not([href*="?id="]):only-child::before,
+.sidebar-nav
+  li.collapse
+  > a[href^="#/"]:not([href*="?id="]):not(:only-child)::before {
   content: "";
   position: absolute;
   border: solid currentColor;
@@ -420,8 +418,8 @@ main.hidden {
   transition: transform 0.3s ease;
 }
 
-.sidebar-nav li>a[href^="/"]:not([href*="?id="]):not(:only-child)::before,
-.sidebar-nav li>a[href^="#/"]:not([href*="?id="]):not(:only-child)::before {
+.sidebar-nav li > a[href^="/"]:not([href*="?id="]):not(:only-child)::before,
+.sidebar-nav li > a[href^="#/"]:not([href*="?id="]):not(:only-child)::before {
   content: "";
   position: absolute;
   border: solid currentColor;
@@ -471,7 +469,7 @@ a:focus {
 .sidebar-toggle {
   background-color: var(--surface-primary-color);
   border: 0;
-  outline: none;
+  outline-color: transparent;
   padding: 25px;
   position: absolute;
   top: 0;
@@ -530,11 +528,11 @@ body.sticky .sidebar-toggle {
   position: relative;
 }
 
-.markdown-section>* {
+.markdown-section > * {
   box-sizing: border-box;
 }
 
-.markdown-section> :first-child {
+.markdown-section > :first-child {
   margin-top: 0 !important;
 }
 
@@ -593,7 +591,7 @@ body.sticky .sidebar-toggle {
   background-color: #f66;
   border-radius: 100%;
   color: #fff;
-  content: '!';
+  content: "!";
   font-size: 14px;
   font-weight: bold;
   left: -12px;
@@ -619,7 +617,7 @@ body.sticky .sidebar-toggle {
   padding: 1rem;
 }
 
-.markdown-section ul.task-list>li {
+.markdown-section ul.task-list > li {
   list-style-type: none;
 }
 
@@ -636,7 +634,6 @@ body.close .content {
 }
 
 @media print {
-
   .github-corner,
   .sidebar-toggle,
   .sidebar,
@@ -646,7 +643,6 @@ body.close .content {
 }
 
 @media screen and (max-width: 768px) {
-
   .github-corner,
   .sidebar-toggle,
   .sidebar {
@@ -695,8 +691,6 @@ body.close .content {
     transform: translateX(300px);
   }
 
-
-
   body.close .content {
     transform: translateX(300px);
   }
@@ -716,7 +710,6 @@ body.close .content {
 }
 
 @keyframes octocat-wave {
-
   0%,
   100% {
     transform: rotate(0);
@@ -736,7 +729,7 @@ body.close .content {
 section.cover {
   position: relative;
   align-items: center;
- 
+
   min-height: 100vh;
   width: 100%;
   display: none;
@@ -763,29 +756,34 @@ section.cover .cover-main {
   position: relative;
 }
 
-.cover-main img{
+.cover-main img {
   max-width: 100px;
   display: inline-block;
 }
 
 body .cover.show {
-	background-image: linear-gradient(-45deg, #216ddf, #2a4bb9, #3050ba, #2177df) !important;
-	background-size: 400% 400% !important;
-	animation: gradient 15s ease infinite !important;
+  background-image: linear-gradient(
+    -45deg,
+    #216ddf,
+    #2a4bb9,
+    #3050ba,
+    #2177df
+  ) !important;
+  background-size: 400% 400% !important;
+  animation: gradient 15s ease infinite !important;
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
-
 
 section.cover a {
   text-decoration: none;
@@ -808,9 +806,9 @@ section.cover h1 {
   position: relative;
   text-align: center;
 }
-.cover-main h1 > a span{
+.cover-main h1 > a span {
   font-weight: 800 !important;
-  color: white ;
+  color: white;
 }
 .cover-main p {
   color: white !important;
@@ -821,7 +819,7 @@ section.cover h1 a {
 }
 
 section.cover h1 sup span {
- color: var(--accent-color) !important;
+  color: var(--accent-color) !important;
   font-size: 1rem;
 }
 
@@ -838,7 +836,7 @@ section.cover ul {
   padding: 0;
 }
 
-section.cover .cover-main>p:last-child a {
+section.cover .cover-main > p:last-child a {
   padding: 0.5rem 1rem;
   border: 1px solid var(--button-light-color);
   border-radius: 0.5rem;
@@ -850,34 +848,33 @@ section.cover .cover-main>p:last-child a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
   background-color: transparent;
 }
 
-
-section.cover .cover-main>p:last-child a:last-child {
+section.cover .cover-main > p:last-child a:last-child {
   background-color: var(--light-color);
   color: var(--accent-color);
 }
 
-section.cover .cover-main>p:last-child a:last-child:hover {
+section.cover .cover-main > p:last-child a:last-child:hover {
   color: var(--accent-color);
   opacity: 0.8;
 }
 
-section.cover .cover-main>p:last-child a:hover {
+section.cover .cover-main > p:last-child a:hover {
   color: inherit;
 }
 
-section.cover blockquote>p>a {
+section.cover blockquote > p > a {
   border-bottom: 2px solid var(--accent-color);
   transition: color 0.3s;
 }
 
-section.cover blockquote>p>a:hover {
+section.cover blockquote > p > a:hover {
   color: var(--accent-color);
 }
-
 
 .component-preview {
   margin: 2rem 0.2rem;
@@ -888,18 +885,14 @@ section.cover blockquote>p>a:hover {
   justify-content: center;
   align-items: center;
   background-color: var(--surface-primary-color);
-  background-image: linear-gradient(45deg,
+  background-image: linear-gradient(
+      45deg,
       var(--surface-secondary-color) 25%,
-      transparent 25%),
-    linear-gradient(135deg,
-      var(--surface-secondary-color) 25%,
-      transparent 25%),
-    linear-gradient(45deg,
-      transparent 75%,
-      var(--surface-secondary-color) 75%),
-    linear-gradient(135deg,
-      transparent 75%,
-      var(--surface-secondary-color) 75%);
+      transparent 25%
+    ),
+    linear-gradient(135deg, var(--surface-secondary-color) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--surface-secondary-color) 75%),
+    linear-gradient(135deg, transparent 75%, var(--surface-secondary-color) 75%);
   background-size: 20px 20px;
   background-position: 0px 0px, 10px 0px, 10px -10px, 0px 10px;
   border-radius: 0.33rem;
@@ -908,7 +901,7 @@ section.cover blockquote>p>a:hover {
   resize: both;
 }
 
-.component-preview.dir-col{
+.component-preview.dir-col {
   flex-direction: column;
   align-items: start;
   gap: 0rem;
@@ -921,7 +914,8 @@ section.cover blockquote>p>a:hover {
   z-index: 1000;
 }
 @media screen and (max-width: 768px) {
-  body.close .app-nav, body.close .theme-switcher  {
+  body.close .app-nav,
+  body.close .theme-switcher {
     display: none;
   }
   .component-preview {
@@ -929,13 +923,13 @@ section.cover blockquote>p>a:hover {
   }
 }
 @media screen and (max-width: 768px) {
-.markdown-section{
-  max-width: 95%;
-  padding: 20px 15px 15px 15px;
-}
+  .markdown-section {
+    max-width: 95%;
+    padding: 20px 15px 15px 15px;
+  }
 }
 .color-box {
-  width: 200px;  /* width */
+  width: 200px; /* width */
   height: 70px; /* height */
   text-align: center;
   border-radius: 5px; /* rounded corners */
@@ -997,14 +991,14 @@ aside.toc-nav.nothing {
   left: 0;
   margin: 10px 0;
   border: none;
-  font-size: 1.0em;
+  font-size: 1em;
 }
 
 .page_toc p.title {
   margin: 0;
   padding-bottom: 5px;
   font-weight: 600;
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .page_toc .anchor:hover:after {
@@ -1022,7 +1016,7 @@ aside.toc-nav.nothing {
 }
 
 .page_toc div.active {
-  border-left-color:var(--accent-color);
+  border-left-color: var(--accent-color);
   transition: border-left-color 0.23s;
 }
 
@@ -1037,7 +1031,7 @@ aside.toc-nav.nothing {
   font-weight: 400;
   line-height: 2em;
   display: block;
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .page_toc div[class^="lv"] a span {
@@ -1045,7 +1039,7 @@ aside.toc-nav.nothing {
   display: block;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow:ellipsis;
+  text-overflow: ellipsis;
 }
 
 .page_toc div.lv2 {
