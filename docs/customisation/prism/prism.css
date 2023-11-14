@@ -46,7 +46,7 @@ pre {
 }
 
 [data-theme="light"],
-:root:not([data-theme="dark"]) {
+body:not([data-theme="dark"]) {
 
     code,
     pre {
@@ -136,7 +136,7 @@ pre {
 
 
 @media only screen and (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
+    body:not([data-theme="light"]) {
         code,
         pre {
             color: #f8f8f2;
