@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../dist/minimacss.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,1,-25" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <style>
         /* Theme Switcher Styles */
         .theme-switcher {
@@ -21,11 +23,26 @@
 
 <body>
     <div class="theme-switcher">
-        <label class="switch">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider"></span>
-            <span class="label-text">Dark mode</span>
-        </label>
+        <div class="segmented-control small ml-6">
+            <input type="radio" id="light_mode" name="theme_mode">
+            <label for="light_mode" title="Light Mode">
+                <span class="material-symbols-rounded text-lg">
+                    light_mode
+                </span>
+            </label>
+            <input type="radio" id="dark_mode" name="theme_mode">
+            <label for="dark_mode" title="Dark Mode">
+                <span class="material-symbols-rounded text-lg">
+                    dark_mode
+                </span>
+            </label>
+            <input type="radio" id="system_preference" name="theme_mode">
+            <label for="system_preference" title="System Preference">
+                <span class="material-symbols-rounded text-lg">
+                    settings
+                </span>
+            </label>
+        </div>
     </div>
     <header class="container my-4">
         <h1 class="mt-0 mb-2">MinimaCSS Framework Components</h1>
@@ -502,6 +519,26 @@
 
     </section>
 
+    <!-- Segmented Control -->
+    <section class="container mt-5">
+        <h2>Segmented Control</h2>
+        <div class="segmented-control">
+            <input type="radio" id="option-one" name="segmented-control" checked>
+            <label for="option-one">One</label>
+            <input type="radio" id="option-two" name="segmented-control">
+            <label for="option-two">Two</label>
+            <input type="radio" id="option-three" name="segmented-control">
+            <label for="option-three">There</label>
+        </div>
+        <div class="segmented-control small ml-6">
+            <input type="radio" id="option-one-small" name="segmented-control-small" checked>
+            <label for="option-one-small">One</label>
+            <input type="radio" id="option-two-small" name="segmented-control-small">
+            <label for="option-two-small">Two</label>
+            <input type="radio" id="option-three-small" name="segmented-control-small">
+            <label for="option-three-small">Three</label>
+        </div>
+    </section>
     <!-- Badges -->
     <section class="container mt-5">
         <h2>Badges</h2>
@@ -894,7 +931,7 @@
     <!-- Alert -->
     <section class="container mt-5">
         <h2>Alerts</h2>
-       
+
         <div class="alert alert-warning">
             <span class="alert-icon material-symbols-rounded">
                 error
@@ -962,7 +999,7 @@
             <button class="alert-close">&times;</button>
         </div>
     </section>
-   
+
     <!-- Table -->
     <section class="container mt-5 mb-5">
         <h2>Table</h2>
@@ -1051,32 +1088,43 @@
         }
 
 
-        document.addEventListener('DOMContentLoaded', (event) => {
 
+        document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('myCheckbox').indeterminate = true;
+            const savedTheme = localStorage.getItem('user-theme') || getSystemTheme();
+            setTheme(savedTheme);
 
-            const toggleSwitch = document.querySelector('#theme-toggle');
+            // Initialize the correct radio button based on the saved theme
+            initializeRadioButtonState(savedTheme);
 
-            function switchTheme(e) {
-                if (e.target.checked) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                    localStorage.setItem('theme', 'light');
-                }
-            }
-
-            toggleSwitch.addEventListener('change', switchTheme, false);
-
-            const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-            if (currentTheme) {
-                document.documentElement.setAttribute('data-theme', currentTheme);
-                if (currentTheme === 'dark') {
-                    toggleSwitch.checked = true;
-                }
-            }
+            // Adding event listeners to the radio buttons
+            document.getElementById('light_mode').addEventListener('change', () => changeTheme('light'));
+            document.getElementById('dark_mode').addEventListener('change', () => changeTheme('dark'));
+            document.getElementById('system_preference').addEventListener('change', () => changeTheme(getSystemTheme()));
         });
+
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+        }
+
+        function changeTheme(theme) {
+            setTheme(theme);
+            localStorage.setItem('user-theme', theme);
+        }
+
+        function initializeRadioButtonState(theme) {
+            if (theme === 'light') {
+                document.getElementById('light_mode').checked = true;
+            } else if (theme === 'dark') {
+                document.getElementById('dark_mode').checked = true;
+            } else {
+                document.getElementById('system_preference').checked = true;
+            }
+        }
 
     </script>
 </body>

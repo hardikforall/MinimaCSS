@@ -2,28 +2,23 @@
 
 # MinimaCSS ✨
 
-MinimaCSS is a minimalist CSS framework designed for simplicity and ease of use (Opinionated). Born from an idea in 2017 and brought to life in 2018 for my personal projects, MinimaCSS is a reflection of a vision to create a foundational CSS framework that empowers new developers and suits projects that require just the basics.
+MinimaCSS is an elegantly designed and versatile CSS framework, perfect for crafting beautiful websites. Launched in 2017 and refined in 2018 for a variety of web projects, MinimaCSS encapsulates the vision of providing an accessible yet sophisticated tool for web design. It's an ideal solution for newcomers seeking beauty in simplicity and professionals demanding aesthetic finesse in their projects.
 
-While it may not cater to the complexities of large-scale applications, its streamlined approach is ideal for budding developers, simple projects, and anyone in need of a lightweight, straightforward starting point.
+This framework celebrates the beauty of design, offering a harmonious balance between ease of use and the ability to create stunning visual experiences.
 
 ### Why MinimaCSS? 🤔
 
-In a world where front-end frameworks are often bloated and overly complex, MinimaCSS stands as a testament to simplicity. It's a throwback to the roots of CSS design, offering just enough to get you started without overwhelming you with options.
+In an era where front-end frameworks can be cumbersome and complex, MinimaCSS emerges as a beacon of aesthetic clarity. It revives the essence of CSS design, blending simplicity with the capability to create visually appealing interfaces.
 
 ### Features 🚀
 
-- Grid System: A flexible, 12-column grid for layout management.
-- Typography: Clean, readable typography settings.
-- Buttons: Pre-styled buttons with basic interactivity.
-- Forms: Simple form elements for quick integration.
+- Extensive Components: Extensive selection of pre-built components, ready for integration into diverse web projects.
+- Design Flexibility: Each element is meticulously crafted for visual excellence, supporting a wide range of aesthetic preferences.
+- Utility Classes: Comprehensive and intuitive utility classes for rapid, flexible design adjustments.
+- Responsive Design: Built for seamless responsiveness, ensuring compatibility across all devices.
 - Utilities: Handy utility classes for spacing, visibility, backgrounds, text colors, and more.
-- Responsive: Built with a mobile-first approach.
-- Dark Mode : Dark mode Included by default
-- Size : Less than ~15 kB minified and gzipped
-
-### Examples 📚
-
-Check out the directory called `/example` where all the components are used
+- Light and Dark Mode : Light and Dark mode Included by default. Default dark mode for modern aesthetics.
+- Comprehensive Documentation : Detailed documentation and support for a smooth development experience.
 
 ## Installation 💾
 
@@ -43,7 +38,6 @@ or you can use Minified css
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hardikforall/MinimaCSS/dist/minimacss.min.css">
 
 ```
-
 
 ### Direct Download 📦
 
@@ -80,9 +74,15 @@ npm run build
 This command compiles your SCSS files and outputs a minified CSS file in the /dist directory.
 And you're done! You now have a version of MinimaCSS that's tailored specifically to your project's requirements.
 
-### About Documentation
 
-As MinimaCSS originated as a personal project, extensive documentation was not a priority. Therefore, detailed documentation is not available at this time. The provided example is intended to be self-explanatory and should suffice for understanding how to use the framework effectively.
+## Documentation 📘
+
+**Get Started**: Quick and easy guides to get you up and running. 
+**Advanced Usage**: In-depth tutorials for advanced features and customization.
+**Latest Updates**: Stay updated with new features and improvements.
+
+[Explore Documentation](https://hardikforall.github.io/MinimaCSS/docs/)
+
 
 ### Todo
 

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>MinimaCSS</title>
+  <meta name="description" content="An awesome docsify site for publishing some content on the web." />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,1,-25" />
+  <link rel="stylesheet" href="../dist/minimacss.css" />
+  <link rel="stylesheet" href="customisation/prism/prism.css" />
+  <link rel="stylesheet" href="customisation/style.css" />
+</head>
+
+<body>
+  <div class="theme-switcher pr-5">
+    <div class="segmented-control small ml-6">
+      <input type="radio" id="light_mode" name="theme_mode">
+      <label for="light_mode" title="Light Mode">
+          <span class="material-symbols-rounded text-lg">
+              light_mode
+          </span>
+      </label>
+      <input type="radio" id="dark_mode" name="theme_mode">
+      <label for="dark_mode" title="Dark Mode">
+          <span class="material-symbols-rounded text-lg">
+              dark_mode
+          </span>
+      </label>
+      <input type="radio" id="system_preference" name="theme_mode">
+      <label for="system_preference" title="System Preference">
+          <span class="material-symbols-rounded text-lg">
+              settings
+          </span>
+      </label>
+  </div>
+  </div>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      coverpage: true,
+      name: "MinimaCSS Docs",
+      logo: "https://i.ibb.co/xDQ23Hm/M-3.png",
+      repo: "https://github.com/hardikforall/MinimaCSS",
+      requestHeaders: {
+        "cache-control": "max-age=0",
+      },
+      auto2top: true,
+      loadSidebar: true,
+      maxLevel: 0,
+      subMaxLevel: 1,
+      topMargin: 90,
+      copyCode: {
+        buttonText: "Copy to clipboard",
+        errorText: "Error",
+        successText: "Copied",
+      },
+      search: {
+        placeholder: "Type to search",
+        noData: "No matches found.",
+        depth: 2,
+      },
+      toc: {
+        tocMaxLevel: 3,
+        target: 'h2, h3, h4, h5, h6',
+        ignoreHeaders: ['<!-- {docsify-ignore} -->', '<!-- {docsify-ignore-all} -->']
+      },
+      'flexible-alerts': {
+      style: 'flat'
+    }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+            
+            const savedTheme = localStorage.getItem('user-theme') || getSystemTheme();
+            setTheme(savedTheme);
+
+            // Initialize the correct radio button based on the saved theme
+            initializeRadioButtonState(savedTheme);
+
+            // Adding event listeners to the radio buttons
+            document.getElementById('light_mode').addEventListener('change', () => changeTheme('light'));
+            document.getElementById('dark_mode').addEventListener('change', () => changeTheme('dark'));
+            document.getElementById('system_preference').addEventListener('change', () => changeTheme(getSystemTheme()));
+        });
+
+        function getSystemTheme() {
+            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+        }
+
+        function changeTheme(theme) {
+            setTheme(theme);
+            localStorage.setItem('user-theme', theme);
+        }
+
+        function initializeRadioButtonState(theme) {
+            if (theme === 'light') {
+                document.getElementById('light_mode').checked = true;
+            } else if (theme === 'dark') {
+                document.getElementById('dark_mode').checked = true;
+            } else {
+                document.getElementById('system_preference').checked = true;
+            }
+        }
+
+          if (typeof navigator.serviceWorker !== "undefined") {
+            navigator.serviceWorker.register("sw.js");
+          }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.js"></script>
+  <script src="https://unpkg.com/docsify-copy-code@2"></script>
+  <script src="https://unpkg.com/docsify-plugin-toc@1.3.1/dist/docsify-plugin-toc.min.js"></script>
+  <script src="https://unpkg.com/docsify-plugin-flexible-alerts"></script>
+  <script>
+    function changeTab(event, tabId) {
+      // Prevent the page from jumping when anchor is clicked
+      event.preventDefault();
+      // Get all tabs and tab contents
+      const tabs = document.querySelectorAll('.tabs .tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      // Remove active class and aria-current from all tabs
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.removeAttribute('aria-current');
+      });
+      // Hide all tab contents
+      tabContents.forEach(content => {
+        content.style.display = 'none';
+      });
+      // Set the clicked tab as active
+      event.currentTarget.classList.add('active');
+      event.currentTarget.setAttribute('aria-current', 'page');
+      // Show the current tab's content
+      const activeTabContent = document.getElementById(tabId);
+      if (activeTabContent) {
+        activeTabContent.style.display = 'block';
+      }
+    }
+
+    var currentSlideoverelement
+    function toggleSlideover(selector) {
+      if (selector) {
+        currentSlideoverelement = selector;
+      } else {
+        selector = currentSlideoverelement;
+      }
+      var slideover = document.querySelector(selector);
+      var body = document.body;
+      slideover.classList.toggle('active');
+      // If the slideover is now active, prevent body scrolling
+      if (slideover.classList.contains('active')) {
+        body.classList.add('body-no-scroll');
+
+      } else {
+        body.classList.remove('body-no-scroll');
+      }
+    }
+
+  </script>
+</body>
+
+</html>
