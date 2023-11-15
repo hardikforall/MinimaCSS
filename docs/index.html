@@ -13,6 +13,15 @@
   <link rel="stylesheet" href="../dist/minimacss.css" />
   <link rel="stylesheet" href="customisation/prism/prism.css" />
   <link rel="stylesheet" href="customisation/style.css" />
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q2MLQT1HY1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Q2MLQT1HY1');
+  </script>
+
 </head>
 
 <body>
@@ -20,23 +29,23 @@
     <div class="segmented-control small ml-6">
       <input type="radio" id="light_mode" name="theme_mode">
       <label for="light_mode" title="Light Mode">
-          <span class="material-symbols-rounded text-lg">
-              light_mode
-          </span>
+        <span class="material-symbols-rounded text-lg">
+          light_mode
+        </span>
       </label>
       <input type="radio" id="dark_mode" name="theme_mode">
       <label for="dark_mode" title="Dark Mode">
-          <span class="material-symbols-rounded text-lg">
-              dark_mode
-          </span>
+        <span class="material-symbols-rounded text-lg">
+          dark_mode
+        </span>
       </label>
       <input type="radio" id="system_preference" name="theme_mode">
       <label for="system_preference" title="System Preference">
-          <span class="material-symbols-rounded text-lg">
-              settings
-          </span>
+        <span class="material-symbols-rounded text-lg">
+          settings
+        </span>
       </label>
-  </div>
+    </div>
   </div>
   <div id="app"></div>
   <script>
@@ -69,50 +78,50 @@
         ignoreHeaders: ['<!-- {docsify-ignore} -->', '<!-- {docsify-ignore-all} -->']
       },
       'flexible-alerts': {
-      style: 'flat'
-    }
+        style: 'flat'
+      }
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-            
-            const savedTheme = localStorage.getItem('user-theme') || getSystemTheme();
-            setTheme(savedTheme);
 
-            // Initialize the correct radio button based on the saved theme
-            initializeRadioButtonState(savedTheme);
+      const savedTheme = localStorage.getItem('user-theme') || getSystemTheme();
+      setTheme(savedTheme);
 
-            // Adding event listeners to the radio buttons
-            document.getElementById('light_mode').addEventListener('change', () => changeTheme('light'));
-            document.getElementById('dark_mode').addEventListener('change', () => changeTheme('dark'));
-            document.getElementById('system_preference').addEventListener('change', () => changeTheme(getSystemTheme()));
-        });
+      // Initialize the correct radio button based on the saved theme
+      initializeRadioButtonState(savedTheme);
 
-        function getSystemTheme() {
-            return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
+      // Adding event listeners to the radio buttons
+      document.getElementById('light_mode').addEventListener('change', () => changeTheme('light'));
+      document.getElementById('dark_mode').addEventListener('change', () => changeTheme('dark'));
+      document.getElementById('system_preference').addEventListener('change', () => changeTheme(getSystemTheme()));
+    });
 
-        function setTheme(theme) {
-            document.body.setAttribute('data-theme', theme);
-        }
+    function getSystemTheme() {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
 
-        function changeTheme(theme) {
-            setTheme(theme);
-            localStorage.setItem('user-theme', theme);
-        }
+    function setTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+    }
 
-        function initializeRadioButtonState(theme) {
-            if (theme === 'light') {
-                document.getElementById('light_mode').checked = true;
-            } else if (theme === 'dark') {
-                document.getElementById('dark_mode').checked = true;
-            } else {
-                document.getElementById('system_preference').checked = true;
-            }
-        }
+    function changeTheme(theme) {
+      setTheme(theme);
+      localStorage.setItem('user-theme', theme);
+    }
 
-          if (typeof navigator.serviceWorker !== "undefined") {
-            navigator.serviceWorker.register("sw.js");
-          }
+    function initializeRadioButtonState(theme) {
+      if (theme === 'light') {
+        document.getElementById('light_mode').checked = true;
+      } else if (theme === 'dark') {
+        document.getElementById('dark_mode').checked = true;
+      } else {
+        document.getElementById('system_preference').checked = true;
+      }
+    }
+
+    if (typeof navigator.serviceWorker !== "undefined") {
+      navigator.serviceWorker.register("sw.js");
+    }
   </script>
   <!-- Docsify v4 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
