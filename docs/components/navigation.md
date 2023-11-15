@@ -7,7 +7,7 @@ Navigation bars are important in any webpage to make it easily accessible and us
 The `nav nav-primary` classes creates a horizontal navigation bar. It's typically used for the main navigation of a website. This bar includes a logo section, a mobile menu toggle, and a list of navigation links. Some of these links can be dropdowns for organizing multiple items.
 
 ```html
-<nav class="nav nav-primary rounded-3">
+<nav class="nav nav-primary rounded-lg">
     <div class="nav-container">
         <!-- Logo -->
         <div class="nav-logo">
@@ -51,7 +51,7 @@ The `nav nav-primary` classes creates a horizontal navigation bar. It's typicall
 ```
 
 <div class="component-preview d-block">
-<nav class="nav nav-primary rounded-3">
+<nav class="nav nav-primary rounded-lg">
     <div class="nav-container">
         <!-- Logo -->
         <div class="nav-logo">
@@ -104,7 +104,7 @@ The `nav-vertical` class is used for vertical navigation, often seen in sidebars
 For applications where Horizontal Navbar doesn't fit, Vertical Navbar can be implemented as below:
 
 ```html
-<nav class="nav-vertical nav-secondary mt-5 rounded-3">
+<nav class="nav-vertical nav-secondary mt-5 rounded-lg">
     <div class="nav-container">
         <!-- Logo -->
         <div class="nav-logo">
@@ -142,7 +142,7 @@ For applications where Horizontal Navbar doesn't fit, Vertical Navbar can be imp
 ```
 
 <div class="component-preview">
-<nav class="nav-vertical nav-secondary mt-5 rounded-3 w-full" style="max-width:400px">
+<nav class="nav-vertical nav-secondary mt-5 rounded-lg w-full" style="max-width:400px">
     <div class="nav-container">
         <!-- Logo -->
         <div class="nav-logo">

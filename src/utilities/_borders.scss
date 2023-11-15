@@ -14,7 +14,6 @@
   }
 }
 
-
 // Border Radius Utilities
 @each $name, $value in $border-radius-values {
   .rounded-#{$name} {
@@ -41,12 +40,6 @@
 // Border Reset Utility
 .border-none {
   border: none !important;
-}
-
-@for $i from 0 through 3 {
-  .rounded-#{$i} {
-    border-radius: #{$i * 0.25rem} !important;
-  }
 }
 
 .rounded-circle {

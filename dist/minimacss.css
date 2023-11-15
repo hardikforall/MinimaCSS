@@ -159,7 +159,6 @@ select {
   --input-bg-color: var(--surface-primary-color);
   --input-focus-ring-color: rgba(33, 77, 223, 0.25);
   --input-focus-border-color: #214ddf;
-  --input-shadow-color:rgba(17, 26, 51, 0.05);
   --input-valid-text-color:#3F9142;
   --input-valid-border-color: #3F9142;
   --input-focus-valid-ring-color: rgba(87, 174, 91, 0.5);
@@ -180,7 +179,13 @@ select {
   --loader-light-border-color:rgba(255, 255, 255, 0.4);
   --loader-dark-bg-color:rgba(33, 77, 223, 0.5);
   --loader-dark-border-color:rgba(33, 77, 223, 0.2);
-  --steps-accent-color: ;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
 }
 
 @media only screen and (prefers-color-scheme: dark) {
@@ -244,7 +249,6 @@ select {
     --input-bg-color:var(--surface-primary-color);
     --input-focus-ring-color: rgba(33, 77, 223, 0.25);
     --input-focus-border-color: #214ddf;
-    --input-shadow-color:rgb(17, 26, 51);
     --input-valid-text-color:#3F9142;
     --input-valid-border-color: #3F9142;
     --input-focus-valid-ring-color: rgba(87, 174, 91, 0.5);
@@ -265,6 +269,13 @@ select {
     --loader-light-border-color:rgba(255, 255, 255, 0.4);
     --loader-dark-bg-color:rgba(100, 130, 233, 0.7);
     --loader-dark-border-color:rgba(100, 130, 233, 0.4);
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
+    --shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.7);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.7);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+    --shadow-2xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.7);
   }
 }
 [data-theme=dark] {
@@ -327,7 +338,6 @@ select {
   --input-bg-color:var(--surface-primary-color);
   --input-focus-ring-color: rgba(33, 77, 223, 0.25);
   --input-focus-border-color: #214ddf;
-  --input-shadow-color:rgb(17, 26, 51);
   --input-valid-text-color:#3F9142;
   --input-valid-border-color: #3F9142;
   --input-focus-valid-ring-color: rgba(87, 174, 91, 0.5);
@@ -348,6 +358,13 @@ select {
   --loader-light-border-color:rgba(255, 255, 255, 0.4);
   --loader-dark-bg-color:rgba(100, 130, 233, 0.7);
   --loader-dark-border-color:rgba(100, 130, 233, 0.4);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.7);
+  --shadow-default: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.7);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.5);
+  --shadow-2xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.7);
 }
 
 body {
@@ -1118,7 +1135,7 @@ html:has(.modal[open]) {
   position: absolute;
   background-color: var(--surface-secondary-color);
   min-width: 160px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-lg);
   z-index: 1;
   margin-top: 0.5rem;
   border-radius: 0.5rem;
@@ -1173,11 +1190,17 @@ html:has(.modal[open]) {
   background-clip: padding-box;
   border: 1px solid var(--border-primary-color);
   border-radius: 0.5rem;
-  box-shadow: 0 1px 2px 0 var(--input-shadow-color);
-  -webkit-box-shadow: 0 1px 2px 0 var(--input-shadow-color);
-  -moz-box-shadow: 0 1px 2px 0 var(--input-shadow-color);
+  box-shadow: var(--shadow-sm);
+  -webkit-box-shadow: var(--shadow-sm);
+  -moz-box-shadow: var(--shadow-sm);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   appearance: none;
+}
+.input::after,
+.select::after,
+.textarea::after,
+.file-input::after {
+  color: rgba(204, 204, 204, 0.8);
 }
 .input.input-small,
 .select.input-small,
@@ -1214,7 +1237,7 @@ html:has(.modal[open]) {
   background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="%23cccccc" stroke-width="2" fill="none"/></svg>');
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
-  background-size: 0.65rem 0.65rem;
+  background-size: 0.8rem 0.8rem;
   padding-right: 2rem;
 }
 
@@ -1890,7 +1913,7 @@ html:has(.modal[open]) {
   background-color: var(--surface-tertiary-color);
   border-radius: 0.5rem;
   overflow: hidden;
-  padding: 0.2rem 0.2rem;
+  padding: 0.2rem 0.25rem;
   gap: 0.5rem;
 }
 .segmented-control input[type=radio] {
@@ -1899,7 +1922,7 @@ html:has(.modal[open]) {
 .segmented-control input[type=radio]:checked + label {
   background-color: var(--surface-primary-color);
   color: var(--text-primary-color);
-  filter: drop-shadow(0px 0px 1px var(--input-shadow-color));
+  filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.17));
   box-shadow: 0 1px 0 var(--border-primary-color) inset;
 }
 .segmented-control label {
@@ -1914,6 +1937,7 @@ html:has(.modal[open]) {
   align-items: center;
   color: var(--text-primary-color);
   user-select: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 .segmented-control label:hover {
   background-color: var(--button-highlight-border-color);
@@ -3234,22 +3258,6 @@ html:has(.modal[open]) {
 
 .border-none {
   border: none !important;
-}
-
-.rounded-0 {
-  border-radius: 0rem !important;
-}
-
-.rounded-1 {
-  border-radius: 0.25rem !important;
-}
-
-.rounded-2 {
-  border-radius: 0.5rem !important;
-}
-
-.rounded-3 {
-  border-radius: 0.75rem !important;
 }
 
 .rounded-circle {
@@ -7029,36 +7037,32 @@ html:has(.modal[open]) {
   height: auto;
 }
 
-.img-shadow {
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
-}
-
 .shadow-sm {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 .shadow-default {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-default);
 }
 
 .shadow-md {
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-md);
 }
 
 .shadow-lg {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow-lg);
 }
 
 .shadow-xl {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: var(--shadow-xl);
 }
 
 .shadow-2xl {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-2xl);
 }
 
 .shadow-inner {
-  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow-inner);
 }
 
 .shadow-none {

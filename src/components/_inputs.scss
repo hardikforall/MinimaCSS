@@ -13,11 +13,14 @@
   background-clip: padding-box;
   border: 1px solid var(--border-primary-color);
   border-radius: $border-radius;
-  box-shadow: 0 1px 2px 0 var(--input-shadow-color);
-  -webkit-box-shadow: 0 1px 2px 0 var(--input-shadow-color);
-  -moz-box-shadow: 0 1px 2px 0 var(--input-shadow-color);
+  box-shadow: var(--shadow-sm);
+  -webkit-box-shadow: var(--shadow-sm);
+  -moz-box-shadow: var(--shadow-sm);
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   appearance: none; // Normalize appearance
+  &::after{
+    color: #cccc; // for Details/Summary elemt used as select
+  }
   &.input-small{
     padding: 0.2rem 0.5rem;
     font-size: 0.95rem;
@@ -45,7 +48,7 @@
   background-image: $chevron-icon-data-url;
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
-  background-size: 0.65rem 0.65rem;
+  background-size: 0.8rem 0.8rem;
   padding-right: 2rem; // Make room for chevron
 }
 

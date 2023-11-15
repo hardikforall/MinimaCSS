@@ -3,7 +3,7 @@
     background-color: var(--surface-tertiary-color);
     border-radius: $border-radius;
     overflow: hidden;
-    padding: 0.2rem 0.2rem;
+    padding: 0.2rem 0.25rem;
     gap: 0.5rem;
 
     input[type="radio"] {
@@ -12,8 +12,8 @@
         &:checked+label {
             background-color: var(--surface-primary-color);
             color: var(--text-primary-color);
-            filter: drop-shadow(0px 0px 1px var(--input-shadow-color));
-            box-shadow: 0 1px 0 var(--border-primary-color) inset;
+            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.17));
+            box-shadow: 0 1px 0 var(--border-primary-color) inset;//highlight on top
         }
     }
 
@@ -29,6 +29,7 @@
         align-items: center;
         color: var(--text-primary-color);
         user-select: none;
+        transition: background-color 0.3s ease, color 0.3s ease; 
         &:hover {
             background-color: var(--button-highlight-border-color);
         }

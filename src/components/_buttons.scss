@@ -297,7 +297,7 @@
     position: absolute;
     background-color: var(--surface-secondary-color);
     min-width: 160px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-lg);
     z-index: 1;
     margin-top: 0.5rem;
     border-radius: $border-radius;
