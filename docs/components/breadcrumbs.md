@@ -10,14 +10,14 @@ Example:
 
 ```html
 <nav aria-label="breadcrumb">
-    <ol class="breadcrumbs">
-        <li class="breadcrumbs-item"><a href="#">Home</a></li>
-        <li class="breadcrumbs-item"><a href="#">Library</a></li>
-        <li class="breadcrumbs-item active" aria-current="page">Data</li>
-    </ol>
+  <ol class="breadcrumbs">
+    <li class="breadcrumbs-item"><a href="#">Home</a></li>
+    <li class="breadcrumbs-item"><a href="#">Library</a></li>
+    <li class="breadcrumbs-item active" aria-current="page">Data</li>
+  </ol>
 </nav>
-
 ```
+
 <div class="component-preview">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumbs">

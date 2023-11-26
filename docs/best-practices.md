@@ -1,4 +1,3 @@
-
 # MinimaCSS - Best Practices Guide
 
 ### Introduction

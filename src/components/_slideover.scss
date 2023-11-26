@@ -1,5 +1,3 @@
-
-
 // Base slideover styles
 .slideover {
   position: fixed;
@@ -23,7 +21,7 @@
     opacity: 0;
     transition: opacity $slideover-transition-duration ease-in-out;
   }
-  
+
   &.active {
     ~ .slideover-backdrop {
       visibility: visible;
@@ -33,7 +31,8 @@
     opacity: 1;
   }
   // Header, body, and footer sections
-  &-header, &-footer {
+  &-header,
+  &-footer {
     position: relative;
     padding: 20px;
     background-color: var(--surface-secondary-color);
@@ -49,9 +48,9 @@
       border: none;
       background: transparent;
       color: var(--text-secondary-color);
-   }
+    }
   }
-  &-footer{
+  &-footer {
     text-align: end;
   }
   &-body {
@@ -61,10 +60,11 @@
   }
 
   // Right and left positions take full height and configurable width
-  &.right, &.left {
+  &.right,
+  &.left {
     top: 0;
     bottom: 0;
-    max-width: map-get($slideover-sizes, 'md'); // Default width
+    max-width: map-get($slideover-sizes, "md"); // Default width
     @each $size, $value in $slideover-sizes {
       &.size-#{$size} {
         max-width: $value;
@@ -73,10 +73,11 @@
   }
 
   // Top and bottom positions take full width and configurable height
-  &.top, &.bottom {
+  &.top,
+  &.bottom {
     left: 0;
     right: 0;
-    height: map-get($slideover-sizes, 'md'); // Default height
+    height: map-get($slideover-sizes, "md"); // Default height
     @each $size, $value in $slideover-sizes {
       &.size-#{$size} {
         height: $value;

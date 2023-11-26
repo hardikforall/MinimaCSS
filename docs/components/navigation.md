@@ -1,6 +1,6 @@
 # Navigation
 
-Navigation bars are important in any webpage to make it easily accessible and user-friendly. This documentation explains the implementation of two types of navigation bars in MinimaCSS: Horizontal Navbar and Vertical Navbar. The nav classes are designed to be used with the `<nav>` element. 
+Navigation bars are important in any webpage to make it easily accessible and user-friendly. This documentation explains the implementation of two types of navigation bars in MinimaCSS: Horizontal Navbar and Vertical Navbar. The nav classes are designed to be used with the `<nav>` element.
 
 ## Horizontal Navbar
 
@@ -8,46 +8,43 @@ The `nav nav-primary` classes creates a horizontal navigation bar. It's typicall
 
 ```html
 <nav class="nav nav-primary rounded-lg">
-    <div class="nav-container">
-        <!-- Logo -->
-        <div class="nav-logo">
-            <img src="logo-url"
-                alt="Logo" class="nav-logo-img">
-            <span class="nav-logo-text">MinimaCSS</span>
-        </div>
-        <!-- Mobile Menu Toggle -->
-        <div class="nav-toggle">
-            <span class="nav-toggle-icon">☰</span>
-        </div>
-        <!-- Navigation Links -->
-        <ul class="nav-links">
-            <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link active">Home</a>
-            </li>
-            <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">About</a>
-            </li>
-            <!-- Dropdown -->
-            <li class="nav-links-item">
-                <details class="dropdown">
-                    <summary class="dropdown-toggle nav-links-item-link">
-                        Dropdown Menu
-                    </summary>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </details>
-            </li>
-            <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">Contact</a>
-            </li>
-        </ul>
+  <div class="nav-container">
+    <!-- Logo -->
+    <div class="nav-logo">
+      <img src="logo-url" alt="Logo" class="nav-logo-img" />
+      <span class="nav-logo-text">MinimaCSS</span>
     </div>
+    <!-- Mobile Menu Toggle -->
+    <div class="nav-toggle">
+      <span class="nav-toggle-icon">☰</span>
+    </div>
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li class="nav-links-item">
+        <a href="#" class="nav-links-item-link active">Home</a>
+      </li>
+      <li class="nav-links-item">
+        <a href="#" class="nav-links-item-link">About</a>
+      </li>
+      <!-- Dropdown -->
+      <li class="nav-links-item">
+        <details class="dropdown">
+          <summary class="dropdown-toggle nav-links-item-link">
+            Dropdown Menu
+          </summary>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </details>
+      </li>
+      <li class="nav-links-item">
+        <a href="#" class="nav-links-item-link">Contact</a>
+      </li>
+    </ul>
+  </div>
 </nav>
-
-
 ```
 
 <div class="component-preview d-block">
@@ -105,39 +102,38 @@ For applications where Horizontal Navbar doesn't fit, Vertical Navbar can be imp
 
 ```html
 <nav class="nav-vertical nav-secondary mt-5 rounded-lg">
-    <div class="nav-container">
-        <!-- Logo -->
-        <div class="nav-logo">
-            <img src="logo-url"
-                alt="Logo" class="nav-logo-img">
-            <span class="nav-logo-text">MinimaCSS</span>
-        </div>
-        <!-- Navigation Links -->
-        <ul class="nav-links">
-            <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link active">Home</a>
-            </li>
-            <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">About</a>
-            </li>
-            <!-- Dropdown -->
-            <li class="nav-links-item">
-                <details class="dropdown">
-                    <summary class="dropdown-toggle nav-links-item-link">
-                        Dropdown Menu
-                    </summary>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </details>
-            </li>
-            <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">Contact</a>
-            </li>
-        </ul>
+  <div class="nav-container">
+    <!-- Logo -->
+    <div class="nav-logo">
+      <img src="logo-url" alt="Logo" class="nav-logo-img" />
+      <span class="nav-logo-text">MinimaCSS</span>
     </div>
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li class="nav-links-item">
+        <a href="#" class="nav-links-item-link active">Home</a>
+      </li>
+      <li class="nav-links-item">
+        <a href="#" class="nav-links-item-link">About</a>
+      </li>
+      <!-- Dropdown -->
+      <li class="nav-links-item">
+        <details class="dropdown">
+          <summary class="dropdown-toggle nav-links-item-link">
+            Dropdown Menu
+          </summary>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </details>
+      </li>
+      <li class="nav-links-item">
+        <a href="#" class="nav-links-item-link">Contact</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 ```
 
@@ -187,13 +183,11 @@ A summary is provided in a `<summary>` element. The `<details>` and `<summary>` 
 
 ```html
 <details class="dropdown">
-    <summary class="dropdown-toggle nav-links-item-link">
-        Dropdown Menu
-    </summary>
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-    </div>
+  <summary class="dropdown-toggle nav-links-item-link">Dropdown Menu</summary>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
 </details>
 ```

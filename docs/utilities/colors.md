@@ -1,15 +1,17 @@
-
 # Color Utilities
 
 This document provides a foundational understanding of the color utilities in MinimaCSS, with examples and component previews to aid in practical implementation
 
-## Text Color 
+## Text Color
+
 Text color utilities are based on the color variables defined in `_variables.scss`. They allow for the straightforward application of color to text.
 
- #### Usage
+#### Usage
+
 To use a text color utility, add a `.text-[color]` class to an HTML element, where `[color]` corresponds to a color variable.
 
 #### Example
+
 ```html
 <p class="text-primary">Primary color text</p>
 <p class="text-secondary">Secondary color text</p>
@@ -19,8 +21,8 @@ To use a text color utility, add a `.text-[color]` class to an HTML element, whe
 <p class="text-info">Info color text</p>
 <p class="text-light">Light color text</p>
 <p class="text-dark">Dark color text</p>
-
 ```
+
 <div class="component-preview d-block">
 <p class="text-primary">Primary color text</p>
 <p class="text-secondary">Secondary color text</p>
@@ -33,12 +35,15 @@ To use a text color utility, add a `.text-[color]` class to an HTML element, whe
 </div>
 
 ## Surface Color (Support theme)
+
 Surface color utilities are used to apply background colors to elements. These Colors support Light and dark By default.
 
- #### Usage
+#### Usage
+
 Classes such as `.surface-primary`, `.surface-secondary`, and `.surface-tertiary` apply predefined background colors.
 
 #### Example
+
 ```html
 <div class="surface-primary">Primary surface</div>
 <div class="surface-secondary">Secondary surface</div>
@@ -51,13 +56,16 @@ Classes such as `.surface-primary`, `.surface-secondary`, and `.surface-tertiary
 <div class="surface-tertiary p-4">Tertiary surface</div>
 </div>
 
-## Background Color 
-Background color utilities are used to apply background colors to elements. 
+## Background Color
 
- #### Usage
+Background color utilities are used to apply background colors to elements.
+
+#### Usage
+
 Classes such as `.bg-primary`, `.bg-secondary`, etc. apply predefined background colors.
 
 #### Example
+
 ```html
 <div class="bg-primary">Primary Background</div>
 <div class="bg-secondary">Secondary Background</div>

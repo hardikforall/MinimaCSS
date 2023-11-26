@@ -1,43 +1,42 @@
 // Show and Hide Utilities
 .hidden {
-    display: none !important;
-  }
-  
-  .visible {
-    display: block !important;
-  }
-  
-  // Visibility Utilities
-  .invisible {
-    visibility: hidden !important;
-  }
-  
-  .visible {
-    visibility: visible !important;
-  }
-  
-  // Screen Reader Only Utility
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
-  }
-  
-  // Responsive Visibility Utilities
-  // Assuming $breakpoints are defined in your _variables.scss
-  @each $breakpoint, $bp-value in $breakpoints {
-    @media (min-width: $bp-value) {
-      .hidden-#{$breakpoint} {
-        display: none !important;
-      }
-      .visible-#{$breakpoint} {
-        display: block !important;
-      }
+  display: none !important;
+}
+
+.visible {
+  display: block !important;
+}
+
+// Visibility Utilities
+.invisible {
+  visibility: hidden !important;
+}
+
+.visible {
+  visibility: visible !important;
+}
+
+// Screen Reader Only Utility
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// Responsive Visibility Utilities
+// Assuming $breakpoints are defined in your _variables.scss
+@each $breakpoint, $bp-value in $breakpoints {
+  @media (min-width: $bp-value) {
+    .hidden-#{$breakpoint} {
+      display: none !important;
+    }
+    .visible-#{$breakpoint} {
+      display: block !important;
     }
   }
-  
+}

@@ -1,161 +1,161 @@
 // Base navigation styles
 .nav {
-    background-color: var(--nav-primary-bg-color);
-    color: var(--nav-primary-text-color);
-    padding: 0.5rem 0.5rem;
-    border-top: 1px solid var(--button-highlight-border-color);
-    &-container {
-        display: flex;
+  background-color: var(--nav-primary-bg-color);
+  color: var(--nav-primary-text-color);
+  padding: 0.5rem 0.5rem;
+  border-top: 1px solid var(--button-highlight-border-color);
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  &-logo {
+    display: flex;
+    align-items: center;
+
+    &-img {
+      max-height: 40px;
+    }
+
+    &-text {
+      margin-left: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+
+  &-links {
+    list-style: none;
+    display: flex;
+    &-item {
+      position: relative; // For Dropdown
+      margin-bottom: 0em;
+      margin: 0rem 0.5rem;
+      &-link {
+        font-weight: 500;
+        white-space: nowrap;
+        border-radius: $border-radius;
+        color: var(--nav-primary-text-color);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        display: inline-flex;
         align-items: center;
-        justify-content: space-between;
-        margin: 0 auto;
-    }
-
-    &-logo {
-        display: flex;
-        align-items: center;
-
-        &-img {
-            max-height: 40px;
+        gap: 0.5rem;
+        position: relative;
+        transition: color 0.15s ease-in-out;
+        &:hover,
+        &:focus,
+        .active {
+          text-decoration: none;
+          color: var(--nav-primary-text-color);
+          background-color: var(--nav-primary-link-hover-color);
         }
-
-        &-text {
-            margin-left: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
+      }
+      .active {
+        text-decoration: none;
+        background-color: var(--nav-primary-link-hover-color);
+      }
     }
+  }
 
-    &-links {
-        list-style: none;
-        display: flex;
-        &-item {
-            position: relative; // For Dropdown
-            margin-bottom: 0em;
-            margin: 0rem 0.5rem;
-            &-link {
-                font-weight: 500;
-                white-space: nowrap;
-                border-radius: $border-radius;
-                color: var(--nav-primary-text-color);
-                text-decoration: none;
-                padding: 0.5rem 1rem;
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                position: relative;
-                transition: color 0.15s ease-in-out;
-                &:hover,
-                &:focus, .active {
-                    text-decoration: none;
-                    color: var(--nav-primary-text-color);
-                    background-color: var(--nav-primary-link-hover-color);
-                }
-            }
-            .active{
-                text-decoration: none;
-                    background-color: var(--nav-primary-link-hover-color);
-            }
-        }
+  &-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 1rem 1rem;
+
+    &-icon {
+      color: var(--nav-primary-link-color);
+      font-size: 1.5rem;
     }
-
-    &-toggle {
-        display: none;
-        cursor: pointer;
-        padding: 1rem 1rem;
-
-        &-icon {
-            color: var(--nav-primary-link-color);
-            font-size: 1.5rem;
-        }
-    }
+  }
 }
 
 .nav-vertical {
-    @extend .nav;
-    .nav-container {
-        flex-direction: column;
-    }
-    .nav-container {
-        flex-wrap: wrap;
-    }
-    .nav-links {
-        display: block;
+  @extend .nav;
+  .nav-container {
+    flex-direction: column;
+  }
+  .nav-container {
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    display: block;
+    width: 100%;
+    flex-direction: column;
+    &-item {
+      margin: 0.5rem 0rem;
+      &-link {
+        display: inline-flex;
         width: 100%;
-        flex-direction: column;
-        &-item {
-            margin: 0.5rem 0rem;
-            &-link {
-                display: inline-flex;
-                width: 100%;
-                align-items: center;
-                gap: 0.5rem;
-            }
-            .dropdown {
-                width: 100%;
-                .dropdown-menu{
-                    position: relative;
-                }
-            }
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .dropdown {
+        width: 100%;
+        .dropdown-menu {
+          position: relative;
         }
+      }
     }
+  }
 }
 // Responsive behavior
 @media (max-width: 1024px) {
-    .nav-container {
-        flex-wrap: wrap;
-    }
+  .nav-container {
+    flex-wrap: wrap;
+  }
 
-    .nav-links {
-        display: block;
+  .nav-links {
+    display: block;
+    width: 100%;
+    flex-direction: column;
+
+    &-item {
+      margin: 0.5rem 0rem;
+      &-link {
         width: 100%;
-        flex-direction: column;
-
-        &-item {
-            margin: 0.5rem 0rem;
-            &-link {
-                width: 100%;
-            }
-            .dropdown {
-                width: 100%;
-                .dropdown-menu{
-                    position: relative;
-                }
-            }
+      }
+      .dropdown {
+        width: 100%;
+        .dropdown-menu {
+          position: relative;
         }
+      }
     }
+  }
 
-    .nav-toggle {
-        display: block;
-    }
+  .nav-toggle {
+    display: block;
+  }
 }
-
 
 // Breadcrumbs
 .breadcrumbs {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
 
-    .breadcrumbs-item {
-        a {
-            text-decoration: none;
-            color: var(--link-text-color);
+  .breadcrumbs-item {
+    a {
+      text-decoration: none;
+      color: var(--link-text-color);
 
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-
-        &.active a {
-            color: var(--link-active-color);
-            pointer-events: none;
-        }
-
-        &:not(:last-child)::after {
-            content: '/';
-            padding: 0 0.5rem;
-        }
+      &:hover {
+        text-decoration: underline;
+      }
     }
+
+    &.active a {
+      color: var(--link-active-color);
+      pointer-events: none;
+    }
+
+    &:not(:last-child)::after {
+      content: "/";
+      padding: 0 0.5rem;
+    }
+  }
 }

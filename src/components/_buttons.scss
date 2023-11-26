@@ -1,18 +1,18 @@
 // Button Base Mixin
-@mixin button-variant($color,
+@mixin button-variant(
+  $color,
   $hover-color,
   $text-color,
   $focus-ring,
-  $type: solid) {
+  $type: solid
+) {
   @if $type ==solid {
     background-color: var($color);
     border-color: var($color);
     color: var($text-color);
     //making buttons look highlighted in dark modes
     border-top: 1px solid var(--button-highlight-border-color);
-  }
-
-  @else if $type ==outline {
+  } @else if $type ==outline {
     background-color: transparent;
     border-color: var($color);
     color: var($color);
@@ -29,9 +29,7 @@
       background-color: var($hover-color);
       border-color: var($hover-color);
       border-top: 1px solid var(--button-highlight-border-color);
-    }
-
-    @else if $type ==outline {
+    } @else if $type ==outline {
       background-color: var($color);
       color: var($text-color);
     }
@@ -53,7 +51,9 @@
   align-items: center;
   gap: 0.5rem;
 
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+  transition:
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
     color 0.15s ease-in-out;
 
   &:disabled {
@@ -64,114 +64,141 @@
   &:active:not(.btn-group .btn) {
     transform: scale(0.95) translate3d(0, 0, 0);
   }
-
 }
 
 // Button Variants
 .btn-primary {
-  @include button-variant(--button-primary-color,
+  @include button-variant(
+    --button-primary-color,
     --button-primary-hover-color,
     --button-primary-text-color,
-    --button-primary-focus-ring-color);
+    --button-primary-focus-ring-color
+  );
 }
 
 .btn-error {
-  @include button-variant(--button-error-color,
+  @include button-variant(
+    --button-error-color,
     --button-error-hover-color,
     --button-error-text-color,
-    --button-error-focus-ring-color);
+    --button-error-focus-ring-color
+  );
 }
 
 .btn-success {
-  @include button-variant(--button-success-color,
+  @include button-variant(
+    --button-success-color,
     --button-success-hover-color,
     --button-success-text-color,
-    --button-success-focus-ring-color);
+    --button-success-focus-ring-color
+  );
 }
 
 .btn-warning {
-  @include button-variant(--button-warning-color,
+  @include button-variant(
+    --button-warning-color,
     --button-warning-hover-color,
     --button-warning-text-color,
-    --button-warning-focus-ring-color);
+    --button-warning-focus-ring-color
+  );
 }
 
 .btn-info {
-  @include button-variant(--button-info-color,
+  @include button-variant(
+    --button-info-color,
     --button-info-hover-color,
     --button-info-text-color,
-    --button-info-focus-ring-color);
+    --button-info-focus-ring-color
+  );
 }
 
 .btn-dark {
-  @include button-variant(--button-dark-color,
+  @include button-variant(
+    --button-dark-color,
     --button-dark-hover-color,
     --button-dark-text-color,
-    --button-dark-focus-ring-color);
+    --button-dark-focus-ring-color
+  );
 }
 
 .btn-light {
-  @include button-variant(--button-light-color,
+  @include button-variant(
+    --button-light-color,
     --button-light-hover-color,
     --button-light-text-color,
-    --button-light-focus-ring-color);
+    --button-light-focus-ring-color
+  );
 }
 
 // Outline Buttons
 .btn-outline-primary {
-  @include button-variant(--button-primary-color,
+  @include button-variant(
+    --button-primary-color,
     --button-primary-hover-color,
     --button-primary-text-color,
     --button-primary-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 .btn-outline-error {
-  @include button-variant(--button-error-color,
+  @include button-variant(
+    --button-error-color,
     --button-error-hover-color,
     --button-error-text-color,
     --button-error-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 .btn-outline-success {
-  @include button-variant(--button-success-color,
+  @include button-variant(
+    --button-success-color,
     --button-success-hover-color,
     --button-success-text-color,
     --button-success-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 .btn-outline-warning {
-  @include button-variant(--button-warning-color,
+  @include button-variant(
+    --button-warning-color,
     --button-warning-hover-color,
     --button-warning-text-color,
     --button-warning-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 .btn-outline-info {
-  @include button-variant(--button-info-color,
+  @include button-variant(
+    --button-info-color,
     --button-info-hover-color,
     --button-info-text-color,
     --button-info-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 .btn-outline-dark {
-  @include button-variant(--button-dark-color,
+  @include button-variant(
+    --button-dark-color,
     --button-dark-hover-color,
     --button-dark-text-color,
     --button-dark-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 .btn-outline-light {
-  @include button-variant(--button-light-color,
+  @include button-variant(
+    --button-light-color,
     --button-light-hover-color,
     --button-light-text-color,
     --button-light-focus-ring-color,
-    outline);
+    outline
+  );
 }
 
 // Link Button
@@ -248,10 +275,9 @@
 }
 
 // Optional: Spacing between button groups if they stack
-.btn-group+.btn-group {
+.btn-group + .btn-group {
   margin-left: 0.5rem;
 }
-
 
 // Dropdown Base Styles
 .dropdown {
@@ -275,7 +301,7 @@
       top: 46%;
       right: 1rem;
       transform: translateY(-50%) rotate(45deg);
-      transition: transform .3s ease;
+      transition: transform 0.3s ease;
     }
 
     &[aria-expanded="true"]::after {
@@ -327,7 +353,6 @@
   &[open] .dropdown-menu {
     display: block;
   }
-
 }
 
 @keyframes fadeIn {

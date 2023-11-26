@@ -19,21 +19,25 @@ The Tabs component consists of a navigation bar with tab items and corresponding
 ```html
 <!-- Tabs -->
 <div class="tabs-container">
-    <nav class="tabs" aria-label="Tabs">
-        <a href="#" class="tab active" onclick="changeTab(event, 'tab1')" aria-current="page">Profile</a>
-        <a href="#" class="tab" onclick="changeTab(event, 'tab2')">Account</a>
-        <a href="#" class="tab " onclick="changeTab(event, 'tab3')">History Log</a>
-    </nav>
+  <nav class="tabs" aria-label="Tabs">
+    <a
+      href="#"
+      class="tab active"
+      onclick="changeTab(event, 'tab1')"
+      aria-current="page"
+      >Profile</a
+    >
+    <a href="#" class="tab" onclick="changeTab(event, 'tab2')">Account</a>
+    <a href="#" class="tab " onclick="changeTab(event, 'tab3')">History Log</a>
+  </nav>
 </div>
 <!-- Tab content -->
-<div id="tab1" class="tab-content p-4">
-    Content for Profile
-</div>
+<div id="tab1" class="tab-content p-4">Content for Profile</div>
 <div id="tab2" class="tab-content p-4" style="display: none;">
-    Content for Account
+  Content for Account
 </div>
 <div id="tab3" class="tab-content p-4" style="display: none;">
-    Content for History
+  Content for History
 </div>
 ```
 
@@ -61,6 +65,3 @@ The Tabs component consists of a navigation bar with tab items and corresponding
 ### JavaScript Functionality
 
 A JavaScript function `changeTab` is mentioned in the code. which is not icluded in the framework. This function controls the display of the tab content based on the tab clicked. The implementation details of this function are not provided in the snippet.
-
-
-

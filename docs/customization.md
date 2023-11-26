@@ -1,4 +1,3 @@
-
 # MinimaCSS - Customization Guide
 
 ## Introduction

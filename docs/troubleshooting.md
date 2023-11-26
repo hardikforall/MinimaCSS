@@ -1,4 +1,3 @@
-
 # MinimaCSS - Troubleshooting Guide
 
 ## Introduction
@@ -12,6 +11,7 @@ Troubleshooting is an essential part of working with any CSS framework. This gui
 **Problem**: Your styles don't appear as expected, or changes made to the SCSS files are not reflected.
 
 **Solutions**:
+
 - **Check CSS Linking**: Ensure the MinimaCSS stylesheet is correctly linked in your HTML file.
 - **SCSS Compilation**: If you're modifying SCSS, ensure that it is being compiled correctly into CSS.
 - **Class Name Conflicts**: Check for any naming conflicts with MinimaCSS classes and your custom classes.
@@ -22,6 +22,7 @@ Troubleshooting is an essential part of working with any CSS framework. This gui
 **Problem**: The layout breaks or doesn't appear responsive on different devices.
 
 **Solutions**:
+
 - **Meta Tag**: Ensure you have the responsive viewport meta tag in your HTML `<head>`: `<meta name="viewport" content="width=device-width, initial-scale=1.0">`.
 - **Media Queries**: Check your media queries in custom CSS to ensure they are set up correctly.
 - **Container Usage**: Use MinimaCSS's container classes correctly to ensure responsive behavior.
@@ -31,6 +32,7 @@ Troubleshooting is an essential part of working with any CSS framework. This gui
 **Problem**: JavaScript-based components (like modals or accordions) are not functioning.
 
 **Solutions**:
+
 - **JavaScript Integration**: Ensure that you have correctly integrated the JavaScript necessary for these components.
 - **Correct Initialization**: Some components may require initialization scripts; check the documentation for specific instructions.
 - **Conflict with Other Scripts**: Look for conflicts with other JavaScript libraries or scripts in your project.
@@ -40,6 +42,7 @@ Troubleshooting is an essential part of working with any CSS framework. This gui
 **Problem**: Custom styles are not taking precedence over MinimaCSS's default styles.
 
 **Solutions**:
+
 - **Specificity of Selectors**: Increase the specificity of your custom CSS selectors.
 - **Order of Stylesheets**: Ensure your custom stylesheet is linked after the MinimaCSS stylesheet.
 - **!important Flag**: Use the `!important` flag sparingly to override specific styles.

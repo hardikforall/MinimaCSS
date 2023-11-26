@@ -1,4 +1,3 @@
-
 # MinimaCSS - Contribution Guide
 
 Contributing to MinimaCSS is a great way to support the open-source community. Whether you're fixing bugs, adding new features, or improving documentation, your contributions are valuable. This guide outlines how to contribute effectively to MinimaCSS.

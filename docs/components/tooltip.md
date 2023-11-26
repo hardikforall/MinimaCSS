@@ -17,27 +17,25 @@ The Tooltip component is implemented with HTML and uses data attributes to deter
 
 ### HTML Structure
 
-
-
 ```html
 <!-- Tooltip on top -->
 <div class="tooltip" data-tooltip="Tooltip on top" data-placement="top">
-    Hover over me
+  Hover over me
 </div>
 
 <!-- Tooltip on left -->
 <div class="tooltip" data-tooltip="Tooltip on the left" data-placement="left">
-    Hover over me
+  Hover over me
 </div>
 
 <!-- Tooltip on right -->
 <div class="tooltip" data-tooltip="Tooltip on the right" data-placement="right">
-    Hover over me
+  Hover over me
 </div>
 
 <!-- Tooltip on bottom -->
 <div class="tooltip" data-tooltip="Tooltip on bottom" data-placement="bottom">
-    Hover over me
+  Hover over me
 </div>
 ```
 
@@ -62,4 +60,3 @@ The Tooltip component is implemented with HTML and uses data attributes to deter
     Hover over me
 </div>
 </div>
-

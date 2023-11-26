@@ -15,7 +15,6 @@
 
 // Grid Template Rows
 @each $row in $grid-columns-row {
-
   // Assuming similar range as columns
   .grid-rows-#{$row} {
     grid-template-rows: repeat($row, minmax(0, 1fr)) !important;

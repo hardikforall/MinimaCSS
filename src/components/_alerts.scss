@@ -3,76 +3,76 @@ $alert-border-radius: 0.25rem;
 $alert-close-size: 1.5rem;
 $alert-icon-size: 2rem;
 .alert {
-    padding: $alert-padding;
-    margin-bottom: 1rem;
-    border-radius: $border-radius;
-    display: flex;
-    position: relative;
-  
-    &-icon {
-      margin-right: 0.5rem; // Spacing between icon and text
-      height: 24px;
-      width: 24px;
-    }
-  
-    &-body {
-      flex-grow: 1;
-  
-      &-title {
-        font-weight: 600;
-        margin-top: 0;
-        margin-bottom: 0.2rem;
-        font-size: 1rem;
-      }
-  
-      &-description {
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: 0.9rem;
+  padding: $alert-padding;
+  margin-bottom: 1rem;
+  border-radius: $border-radius;
+  display: flex;
+  position: relative;
 
-       
-      }
+  &-icon {
+    margin-right: 0.5rem; // Spacing between icon and text
+    height: 24px;
+    width: 24px;
+  }
+
+  &-body {
+    flex-grow: 1;
+
+    &-title {
+      font-weight: 600;
+      margin-top: 0;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
     }
 
-    &-close {
-      font-size: $alert-close-size;
-      line-height: 1;
-      cursor: pointer;
-      border: none;
-      background: none;
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      color: inherit;
+    &-description {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 0.9rem;
     }
+  }
 
-    ul,ol{
-        padding-left: 1em;
-    }
-    ul, ul li, ol li{
-        margin-bottom: 0;
-    }
-    a{
-        
-        color: inherit;
-    }
+  &-close {
+    font-size: $alert-close-size;
+    line-height: 1;
+    cursor: pointer;
+    border: none;
+    background: none;
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    color: inherit;
+  }
+
+  ul,
+  ol {
+    padding-left: 1em;
+  }
+  ul,
+  ul li,
+  ol li {
+    margin-bottom: 0;
+  }
+  a {
+    color: inherit;
+  }
 
   @each $type, $color in $colors {
     // Filled Alerts
     &-#{$type} {
-        color: var(--light-color);
-        @if $type=="light" {
-            color: var(--dark-color);
-        }
-        background-color:$color;
-        border: 1px solid $color;
+      color: var(--light-color);
+      @if $type== "light" {
+        color: var(--dark-color);
+      }
+      background-color: $color;
+      border: 1px solid $color;
     }
 
     // Outline Alerts
     &-outline-#{$type} {
-        color: $color;
-        background-color: hex-to-rgba($color, 0.05);
-        border: 1px solid hex-to-rgba($color, 0.7);
+      color: $color;
+      background-color: hex-to-rgba($color, 0.05);
+      border: 1px solid hex-to-rgba($color, 0.7);
     }
   }
 }

@@ -1,4 +1,3 @@
-
 @each $position in $positions {
   .position-#{$position} {
     position: $position !important;
@@ -24,7 +23,9 @@
 }
 
 @for $i from 1 through 10 {
-  .z-#{$i * 10} { z-index: $i * 10; }
+  .z-#{$i * 10} {
+    z-index: $i * 10;
+  }
 }
 
 @each $object-fit in $object-fits {
@@ -32,7 +33,6 @@
     object-fit: $object-fit !important;
   }
 }
-
 
 @each $object-position in $object-positions {
   .object-position-#{$object-position} {

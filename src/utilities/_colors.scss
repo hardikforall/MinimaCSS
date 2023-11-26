@@ -1,44 +1,44 @@
 // Text Color Utilities
 @each $color-name, $color-value in $colors {
-    .text-#{$color-name} {
-        color: $color-value !important;
-    }
+  .text-#{$color-name} {
+    color: $color-value !important;
+  }
 }
 
 .surface-primary {
-    background-color: var(--surface-primary-color);
+  background-color: var(--surface-primary-color);
 }
 
 .surface-secondary {
-    background-color: var(--surface-secondary-color);
+  background-color: var(--surface-secondary-color);
 }
 
 .surface-tertiary {
-    background-color: var(--surface-tertiary-color);
+  background-color: var(--surface-tertiary-color);
 }
 
 .text-primary {
-    color: var(--text-primary-color);
+  color: var(--text-primary-color);
 }
 
 .text-secondary {
-    color: var(--text-secondary-color);
+  color: var(--text-secondary-color);
 }
 
 .text-tertiary {
-    color: var(--text-tertiary-color);
+  color: var(--text-tertiary-color);
 }
 
 // Background Color Utilities
 @each $color-name, $color-value in $colors {
-    .bg-#{$color-name} {
-        background-color: $color-value !important;
-    }
+  .bg-#{$color-name} {
+    background-color: $color-value !important;
+  }
 }
 
 // Border Color Utilities
 @each $color-name, $color-value in $colors {
-    .border-#{$color-name} {
-        border-color: $color-value !important;
-    }
+  .border-#{$color-name} {
+    border-color: $color-value !important;
   }
+}

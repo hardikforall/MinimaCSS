@@ -33,6 +33,7 @@ This documentation provides an overview of the implementation of dark and light 
 </div>
 
 ##### Other Context Colors
+
 <div class="component-preview position-relative">
 <div class="color-box " style="background-color: #214ddf; color: white;"><span>Primary<br>#214ddf</span></div>
 <div class="color-box " style="background-color: #58617a; color: white;"><span>Secondary<br>#58617a</span></div>
@@ -44,10 +45,9 @@ This documentation provides an overview of the implementation of dark and light 
 <div class="color-box " style="background-color: #151f3d; color: white;"><span>Dark<br>#151f3d</span></div>
 </div>
 
-
 ## Switching Themes - Dark & Light
 
-Currently theme directly supports theme based on user preference. 
+Currently theme directly supports theme based on user preference.
 
 Switching between themes can be achieved by adding or removing the respective theme data attribute to body or root element of document
 
@@ -59,30 +59,30 @@ Dark Theme : `data-theme="dark"`
 A JavaScript function can be used to toggle between the dark and light themes. This function would typically alter the class of the root element to switch the theme.
 
 ```javascript
-    document.addEventListener("DOMContentLoaded", (event) => {
-      const toggleSwitch = document.querySelector("#theme-toggle");
-      function switchTheme(e) {
-        if (e.target.checked) {
-          document.documentElement.setAttribute("data-theme", "dark");
-          localStorage.setItem("theme", "dark");
-        } else {
-          document.documentElement.setAttribute("data-theme", "light");
-          localStorage.setItem("theme", "light");
-        }
-      }
+document.addEventListener("DOMContentLoaded", (event) => {
+  const toggleSwitch = document.querySelector("#theme-toggle");
+  function switchTheme(e) {
+    if (e.target.checked) {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    }
+  }
 
-      toggleSwitch.addEventListener("change", switchTheme, false);
+  toggleSwitch.addEventListener("change", switchTheme, false);
 
-      const currentTheme = localStorage.getItem("theme")
-        ? localStorage.getItem("theme")
-        : null;
-      if (currentTheme) {
-        document.documentElement.setAttribute("data-theme", currentTheme);
-        if (currentTheme === "dark") {
-          toggleSwitch.checked = true;
-        }
-      }
-    });
+  const currentTheme = localStorage.getItem("theme")
+    ? localStorage.getItem("theme")
+    : null;
+  if (currentTheme) {
+    document.documentElement.setAttribute("data-theme", currentTheme);
+    if (currentTheme === "dark") {
+      toggleSwitch.checked = true;
+    }
+  }
+});
 ```
 
 For customising Themes and Colors I will be creating a detailed guide for it soon.
@@ -121,7 +121,7 @@ $gray-500: #58617a;
 $gray-600: #384261;
 $gray-700: #182447;
 $gray-800: #151f3d;
-$gray-900: #111a33; 
+$gray-900: #111a33;
 
 //Other utility Colors Defined
 
@@ -256,7 +256,7 @@ $colors: (
     --button-dark-hover-color: #{$gray-500};
     --button-dark-text-color: #{$white};
     --button-dark-focus-ring-color: #{hex-to-rgba($gray-500,0.4)};
-    
+
     --button-link-hover-color: #{$primary-500};
     --button-link-text-color: #{$primary-500};
 
@@ -298,7 +298,7 @@ $colors: (
     --loader-dark-bg-color:#{hex-to-rgba($primary-300, 0.7)};;
     --loader-dark-border-color:#{hex-to-rgba($primary-300, 0.4)};
 
-    
+
 }
 ```
 
@@ -409,7 +409,7 @@ $colors: (
     --nav-primary-link-hover-color: #{hex-to-rgba($white, 0.2)};
     --nav-primary-dropdown-link-color: var(--text-primary-color);
     --nav-primary-dropdown-bg-color: var(--surface-secondary-color);
-    
+
     //Circle Loader
     --loader-light-bg-color:#{hex-to-rgba($white, 0.7)};
     --loader-light-border-color:#{hex-to-rgba($white, 0.4)};
@@ -417,11 +417,10 @@ $colors: (
     --loader-dark-bg-color:#{hex-to-rgba($primary-500, 0.5)};;
     --loader-dark-border-color:#{hex-to-rgba($primary-500, 0.2)};
 
-    //Steps 
+    //Steps
     --steps-accent-color:
 }
 ```
-
 
 #### Usage and Implementation
 

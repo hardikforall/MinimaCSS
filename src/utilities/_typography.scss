@@ -13,12 +13,7 @@
 }
 
 // Text Alignment Utilities
-$text-alignments: (
-  left,
-  right,
-  center,
-  justify
-);
+$text-alignments: (left, right, center, justify);
 
 @each $alignment in $text-alignments {
   .text-#{$alignment} {
@@ -41,12 +36,7 @@ $text-alignments: (
 }
 
 // Text Transformation Utilities
-$text-transforms: (
-  uppercase,
-  lowercase,
-  capitalize,
-  none
-);
+$text-transforms: (uppercase, lowercase, capitalize, none);
 
 @each $transform in $text-transforms {
   .text-#{$transform} {

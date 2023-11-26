@@ -21,7 +21,7 @@
 
     &:hover {
       border-color: var(--text-secondary-color);
-      color:  var(--text-secondary-color);
+      color: var(--text-secondary-color);
     }
   }
 
@@ -55,9 +55,9 @@
     border-top-width: 0;
 
     @media (min-width: 768px) {
-        padding: 0.5rem 0rem;
-        border-left-width: 0;
-        border-top-width: 5px;
+      padding: 0.5rem 0rem;
+      border-left-width: 0;
+      border-top-width: 5px;
     }
     // Step title
     .step-title {
@@ -65,7 +65,7 @@
 
     // Step description
     .step-description {
-      font-size: 0.875rem; 
+      font-size: 0.875rem;
       color: var(--text-secondary-color);
     }
   }

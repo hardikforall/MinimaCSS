@@ -24,27 +24,47 @@ The Modal component is structured with HTML and styled using CSS classes. Below 
 
 ```html
 <!-- Modal -->
-<button onclick="document.getElementById('myModallg').showModal()" class="btn btn-primary">Open Large Modal</button>
+<button
+  onclick="document.getElementById('myModallg').showModal()"
+  class="btn btn-primary"
+>
+  Open Large Modal
+</button>
 
 <dialog id="myModallg" class="modal modal-lg">
-    <header class="modal-header">
-        <h5 class="mb-0 font-semibold">Modal Header</h5>
-        <p class="mb-0 text-secondary">This is long Modal sub title</p>
-        <button class="close-icon" onclick="document.getElementById('myModal').close();"
-            aria-label="Close">&times;</button>
-    </header>
-    <div class="modal-body">
-        <p class="my-10">Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce sed ex at est
-            egestas
-            vehicula. Integer sit amet lectus mi. Duis ut viverra mauris, at laoreet enim.</p>
-    </div>
-    <footer class="modal-footer">
-        <button class="btn btn-outline-primary"
-            onclick="document.getElementById('myModallg').close();">Cancel</button>
-        <button class="btn btn-primary ml-3" onclick="document.getElementById('myModallg').close();">Save</button>
-    </footer>
+  <header class="modal-header">
+    <h5 class="mb-0 font-semibold">Modal Header</h5>
+    <p class="mb-0 text-secondary">This is long Modal sub title</p>
+    <button
+      class="close-icon"
+      onclick="document.getElementById('myModal').close();"
+      aria-label="Close"
+    >
+      &times;
+    </button>
+  </header>
+  <div class="modal-body">
+    <p class="my-10">
+      Aenean vestibulum nunc at libero congue, eu pretium nulla viverra. Fusce
+      sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis ut
+      viverra mauris, at laoreet enim.
+    </p>
+  </div>
+  <footer class="modal-footer">
+    <button
+      class="btn btn-outline-primary"
+      onclick="document.getElementById('myModallg').close();"
+    >
+      Cancel
+    </button>
+    <button
+      class="btn btn-primary ml-3"
+      onclick="document.getElementById('myModallg').close();"
+    >
+      Save
+    </button>
+  </footer>
 </dialog>
-
 ```
 
 <div class="component-preview">
@@ -72,7 +92,6 @@ The Modal component is structured with HTML and styled using CSS classes. Below 
     </footer>
 </dialog>
 
-
 <dialog id="myModallg" class="modal modal-lg">
     <header class="modal-header">
         <h5 class="mb-0 font-semibold">Modal Header</h5>
@@ -91,7 +110,6 @@ The Modal component is structured with HTML and styled using CSS classes. Below 
         <button class="btn btn-primary ml-3" onclick="document.getElementById('myModallg').close();">Save</button>
     </footer>
 </dialog>
-
 
 <dialog id="myModalxl" class="modal modal-xl">
     <header class="modal-header">

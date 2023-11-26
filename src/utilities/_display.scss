@@ -1,5 +1,5 @@
 @each $display in $displays {
-    .d-#{$display} {
-      display: $display !important;
-    }
+  .d-#{$display} {
+    display: $display !important;
   }
+}

@@ -1,4 +1,3 @@
-
 // Base badge styles
 .badge {
   font-size: 75%;
@@ -10,15 +9,18 @@
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: $border-radius-small;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
 }
 
 // Generate color-specific badge classes
 @each $color-name, $color-value in $colors {
   .badge-#{$color-name} {
     color: var(--light-color);
-    @if $color-name=="light" {
-        color: var(--dark-color);
+    @if $color-name== "light" {
+      color: var(--dark-color);
     }
     background-color: $color-value;
   }

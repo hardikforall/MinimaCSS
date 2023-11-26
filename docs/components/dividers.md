@@ -7,8 +7,9 @@ Dividers are used to separate content and create visual hierarchy in a user inte
 To add a horizontal divider, use the `<hr>` element with the class `hr-divider`.
 
 ```html
-<hr class="hr-divider">
+<hr class="hr-divider" />
 ```
+
 <div class="component-preview d-block">
 <hr class="hr-divider">
 </div>
@@ -21,8 +22,8 @@ For a vertical divider, use a `<div>` element with the class `vr-divider`. You c
 <div>Content on the left</div>
 <span class="vr-divider"></span>
 <div>Content on the right</div>
-
 ```
+
 <div class="component-preview d-block">
 <div style="display: flex; align-items: center; height:100px">
     <div>Content on the left</div>
@@ -36,8 +37,9 @@ For a vertical divider, use a `<div>` element with the class `vr-divider`. You c
 To create a dashed divider, use the `<hr>` element with the class `dashed-divider`.
 
 ```html
-<hr class="dashed-divider">
+<hr class="dashed-divider" />
 ```
+
 <div class="component-preview d-block">
 <hr class="dashed-divider" style="border-top: 2px dashed var(--border-primary-color); border-bottom:0px;">
 </div>
@@ -49,6 +51,7 @@ A text divider can be used to label sections or provide visual separation betwee
 ```html
 <div class="text-divider">Section Title</div>
 ```
+
 <div class="component-preview d-block">
 <div class="text-divider">Section Title</div>
 </div>

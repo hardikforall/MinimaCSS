@@ -1,42 +1,81 @@
 // Hover State Utilities
 @each $color-name, $color-value in $colors {
-    .hover-bg-#{$color-name}:hover { background-color: $color-value !important; }
-    .hover-text-#{$color-name}:hover { color: $color-value !important; }
-    .hover-border-#{$color-name}:hover { border-color: $color-value !important; }
+  .hover-bg-#{$color-name}:hover {
+    background-color: $color-value !important;
   }
-  
-  // Focus State Utilities
-  @each $color-name, $color-value in $colors {
-    .focus-bg-#{$color-name}:focus { background-color: $color-value !important; }
-    .focus-text-#{$color-name}:focus { color: $color-value !important; }
-    .focus-border-#{$color-name}:focus { border-color: $color-value !important; }
+  .hover-text-#{$color-name}:hover {
+    color: $color-value !important;
   }
-  
-  // Active State Utilities
-  @each $color-name, $color-value in $colors {
-    .active-bg-#{$color-name}:active { background-color: $color-value !important; }
-    .active-text-#{$color-name}:active { color: $color-value !important; }
-    .active-border-#{$color-name}:active { border-color: $color-value !important; }
+  .hover-border-#{$color-name}:hover {
+    border-color: $color-value !important;
   }
-  
-  // Cursor Utilities
-  .cursor-pointer { cursor: pointer !important; }
-  .cursor-default { cursor: default !important; }
-  .cursor-move { cursor: move !important; }
-  .cursor-not-allowed { cursor: not-allowed !important; }
-  
-  // Transition Utilities
-  .transition { transition: all 0.3s ease !important; }
-  .transition-fast { transition: all 0.15s ease !important; }
-  .transition-slow { transition: all 0.5s ease !important; }
-  
-  // Transform Utilities
-  .scale-hover:hover { transform: scale(1.1); }
-  .rotate-hover:hover { transform: rotate(5deg); }
-  
-  // Opacity Utilities
-  @for $i from 0 through 10 {
-    .opacity-#{$i} { opacity: $i * 0.1 !important; }
+}
+
+// Focus State Utilities
+@each $color-name, $color-value in $colors {
+  .focus-bg-#{$color-name}:focus {
+    background-color: $color-value !important;
   }
-  .opacity-hover:hover { opacity: 0.8 !important; }
-  
+  .focus-text-#{$color-name}:focus {
+    color: $color-value !important;
+  }
+  .focus-border-#{$color-name}:focus {
+    border-color: $color-value !important;
+  }
+}
+
+// Active State Utilities
+@each $color-name, $color-value in $colors {
+  .active-bg-#{$color-name}:active {
+    background-color: $color-value !important;
+  }
+  .active-text-#{$color-name}:active {
+    color: $color-value !important;
+  }
+  .active-border-#{$color-name}:active {
+    border-color: $color-value !important;
+  }
+}
+
+// Cursor Utilities
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.cursor-default {
+  cursor: default !important;
+}
+.cursor-move {
+  cursor: move !important;
+}
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+// Transition Utilities
+.transition {
+  transition: all 0.3s ease !important;
+}
+.transition-fast {
+  transition: all 0.15s ease !important;
+}
+.transition-slow {
+  transition: all 0.5s ease !important;
+}
+
+// Transform Utilities
+.scale-hover:hover {
+  transform: scale(1.1);
+}
+.rotate-hover:hover {
+  transform: rotate(5deg);
+}
+
+// Opacity Utilities
+@for $i from 0 through 10 {
+  .opacity-#{$i} {
+    opacity: $i * 0.1 !important;
+  }
+}
+.opacity-hover:hover {
+  opacity: 0.8 !important;
+}

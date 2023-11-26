@@ -16,12 +16,14 @@
   box-shadow: var(--shadow-sm);
   -webkit-box-shadow: var(--shadow-sm);
   -moz-box-shadow: var(--shadow-sm);
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition:
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
   appearance: none; // Normalize appearance
-  &::after{
+  &::after {
     color: #cccc; // for Details/Summary elemt used as select
   }
-  &.input-small{
+  &.input-small {
     padding: 0.2rem 0.5rem;
     font-size: 0.95rem;
     line-height: 1.5;
@@ -82,13 +84,12 @@
     color: var(--input-valid-text-color);
   }
 
-  .input-addon{
+  .input-addon {
     position: relative;
     display: flex;
     align-items: center;
-    
   }
-  .leading-addon{
+  .leading-addon {
     display: flex;
     align-items: center;
     position: absolute;
@@ -96,7 +97,7 @@
     user-select: none;
   }
 
-  .trailing-addon{
+  .trailing-addon {
     display: flex;
     align-items: center;
     position: absolute;
@@ -205,7 +206,7 @@
   align-items: center;
   cursor: pointer;
   padding-left: 1.5rem;
- line-height: 1.2;
+  line-height: 1.2;
   input[type="radio"] {
     -webkit-appearance: none;
     appearance: none;

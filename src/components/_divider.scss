@@ -1,4 +1,3 @@
-
 // Horizontal Divider
 .hr-divider {
   border: none;
@@ -9,12 +8,12 @@
 
 // Vertical Divider
 .vr-divider {
-    border-left: 1px solid var(--border-primary-color); 
-    width: 0; 
-    height: 100%; 
-    display: inline-block; 
-    margin: 0 1em; 
-  }
+  border-left: 1px solid var(--border-primary-color);
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  margin: 0 1em;
+}
 
 // Dashed Divider
 .dashed-divider {
@@ -31,17 +30,16 @@
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     flex: 1;
     border-bottom: 1px solid var(--border-primary-color);
   }
 
   &:not(:empty)::before {
-    margin-right: .25em;
+    margin-right: 0.25em;
   }
 
   &:not(:empty)::after {
-    margin-left: .25em;
+    margin-left: 0.25em;
   }
 }
-

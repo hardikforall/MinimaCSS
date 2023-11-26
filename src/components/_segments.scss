@@ -1,46 +1,47 @@
 .segmented-control {
-    display: inline-flex;
-    background-color: var(--surface-tertiary-color);
-    border-radius: $border-radius;
-    overflow: hidden;
-    padding: 0.2rem 0.25rem;
-    gap: 0.5rem;
+  display: inline-flex;
+  background-color: var(--surface-tertiary-color);
+  border-radius: $border-radius;
+  overflow: hidden;
+  padding: 0.2rem 0.25rem;
+  gap: 0.5rem;
 
-    input[type="radio"] {
-        display: none;
+  input[type="radio"] {
+    display: none;
 
-        &:checked+label {
-            background-color: var(--surface-primary-color);
-            color: var(--text-primary-color);
-            filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.17));
-            box-shadow: 0 1px 0 var(--border-primary-color) inset;//highlight on top
-        }
+    &:checked + label {
+      background-color: var(--surface-primary-color);
+      color: var(--text-primary-color);
+      filter: drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.17));
+      box-shadow: 0 1px 0 var(--border-primary-color) inset; //highlight on top
     }
+  }
 
+  label {
+    font-size: 1rem;
+    border-radius: 0.4rem;
+    margin-bottom: 0px;
+    flex-grow: 1;
+    padding: 0.2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: var(--text-primary-color);
+    user-select: none;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+    &:hover {
+      background-color: var(--button-highlight-border-color);
+    }
+  }
+
+  &.small {
     label {
-        font-size: 1rem;
-        border-radius: 0.4rem;
-        margin-bottom: 0px;
-        flex-grow: 1;
-        padding: 0.2rem 1rem;
-        text-align: center;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        color: var(--text-primary-color);
-        user-select: none;
-        transition: background-color 0.3s ease, color 0.3s ease; 
-        &:hover {
-            background-color: var(--button-highlight-border-color);
-        }
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
     }
-
-    &.small {
-        label {
-            padding: 0.2rem 0.5rem;
-            font-size: 0.85rem;
-            line-height: 1.5;
-
-        }
-    }
+  }
 }

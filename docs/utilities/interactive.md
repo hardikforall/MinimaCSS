@@ -2,8 +2,7 @@
 
 ---
 
-> [!NOTE]
-> _The content on this page is currently in progress and not yet complete. I am working to fully develop and refine the information here to ensure it meets the high standards of comprehensiveness and clarity. Other pages in this documentation may be complete. I appreciate your patience and understanding as I continue to enhance this page._
+> [!NOTE] > _The content on this page is currently in progress and not yet complete. I am working to fully develop and refine the information here to ensure it meets the high standards of comprehensiveness and clarity. Other pages in this documentation may be complete. I appreciate your patience and understanding as I continue to enhance this page._
 
 ---
 
@@ -26,8 +25,7 @@ This section provides utility classes for applying hover styles to elements base
 ```html
 <button class="hover-bg-primary">Hover me</button>
 <p class="hover-text-secondary">Hover me</p>
-<input class="hover-border-danger" type="text" placeholder="Hover me">
-
+<input class="hover-border-danger" type="text" placeholder="Hover me" />
 ```
 
 ## Focus State Utilities
@@ -49,8 +47,7 @@ This section provides utility classes for applying focus styles to elements base
 ```html
 <button class="focus-bg-primary">Focus me</button>
 <p class="focus-text-secondary">Focus me</p>
-<input class="focus-border-danger" type="text" placeholder="Focus me">
-
+<input class="focus-border-danger" type="text" placeholder="Focus me" />
 ```
 
 ## Active State Utilities
@@ -72,9 +69,7 @@ This section provides utility classes for applying active styles to elements bas
 ```html
 <button class="active-bg-primary">Click me</button>
 <p class="active-text-secondary">Click me</p>
-<input class="active-border-danger" type="text" placeholder="Click me">
-
-
+<input class="active-border-danger" type="text" placeholder="Click me" />
 ```
 
 ## Cursor Utilities
@@ -90,7 +85,6 @@ This section provides utility classes for customizing the cursor style of elemen
 <button class="cursor-pointer">Pointer cursor</button>
 <p class="cursor-move">Move cursor</p>
 <div class="cursor-not-allowed">Not allowed cursor</div>
-
 ```
 
 ## Transition Utilities
@@ -105,7 +99,6 @@ This section provides utility classes for applying smooth transitions to element
 <button class="transition">Smooth transition</button>
 <p class="transition-fast">Faster transition</p>
 <div class="transition-slow">Slower transition</div>
-
 ```
 
 ## Transform Utilities
@@ -118,7 +111,6 @@ This section provides utility classes for applying transformations to elements.
 ```html
 <div class="scale-hover">Hover me to scale</div>
 <div class="rotate-hover">Hover me to rotate</div>
-
 ```
 
 ## Opacity Utilities
@@ -131,5 +123,4 @@ This section provides utility classes for adjusting the opacity of elements.
 ```html
 <div class="opacity-5">Opacity 0.5</div>
 <div class="opacity-hover">Hover me to change opacity</div>
-
 ```

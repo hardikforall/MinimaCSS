@@ -1,4 +1,3 @@
-
 # MinimaCSS - License
 
 ## Introduction

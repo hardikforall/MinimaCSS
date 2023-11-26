@@ -1,45 +1,43 @@
-
 .circular-loader {
-    display: inline-block;
-    border-radius: 50%;
-    animation: spin 0.5s linear infinite;
-    border-width: 3px;
-    border-style: solid;
-    &.light{
-      border-color: var(--loader-light-border-color);
-      border-top-color: var(--loader-light-bg-color);
-    }
-    &.dark{
-      border-color: var(--loader-dark-border-color);
-      border-top-color: var(--loader-dark-bg-color);
-    }
+  display: inline-block;
+  border-radius: 50%;
+  animation: spin 0.5s linear infinite;
+  border-width: 3px;
+  border-style: solid;
+  &.light {
+    border-color: var(--loader-light-border-color);
+    border-top-color: var(--loader-light-bg-color);
   }
-  
-  .circular-loader-sm{
-    @extend .circular-loader;
-    width: 1.25rem;
-    height: 1.25rem;
-    border-width: 4px;
+  &.dark {
+    border-color: var(--loader-dark-border-color);
+    border-top-color: var(--loader-dark-bg-color);
   }
-  .circular-loader-md{
-    @extend .circular-loader;
-    width: 1.75rem;
-    height: 1.75rem;
-    border-width: 6px;
-  }
-  .circular-loader-lg{
-    @extend .circular-loader;
-    width: 2.25rem;
-    height: 2.25rem;
-    border-width: 8px;
-  }
-  .circular-loader-xl{
-    @extend .circular-loader;
-    width: 3.75rem;
-    height: 3.75rem;
-    border-width: 10px;
-  }
-  
+}
+
+.circular-loader-sm {
+  @extend .circular-loader;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-width: 4px;
+}
+.circular-loader-md {
+  @extend .circular-loader;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-width: 6px;
+}
+.circular-loader-lg {
+  @extend .circular-loader;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-width: 8px;
+}
+.circular-loader-xl {
+  @extend .circular-loader;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-width: 10px;
+}
 
 /* Progress Bar Styles */
 .progress {
@@ -54,13 +52,13 @@
     height: 100%;
     transition: width 0.4s ease;
   }
-  &.light{
+  &.light {
     background-color: var(--loader-light-border-color);
     .progress-bar {
       background-color: var(--loader-light-border-color);
     }
   }
-  &.dark{
+  &.dark {
     background-color: var(--loader-dark-border-color);
     .progress-bar {
       background-color: var(--loader-dark-bg-color);
@@ -77,13 +75,14 @@
 }
 
 @keyframes loading-animation {
-  0%, 100% {
+  0%,
+  100% {
     width: 0%;
-     transform: translateX(0);
+    transform: translateX(0);
   }
   50% {
     width: 100%;
-     transform: translateX(100%);
+    transform: translateX(100%);
   }
 }
 
