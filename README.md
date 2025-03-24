@@ -6,7 +6,7 @@ MinimaCSS is an elegantly designed and versatile CSS framework, perfect for craf
 
 This framework celebrates the beauty of design, offering a harmonious balance between ease of use and the ability to create stunning visual experiences.
 
-### Why MinimaCSS? 🤔
+### Why MinimaCSS?
 
 In an era where front-end frameworks can be cumbersome and complex, MinimaCSS emerges as a beacon of aesthetic clarity. It revives the essence of CSS design, blending simplicity with the capability to create visually appealing interfaces.
 
