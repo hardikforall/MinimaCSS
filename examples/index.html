@@ -1177,29 +1177,149 @@
     </section>
 
     <!-- Grid System -->
-    <section class="container mt-5 mb-5">
-      <h2>Flexbox Column System</h2>
+    <section class="mt-5 mb-5">
       <div class="container">
-        <div class="row">
-          <div class="col-12 col-md-8 col-lg-6 mt-2">
-            <div class="surface-secondary p-1">.col-12 .col-md-8 .col-lg-6</div>
+        <h2 class="mb-4">Grid System</h2>
+        <p class="lead mb-4">
+          A responsive flexbox grid system for creating layouts of all shapes
+          and sizes.
+        </p>
+
+        <!-- Basic Grid Layout -->
+        <div class="container mb-5">
+          <h3 class="border-bottom pb-2 mb-3">Basic Grid Layout</h3>
+          <div class="row mb-3">
+            <div class="col-4">
+              <div class="p-3 surface-primary text-center">Column 1 (4/12)</div>
+            </div>
+            <div class="col-4">
+              <div class="p-3 surface-secondary text-center">
+                Column 2 (4/12)
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="p-3 surface-tertiary text-center">
+                Column 3 (4/12)
+              </div>
+            </div>
           </div>
-          <div class="col-6 col-lg-3 mt-2">
-            <div class="surface-secondary p-1">.col-6 .col-lg-3</div>
-          </div>
-          <div class="col-6 col-lg-3 mt-2">
-            <div class="surface-secondary p-1">.col-6 .col-lg-3</div>
+
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="p-3 surface-primary text-center">Column 1 (6/12)</div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 surface-secondary text-center">
+                Column 2 (6/12)
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row mt-2">
-          <div class="col-4">
-            <div class="surface-secondary p-1">.col-4</div>
+
+        <!-- Auto-Layout Columns -->
+        <div class="container mb-5">
+          <h3 class="border-bottom pb-2 mb-3">Auto-Layout Columns</h3>
+          <div class="row mb-3">
+            <div class="col">
+              <div class="p-3 surface-primary text-center">Auto Column</div>
+            </div>
+            <div class="col">
+              <div class="p-3 surface-secondary text-center">Auto Column</div>
+            </div>
+            <div class="col">
+              <div class="p-3 surface-tertiary text-center">Auto Column</div>
+            </div>
           </div>
-          <div class="col-4">
-            <div class="surface-secondary p-1">.col-4</div>
+
+          <div class="row mb-3">
+            <div class="col-auto">
+              <div class="p-3 surface-primary">Auto-width based on content</div>
+            </div>
+            <div class="col">
+              <div class="p-3 surface-secondary">Takes remaining space</div>
+            </div>
           </div>
-          <div class="col-4">
-            <div class="surface-secondary p-1">.col-4</div>
+        </div>
+
+        <!-- Responsive Grid -->
+        <div class="container mb-5">
+          <h3 class="border-bottom pb-2 mb-3">Responsive Grid</h3>
+          <div class="row mb-3">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="p-3 surface-primary text-center">
+                <p class="mb-0">Small: Full width</p>
+                <p class="mb-0">Medium: Half width</p>
+                <p class="mb-0">Large: One-third</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="p-3 surface-secondary text-center">
+                <p class="mb-0">Small: Full width</p>
+                <p class="mb-0">Medium: Half width</p>
+                <p class="mb-0">Large: One-third</p>
+              </div>
+            </div>
+            <div class="col-12 col-md-12 col-lg-4">
+              <div class="p-3 surface-tertiary text-center">
+                <p class="mb-0">Small: Full width</p>
+                <p class="mb-0">Medium: Full width</p>
+                <p class="mb-0">Large: One-third</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nested Grids -->
+        <div class="container mb-5">
+          <h3 class="border-bottom pb-2 mb-3">Nested Grids</h3>
+          <div class="row mb-3">
+            <div class="col-6">
+              <div class="p-3 surface-primary">
+                <p class="mb-2">Parent Column</p>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="p-2 surface-secondary text-center">Nested</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 surface-tertiary text-center">Nested</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="p-3 surface-primary">
+                <p class="mb-2">Parent Column</p>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="p-2 surface-secondary text-center">Nested</div>
+                  </div>
+                  <div class="col-6">
+                    <div class="p-2 surface-tertiary text-center">Nested</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column Offsets -->
+        <div class="container mb-5">
+          <h3 class="border-bottom pb-2 mb-3">Column Offsets</h3>
+          <div class="row mb-3">
+            <div class="col-4">
+              <div class="p-3 surface-primary text-center">Column</div>
+            </div>
+            <div class="col-4 offset-4">
+              <div class="p-3 surface-secondary text-center">Offset Column</div>
+            </div>
+          </div>
+
+          <div class="row mb-3">
+            <div class="col-6 offset-3">
+              <div class="p-3 surface-tertiary text-center">
+                Centered Column
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1287,7 +1407,7 @@
         <div class="alert-body">
           <div class="alert-body-title">New Update Received</div>
           <div class="alert-body-description">
-            <p>A new software update is available. See what’s new!</p>
+            <p>A new software update is available. See what's new!</p>
             <a href="">Get Details →</a>
           </div>
         </div>
@@ -1299,7 +1419,7 @@
         <div class="alert-body">
           <div class="alert-body-title">New Update Received</div>
           <div class="alert-body-description">
-            <p>A new software update is available. See what’s new!</p>
+            <p>A new software update is available. See what's new!</p>
             <a href="">Get Details →</a>
           </div>
         </div>

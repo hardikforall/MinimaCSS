@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard Example</title>
+    <link rel="stylesheet" href="../dist/minimacss.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,1,-25"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+  </head>
+  <body>
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-12 col-md-3 col-lg-2 sidebar">
+        <div class="nav-vertical nav-primary h-full">
+          <div class="nav-container">
+            <!-- Logo -->
+            <div class="nav-logo">
+              <img
+                src="https://camo.githubusercontent.com/c606dbcb46fd8e055677968286b429f454245afc8d5c5b73eb8efd3be429acc8/68747470733a2f2f692e6962622e636f2f7a687a673976332f4d2e706e67"
+                alt="Logo"
+                class="nav-logo-img"
+              />
+              <span class="nav-logo-text">MinimaCSS</span>
+            </div>
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+              <li class="nav-links-item">
+                <a href="#" class="nav-links-item-link active">
+                  <span class="material-symbols-rounded">dashboard</span>
+                  Dashboard
+                </a>
+              </li>
+              <li class="nav-links-item">
+                <a href="#" class="nav-links-item-link">
+                  <span class="material-symbols-rounded">person</span>
+                  Users
+                </a>
+              </li>
+              <li class="nav-links-item">
+                <details class="dropdown">
+                  <summary class="dropdown-toggle nav-links-item-link">
+                    <span class="material-symbols-rounded">inventory</span>
+                    Products
+                  </summary>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">All Products</a>
+                    <a class="dropdown-item" href="#">Add New</a>
+                    <a class="dropdown-item" href="#">Categories</a>
+                  </div>
+                </details>
+              </li>
+              <li class="nav-links-item">
+                <a href="#" class="nav-links-item-link">
+                  <span class="material-symbols-rounded">shopping_cart</span>
+                  Orders
+                </a>
+              </li>
+              <li class="nav-links-item">
+                <a href="#" class="nav-links-item-link">
+                  <span class="material-symbols-rounded">bar_chart</span>
+                  Reports
+                </a>
+              </li>
+              <li class="nav-links-item">
+                <a href="#" class="nav-links-item-link">
+                  <span class="material-symbols-rounded">settings</span>
+                  Settings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-12 col-md-9 col-lg-10 p-4">
+        <header class="mb-6 w-full">
+          <div class="card shadow-sm mb-4">
+            <div
+              class="card-body d-flex justify-content-between align-items-center"
+            >
+              <div>
+                <h1 class="text-2xl font-bold mb-0">Dashboard Overview</h1>
+              </div>
+              <div class="d-flex align-items-center">
+                <!-- Theme Switcher moved here -->
+                <div class="segmented-control small mr-4">
+                  <input type="radio" id="light_mode" name="theme_mode" />
+                  <label for="light_mode" title="Light Mode">
+                    <span class="material-symbols-rounded text-lg">
+                      light_mode
+                    </span>
+                  </label>
+                  <input type="radio" id="dark_mode" name="theme_mode" />
+                  <label for="dark_mode" title="Dark Mode">
+                    <span class="material-symbols-rounded text-lg">
+                      dark_mode
+                    </span>
+                  </label>
+                  <input
+                    type="radio"
+                    id="system_preference"
+                    name="theme_mode"
+                    checked
+                  />
+                  <label for="system_preference" title="System Preference">
+                    <span class="material-symbols-rounded text-lg">
+                      settings
+                    </span>
+                  </label>
+                </div>
+                <div
+                  class="tooltip mr-3 badge badge-pill badge-primary"
+                  data-tooltip="3 new notifications"
+                  data-placement="bottom"
+                >
+                  <span class="material-symbols-rounded">notifications</span>
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-link p-0 dropdown-toggle">
+                    <div class="avatar avatar-md">
+                      <img src="https://i.pravatar.cc/300" alt="User Avatar" />
+                    </div>
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right">
+                    <div class="dropdown-header">John Doe</div>
+                    <a class="dropdown-item" href="#">
+                      <span class="material-symbols-rounded mr-2">person</span>
+                      Profile
+                    </a>
+                    <a class="dropdown-item" href="#">
+                      <span class="material-symbols-rounded mr-2"
+                        >settings</span
+                      >
+                      Settings
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item text-danger" href="#">
+                      <span class="material-symbols-rounded mr-2">logout</span>
+                      Logout
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumbs">
+              <li class="breadcrumbs-item"><a href="#">Home</a></li>
+              <li class="breadcrumbs-item active" aria-current="page">
+                Dashboard
+              </li>
+            </ol>
+          </nav>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="row mb-6">
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <div class="text-muted">Total Users</div>
+                  <div class="avatar avatar-sm avatar-primary-outline">
+                    <span class="material-symbols-rounded">group</span>
+                  </div>
+                </div>
+                <div class="text-2xl font-bold">1,245</div>
+                <div class="text-success">
+                  <span class="material-symbols-rounded">trending_up</span>
+                  12% from last month
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <div class="text-muted">Revenue</div>
+                  <div class="avatar avatar-sm avatar-success-outline">
+                    <span class="material-symbols-rounded">attach_money</span>
+                  </div>
+                </div>
+                <div class="text-2xl font-bold">$34,567</div>
+                <div class="text-success">
+                  <span class="material-symbols-rounded">trending_up</span>
+                  8% from last month
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <div class="text-muted">Orders</div>
+                  <div class="avatar avatar-sm avatar-info-outline">
+                    <span class="material-symbols-rounded">shopping_bag</span>
+                  </div>
+                </div>
+                <div class="text-2xl font-bold">867</div>
+                <div class="text-danger">
+                  <span class="material-symbols-rounded">trending_down</span>
+                  3% from last month
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-3"
+                >
+                  <div class="text-muted">Conversion Rate</div>
+                  <div class="avatar avatar-sm avatar-warning-outline">
+                    <span class="material-symbols-rounded">percent</span>
+                  </div>
+                </div>
+                <div class="text-2xl font-bold">2.4%</div>
+                <div class="text-success">
+                  <span class="material-symbols-rounded">trending_up</span>
+                  0.5% from last month
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs Section -->
+        <div class="tabs-container mb-6">
+          <nav class="tabs tabs-pills" aria-label="Dashboard Tabs">
+            <a
+              href="#"
+              class="tab active d-flex align-items-center"
+              onclick="changeTab(event, 'tab-orders')"
+              aria-current="page"
+            >
+              <span class="material-symbols-rounded mr-2">receipt_long</span>
+              Recent Orders
+            </a>
+            <a
+              href="#"
+              class="tab d-flex align-items-center"
+              onclick="changeTab(event, 'tab-activity')"
+            >
+              <span class="material-symbols-rounded mr-2">history</span>
+              User Activity
+            </a>
+            <a
+              href="#"
+              class="tab d-flex align-items-center"
+              onclick="changeTab(event, 'tab-products')"
+            >
+              <span class="material-symbols-rounded mr-2">inventory_2</span>
+              Top Products
+            </a>
+          </nav>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tab-orders" class="tab-content">
+          <div class="card shadow-sm">
+            <div
+              class="card-header d-flex justify-content-between align-items-center"
+            >
+              <h2 class="text-xl font-bold mb-0">Recent Orders</h2>
+              <button class="btn btn-primary btn-sm">
+                <span class="material-symbols-rounded">add</span> New Order
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#ORD-001</td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-sm mr-2">
+                            <span>JD</span>
+                          </div>
+                          <span>John Doe</span>
+                        </div>
+                      </td>
+                      <td>May 15, 2023</td>
+                      <td>$120.50</td>
+                      <td>
+                        <span class="badge badge-success badge-pill">
+                          Completed
+                        </span>
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded"
+                              >visibility</span
+                            >
+                          </button>
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded">edit</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-002</td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-sm mr-2">
+                            <span>JS</span>
+                          </div>
+                          <span>Jane Smith</span>
+                        </div>
+                      </td>
+                      <td>May 14, 2023</td>
+                      <td>$75.20</td>
+                      <td>
+                        <span class="badge badge-success badge-pill">
+                          Completed
+                        </span>
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded"
+                              >visibility</span
+                            >
+                          </button>
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded">edit</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-003</td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-sm mr-2">
+                            <span>RJ</span>
+                          </div>
+                          <span>Robert Johnson</span>
+                        </div>
+                      </td>
+                      <td>May 14, 2023</td>
+                      <td>$246.00</td>
+                      <td>
+                        <span class="badge badge-warning badge-pill">
+                          Pending
+                        </span>
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded"
+                              >visibility</span
+                            >
+                          </button>
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded">edit</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-004</td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-sm mr-2">
+                            <span>ED</span>
+                          </div>
+                          <span>Emily Davis</span>
+                        </div>
+                      </td>
+                      <td>May 13, 2023</td>
+                      <td>$189.75</td>
+                      <td>
+                        <span class="badge badge-danger badge-pill">
+                          Cancelled
+                        </span>
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded"
+                              >visibility</span
+                            >
+                          </button>
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded">edit</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-005</td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="avatar avatar-sm mr-2">
+                            <span>MW</span>
+                          </div>
+                          <span>Michael Wilson</span>
+                        </div>
+                      </td>
+                      <td>May 13, 2023</td>
+                      <td>$87.30</td>
+                      <td>
+                        <span class="badge badge-success badge-pill">
+                          Completed
+                        </span>
+                      </td>
+                      <td>
+                        <div class="btn-group">
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded"
+                              >visibility</span
+                            >
+                          </button>
+                          <button class="btn btn-outline-primary btn-sm">
+                            <span class="material-symbols-rounded">edit</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center mt-4"
+              >
+                <div>Showing 1 to 5 of 25 entries</div>
+                <div class="pagination">
+                  <a href="#" class="pagination-prev">&laquo;</a>
+                  <a href="#" class="pagination-item active">1</a>
+                  <a href="#" class="pagination-item">2</a>
+                  <a href="#" class="pagination-item">3</a>
+                  <a href="#" class="pagination-next">&raquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-activity" class="tab-content" style="display: none">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h2 class="text-xl font-bold mb-0">Recent User Activity</h2>
+            </div>
+            <div class="card-body p-4">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-md mr-3">
+                      <img src="https://i.pravatar.cc/150?img=1" alt="User" />
+                    </div>
+                    <div>
+                      <div class="font-bold">John Doe</div>
+                      <div>Updated their profile information</div>
+                      <div class="text-sm text-muted">2 hours ago</div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-md mr-3">
+                      <img src="https://i.pravatar.cc/150?img=5" alt="User" />
+                    </div>
+                    <div>
+                      <div class="font-bold">Jane Smith</div>
+                      <div>Purchased Premium Plan</div>
+                      <div class="text-sm text-muted">3 hours ago</div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-md mr-3">
+                      <img src="https://i.pravatar.cc/150?img=8" alt="User" />
+                    </div>
+                    <div>
+                      <div class="font-bold">Robert Johnson</div>
+                      <div>Left a review on Product X</div>
+                      <div class="text-sm text-muted">5 hours ago</div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-md mr-3">
+                      <img src="https://i.pravatar.cc/150?img=9" alt="User" />
+                    </div>
+                    <div>
+                      <div class="font-bold">Emily Davis</div>
+                      <div>Requested a refund</div>
+                      <div class="text-sm text-muted">Yesterday</div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-md mr-3">
+                      <img src="https://i.pravatar.cc/150?img=12" alt="User" />
+                    </div>
+                    <div>
+                      <div class="font-bold">Michael Wilson</div>
+                      <div>Created a new account</div>
+                      <div class="text-sm text-muted">Yesterday</div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn-outline-primary">View All Activity</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-products" class="tab-content" style="display: none">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h2 class="text-xl font-bold mb-0">Top Products</h2>
+            </div>
+            <div class="card-body p-4">
+              <ul class="list-group">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-sm avatar-primary mr-3">
+                      <span class="material-symbols-rounded">headphones</span>
+                    </div>
+                    <span>Premium Headphones</span>
+                  </div>
+                  <div>
+                    <span class="font-bold">$12,500</span>
+                    <div class="progress mt-2" style="width: 100px">
+                      <div class="progress-bar" style="width: 85%"></div>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-sm avatar-secondary mr-3">
+                      <span class="material-symbols-rounded">keyboard</span>
+                    </div>
+                    <span>Wireless Keyboard</span>
+                  </div>
+                  <div>
+                    <span class="font-bold">$8,750</span>
+                    <div class="progress mt-2" style="width: 100px">
+                      <div class="progress-bar" style="width: 70%"></div>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-sm avatar-success mr-3">
+                      <span class="material-symbols-rounded">mouse</span>
+                    </div>
+                    <span>Ergonomic Mouse</span>
+                  </div>
+                  <div>
+                    <span class="font-bold">$7,200</span>
+                    <div class="progress mt-2" style="width: 100px">
+                      <div class="progress-bar" style="width: 60%"></div>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-sm avatar-info mr-3">
+                      <span class="material-symbols-rounded"
+                        >desktop_windows</span
+                      >
+                    </div>
+                    <span>4K Monitor</span>
+                  </div>
+                  <div>
+                    <span class="font-bold">$6,800</span>
+                    <div class="progress mt-2" style="width: 100px">
+                      <div class="progress-bar" style="width: 55%"></div>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  <div class="d-flex align-items-center">
+                    <div class="avatar avatar-sm avatar-warning mr-3">
+                      <span class="material-symbols-rounded">laptop_mac</span>
+                    </div>
+                    <span>Laptop Stand</span>
+                  </div>
+                  <div>
+                    <span class="font-bold">$5,400</span>
+                    <div class="progress mt-2" style="width: 100px">
+                      <div class="progress-bar" style="width: 45%"></div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn-outline-primary">View All Products</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Alert Section -->
+        <div class="mt-6">
+          <div class="alert alert-info">
+            <span class="alert-icon material-symbols-rounded">info</span>
+            <div class="alert-body">
+              <div class="alert-body-title">System Update</div>
+              <div class="alert-body-description">
+                <p>
+                  A new software update is available. See what's new in version
+                  2.0!
+                </p>
+                <a href="#">View Details →</a>
+              </div>
+            </div>
+            <button class="alert-close">&times;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Theme Switcher
+      document.addEventListener("DOMContentLoaded", () => {
+        const savedTheme =
+          localStorage.getItem("user-theme") || getSystemTheme();
+        setTheme(savedTheme);
+        initializeRadioButtonState(savedTheme);
+
+        document
+          .getElementById("light_mode")
+          .addEventListener("change", () => changeTheme("light"));
+        document
+          .getElementById("dark_mode")
+          .addEventListener("change", () => changeTheme("dark"));
+        document
+          .getElementById("system_preference")
+          .addEventListener("change", () => changeTheme(getSystemTheme()));
+      });
+
+      function getSystemTheme() {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+
+      function setTheme(theme) {
+        document.body.setAttribute("data-theme", theme);
+      }
+
+      function changeTheme(theme) {
+        setTheme(theme);
+        localStorage.setItem("user-theme", theme);
+      }
+
+      function initializeRadioButtonState(theme) {
+        if (theme === "light") {
+          document.getElementById("light_mode").checked = true;
+        } else if (theme === "dark") {
+          document.getElementById("dark_mode").checked = true;
+        } else {
+          document.getElementById("system_preference").checked = true;
+        }
+      }
+
+      // Tab Functionality
+      function changeTab(event, tabId) {
+        event.preventDefault();
+        const tabs = document.querySelectorAll(".tabs .tab");
+        const tabContents = document.querySelectorAll(".tab-content");
+
+        tabs.forEach((tab) => {
+          tab.classList.remove("active");
+          tab.removeAttribute("aria-current");
+        });
+
+        tabContents.forEach((content) => {
+          content.style.display = "none";
+        });
+
+        event.currentTarget.classList.add("active");
+        event.currentTarget.setAttribute("aria-current", "page");
+
+        const activeTabContent = document.getElementById(tabId);
+        if (activeTabContent) {
+          activeTabContent.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>

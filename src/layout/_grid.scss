@@ -27,7 +27,19 @@ $grid-gutter-width: 15px; // Base gutter width for all breakpoints
 
   @each $break, $size in $breakpoints {
     @media (min-width: $size) {
-      max-width: calc(#{$size} - #{$grid-gutter-width});
+      max-width: if(
+        $break == "xxl",
+        1320px,
+        if(
+          $break == "xl",
+          1140px,
+          if(
+            $break == "lg",
+            960px,
+            if($break == "md", 720px, if($break == "sm", 540px, 100%))
+          )
+        )
+      );
     }
   }
 }
@@ -45,6 +57,102 @@ $grid-gutter-width: 15px; // Base gutter width for all breakpoints
   @include make-row();
 }
 
+// Nested row fix
+.row .row {
+  margin-right: calc(#{$grid-gutter-width} / -4);
+  margin-left: calc(#{$grid-gutter-width} / -4);
+}
+
+// Row alignment utilities
+.row-start {
+  justify-content: flex-start;
+}
+
+.row-center {
+  justify-content: center;
+}
+
+.row-end {
+  justify-content: flex-end;
+}
+
+.row-around {
+  justify-content: space-around;
+}
+
+.row-between {
+  justify-content: space-between;
+}
+
+.row-evenly {
+  justify-content: space-evenly;
+}
+
+// Vertical alignment
+.row-items-start {
+  align-items: flex-start;
+}
+
+.row-items-center {
+  align-items: center;
+}
+
+.row-items-end {
+  align-items: flex-end;
+}
+
+// No gutters modifier
+.row-no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+// Gutter size modifiers
+.row-gutter-sm {
+  margin-right: calc(#{$grid-gutter-width} / -4);
+  margin-left: calc(#{$grid-gutter-width} / -4);
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: calc(#{$grid-gutter-width} / 4);
+    padding-left: calc(#{$grid-gutter-width} / 4);
+  }
+}
+
+.row-gutter-lg {
+  margin-right: calc(#{$grid-gutter-width} * -1);
+  margin-left: calc(#{$grid-gutter-width} * -1);
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: calc(#{$grid-gutter-width});
+    padding-left: calc(#{$grid-gutter-width});
+  }
+}
+
+// Auto-layout columns
+.col {
+  flex: 1 0 0%; // Grow, don't shrink, start at 0 width
+  max-width: 100%;
+  padding-right: calc(#{$grid-gutter-width} / 2);
+  padding-left: calc(#{$grid-gutter-width} / 2);
+}
+
+// Auto-sizing column that only takes up space it needs
+.col-auto {
+  flex: 0 0 auto; // Don't grow, don't shrink, auto width
+  width: auto;
+  max-width: 100%;
+  padding-right: calc(#{$grid-gutter-width} / 2);
+  padding-left: calc(#{$grid-gutter-width} / 2);
+}
+
 // Columns
 @for $i from 1 through $grid-columns {
   .col-#{$i} {
@@ -52,13 +160,73 @@ $grid-gutter-width: 15px; // Base gutter width for all breakpoints
   }
 }
 
-// Responsive columns
+// Column offsets
+@for $i from 0 through ($grid-columns - 1) {
+  .offset-#{$i} {
+    margin-left: calc((100% / #{$grid-columns}) * #{$i});
+  }
+}
+
+// Order utilities
+@for $i from 1 through $grid-columns {
+  .order-#{$i} {
+    order: $i;
+  }
+}
+
+.order-first {
+  order: -1;
+}
+
+.order-last {
+  order: $grid-columns + 1;
+}
+
+// Responsive columns, offsets, and order
 @each $breakpoint, $breakpoint-width in $breakpoints {
   @media (min-width: $breakpoint-width) {
+    // Responsive columns
+    .col-#{$breakpoint} {
+      flex: 1 0 0%;
+      max-width: 100%;
+      padding-right: calc(#{$grid-gutter-width} / 2);
+      padding-left: calc(#{$grid-gutter-width} / 2);
+    }
+
+    .col-#{$breakpoint}-auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+      padding-right: calc(#{$grid-gutter-width} / 2);
+      padding-left: calc(#{$grid-gutter-width} / 2);
+    }
+
     @for $i from 1 through $grid-columns {
       .col-#{$breakpoint}-#{$i} {
         @include make-column($i);
       }
+    }
+
+    // Responsive offsets
+    @for $i from 0 through ($grid-columns - 1) {
+      .offset-#{$breakpoint}-#{$i} {
+        margin-left: calc((100% / #{$grid-columns}) * #{$i});
+      }
+    }
+
+    // Responsive order
+    @for $i from 1 through $grid-columns {
+      .order-#{$breakpoint}-#{$i} {
+        order: $i;
+      }
+    }
+
+    .order-#{$breakpoint}-first {
+      order: -1;
+    }
+
+    .order-#{$breakpoint}-last {
+      order: $grid-columns + 1;
     }
   }
 }
