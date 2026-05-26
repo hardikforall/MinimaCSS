@@ -1,0 +1,139 @@
+@use "../core" as *;
+
+// Layout primitives (Every-Layout inspired)
+// =========================================
+//
+// Composable patterns for the layouts you actually write every day:
+// vertical stacks, horizontal wrap-with-gap clusters, centered prose,
+// sidebar + main, and a "switch to column below width X" container.
+//
+// Each takes a `--space` (or its own var) so consumers can override per
+// instance without writing CSS.
+
+@layer components {
+  // ---- STACK ---------------------------------------------------------
+  // Vertical rhythm with a consistent gap between children. Replaces
+  // the `> * + * { margin-top: ... }` pattern. Use anywhere you'd
+  // hand-write `display: flex; flex-direction: column; gap: …;`.
+  //
+  //   <div class="stack" style="--space: 1.5rem;">…</div>
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space, 1rem);
+  }
+
+  // Convenience sizes
+  .stack-sm { --space: 0.5rem; }
+  .stack-md { --space: 1rem; }
+  .stack-lg { --space: 2rem; }
+  .stack-xl { --space: 3rem; }
+
+  // ---- CLUSTER -------------------------------------------------------
+  // Horizontal grouping that wraps cleanly with even gaps. For chip
+  // rows, tag lists, button bars, action toolbars.
+  //
+  //   <div class="cluster">
+  //     <button class="btn btn-primary">Save</button>
+  //     <button class="btn btn-light">Cancel</button>
+  //   </div>
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space, 0.75rem);
+  }
+
+  .cluster-between { justify-content: space-between; }
+  .cluster-center { justify-content: center; }
+  .cluster-end { justify-content: flex-end; }
+
+  // ---- CENTER --------------------------------------------------------
+  // Horizontally-centered block with a max measure. The classic
+  // "article width" container without having to wrap in a grid row.
+  //
+  //   <article class="center" style="--measure: 65ch;">…</article>
+  .center {
+    box-sizing: content-box;
+    margin-inline: auto;
+    max-inline-size: var(--measure, 65ch);
+    padding-inline: var(--gutter, 1rem);
+  }
+
+  // ---- SIDEBAR LAYOUT ------------------------------------------------
+  // Sidebar + main where the sidebar stays at its natural width (or a
+  // capped `--sidebar-w`) and the main fills the rest. Wraps to stacked
+  // when the main can no longer be at least `--content-min`.
+  //
+  //   <div class="sidebar-layout">
+  //     <aside class="sidebar-side">…</aside>
+  //     <main class="sidebar-main">…</main>
+  //   </div>
+  .sidebar-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space, 1.5rem);
+  }
+
+  .sidebar-layout > .sidebar-side {
+    flex-basis: var(--sidebar-w, 16rem);
+    flex-grow: 1;
+  }
+
+  .sidebar-layout > .sidebar-main {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-inline-size: var(--content-min, 50%);
+  }
+
+  // ---- SWITCHER ------------------------------------------------------
+  // Children sit horizontally until the container is narrower than
+  // `--threshold`, then they stack. Pure CSS, no media queries — the
+  // breakpoint is per-instance.
+  //
+  //   <div class="switcher" style="--threshold: 30rem;">
+  //     <div>A</div><div>B</div><div>C</div>
+  //   </div>
+  .switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space, 1rem);
+  }
+
+  .switcher > * {
+    flex-grow: 1;
+    flex-basis: calc((var(--threshold, 30rem) - 100%) * 999);
+  }
+
+  // ---- COVER ---------------------------------------------------------
+  // Hero / split / "centered on the screen" pattern with optional
+  // header/footer above/below. Uses min-block-size so it fills the
+  // viewport by default.
+  //
+  //   <div class="cover" style="min-block-size: 100vh;">
+  //     <header>…</header>
+  //     <h1 class="cover-centered">Headline</h1>
+  //     <footer>…</footer>
+  //   </div>
+  .cover {
+    display: flex;
+    flex-direction: column;
+    min-block-size: 50vh;
+    padding: var(--space, 1rem);
+  }
+
+  .cover > .cover-centered {
+    margin-block: auto;
+  }
+
+  // ---- BOX -----------------------------------------------------------
+  // Plain bordered/padded container with consistent spacing. The
+  // "non-card card" for grouping content without the heavier
+  // header/footer chrome.
+  .box {
+    padding: var(--space, 1rem);
+    border: 1px solid var(--border-primary-color);
+    border-radius: $border-radius;
+    background: var(--surface-primary-color);
+  }
+}

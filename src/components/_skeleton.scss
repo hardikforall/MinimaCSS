@@ -1,0 +1,59 @@
+@use "../core" as *;
+
+// Skeleton loading state
+// ======================
+//
+// Drop-in placeholder for content that hasn't loaded yet. Uses a
+// shimmer gradient that automatically respects `prefers-reduced-motion`
+// (the global reset in `_reset.scss` collapses the animation to ~0ms).
+//
+//   <div class="skeleton skeleton-text"></div>
+//   <div class="skeleton skeleton-text skeleton-text-sm"></div>
+//   <div class="skeleton skeleton-circle" style="width:3rem; height:3rem"></div>
+//   <div class="skeleton skeleton-block" style="height:8rem"></div>
+
+@layer components {
+  .skeleton {
+    display: block;
+    background: linear-gradient(
+      90deg,
+      var(--surface-secondary-color) 25%,
+      color-mix(
+          in oklch,
+          var(--surface-tertiary-color) 60%,
+          var(--surface-secondary-color)
+        )
+        50%,
+      var(--surface-secondary-color) 75%
+    );
+    background-size: 200% 100%;
+    border-radius: $border-radius-small;
+    animation: skeleton-shimmer 1.5s linear infinite;
+    color: transparent;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  // Common shapes
+  .skeleton-text {
+    height: 1em;
+    margin-block: 0.25em;
+  }
+  .skeleton-text-sm { width: 40%; }
+  .skeleton-text-md { width: 70%; }
+  .skeleton-text-lg { width: 100%; }
+
+  .skeleton-circle {
+    border-radius: 50%;
+  }
+
+  .skeleton-block {
+    height: 8rem;
+    border-radius: $border-radius;
+  }
+
+  @keyframes skeleton-shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}

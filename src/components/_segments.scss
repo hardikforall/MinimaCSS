@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 .segmented-control {
   display: inline-flex;
   background-color: var(--surface-tertiary-color);
@@ -44,4 +47,6 @@
       line-height: 1.5;
     }
   }
+}
+
 }

@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 .table {
   width: 100%;
   max-width: 100%;
@@ -62,4 +65,6 @@
       border: 0;
     }
   }
+}
+
 }

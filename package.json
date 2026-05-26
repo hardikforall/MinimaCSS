@@ -1,13 +1,26 @@
 {
   "name": "minimacss",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "A minimalistic CSS framework for rapid web development.",
   "main": "dist/minimacss.css",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "sass src/minimacss.scss dist/minimacss.css && npm run minify",
-    "minify": "postcss dist/minimacss.css -u cssnano -o dist/minimacss.min.css",
-    "watch": "sass --watch src/minimacss.scss:dist/minimacss.css"
+    "build:sass": "sass src/minimacss.scss dist/minimacss.css --style=expanded --source-map",
+    "build:prefix": "postcss dist/minimacss.css --use autoprefixer --no-map -o dist/minimacss.css",
+    "build:minify": "postcss dist/minimacss.css --use cssnano --no-map -o dist/minimacss.min.css",
+    "build": "npm run build:sass && npm run build:prefix && npm run build:minify",
+    "watch": "sass --watch src/minimacss.scss:dist/minimacss.css",
+    "serve": "browser-sync start --server --port 4200 --files \"dist/*.css, examples/*.html\" --startPath examples/index.html --no-notify",
+    "dev": "concurrently --kill-others \"npm run watch\" \"npm run serve\"",
+    "lint": "stylelint \"src/**/*.scss\"",
+    "lint:fix": "stylelint \"src/**/*.scss\" --fix",
+    "format": "prettier --write \"src/**/*.scss\" \"docs/**/*.md\" \"examples/**/*.html\"",
+    "test": "npm run lint && npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,22 +31,34 @@
     "framework",
     "minimalistic",
     "web-development",
-    "front-end"
+    "front-end",
+    "scss",
+    "sass",
+    "dark-mode",
+    "responsive"
   ],
-  "author": "Your Name",
+  "author": "Hardik Patil",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hardikforall/minimacss/issues"
   },
   "homepage": "https://github.com/hardikforall/minimacss#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "concurrently": "^8.2.2",
-    "cssnano": "^4.1.11",
-    "live-server": "^1.2.2",
-    "postcss": "^8.4.31",
-    "postcss-cli": "^10.1.0",
-    "prettier": "3.1.0",
-    "sass": "^1.69.5"
-  }
+    "autoprefixer": "^10.5.0",
+    "browser-sync": "^3.0.4",
+    "concurrently": "^9.2.1",
+    "cssnano": "^8.0.1",
+    "postcss": "^8.5.15",
+    "postcss-cli": "^11.0.1",
+    "prettier": "^3.8.3",
+    "sass": "^1.100.0",
+    "stylelint": "^17.12.0",
+    "stylelint-config-standard-scss": "^17.0.0"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }

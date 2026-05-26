@@ -1,47 +1,83 @@
-//Combining all together
-@import "common/variables";
-@import "common/functions";
-@import "base/reset";
-@import "themes/light";
-@import "themes/dark";
-@media only screen and (prefers-color-scheme: dark) {
-  :root:not([data-theme]) {
-    @include dark;
-  }
-}
-[data-theme="dark"] {
-  @include dark;
-}
-@import "base/typography";
-@import "components/alerts";
-@import "components/accordion";
-@import "components/modal";
-@import "components/buttons";
-@import "components/inputs";
-@import "components/nav";
-@import "components/cards";
-@import "components/slideover";
-@import "components/steps";
-@import "components/tabs";
-@import "components/segments";
-@import "components/loader";
-@import "components/table";
-@import "components/avatars";
-@import "components/badges";
-@import "components/divider";
-@import "components/tooltips";
-@import "layout/grid";
+// MinimaCSS — entry point (modern Sass module system)
+//
+// Architecture
+// ============
+//
+// 1. Design tokens and helper functions live in `common/_variables.scss` and
+//    `common/_functions.scss`. They're re-exported by `_core.scss` so every
+//    other file just does `@use "../core" as *;` and gets the global members
+//    it needs.
+//
+// 2. The CSS cascade is organized with native cascade layers so utilities
+//    reliably override component styles without `!important`:
+//
+//        reset → base → components → utilities
+//
+//    Layers declared later win. The theme tokens (`themes/_light.scss`,
+//    `themes/_dark.scss`) stay *unlayered* so user overrides on `:root`
+//    automatically beat the framework defaults.
+//
+// All `@use` declarations must precede any plain CSS rules, so the
+// dark-mode `@media` lives in `themes/_apply.scss`, also loaded via `@use`.
 
-@import "utilities/borders";
-@import "utilities/colors";
-@import "utilities/display";
-@import "utilities/flexbox";
-@import "utilities/grid";
-@import "utilities/interactive";
-@import "utilities/position";
-@import "utilities/sizing";
-@import "utilities/typography";
-@import "utilities/visibility";
-@import "utilities/media";
-@import "utilities/shadows";
-@import "utilities/clearfix";
+@charset "UTF-8";
+
+// Tokens & helpers (no CSS output)
+@use "common/variables";
+@use "common/functions";
+
+// Layer order declaration — first CSS at-rule in output
+@use "layer-order";
+
+// Theme tokens (unlayered)
+@use "themes/theme";
+
+// Reset
+@use "base/reset";
+
+// Base typography & print
+@use "base/typography";
+@use "base/print";
+
+// Components
+@use "components/alerts";
+@use "components/accordion";
+@use "components/modal";
+@use "components/buttons";
+@use "components/inputs";
+@use "components/nav";
+@use "components/cards";
+@use "components/slideover";
+@use "components/steps";
+@use "components/tabs";
+@use "components/segments";
+@use "components/loader";
+@use "components/progress";
+@use "components/table";
+@use "components/avatars";
+@use "components/badges";
+@use "components/divider";
+@use "components/tooltips";
+@use "components/toast";
+@use "components/pagination";
+@use "components/popover";
+@use "components/skeleton";
+@use "components/empty-state";
+@use "layout/grid";
+@use "layout/layouts";
+
+// Utilities
+@use "utilities/borders";
+@use "utilities/colors";
+@use "utilities/display";
+@use "utilities/flexbox";
+@use "utilities/grid" as ugrid;
+@use "utilities/interactive";
+@use "utilities/position";
+@use "utilities/sizing";
+@use "utilities/typography" as utypography;
+@use "utilities/visibility";
+@use "utilities/media";
+@use "utilities/container";
+@use "utilities/scroll";
+@use "utilities/shadows";

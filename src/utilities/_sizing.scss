@@ -1,104 +1,77 @@
-// Width and Height Utilities
-@each $size, $value in $sizes {
-  .w-#{$size} {
-    width: $value !important;
+@use "../core" as *;
+
+@layer utilities {
+  // Width and Height
+  @each $size, $value in $sizes {
+    $k: escape-class-key($size);
+    .w-#{$k} { width: $value; }
+    .h-#{$k} { height: $value; }
+    .min-w-#{$k} { min-width: $value; }
+    .min-h-#{$k} { min-height: $value; }
+    .max-w-#{$k} { max-width: $value; }
+    .max-h-#{$k} { max-height: $value; }
   }
 
-  .h-#{$size} {
-    height: $value !important;
+  // Margin / Padding — physical (legacy) + logical (modern, RTL-friendly).
+  @each $size, $value in $spacers {
+    $k: escape-class-key($size);
+
+    // All sides
+    .m-#{$k} { margin: $value; }
+    .p-#{$k} { padding: $value; }
+
+    // Physical sides
+    .mt-#{$k}, .my-#{$k} { margin-top: $value; }
+    .mr-#{$k}, .mx-#{$k} { margin-right: $value; }
+    .mb-#{$k}, .my-#{$k} { margin-bottom: $value; }
+    .ml-#{$k}, .mx-#{$k} { margin-left: $value; }
+
+    .pt-#{$k}, .py-#{$k} { padding-top: $value; }
+    .pr-#{$k}, .px-#{$k} { padding-right: $value; }
+    .pb-#{$k}, .py-#{$k} { padding-bottom: $value; }
+    .pl-#{$k}, .px-#{$k} { padding-left: $value; }
+
+    // Logical sides
+    .ms-#{$k} { margin-inline-start: $value; }
+    .me-#{$k} { margin-inline-end: $value; }
+    .mbs-#{$k} { margin-block-start: $value; }
+    .mbe-#{$k} { margin-block-end: $value; }
+    .mi-#{$k} { margin-inline: $value; }
+    .mblock-#{$k} { margin-block: $value; }
+
+    .ps-#{$k} { padding-inline-start: $value; }
+    .pe-#{$k} { padding-inline-end: $value; }
+    .pbs-#{$k} { padding-block-start: $value; }
+    .pbe-#{$k} { padding-block-end: $value; }
+    .pi-#{$k} { padding-inline: $value; }
+    .pblock-#{$k} { padding-block: $value; }
   }
 
-  .min-w-#{$size} {
-    min-width: $value !important;
+  // Fluid spacing
+  @each $name, $value in $spacers-fluid {
+    .m-fluid-#{$name} { margin: $value; }
+    .p-fluid-#{$name} { padding: $value; }
+    .my-fluid-#{$name} { margin-block: $value; }
+    .mx-fluid-#{$name} { margin-inline: $value; }
+    .py-fluid-#{$name} { padding-block: $value; }
+    .px-fluid-#{$name} { padding-inline: $value; }
   }
 
-  .min-h-#{$size} {
-    min-height: $value !important;
-  }
-
-  .max-w-#{$size} {
-    max-width: $value !important;
-  }
-
-  .max-h-#{$size} {
-    max-height: $value !important;
-  }
-}
-
-@each $size, $value in $spacers {
-  .m-#{$size} {
-    margin: $value !important;
-  }
-
-  .mt-#{$size},
-  .my-#{$size} {
-    margin-top: $value !important;
-  }
-
-  .mr-#{$size},
-  .mx-#{$size} {
-    margin-right: $value !important;
-  }
-
-  .mb-#{$size},
-  .my-#{$size} {
-    margin-bottom: $value !important;
-  }
-
-  .ml-#{$size},
-  .mx-#{$size} {
-    margin-left: $value !important;
-  }
-
-  .p-#{$size} {
-    padding: $value !important;
-  }
-
-  .pt-#{$size},
-  .py-#{$size} {
-    padding-top: $value !important;
-  }
-
-  .pr-#{$size},
-  .px-#{$size} {
-    padding-right: $value !important;
-  }
-
-  .pb-#{$size},
-  .py-#{$size} {
-    padding-bottom: $value !important;
-  }
-
-  .pl-#{$size},
-  .px-#{$size} {
-    padding-left: $value !important;
-  }
-}
-
-@each $breakpoint, $bp-value in $breakpoints {
-  @media (min-width: $bp-value) {
-    @each $size, $value in $spacers {
-      .m-#{$size}-#{$breakpoint} {
-        margin: $value !important;
-      }
-
-      .p-#{$size}-#{$breakpoint} {
-        padding: $value !important;
+  // Responsive shortcuts at each breakpoint.
+  @each $breakpoint, $bp-value in $breakpoints {
+    @media (min-width: $bp-value) {
+      @each $size, $value in $spacers {
+        $k: escape-class-key($size);
+        .m-#{$k}-#{$breakpoint} { margin: $value; }
+        .p-#{$k}-#{$breakpoint} { padding: $value; }
       }
     }
   }
-}
 
-@each $overflow in $overflows {
-  .overflow-#{$overflow} {
-    overflow: $overflow !important;
-  }
-
-  .overflow-x-#{$overflow} {
-    overflow-x: $overflow !important;
-  }
-
-  .overflow-y-#{$overflow} {
-    overflow-y: $overflow !important;
+  // Overflow
+  @each $overflow in $overflows {
+    .overflow-#{$overflow} { overflow: $overflow; }
+    .overflow-x-#{$overflow} { overflow-x: $overflow; }
+    .overflow-y-#{$overflow} { overflow-y: $overflow; }
   }
 }

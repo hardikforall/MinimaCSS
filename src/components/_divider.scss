@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 // Horizontal Divider
 .hr-divider {
   border: none;
@@ -42,4 +45,6 @@
   &:not(:empty)::after {
     margin-left: 0.25em;
   }
+}
+
 }

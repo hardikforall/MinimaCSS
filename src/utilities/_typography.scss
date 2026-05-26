@@ -1,14 +1,17 @@
+@use "../core" as *;
+
+@layer utilities {
 // Font Size Utilities
 @each $size, $value in $font-sizes {
   .text-#{$size} {
-    font-size: $value !important;
+    font-size: $value;
   }
 }
 
 // Font Weight Utilities
 @each $weight-name, $weight-value in $font-weights {
   .font-#{$weight-name} {
-    font-weight: $weight-value !important;
+    font-weight: $weight-value;
   }
 }
 
@@ -17,21 +20,21 @@ $text-alignments: (left, right, center, justify);
 
 @each $alignment in $text-alignments {
   .text-#{$alignment} {
-    text-align: $alignment !important;
+    text-align: $alignment;
   }
 }
 
 // Line Height Utilities
 @each $height, $value in $line-heights {
   .line-height-#{$height} {
-    line-height: $value !important;
+    line-height: $value;
   }
 }
 
 // Letter Spacing Utilities
 @each $spacing, $value in $letter-spacings {
   .letter-spacing-#{$spacing} {
-    letter-spacing: $value !important;
+    letter-spacing: $value;
   }
 }
 
@@ -40,43 +43,43 @@ $text-transforms: (uppercase, lowercase, capitalize, none);
 
 @each $transform in $text-transforms {
   .text-#{$transform} {
-    text-transform: $transform !important;
+    text-transform: $transform;
   }
 }
 
 // Font Style Utilities
 .font-italic {
-  font-style: italic !important;
+  font-style: italic;
 }
 
 .font-normal {
-  font-style: normal !important;
+  font-style: normal;
 }
 
 // Text Decoration Utilities
 .text-decoration-none {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 .text-decoration-underline {
-  text-decoration: underline !important;
+  text-decoration: underline;
 }
 
 .text-decoration-line-through {
-  text-decoration: line-through !important;
+  text-decoration: line-through;
 }
 
 .text-decoration-overline {
-  text-decoration: overline !important;
+  text-decoration: overline;
 }
 
 // Word Wrap and Text Overflow
 .text-wrap {
-  word-wrap: break-word !important;
+  overflow-wrap: break-word;
 }
 
 .text-nowrap {
-  white-space: nowrap !important;
+  white-space: nowrap;
 }
 
 .text-truncate {
@@ -95,4 +98,25 @@ $text-transforms: (uppercase, lowercase, capitalize, none);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: clip;
+}
+
+// Multi-line truncation
+@for $i from 1 through 6 {
+  .line-clamp-#{$i} {
+    display: -webkit-box;
+    -webkit-line-clamp: $i;
+    line-clamp: $i;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+.line-clamp-none {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  display: block;
+  -webkit-box-orient: horizontal;
+  overflow: visible;
+}
+
 }

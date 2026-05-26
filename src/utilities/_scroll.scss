@@ -1,0 +1,83 @@
+@use "../core" as *;
+
+// Scroll-snap utilities + horizontal scrollers
+// ============================================
+//
+// CSS-only carousels, chip rows, and side-scrolling galleries. No JS,
+// no virtual lists, just `overflow-x: auto` + `scroll-snap-type`.
+//
+//   <div class="scroll-x snap-x">
+//     <article class="card snap-start">…</article>
+//     <article class="card snap-start">…</article>
+//   </div>
+
+@layer utilities {
+  // Horizontal scroller — children flow in one row, scroll horizontally.
+  .scroll-x {
+    display: flex;
+    gap: var(--scroll-gap, 0.75rem);
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: var(--scroll-padding, 0.5rem);
+    -webkit-overflow-scrolling: touch; // smooth iOS momentum
+
+    > * {
+      flex: 0 0 auto;
+    }
+  }
+
+  // Hide the native scrollbar while keeping scrolling functional.
+  // Useful for chip rows where the scrollbar looks heavy.
+  .scroll-x-hide-scrollbar {
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  // Snap types
+  .snap-none { scroll-snap-type: none; }
+  .snap-x { scroll-snap-type: x mandatory; }
+  .snap-x-proximity { scroll-snap-type: x proximity; }
+  .snap-y { scroll-snap-type: y mandatory; }
+  .snap-y-proximity { scroll-snap-type: y proximity; }
+  .snap-both { scroll-snap-type: both mandatory; }
+
+  // Snap alignment for children
+  .snap-start { scroll-snap-align: start; }
+  .snap-center { scroll-snap-align: center; }
+  .snap-end { scroll-snap-align: end; }
+
+  // Snap stop behaviour
+  .snap-always { scroll-snap-stop: always; }
+  .snap-normal { scroll-snap-stop: normal; }
+
+  // Smooth scrolling
+  .scroll-smooth { scroll-behavior: smooth; }
+  .scroll-auto { scroll-behavior: auto; }
+
+  // ---- Theme-aware visibility -------------------------------------
+  // Show an element only under the current `color-scheme`. Useful for
+  // light-only / dark-only logos, illustrations, screenshots.
+  //
+  //   <img class="only-light" src="logo-dark-text.svg" alt="">
+  //   <img class="only-dark"  src="logo-light-text.svg" alt="">
+
+  .only-light,
+  .only-dark { display: none; }
+
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) .only-light { display: revert; }
+    :root:not([data-theme="dark"]) .only-dark { display: none; }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .only-dark { display: revert; }
+    :root:not([data-theme="light"]) .only-light { display: none; }
+  }
+
+  // Explicit theme overrides win.
+  :root[data-theme="light"] .only-light { display: revert; }
+  :root[data-theme="light"] .only-dark { display: none; }
+  :root[data-theme="dark"] .only-dark { display: revert; }
+  :root[data-theme="dark"] .only-light { display: none; }
+}

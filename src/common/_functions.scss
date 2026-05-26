@@ -1,7 +1,28 @@
+@use "sass:color";
+@use "sass:math";
+@use "sass:string";
+
+// Escapes a key for safe use inside a CSS class name. Periods become `\\.`,
+// so `0.5` becomes a class selector that matches `class="gap-0.5"`. Modern
+// Tailwind uses the same convention.
+@function escape-class-key($key) {
+  $key-str: "#{$key}";
+  $result: "";
+  @for $i from 1 through string.length($key-str) {
+    $ch: string.slice($key-str, $i, $i);
+    @if $ch == "." {
+      $result: $result + "\\.";
+    } @else {
+      $result: $result + $ch;
+    }
+  }
+  @return $result;
+}
+
 @function hex-to-rgba($hex, $opacity: 1) {
-  $r: red($hex);
-  $g: green($hex);
-  $b: blue($hex);
-  $a: alpha($hex) * $opacity; // Preserve existing alpha and multiply by new opacity
+  $r: color.channel($hex, "red", $space: rgb);
+  $g: color.channel($hex, "green", $space: rgb);
+  $b: color.channel($hex, "blue", $space: rgb);
+  $a: color.alpha($hex) * $opacity; // Preserve existing alpha and multiply by new opacity
   @return rgba($r, $g, $b, $a);
 }

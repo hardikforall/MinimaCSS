@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 // Base input styles
 .input,
 .select,
@@ -19,19 +22,18 @@
   transition:
     border-color 0.15s ease-in-out,
     box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none; // Normalize appearance
-  &::after {
-    color: #cccc; // for Details/Summary elemt used as select
-  }
   &.input-small {
     padding: 0.2rem 0.5rem;
     font-size: 0.95rem;
     line-height: 1.5;
   }
-  &:focus {
+  &:focus-visible {
     outline: none;
     border-color: var(--input-focus-border-color);
-    box-shadow: 0 0 0 0.2rem var(--input-focus-ring-color);
+    box-shadow: 0 0 0 0.25rem var(--input-focus-ring-color);
   }
 
   &::placeholder {
@@ -43,6 +45,165 @@
     background-color: var(--input-disabled-bg-color);
     opacity: 0.5;
   }
+
+  // Modern validation: only style after the user has interacted with the
+  // field (Safari 16.5+, Chrome 119+, Firefox 88+). No JS class toggling.
+  &:user-invalid {
+    border-color: var(--input-invalid-border-color);
+  }
+  &:user-invalid:focus-visible {
+    box-shadow: 0 0 0 0.25rem var(--input-focus-invalid-ring-color);
+  }
+  &:user-valid {
+    border-color: var(--input-valid-border-color);
+  }
+  &:user-valid:focus-visible {
+    box-shadow: 0 0 0 0.25rem var(--input-focus-valid-ring-color);
+  }
+}
+
+// Textareas auto-grow to fit their content (Chrome 123+).
+.textarea {
+  field-sizing: content;
+  min-height: 4rem;
+}
+
+// .field — declarative form-control wrapper
+// =========================================
+// Bundles label + control + helper text with consistent spacing.
+// Uses `:has()` to:
+//   • auto-append an asterisk to labels of required controls
+//   • flip the helper-text colour when the control becomes `:user-invalid`
+//
+//   <div class="field">
+//     <label for="email">Email</label>
+//     <input id="email" class="input" type="email" required>
+//     <small class="helper-text">We never share your email.</small>
+//   </div>
+//
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-block-end: 1rem;
+
+  > label {
+    font-weight: 500;
+    color: var(--text-primary-color);
+    margin: 0;
+  }
+
+  // Auto-append " *" to labels whose control is required. No JS, no
+  // explicit `<sup>` markup in your HTML.
+  &:has(:required) > label::after {
+    content: " *";
+    color: var(--button-error-color);
+    font-weight: 600;
+  }
+
+  // Helper text becomes invalid-coloured once the user has interacted
+  // with the field and left it in an invalid state.
+  &:has(:user-invalid) > .helper-text {
+    color: var(--input-invalid-text-color);
+  }
+
+  .helper-text {
+    font-size: 0.8125rem;
+    color: var(--text-secondary-color);
+    margin: 0;
+  }
+}
+
+// .input-affix — input with prefix and/or suffix slots
+// ====================================================
+//
+//   <div class="input-affix">
+//     <span class="input-affix-prefix">$</span>
+//     <input class="input" type="number" placeholder="0.00">
+//     <span class="input-affix-suffix">USD</span>
+//   </div>
+//
+// The wrapper is the focus target — when the inner input is focused, the
+// outer affix gets the focus ring via `:has(:focus-visible)`.
+
+.input-affix {
+  display: inline-flex;
+  align-items: stretch;
+  width: 100%;
+  border: 1px solid var(--border-primary-color);
+  border-radius: $border-radius;
+  background: var(--input-bg-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+
+  &:has(:focus-visible) {
+    border-color: var(--input-focus-border-color);
+    box-shadow: 0 0 0 0.25rem var(--input-focus-ring-color);
+  }
+
+  &:has(:user-invalid) {
+    border-color: var(--input-invalid-border-color);
+  }
+
+  > .input,
+  > .select {
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    background: transparent;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  > .input:focus-visible,
+  > .select:focus-visible {
+    outline: 0;
+    box-shadow: none;
+  }
+}
+
+.input-affix-prefix,
+.input-affix-suffix {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary-color);
+  background: var(--surface-secondary-color);
+  white-space: nowrap;
+  border-inline-end: 1px solid var(--border-primary-color);
+  user-select: none;
+}
+
+.input-affix-suffix {
+  border-inline-start: 1px solid var(--border-primary-color);
+  border-inline-end: 0;
+}
+
+// .kbd — keyboard shortcut chip
+// =============================
+//
+//   Press <kbd class="kbd">⌘</kbd> + <kbd class="kbd">K</kbd> to search.
+//
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5em;
+  padding: 0.05em 0.4em;
+  font-family: var(--font-family-mono);
+  font-size: 0.8em;
+  font-weight: 500;
+  color: var(--text-primary-color);
+  background: var(--surface-secondary-color);
+  border: 1px solid var(--border-primary-color);
+  border-bottom-width: 2px;
+  border-radius: 0.25rem;
+  line-height: 1.4;
+  vertical-align: baseline;
 }
 
 // Custom select styles
@@ -109,7 +270,7 @@
     border: 2px solid var(--input-valid-border-color);
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem var(--input-focus-valid-ring-color);
+      box-shadow: 0 0 0 0.25rem var(--input-focus-valid-ring-color);
       border: 2px solid var(--input-valid-border-color);
     }
   }
@@ -118,7 +279,7 @@
     border: 2px solid var(--input-invalid-border-color);
 
     &:focus {
-      box-shadow: 0 0 0 0.2rem var(--input-focus-invalid-ring-color);
+      box-shadow: 0 0 0 0.25rem var(--input-focus-invalid-ring-color);
       border: 2px solid var(--input-invalid-border-color);
     }
   }
@@ -172,7 +333,7 @@
     }
     &:focus {
       &::after {
-        box-shadow: 0 0 0 0.2rem var(--input-focus-ring-color);
+        box-shadow: 0 0 0 0.25rem var(--input-focus-ring-color);
         border: 2px solid var(--input-focus-ring-color);
       }
     }
@@ -244,7 +405,7 @@
     }
     &:focus {
       &:before {
-        box-shadow: 0 0 0 0.2rem var(--input-focus-ring-color);
+        box-shadow: 0 0 0 0.25rem var(--input-focus-ring-color);
       }
     }
   }
@@ -305,7 +466,7 @@
     }
     &:focus {
       &:before {
-        box-shadow: 0 0 0 0.2rem var(--input-focus-ring-color);
+        box-shadow: 0 0 0 0.25rem var(--input-focus-ring-color);
       }
     }
   }
@@ -347,4 +508,6 @@
 
     border-radius: 50%;
   }
+}
+
 }

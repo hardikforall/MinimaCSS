@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 // Button Base Mixin
 @mixin button-variant(
   $color,
@@ -18,7 +21,9 @@
     color: var($color);
   }
 
-  &:focus {
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
     box-shadow: 0 0 0 0.25rem var($focus-ring);
   }
 
@@ -39,6 +44,7 @@
 // Base button styles
 .btn {
   padding: 0.5rem 1rem;
+  min-height: 2.5rem; // ~40px — keeps a comfortable touch target
   border: 1px solid transparent;
   border-radius: $border-radius;
   font-size: 1rem;
@@ -49,6 +55,7 @@
   //to make element in it look aligned
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
 
   transition:
@@ -128,6 +135,10 @@
     --button-light-text-color,
     --button-light-focus-ring-color
   );
+  // `.btn-light` lives close to surface colors in both themes. The dedicated
+  // border token below has contrast against both the button background AND
+  // the surrounding surface in either light or dark mode.
+  border-color: var(--button-light-border-color);
 }
 
 // Outline Buttons
@@ -217,15 +228,18 @@
 // Button Sizes
 .btn-sm {
   padding: 0.25rem 0.5rem;
+  min-height: 1.75rem;
   font-size: 0.875rem;
 }
 .btn-md {
   padding: 0.4rem 0.7rem;
+  min-height: 2.25rem;
   font-size: 0.875rem;
 }
 
 .btn-lg {
   padding: 0.75rem 1.5rem;
+  min-height: 3rem;
   font-size: 1.25rem;
 }
 
@@ -235,15 +249,25 @@
   width: 100%;
 }
 
+// Circular icon button — deterministic across sizes and utility overrides.
+// Use as `.btn .btn-primary .btn-round` (or any color variant).
 .btn-round {
-  border-radius: 1000px;
-  padding: 1em;
-  justify-content: center;
-  align-items: center;
-  width: auto;
-  height: auto;
+  --btn-round-size: 2.5rem;
+  padding: 0;
+  inline-size: var(--btn-round-size);
+  block-size: var(--btn-round-size);
+  min-inline-size: var(--btn-round-size);
+  min-block-size: var(--btn-round-size);
+  border-radius: 50%;
   aspect-ratio: 1 / 1;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto; // don't stretch in flex/grid parents
 }
+
+.btn-sm.btn-round { --btn-round-size: 1.75rem; }
+.btn-md.btn-round { --btn-round-size: 2.25rem; }
+.btn-lg.btn-round { --btn-round-size: 3rem; }
 
 // Button Group
 .btn-group {
@@ -369,4 +393,6 @@
 
 .dropdown-menu {
   animation: fadeIn 0.3s ease-out;
+}
+
 }

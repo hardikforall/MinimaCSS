@@ -1,0 +1,7 @@
+// Central re-export of design tokens and helper functions.
+// Every base / component / layout / utility file does:
+//   @use "../core" as *;
+// which makes the variables and functions below available without a namespace.
+
+@forward "common/variables";
+@forward "common/functions";

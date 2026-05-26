@@ -1,0 +1,88 @@
+@use "../core" as *;
+
+@layer base {
+// Print styles — strip interactive chrome, ink-friendly typography.
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+    color: #000 !important;
+  }
+
+  // Surface link URLs after their text.
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.9em;
+  }
+
+  // Don't print mailto/javascript URLs.
+  a[href^="javascript:"]::after,
+  a[href^="#"]::after {
+    content: "";
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+  }
+
+  p,
+  blockquote,
+  pre,
+  table,
+  figure {
+    break-inside: avoid;
+  }
+
+  pre,
+  code {
+    border: 1px solid #999;
+    break-inside: avoid;
+  }
+
+  // Hide interactive / chrome elements that don't make sense on paper.
+  .no-print,
+  nav,
+  .nav,
+  .navbar,
+  .modal,
+  .slideover,
+  .toast,
+  .toast-container,
+  .tooltip,
+  .dropdown-menu,
+  button,
+  .btn,
+  [role="button"],
+  audio,
+  video,
+  iframe {
+    display: none !important;
+  }
+
+  .container,
+  .container-fluid {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+}
+
+}

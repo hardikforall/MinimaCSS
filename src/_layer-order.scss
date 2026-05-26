@@ -1,0 +1,3 @@
+// Declares CSS cascade-layer priority. Must be the first @-rule in the
+// compiled output so all subsequent @layer blocks are placed correctly.
+@layer reset, base, components, utilities;

@@ -1,0 +1,106 @@
+@use "../core" as *;
+
+@layer components {
+// Pagination
+// Markup:
+//   <nav aria-label="Pagination">
+//     <ul class="pagination">
+//       <li><a href="#" class="page-link" aria-label="Previous">‹</a></li>
+//       <li><a href="#" class="page-link" aria-current="page">1</a></li>
+//       <li><a href="#" class="page-link">2</a></li>
+//       <li><a href="#" class="page-link" aria-label="Next">›</a></li>
+//     </ul>
+//   </nav>
+
+.pagination {
+  display: inline-flex;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.25rem;
+}
+
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  min-height: 2.25rem;
+  padding: 0.375rem 0.75rem;
+  color: var(--link-text-color);
+  background-color: var(--surface-primary-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: $border-radius-small;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease-in-out,
+    color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: var(--surface-secondary-color);
+    color: var(--link-hover-color);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 0.25rem var(--input-focus-ring-color);
+  }
+
+  // Current page — driven by aria-current for accessibility
+  &[aria-current="page"],
+  &.active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--button-primary-text-color);
+    pointer-events: none;
+  }
+
+  // Disabled — driven by aria-disabled
+  &[aria-disabled="true"],
+  &.disabled {
+    color: var(--text-tertiary-color);
+    pointer-events: none;
+    background-color: var(--surface-secondary-color);
+  }
+}
+
+// Sizes
+.pagination-sm .page-link {
+  min-width: 1.75rem;
+  min-height: 1.75rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.pagination-lg .page-link {
+  min-width: 3rem;
+  min-height: 3rem;
+  padding: 0.6rem 1rem;
+  font-size: 1.125rem;
+}
+
+// Joined (rounded ends only)
+.pagination-joined {
+  gap: 0;
+
+  .page-link {
+    border-radius: 0;
+    margin-left: -1px;
+  }
+
+  li:first-child .page-link {
+    border-top-left-radius: $border-radius-small;
+    border-bottom-left-radius: $border-radius-small;
+  }
+
+  li:last-child .page-link {
+    border-top-right-radius: $border-radius-small;
+    border-bottom-right-radius: $border-radius-small;
+  }
+}
+
+}

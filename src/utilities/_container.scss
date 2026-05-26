@@ -1,0 +1,39 @@
+@use "../core" as *;
+
+// Container Queries — let descendants adapt to *their parent's* width
+// instead of the viewport. Mark an element with one of these utilities to
+// turn it into a query container, then use `@container` inside its rules.
+//
+//   <div class="cq">                  <!-- inline-size query container -->
+//     <article class="card">…</article>
+//   </div>
+//
+//   .card { padding: 1rem; }
+//   @container (min-width: 30rem) {
+//     .card { padding: 2rem; }
+//   }
+
+@layer utilities {
+  .cq {
+    container-type: inline-size;
+  }
+
+  // Named query container — pair with @container <name> (min-width: …).
+  // Set `--cq-name: sidebar` (etc.) to attach a name.
+  .cq-named {
+    container-type: inline-size;
+    container-name: var(--cq-name, layout);
+  }
+
+  // Block-size (rare; only useful when the container itself has a
+  // determinate height).
+  .cq-size {
+    container-type: size;
+  }
+
+  // Suppress containment — undo .cq when needed (e.g., inside a print
+  // override).
+  .cq-none {
+    container-type: normal;
+  }
+}

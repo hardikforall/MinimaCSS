@@ -85,7 +85,34 @@ document.addEventListener("DOMContentLoaded", (event) => {
 });
 ```
 
-For customising Themes and Colors I will be creating a detailed guide for it soon.
+## Customising the tokens
+
+Every color, surface, shadow, and component accent is a CSS custom
+property. To override the framework, set new values on `:root` (or on
+`[data-theme="dark"]` if you want to override only dark mode) **after**
+you import `minimacss.css`:
+
+```css
+:root {
+  /* Brand */
+  --accent-color: #ff5a5f;
+  --link-text-color: #ff5a5f;
+  --link-hover-color: #d6383d;
+
+  /* Primary button */
+  --button-primary-color: #ff5a5f;
+  --button-primary-hover-color: #d6383d;
+}
+
+[data-theme="dark"] {
+  --button-primary-color: #ff7a7f;
+}
+```
+
+If you build from source, change the SCSS variables in
+`src/common/_variables.scss` and rebuild with `npm run build`. The token
+output in `src/themes/_light.scss` and `src/themes/_dark.scss` is derived
+from those variables.
 
 ## Theme Structure
 
@@ -418,7 +445,7 @@ $colors: (
     --loader-dark-border-color:#{hex-to-rgba($primary-500, 0.2)};
 
     //Steps
-    --steps-accent-color:
+    --steps-accent-color: #{$primary-500};
 }
 ```
 

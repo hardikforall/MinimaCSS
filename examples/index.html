@@ -3,1561 +3,1769 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MinimaCSS Components Demo</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>MinimaCSS — Component Showcase</title>
     <link rel="stylesheet" href="../dist/minimacss.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,1,-25"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
     <style>
-      /* Theme Switcher Styles */
-      .theme-switcher {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        z-index: 1000;
+      /* Example-page chrome only — none of this is part of the framework. */
+      :root {
+        --shell-gap: 2rem;
+        --sidebar-w: 16rem;
+      }
+
+      .docs-skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0.5rem;
+        z-index: 1100;
+        padding: 0.5rem 0.75rem;
+        background: var(--accent-color);
+        color: #fff;
+        border-radius: 0.5rem;
+      }
+      .docs-skip-link:focus {
+        left: 0.5rem;
+      }
+
+      .docs-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: color-mix(in srgb, var(--surface-primary-color) 92%, transparent);
+        backdrop-filter: saturate(180%) blur(10px);
+        border-bottom: 1px solid var(--border-primary-color);
+      }
+      .docs-header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 0.75rem;
+      }
+      .docs-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        font-weight: 700;
+        font-size: 1.125rem;
+        color: var(--text-primary-color);
+        text-decoration: none;
+      }
+      .docs-brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: var(--accent-color);
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.875rem;
+        letter-spacing: -0.04em;
+      }
+      .docs-version {
+        font-size: 0.75rem;
+        padding: 0.1rem 0.4rem;
+        border-radius: 999px;
+        background: var(--surface-secondary-color);
+        color: var(--text-secondary-color);
+        font-weight: 500;
+      }
+
+      .docs-theme-toggle {
+        display: inline-flex;
+        align-items: center;
+        background: var(--surface-secondary-color);
+        border: 1px solid var(--border-primary-color);
+        border-radius: 999px;
+        padding: 3px;
+        gap: 2px;
+        /* native fieldset styling reset */
+        margin: 0;
+        min-inline-size: auto;
+      }
+      .docs-theme-toggle input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .docs-theme-toggle label {
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 999px;
+        cursor: pointer;
+        color: var(--text-secondary-color);
+        transition: background 0.15s, color 0.15s;
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+      }
+      .docs-theme-toggle label:hover {
+        color: var(--text-primary-color);
+      }
+      .docs-theme-toggle input:checked + label {
+        background: var(--surface-primary-color);
+        color: var(--accent-color);
+        box-shadow: var(--shadow-sm);
+      }
+      .docs-theme-toggle input:focus-visible + label {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+      .docs-theme-toggle svg {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        flex: 0 0 auto;
+      }
+
+      .docs-shell {
+        display: grid;
+        grid-template-columns: var(--sidebar-w) 1fr;
+        gap: var(--shell-gap);
+        padding-block: 2rem;
+      }
+      @media (max-width: 900px) {
+        .docs-shell {
+          grid-template-columns: 1fr;
+        }
+        .docs-sidebar {
+          position: static !important;
+        }
+      }
+
+      .docs-sidebar {
+        position: sticky;
+        top: 5rem;
+        align-self: start;
+        max-height: calc(100vh - 6rem);
+        overflow-y: auto;
+      }
+      .docs-sidebar nav h4 {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--text-tertiary-color);
+        margin: 1rem 0 0.5rem;
+      }
+      .docs-sidebar nav h4:first-child {
+        margin-top: 0;
+      }
+      .docs-sidebar nav ol {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .docs-sidebar nav li {
+        margin: 0;
+      }
+      .docs-sidebar nav a {
+        display: block;
+        padding: 0.3rem 0.6rem;
+        border-radius: 0.4rem;
+        color: var(--text-secondary-color);
+        text-decoration: none;
+        font-size: 0.875rem;
+        line-height: 1.4;
+      }
+      .docs-sidebar nav a:hover {
+        background: var(--surface-secondary-color);
+        color: var(--text-primary-color);
+        text-decoration: none;
+      }
+      .docs-sidebar nav a[aria-current="true"] {
+        background: color-mix(in oklch, var(--accent-color) 12%, transparent);
+        color: var(--accent-color);
+        font-weight: 500;
+      }
+
+      .docs-hero {
+        padding: 3rem 0 2rem;
+      }
+      .docs-hero h1 {
+        font-size: clamp(2rem, 4vw + 1rem, 3.5rem);
+        margin-bottom: 0.5rem;
+      }
+      .docs-hero .lead {
+        font-size: 1.25rem;
+        color: var(--text-secondary-color);
+        max-width: 36rem;
+      }
+
+      .docs-section {
+        scroll-margin-top: 5rem;
+        padding-block: 1.5rem;
+        border-top: 1px solid var(--border-primary-color);
+      }
+      .docs-section:first-of-type {
+        border-top: 0;
+      }
+      .docs-section > h2 {
+        font-size: 1.75rem;
+        margin-bottom: 0.25rem;
+      }
+      .docs-section > .docs-section-tagline {
+        color: var(--text-secondary-color);
+        margin-bottom: 1.5rem;
+      }
+      .docs-section h3 {
+        font-size: 1.125rem;
+        margin: 2rem 0 0.5rem;
+        color: var(--text-secondary-color);
+        font-weight: 600;
+      }
+
+      .demo {
+        background: var(--surface-secondary-color);
+        border: 1px solid var(--border-primary-color);
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .demo.demo-block {
+        display: block;
+      }
+      /* `.demo-stack` is intentionally written as `.demo.demo-stack` so it
+         beats `.demo.demo-block` on equal specificity via source order — we
+         want a real flex column with `gap`, not a block. */
+      .demo.demo-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch;
+      }
+      .demo > * {
+        min-width: 0;
+      }
+      .demo + .demo-code,
+      .demo + pre {
+        margin-top: 0.5rem;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+      .demo-code {
+        background: var(--surface-secondary-color);
+        border: 1px solid var(--border-primary-color);
+        border-radius: 0.75rem;
+        padding: 0.875rem 1rem;
+        font-family: var(--font-family-mono);
+        font-size: 0.8125rem;
+        overflow-x: auto;
+        white-space: pre;
+        color: var(--text-secondary-color);
+      }
+
+      /* Container-query demo cells */
+      .cq-demo {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1rem;
+      }
+      @media (max-width: 600px) {
+        .cq-demo {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Grid demo blocks */
+      .grid-cell {
+        background: var(--accent-color);
+        color: #fff;
+        padding: 0.6rem 0.75rem;
+        border-radius: 0.375rem;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .grid-cell-alt {
+        background: var(--surface-tertiary-color);
+        color: var(--text-primary-color);
+      }
+
+      footer.docs-footer {
+        margin-top: 4rem;
+        padding-block: 2rem;
+        border-top: 1px solid var(--border-primary-color);
+        color: var(--text-secondary-color);
+        font-size: 0.875rem;
+      }
+
+      /* Brand-color picker — looks like a coloured pill, drives --accent-color */
+      .brand-color-picker {
+        position: relative;
+        display: inline-grid;
+        place-items: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 999px;
+        background: var(--accent-color);
+        border: 1px solid var(--border-primary-color);
+        cursor: pointer;
+        box-shadow: inset 0 0 0 2px var(--surface-primary-color);
+        transition: transform 0.15s var(--ease);
+      }
+      .brand-color-picker:hover { transform: scale(1.05); }
+      .brand-color-picker input[type="color"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+      .brand-color-picker > span[aria-hidden] {
+        width: 0;
+        height: 0;
+      }
+
+      /* Why-MinimaCSS feature grid */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .why-card {
+        padding: 1.25rem;
+        border: 1px solid var(--border-primary-color);
+        border-radius: 0.75rem;
+        background: var(--surface-primary-color);
+      }
+      .why-card-num {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin-bottom: 0.5rem;
+      }
+      .why-card h3 {
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+        color: var(--text-primary-color);
+      }
+      .why-card p {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--text-secondary-color);
+      }
+
+      /* "JS-free" pill next to component section headings */
+      .pill-jsfree {
+        display: inline-block;
+        margin-left: 0.5rem;
+        padding: 0.1rem 0.5rem;
+        font-size: 0.625rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--button-success-color);
+        background: color-mix(in oklch, var(--button-success-color) 14%, transparent);
+        border-radius: 999px;
+        vertical-align: middle;
       }
     </style>
   </head>
 
   <body>
-    <div class="theme-switcher">
-      <div class="segmented-control small ml-6">
-        <input type="radio" id="light_mode" name="theme_mode" />
-        <label for="light_mode" title="Light Mode">
-          <span class="material-symbols-rounded text-lg"> light_mode </span>
-        </label>
-        <input type="radio" id="dark_mode" name="theme_mode" />
-        <label for="dark_mode" title="Dark Mode">
-          <span class="material-symbols-rounded text-lg"> dark_mode </span>
-        </label>
-        <input type="radio" id="system_preference" name="theme_mode" />
-        <label for="system_preference" title="System Preference">
-          <span class="material-symbols-rounded text-lg"> settings </span>
-        </label>
+    <a class="docs-skip-link" href="#main">Skip to content</a>
+
+    <!-- ============================================================
+         HEADER + THEME SWITCHER
+         ============================================================ -->
+    <header class="docs-header">
+      <div class="container docs-header-inner">
+        <a class="docs-brand" href="#top">
+          <span class="docs-brand-mark">M</span>
+          <span>MinimaCSS</span>
+          <span class="docs-version">v0.3.0</span>
+        </a>
+
+        <div class="d-flex align-items-center gap-2">
+          <label
+            class="brand-color-picker"
+            title="Change brand colour — watch every accent re-tint via color-mix()"
+          >
+            <input type="color" id="brand-color" value="#214ddf" />
+            <span aria-hidden="true"></span>
+            <span class="sr-only">Brand colour</span>
+          </label>
+
+          <a
+            class="btn btn-light btn-sm"
+            href="../docs/index.html"
+            title="Open the full documentation"
+            style="text-decoration: none; gap: 0.4rem;"
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 2.5h7L13 6v7.5a1 1 0 0 1-1 1H2.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5z"/><path d="M9.5 2.5V6h3"/><path d="M4.5 9h6M4.5 11.5h4"/></svg>
+            <span>Docs</span>
+          </a>
+
+          <a
+            class="btn btn-light btn-sm"
+            href="https://github.com/hardikforall/MinimaCSS"
+            title="View source on GitHub"
+            aria-label="GitHub repository"
+            style="text-decoration: none;"
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          </a>
+
+          <div class="docs-theme-toggle" role="radiogroup" aria-label="Theme">
+          <input type="radio" id="theme-light" name="theme" value="light" />
+          <label for="theme-light" title="Light">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.5M8 13.5V15M2.5 2.5l1 1M12.5 12.5l1 1M1 8h1.5M13.5 8H15M2.5 13.5l1-1M12.5 3.5l1-1"/></svg>
+          </label>
+          <input type="radio" id="theme-dark" name="theme" value="dark" />
+          <label for="theme-dark" title="Dark">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9.3A6 6 0 1 1 6.7 2a4.7 4.7 0 0 0 7.3 7.3z"/></svg>
+          </label>
+          <input type="radio" id="theme-system" name="theme" value="system" checked />
+          <label for="theme-system" title="System">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.75" y="2.5" width="12.5" height="9" rx="1.25"/><path d="M5.5 14h5M8 11.5V14"/></svg>
+          </label>
+        </div>
+        </div>
       </div>
-    </div>
-    <header class="container my-4">
-      <h1 class="mt-0 mb-2">MinimaCSS Framework Components</h1>
-      <p>This is a showcase of all the components and their variations</p>
-      <hr />
     </header>
 
-    <section class="container mt-5">
-      <!-- Navigation Bar -->
-      <nav class="nav nav-primary rounded-lg">
-        <div class="nav-container">
-          <!-- Logo -->
-          <div class="nav-logo">
-            <img
-              src="https://camo.githubusercontent.com/c606dbcb46fd8e055677968286b429f454245afc8d5c5b73eb8efd3be429acc8/68747470733a2f2f692e6962622e636f2f7a687a673976332f4d2e706e67"
-              alt="Logo"
-              class="nav-logo-img"
-            />
-            <span class="nav-logo-text">MinimaCSS</span>
-          </div>
-          <!-- Mobile Menu Toggle -->
-          <div class="nav-toggle">
-            <span class="nav-toggle-icon">☰</span>
-          </div>
-          <!-- Navigation Links -->
-          <ul class="nav-links">
-            <li class="nav-links-item">
-              <a href="#" class="nav-links-item-link active">
-                <span class="material-symbols-rounded">home</span> Home</a
-              >
-            </li>
-            <li class="nav-links-item">
-              <a href="#" class="nav-links-item-link"
-                ><span class="material-symbols-rounded"> feed </span>About</a
-              >
-            </li>
-            <!-- Dropdown -->
-            <li class="nav-links-item">
-              <details class="dropdown">
-                <summary class="dropdown-toggle nav-links-item-link">
-                  <span class="material-symbols-rounded"> feed </span> Dropdown
-                  Menu
-                </summary>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </details>
-            </li>
-            <li class="nav-links-item">
-              <a href="#" class="nav-links-item-link"
-                ><span class="material-symbols-rounded"> mail </span>Contact</a
-              >
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <a id="top"></a>
 
-      <div class="row">
-        <div class="col-md-3 col-sm-12 col-12">
-          <nav class="nav-vertical nav-secondary mt-5 rounded-lg">
-            <div class="nav-container">
-              <!-- Logo -->
-              <div class="nav-logo">
-                <img
-                  src="https://camo.githubusercontent.com/c606dbcb46fd8e055677968286b429f454245afc8d5c5b73eb8efd3be429acc8/68747470733a2f2f692e6962622e636f2f7a687a673976332f4d2e706e67"
-                  alt="Logo"
-                  class="nav-logo-img"
-                />
-                <span class="nav-logo-text">MinimaCSS</span>
-              </div>
-              <!-- Navigation Links -->
-              <ul class="nav-links">
-                <li class="nav-links-item">
-                  <a href="#" class="nav-links-item-link active">Home</a>
-                </li>
-                <li class="nav-links-item">
-                  <a href="#" class="nav-links-item-link">About</a>
-                </li>
-                <!-- Dropdown -->
-                <li class="nav-links-item">
-                  <details class="dropdown">
-                    <summary class="dropdown-toggle nav-links-item-link">
-                      Dropdown Menu
-                    </summary>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </details>
-                </li>
-                <li class="nav-links-item">
-                  <a href="#" class="nav-links-item-link">Contact</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
+    <div class="container docs-shell">
+      <!-- ==========================================================
+           SIDEBAR — table of contents
+           ========================================================== -->
+      <aside class="docs-sidebar" aria-label="Page navigation">
+        <nav>
+          <h4>Get Started</h4>
+          <ol>
+            <li><a href="#hero">Overview</a></li>
+            <li><a href="#why">Why MinimaCSS?</a></li>
+            <li><a href="#typography">Typography</a></li>
+            <li><a href="#layout">Layout & Grid</a></li>
+            <li><a href="#primitives">Layout primitives</a></li>
+          </ol>
 
-      <h6 class="mt-5">Breadcrumbs</h6>
-      <!-- Breadcrumbs -->
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumbs">
-          <li class="breadcrumbs-item"><a href="#">Home</a></li>
-          <li class="breadcrumbs-item"><a href="#">Library</a></li>
-          <li class="breadcrumbs-item active" aria-current="page">Data</li>
-        </ol>
-      </nav>
-    </section>
-    <!-- Typography -->
-    <section class="container mt-5">
-      <h2 class="mb-6">Typography</h2>
-      <h1>Heading 1</h1>
-      <h2>Heading 2</h2>
-      <h3>Heading 3</h3>
-      <h4>Heading 4</h4>
-      <h5>Heading 5</h5>
-      <h6>Heading 6</h6>
-      <p class="mt-3">
-        This is a paragraph with some <strong>bold text</strong>,
-        <em>italic text</em>, and a <a href="#">link</a>.
-      </p>
-      <blockquote class="mt-3">
-        This is a blockquote. It highlights your quotes from the main content.
-      </blockquote>
-      <code>Sample Code Is here</code>
-      <pre>Preformatted text</pre>
-    </section>
+          <h4>Components</h4>
+          <ol>
+            <li><a href="#buttons">Buttons</a></li>
+            <li><a href="#forms">Forms</a></li>
+            <li><a href="#cards">Cards</a></li>
+            <li><a href="#alerts">Alerts</a></li>
+            <li><a href="#badges">Badges & Avatars</a></li>
+            <li><a href="#feedback">Loader, Progress, Pagination</a></li>
+            <li><a href="#tabs">Tabs & Accordion</a></li>
+            <li><a href="#overlay">Modal, Slideover, Toast</a></li>
+            <li><a href="#popovers">Popover & Menu</a></li>
+            <li><a href="#table">Table</a></li>
+            <li><a href="#tooltips">Tooltip & Dropdown</a></li>
+            <li><a href="#field">Form .field</a></li>
+            <li><a href="#affix">Input affixes & kbd</a></li>
+            <li><a href="#skeleton">Skeleton & Empty state</a></li>
+            <li><a href="#scroll">Scroll-snap</a></li>
+          </ol>
 
-    <!-- Buttons -->
-    <section class="container mt-5">
-      <h2>Buttons</h2>
-      <div>
-        <button class="btn btn-primary m-1">Primary Button</button>
-        <button class="btn btn-error m-1">Error Button</button>
-        <button class="btn btn-success m-1">Success Button</button>
-        <button class="btn btn-warning m-1">Warning Button</button>
-        <button class="btn btn-info m-1">Info Button</button>
-        <button class="btn btn-light m-1">Light Button</button>
-        <button class="btn btn-dark m-1">Dark Button</button>
-        <button class="btn btn-link m-1">Link Button</button>
-      </div>
-      <div>
-        <button class="btn btn-outline-primary m-1">Primary Button</button>
-        <button class="btn btn-outline-error m-1">Error Button</button>
-        <button class="btn btn-outline-success m-1">Success Button</button>
-        <button class="btn btn-outline-warning m-1">Warning Button</button>
-        <button class="btn btn-outline-info m-1">Info Button</button>
-        <button class="btn btn-outline-light m-1">Light Button</button>
-        <button class="btn btn-outline-dark m-1">Dark Button</button>
-      </div>
-      <div>
-        <button class="btn btn-primary btn-sm m-1">Small Button</button>
-        <button class="btn btn-primary btn-md m-1">Medium Button</button>
-        <button class="btn btn-primary m-1">Base Button</button>
-        <button class="btn btn-primary btn-lg m-1">Large Button</button>
-      </div>
-      <div>
-        <button class="btn btn-primary btn-block m-1">Block Button</button>
-      </div>
-      <div>
-        <div class="btn-group mt-2">
-          <button class="btn btn-primary">Left</button>
-          <button class="btn btn-primary">Middle</button>
-          <button class="btn btn-primary">Right</button>
-        </div>
-        <div class="btn-group mt-2">
-          <button class="btn btn-outline-primary">Left</button>
-          <button class="btn btn-outline-primary">Middle</button>
-          <button class="btn btn-outline-primary">Right</button>
-        </div>
-      </div>
-
-      <div class="mt-3">
-        <button class="btn btn-primary m-1">
-          <span class="material-symbols-rounded"> add_circle </span>Primary
-          Button
-        </button>
-        <button class="btn btn-primary btn-round m-1">
-          <span class="material-symbols-rounded"> add </span>
-        </button>
-        <button class="btn btn-outline-primary btn-round m-1">
-          <span class="material-symbols-rounded"> shopping_cart </span>
-        </button>
-      </div>
-      <div>
-        <details class="dropdown">
-          <summary class="dropdown-toggle btn btn-outline-primary">
-            Dropdown Button
-          </summary>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- Form Elements -->
-    <section class="container mt-5">
-      <h2>Form Elements</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="input-group">
-            <label for="inputExample">Input Label</label>
-            <input
-              type="text"
-              class="input"
-              id="inputExample"
-              placeholder="Input text here"
-            />
-            <div class="helper-text">
-              This is Helper text: Your username must be 8-20 characters long.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-group">
-            <label for="inputExample">Input Small Label</label>
-            <input
-              type="text"
-              class="input input-small"
-              id="inputExample"
-              placeholder="Input text here"
-            />
-            <div class="helper-text">
-              This is Helper text: Your username must be 8-20 characters long.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-4">
-          <div class="input-group">
-            <label for="inputExample">Input Addon</label>
-            <div class="input-addon">
-              <span
-                class="pl-2 leading-addon material-symbols-rounded text-secondary"
-              >
-                search
-              </span>
-              <input
-                type="text"
-                class="input pl-6 py-2"
-                id="inputExample"
-                placeholder="Input text here"
-              />
-              <button class="trailing-addon btn btn-primary btn-sm">
-                Search
-              </button>
-            </div>
-            <div class="helper-text">
-              This is Helper text: Your username must be 8-20 characters long.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-group">
-            <label for="inputExample">Input Addon</label>
-            <div class="input-addon">
-              <span
-                class="pl-2 text-secondary leading-addon material-symbols-rounded"
-              >
-                search
-              </span>
-              <input
-                type="text"
-                class="input pl-6 py-2"
-                id="inputExample"
-                placeholder="Input text here"
-              />
-              <span class="trailing-addon pr-3 text-secondary">$</span>
-            </div>
-            <div class="helper-text">
-              This is Helper text: Your username must be 8-20 characters long.
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="input-group">
-            <label for="inputExample">Input Addon</label>
-            <div class="input-addon">
-              <span
-                class="pl-2 text-secondary leading-addon material-symbols-rounded"
-              >
-                search
-              </span>
-              <input
-                type="text"
-                class="input pl-6 py-2"
-                id="inputExample"
-                placeholder="Input text here"
-              />
-              <div class="trailing-addon pr-2">
-                <span class="circular-loader-sm dark"></span>
-              </div>
-            </div>
-            <div class="helper-text">
-              This is Helper text: Your username must be 8-20 characters long.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="input-group">
-        <label for="inputExample">Input Label</label>
-        <input
-          type="text"
-          class="input is-valid"
-          id="inputExample"
-          placeholder="Input text here"
-          value="Valid Entry"
-        />
-        <div class="helper-text-valid">
-          This is Helper text: Your username must be 8-20 characters long.
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="inputExample">Input Label</label>
-        <input
-          type="text"
-          class="input is-invalid"
-          id="inputExample"
-          placeholder="Input text here"
-          value="Invalid Entry"
-        />
-        <div class="helper-text-invalid">
-          This is Helper text: Your username must be 8-20 characters long.
-        </div>
-      </div>
-
-      <label for="selectExample" class="mt-3">Select</label>
-      <select class="select" id="selectExample">
-        <option>Option 1</option>
-        <option>Option 2</option>
-      </select>
-
-      <div class="mt-3">
-        <details class="dropdown w-full">
-          <summary class="dropdown-toggle input">Select using Dropdown</summary>
-          <div class="dropdown-menu w-full">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </details>
-      </div>
-
-      <label for="textareaExample" class="mt-3">Textarea disabled</label>
-      <textarea
-        class="textarea"
-        id="textareaExample"
-        rows="3"
-        placeholder="Enter text here"
-        disabled
-      ></textarea>
-
-      <div class="file-input mt-3">
-        <input type="file" id="fileExample" />
-      </div>
-
-      <div class="mt-3">
-        <label class="switch">
-          <input type="checkbox" checked="true" />
-          <span class="label-text">Switch Label</span>
-        </label>
-      </div>
-
-      <div class="d-flex mt-5">
-        <label class="checkbox">
-          <input type="checkbox" name="example" /> checkbox 1
-        </label>
-        <label class="checkbox ml-2">
-          <input type="checkbox" name="example" id="myCheckbox" /> checkbox 2
-        </label>
-        <label class="checkbox ml-2">
-          <input type="checkbox" name="example" disabled checked="true" />
-          checkbox 2
-        </label>
-      </div>
-
-      <div class="d-flex mt-5">
-        <label class="radio">
-          <input type="radio" name="example" /> Radio 1
-        </label>
-        <label class="radio ml-2">
-          <input type="radio" name="example" /> Radio 2
-        </label>
-        <label class="radio ml-2">
-          <input type="radio" name="example" disabled /> Radio 2
-        </label>
-      </div>
-
-      <div class="row">
-        <div class="col-12 col-md-4 mt-3">
-          <div class="">
-            <label for="rangeSlider">Range Slider:</label>
-            <input
-              type="range"
-              class="range"
-              id="rangeSlider"
-              min="0"
-              max="100"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Loaders -->
-    <section class="container mt-6">
-      <h2>Loaders</h2>
-      <div class="row">
-        <div class="mt-3">
-          <button class="btn btn-primary">
-            <span class="circular-loader-sm light"></span> Loading
-          </button>
-          <span class="circular-loader-sm dark mx-3"></span>
-          <span class="circular-loader-md dark mx-3"></span>
-          <span class="circular-loader-lg dark mx-3"></span>
-          <span class="circular-loader-xl dark mx-3"></span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-4 mt-3">
-          <label>Progress</label>
-          <div class="progress">
-            <div class="progress-bar" style="width: 50%"></div>
-          </div>
-        </div>
-        <div class="col-12 col-md-4 mt-3">
-          <label>Progress Loader</label>
-          <div class="progress progress-loader dark">
-            <div class="progress-bar" style="width: 50%"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Avatar -->
-    <section class="container mt-5">
-      <h2>Avatar</h2>
-      <div class="avatar avatar-md">
-        <img src="https://i.pravatar.cc/300" alt="Cat" />
-      </div>
-      <div class="avatar avatar-md avatar-primary-outline">
-        <span class="material-symbols-rounded"> group </span>
-      </div>
-      <div class="avatar avatar-md avatar-primary"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-primary-outline"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-secondary"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-secondary-outline">
-        <span>AB</span>
-      </div>
-      <div class="avatar avatar-md avatar-success"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-success-outline"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-danger"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-danger-outline"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-warning"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-warning-outline"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-info"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-info-outline"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-light"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-light-outline"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-dark"><span>AB</span></div>
-      <div class="avatar avatar-md avatar-dark-outline"><span>AB</span></div>
-      <br /><br />
-      <div class="avatar avatar-sm avatar-primary-outline"><span>SM</span></div>
-      <div class="avatar avatar-md avatar-primary-outline"><span>MD</span></div>
-      <div class="avatar avatar-lg avatar-primary-outline"><span>LG</span></div>
-      <div class="avatar avatar-xl avatar-primary-outline"><span>XL</span></div>
-      <br />
-      <h5>Avatar Stack</h5>
-      <div class="avatar-stack">
-        <div class="avatar avatar-md avatar-primary"><span>AB</span></div>
-        <div class="avatar avatar-md">
-          <img src="https://i.pravatar.cc/300" alt="Cat" />
-        </div>
-        <div class="avatar avatar-md avatar-info"><span>AB</span></div>
-        <div class="avatar avatar-md avatar-secondary"><span>+4</span></div>
-      </div>
-    </section>
-
-    <!-- Steps -->
-    <section class="container mt-5">
-      <h2>Steps</h2>
-      <nav aria-label="Progress">
-        <ol class="progress-stepper">
-          <li class="progress-step completed">
-            <!-- Completed Step -->
-            <a href="#" class="group">
-              <span class="step-title">Step 1</span>
-              <span class="step-description">Basic Details</span>
-            </a>
-          </li>
-          <li class="progress-step current">
-            <!-- Current Step -->
-            <a href="#" aria-current="step">
-              <span class="step-title">Step 2</span>
-              <span class="step-description">Company Details</span>
-            </a>
-          </li>
-          <li class="progress-step upcoming">
-            <!-- Upcoming Step -->
-            <a href="#" class="group">
-              <span class="step-title">Step 3</span>
-              <span class="step-description">Location Details</span>
-            </a>
-          </li>
-          <li class="progress-step upcoming">
-            <!-- Upcoming Step -->
-            <a href="#" class="group">
-              <span class="step-title">Step 4</span>
-              <span class="step-description">Last Submission</span>
-            </a>
-          </li>
-        </ol>
-      </nav>
-    </section>
-
-    <!-- Tabs -->
-    <section class="container mt-5">
-      <h2>Tabs</h2>
-      <div class="tabs-container">
-        <nav class="tabs" aria-label="Tabs">
-          <a
-            href="#"
-            class="tab active"
-            onclick="changeTab(event, 'tab1')"
-            aria-current="page"
-            >Profile</a
-          >
-          <a href="#" class="tab" onclick="changeTab(event, 'tab2')">Account</a>
-          <a href="#" class="tab" onclick="changeTab(event, 'tab3')"
-            >History Log</a
-          >
+          <h4>Modern Features</h4>
+          <ol>
+            <li><a href="#cq">Container Queries</a></li>
+            <li><a href="#starting-style">@starting-style</a></li>
+            <li><a href="#user-invalid">:user-invalid forms</a></li>
+            <li><a href="#fluid">Fluid spacing</a></li>
+            <li><a href="#cascade">Cascade layers</a></li>
+          </ol>
         </nav>
-      </div>
-      <!-- Tab content -->
-      <div id="tab1" class="tab-content p-4">Content for Profile</div>
-      <div id="tab2" class="tab-content p-4" style="display: none">
-        Content for Account
-      </div>
-      <div id="tab3" class="tab-content p-4" style="display: none">
-        Content for History
-      </div>
-    </section>
+      </aside>
 
-    <!-- Segmented Control -->
-    <section class="container mt-5">
-      <h2>Segmented Control</h2>
-      <div class="segmented-control">
-        <input type="radio" id="option-one" name="segmented-control" checked />
-        <label for="option-one">One</label>
-        <input type="radio" id="option-two" name="segmented-control" />
-        <label for="option-two">Two</label>
-        <input type="radio" id="option-three" name="segmented-control" />
-        <label for="option-three">There</label>
-      </div>
-      <div class="segmented-control small ml-6">
-        <input
-          type="radio"
-          id="option-one-small"
-          name="segmented-control-small"
-          checked
-        />
-        <label for="option-one-small">One</label>
-        <input
-          type="radio"
-          id="option-two-small"
-          name="segmented-control-small"
-        />
-        <label for="option-two-small">Two</label>
-        <input
-          type="radio"
-          id="option-three-small"
-          name="segmented-control-small"
-        />
-        <label for="option-three-small">Three</label>
-      </div>
-    </section>
-    <!-- Badges -->
-    <section class="container mt-5">
-      <h2>Badges</h2>
-      <div>
-        <span class="badge badge-primary">Primary</span>
-        <span class="badge badge-secondary">Secondary</span>
-        <span class="badge badge-success">Success</span>
-        <span class="badge badge-danger">Danger</span>
-        <span class="badge badge-warning">Warning</span>
-        <span class="badge badge-info">Info</span>
-        <span class="badge badge-light">Light</span>
-        <span class="badge badge-dark">Dark</span>
-      </div>
-      <div class="mt-3">
-        <span class="badge badge-primary badge-pill">Primary</span>
-        <span class="badge badge-secondary badge-pill">Secondary</span>
-        <span class="badge badge-success badge-pill">Success</span>
-        <span class="badge badge-danger badge-pill">Danger</span>
-        <span class="badge badge-warning badge-pill">Warning</span>
-        <span class="badge badge-info badge-pill">Info</span>
-        <span class="badge badge-light badge-pill">Light</span>
-        <span class="badge badge-dark badge-pill">Dark</span>
-      </div>
-      <div class="mt-3">
-        <span class="badge badge-outline-primary">Primary</span>
-        <span class="badge badge-outline-secondary">Secondary</span>
-        <span class="badge badge-outline-success">Success</span>
-        <span class="badge badge-outline-danger">Danger</span>
-        <span class="badge badge-outline-warning">Warning</span>
-        <span class="badge badge-outline-info">Info</span>
-        <span class="badge badge-outline-light">Light</span>
-        <span class="badge badge-outline-dark">Dark</span>
-      </div>
-      <div class="mt-3">
-        <span class="badge badge-outline-primary badge-pill">Primary</span>
-        <span class="badge badge-outline-secondary badge-pill">Secondary</span>
-        <span class="badge badge-outline-success badge-pill">Success</span>
-        <span class="badge badge-outline-danger badge-pill">Danger</span>
-        <span class="badge badge-outline-warning badge-pill">Warning</span>
-        <span class="badge badge-outline-info badge-pill">Info</span>
-        <span class="badge badge-outline-light badge-pill">Light</span>
-        <span class="badge badge-outline-dark badge-pill">Dark</span>
-      </div>
-    </section>
-
-    <!-- Divider -->
-    <section class="container mt-5">
-      <h2>Divider</h2>
-      <!-- Horizontal Divider -->
-      <hr class="hr-divider" />
-      <!-- Ensure the parent container has height for the vertical divider to show -->
-      <div style="display: flex; align-items: center; height: 50px">
-        <div>Content on the left</div>
-        <span class="vr-divider"></span>
-        <div>Content on the right</div>
-      </div>
-      <!-- Dashed Divider -->
-      <hr class="dashed-divider" />
-      <!-- Text Divider -->
-      <div class="text-divider">Section Title</div>
-    </section>
-
-    <!-- Tooltip -->
-    <section class="container mt-5">
-      <h2>Tooltip</h2>
-      <!-- Tooltip on top -->
-      <div
-        class="tooltip mx-5"
-        data-tooltip="Tooltip on top"
-        data-placement="top"
-      >
-        Hover over me
-      </div>
-
-      <!-- Tooltip on left -->
-      <div
-        class="tooltip mx-5"
-        data-tooltip="Tooltip on the left"
-        data-placement="left"
-      >
-        Hover over me
-      </div>
-      <!-- Tooltip on right -->
-      <div
-        class="tooltip mx-5"
-        data-tooltip="Tooltip on the right"
-        data-placement="right"
-      >
-        Hover over me
-      </div>
-
-      <!-- Tooltip on bottom -->
-      <div
-        class="tooltip mx-5"
-        data-tooltip="Tooltip on bottom"
-        data-placement="bottom"
-      >
-        Hover over me
-      </div>
-    </section>
-
-    <!-- Slideovers -->
-    <section class="container mt-5">
-      <h2>Slideovers</h2>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#left')">
-        Open Left
-      </button>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#right')">
-        Open Right sm
-      </button>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#rightmd')">
-        Open Right md
-      </button>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#rightlg')">
-        Open Right lg
-      </button>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#rightxl')">
-        Open Right xl
-      </button>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#top')">
-        Open Top
-      </button>
-      <button class="btn btn-primary m-1" onclick="toggleSlideover('#bottom')">
-        Open Bottom
-      </button>
-      <!-- Right Aligned Slideover -->
-      <div class="slideover left size-sm" id="left">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#left')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#left')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#left')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div class="slideover right size-sm" id="right">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#right')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#right')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#right')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div class="slideover right size-md" id="rightmd">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#rightmd')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#rightmd')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#rightmd')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div class="slideover right size-lg" id="rightlg">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#rightlg')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#rightlg')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#rightlg')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div class="slideover right size-xl" id="rightxl">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#rightxl')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#rightxl')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#rightxl')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div class="slideover top size-sm" id="top">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#top')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#top')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#top')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div class="slideover bottom size-sm" id="bottom">
-        <div class="slideover-header">
-          <h5 class="mb-0 font-semibold">Slideover Header</h5>
-          <p class="mb-0">This is long Slideover sub title</p>
-          <button
-            class="close-icon"
-            onclick="toggleSlideover('#bottom')"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </div>
-        <div class="slideover-body">
-          Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-          Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi. Duis
-          ut viverra mauris, at laoreet enim.
-        </div>
-        <div class="slideover-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="toggleSlideover('#bottom')"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="toggleSlideover('#bottom')"
-          >
-            Save
-          </button>
-        </div>
-      </div>
-      <div
-        class="slideover-backdrop blur-backdrop"
-        onclick="toggleSlideover()"
-      ></div>
-    </section>
-
-    <!-- Modal -->
-    <section class="container mt-5">
-      <h2>Modal</h2>
-      <button
-        onclick="document.getElementById('myModalsm').showModal()"
-        class="btn btn-primary"
-      >
-        Open Small Modal
-      </button>
-      <button
-        onclick="document.getElementById('myModallg').showModal()"
-        class="btn btn-primary"
-      >
-        Open Large Modal
-      </button>
-      <button
-        onclick="document.getElementById('myModalxl').showModal()"
-        class="btn btn-primary"
-      >
-        Open Extra Large Modal
-      </button>
-
-      <dialog id="myModalsm" class="modal modal-sm">
-        <header class="modal-header">
-          <h5 class="mb-0 font-semibold">Modal Header</h5>
-          <p class="mb-0 text-secondary">This is long Modal sub title</p>
-          <button
-            class="close-icon"
-            onclick="document.getElementById('myModalsm').close();"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </header>
-        <div class="modal-body">
-          <p class="my-10">
-            Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-            Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi.
-            Duis ut viverra mauris, at laoreet enim.
+      <!-- ==========================================================
+           MAIN
+           ========================================================== -->
+      <main id="main">
+        <!-- HERO -->
+        <section id="hero" class="docs-hero">
+          <h1>A minimal CSS framework, fully modern.</h1>
+          <p class="lead">
+            Solves the pain points modern CSS finally lets you solve —
+            <code>light-dark()</code> theming, JS-free menus via Popover +
+            Anchor Positioning, <code>:user-invalid</code> forms, container
+            queries, and Cascade Layers. ~24&nbsp;KB gzipped.
           </p>
-        </div>
-        <footer class="modal-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="document.getElementById('myModalsm').close();"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="document.getElementById('myModalsm').close();"
-          >
-            Save
-          </button>
-        </footer>
-      </dialog>
-
-      <dialog id="myModallg" class="modal modal-lg">
-        <header class="modal-header">
-          <h5 class="mb-0 font-semibold">Modal Header</h5>
-          <p class="mb-0 text-secondary">This is long Modal sub title</p>
-          <button
-            class="close-icon"
-            onclick="document.getElementById('myModallg').close();"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </header>
-        <div class="modal-body">
-          <p class="my-10">
-            Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-            Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi.
-            Duis ut viverra mauris, at laoreet enim.
+          <div class="d-flex gap-2 mt-4">
+            <a href="../docs/index.html" class="btn btn-primary">Read the docs</a>
+            <a href="#buttons" class="btn btn-light">Browse components</a>
+            <a href="https://github.com/hardikforall/MinimaCSS" class="btn btn-light">GitHub</a>
+          </div>
+          <p class="text-secondary mt-3" style="font-size: 0.875rem;">
+            Tip: click the coloured dot in the top-right to change the brand
+            colour — every accent re-tints automatically via
+            <code>color-mix()</code>.
           </p>
-        </div>
-        <footer class="modal-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="document.getElementById('myModallg').close();"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="document.getElementById('myModallg').close();"
-          >
-            Save
-          </button>
-        </footer>
-      </dialog>
+        </section>
 
-      <dialog id="myModalxl" class="modal modal-xl">
-        <header class="modal-header">
-          <h5 class="mb-0 font-semibold">Modal Header</h5>
-          <p class="mb-0 text-secondary">This is long Modal sub title</p>
-          <button
-            class="close-icon"
-            onclick="document.getElementById('myModalxl').close();"
-            aria-label="Close"
-          >
-            &times;
-          </button>
-        </header>
-        <div class="modal-body">
-          <p class="my-10">
-            Aenean vestibulum nunc at libero congue, eu pretium nulla viverra.
-            Fusce sed ex at est egestas vehicula. Integer sit amet lectus mi.
-            Duis ut viverra mauris, at laoreet enim.
+        <!-- ====================================================
+             WHY MINIMACSS — pain-point showcase
+             ==================================================== -->
+        <section id="why" class="docs-section">
+          <h2>Why MinimaCSS?</h2>
+          <p class="docs-section-tagline">
+            What you actually get when you drop the framework in.
           </p>
-        </div>
-        <footer class="modal-footer">
-          <button
-            class="btn btn-outline-primary"
-            onclick="document.getElementById('myModalxl').close();"
-          >
-            Cancel
-          </button>
-          <button
-            class="btn btn-primary ml-3"
-            onclick="document.getElementById('myModalxl').close();"
-          >
-            Save
-          </button>
-        </footer>
-      </dialog>
-    </section>
 
-    <!-- Cards -->
-    <section class="container mt-5">
-      <h2>Cards</h2>
-      <div class="row">
-        <div class="col-md-3 mt-3">
-          <div class="card shadow-sm">
-            <img
-              src="https://placehold.co/600x400"
-              class="card-img-top"
-              alt="Card Image"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Card Title</h3>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+          <div class="why-grid">
+            <div class="why-card">
+              <span class="why-card-num">01</span>
+              <h3>Change your brand colour in one place</h3>
+              <p>
+                Set the accent colour once and every button, link, focus
+                ring, hover state, and shade follows. No config rebuild,
+                no Sass recompile, no hunting through variables. Try the
+                colour picker in the top-right.
               </p>
             </div>
-            <div class="card-footer">
-              <a href="#" class="card-link">Card Link</a>
-              <a href="#" class="card-link">Another Link</a>
+
+            <div class="why-card">
+              <span class="why-card-num">02</span>
+              <h3>Dark mode without the duplicate work</h3>
+              <p>
+                Light and dark modes are defined together, not in two
+                separate files. No <code>dark:</code> prefix on every
+                utility, no parallel theme to maintain — just flip the
+                attribute and everything adapts.
+              </p>
             </div>
-          </div>
-        </div>
-        <div class="col-md-3 mt-3">
-          <div class="card shadow-sm">
-            <img
-              src="https://placehold.co/600x400"
-              class="card-img-top"
-              alt="Card Image"
-            />
-            <div class="card-body">
-              <h3 class="card-title">Card Title</h3>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+
+            <div class="why-card">
+              <span class="why-card-num">03</span>
+              <h3>Forms that don't yell at you</h3>
+              <p>
+                Empty required fields don't turn red the moment the page
+                loads. Validation styling only appears after the user
+                actually interacts with the field. Helper text, required
+                asterisks, and error colours are handled for you.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">04</span>
+              <h3>Modals, menus &amp; dropdowns — no JavaScript</h3>
+              <p>
+                Built on the browser's own dialog, popover, and details
+                elements. You get accessible overlays, escape-to-close,
+                focus restoration, and click-outside dismissal without
+                writing or importing any JS.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">05</span>
+              <h3>No more <code>!important</code> battles</h3>
+              <p>
+                Utility classes are guaranteed to win over component
+                styles. Adjust a margin, override a colour, change a
+                border — it just works. No specificity wars, no
+                <code>!important</code> chains.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">06</span>
+              <h3>Components that adapt to their container</h3>
+              <p>
+                The same card looks right whether it's in a narrow
+                sidebar or a wide hero. Components respond to the
+                space they're given, not the size of the page.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">07</span>
+              <h3>Common layouts as a single class</h3>
+              <p>
+                Stack things vertically, cluster them in a wrap-friendly
+                row, put a sidebar next to main content — each layout is
+                one class. Less hand-written flex and grid, fewer
+                breakpoint guesses.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">08</span>
+              <h3>Smooth open and close animations</h3>
+              <p>
+                Modals, toasts, and slideovers fade in when opening and
+                fade out when closing — automatically, both directions.
+                No manual timing code, no animation-end juggling.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">09</span>
+              <h3>25+ components, ready to go</h3>
+              <p>
+                Buttons, modals, tables, navigation, cards, alerts, tabs,
+                badges, avatars, tooltips, toasts, pagination, skeletons,
+                empty states, popovers, forms — drop them in and they
+                look right.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">10</span>
+              <h3>Accessible by default</h3>
+              <p>
+                Focus rings that show only on keyboard navigation,
+                AA-grade contrast, motion that respects user preferences,
+                touch-friendly hit areas, a real print stylesheet — all
+                built in, no setup.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">11</span>
+              <h3>One file, ~24 KB gzipped</h3>
+              <p>
+                The whole framework drops in with a single
+                <code>&lt;link&gt;</code> tag. No external fonts to load,
+                no icon pack to bundle, no JavaScript runtime. Open the
+                page and it works.
+              </p>
+            </div>
+
+            <div class="why-card">
+              <span class="why-card-num">12</span>
+              <h3>Built on modern CSS</h3>
+              <p>
+                Uses what browsers can actually do today — modern layout,
+                modern theming, modern selectors. No polyfills, no legacy
+                workarounds, no fighting with things the platform handles
+                natively.
               </p>
             </div>
           </div>
-        </div>
-        <div class="col-md-3 mt-3">
-          <div class="card shadow-sm">
-            <div class="card-header">This is Card Title</div>
-            <div class="card-body">
-              <h3 class="card-title">Card Title</h3>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+        </section>
+
+        <!-- ====================================================
+             TYPOGRAPHY
+             ==================================================== -->
+        <section id="typography" class="docs-section">
+          <h2>Typography</h2>
+          <p class="docs-section-tagline">
+            Fluid headings via <code>clamp()</code>. Orphan-free wrapping via
+            <code>text-wrap: balance</code> on headings and
+            <code>pretty</code> on paragraphs.
+          </p>
+
+          <div class="demo demo-block">
+            <h1>Heading 1 — display</h1>
+            <h2>Heading 2 — section</h2>
+            <h3>Heading 3 — subsection</h3>
+            <h4>Heading 4</h4>
+            <h5>Heading 5</h5>
+            <h6>Heading 6</h6>
+            <p>
+              A paragraph of body text. Long enough to wrap onto two lines so
+              the <code>text-wrap: pretty</code> default avoids leaving a
+              single orphan word on the last line.
+            </p>
+            <blockquote>
+              <p>
+                Blockquotes get a left accent border and a subtle tinted
+                background that adapts to light or dark mode.
               </p>
+            </blockquote>
+            <p>
+              Inline <code>code</code> and a preformatted block:
+            </p>
+            <pre><code>const greet = name =&gt; `hello, ${name}`;</code></pre>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             LAYOUT & GRID
+             ==================================================== -->
+        <section id="layout" class="docs-section">
+          <h2>Layout &amp; Grid</h2>
+          <p class="docs-section-tagline">
+            A 12-column CSS Grid with <code>gap</code>. No negative margins,
+            no per-column padding. Plus auto-fit and auto-flow patterns.
+          </p>
+
+          <h3>12-column grid (<code>.row</code> + <code>.col-N</code>)</h3>
+          <div class="demo demo-block">
+            <div class="row mb-2">
+              <div class="col-6 grid-cell">col-6</div>
+              <div class="col-6 grid-cell grid-cell-alt">col-6</div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-4 grid-cell">col-4</div>
+              <div class="col-4 grid-cell grid-cell-alt">col-4</div>
+              <div class="col-4 grid-cell">col-4</div>
+            </div>
+            <div class="row">
+              <div class="col-3 grid-cell">col-3</div>
+              <div class="col-6 grid-cell grid-cell-alt">col-6</div>
+              <div class="col-3 grid-cell">col-3</div>
             </div>
           </div>
-        </div>
-        <div class="col-md-3 mt-3">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h3 class="card-title">Card Title</h3>
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+          <pre class="demo-code">&lt;div class="row"&gt;
+  &lt;div class="col-6"&gt;…&lt;/div&gt;
+  &lt;div class="col-6"&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre>
 
-    <!-- Grid System -->
-    <section class="mt-5 mb-5">
-      <div class="container">
-        <h2 class="mb-4">Grid System</h2>
-        <p class="lead mb-4">
-          A responsive flexbox grid system for creating layouts of all shapes
-          and sizes.
-        </p>
-
-        <!-- Basic Grid Layout -->
-        <div class="container mb-5">
-          <h3 class="border-bottom pb-2 mb-3">Basic Grid Layout</h3>
-          <div class="row mb-3">
-            <div class="col-4">
-              <div class="p-3 surface-primary text-center">Column 1 (4/12)</div>
-            </div>
-            <div class="col-4">
-              <div class="p-3 surface-secondary text-center">
-                Column 2 (4/12)
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="p-3 surface-tertiary text-center">
-                Column 3 (4/12)
-              </div>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col-6">
-              <div class="p-3 surface-primary text-center">Column 1 (6/12)</div>
-            </div>
-            <div class="col-6">
-              <div class="p-3 surface-secondary text-center">
-                Column 2 (6/12)
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Auto-Layout Columns -->
-        <div class="container mb-5">
-          <h3 class="border-bottom pb-2 mb-3">Auto-Layout Columns</h3>
-          <div class="row mb-3">
-            <div class="col">
-              <div class="p-3 surface-primary text-center">Auto Column</div>
-            </div>
-            <div class="col">
-              <div class="p-3 surface-secondary text-center">Auto Column</div>
-            </div>
-            <div class="col">
-              <div class="p-3 surface-tertiary text-center">Auto Column</div>
+          <h3>Auto-flow row (<code>.row-auto</code>)</h3>
+          <p class="docs-section-tagline">
+            Each child takes an equal share — no column numbers needed.
+          </p>
+          <div class="demo demo-block">
+            <div class="row-auto">
+              <div class="grid-cell">1</div>
+              <div class="grid-cell grid-cell-alt">2</div>
+              <div class="grid-cell">3</div>
+              <div class="grid-cell grid-cell-alt">4</div>
             </div>
           </div>
 
-          <div class="row mb-3">
-            <div class="col-auto">
-              <div class="p-3 surface-primary">Auto-width based on content</div>
-            </div>
-            <div class="col">
-              <div class="p-3 surface-secondary">Takes remaining space</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Responsive Grid -->
-        <div class="container mb-5">
-          <h3 class="border-bottom pb-2 mb-3">Responsive Grid</h3>
-          <div class="row mb-3">
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="p-3 surface-primary text-center">
-                <p class="mb-0">Small: Full width</p>
-                <p class="mb-0">Medium: Half width</p>
-                <p class="mb-0">Large: One-third</p>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-              <div class="p-3 surface-secondary text-center">
-                <p class="mb-0">Small: Full width</p>
-                <p class="mb-0">Medium: Half width</p>
-                <p class="mb-0">Large: One-third</p>
-              </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-4">
-              <div class="p-3 surface-tertiary text-center">
-                <p class="mb-0">Small: Full width</p>
-                <p class="mb-0">Medium: Full width</p>
-                <p class="mb-0">Large: One-third</p>
-              </div>
+          <h3>Responsive auto-fit (<code>.grid-auto-fit</code>)</h3>
+          <p class="docs-section-tagline">
+            Wraps to as many columns as fit, each at least
+            <code>--cell-min</code> wide. No media queries.
+          </p>
+          <div class="demo demo-block">
+            <div class="grid-auto-fit" style="--cell-min: 10rem;">
+              <div class="grid-cell">A</div>
+              <div class="grid-cell grid-cell-alt">B</div>
+              <div class="grid-cell">C</div>
+              <div class="grid-cell grid-cell-alt">D</div>
+              <div class="grid-cell">E</div>
+              <div class="grid-cell grid-cell-alt">F</div>
             </div>
           </div>
-        </div>
+          <pre class="demo-code">&lt;div class="grid-auto-fit" style="--cell-min: 10rem;"&gt;
+  &lt;div&gt;…&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </section>
 
-        <!-- Nested Grids -->
-        <div class="container mb-5">
-          <h3 class="border-bottom pb-2 mb-3">Nested Grids</h3>
-          <div class="row mb-3">
-            <div class="col-6">
-              <div class="p-3 surface-primary">
-                <p class="mb-2">Parent Column</p>
-                <div class="row">
-                  <div class="col-6">
-                    <div class="p-2 surface-secondary text-center">Nested</div>
-                  </div>
-                  <div class="col-6">
-                    <div class="p-2 surface-tertiary text-center">Nested</div>
+        <!-- ====================================================
+             BUTTONS
+             ==================================================== -->
+        <section id="buttons" class="docs-section">
+          <h2>Buttons</h2>
+          <p class="docs-section-tagline">
+            Eight color variants × solid + outline. Sizes
+            <code>.btn-sm</code> / <code>.btn-md</code> / <code>.btn-lg</code>.
+            Focus rings use <code>:focus-visible</code>.
+          </p>
+
+          <h3>Solid variants</h3>
+          <div class="demo">
+            <button class="btn btn-primary">Primary</button>
+            <button class="btn btn-success">Success</button>
+            <button class="btn btn-error">Error</button>
+            <button class="btn btn-warning">Warning</button>
+            <button class="btn btn-info">Info</button>
+            <button class="btn btn-light">Light</button>
+            <button class="btn btn-dark">Dark</button>
+            <button class="btn btn-link">Link</button>
+            <button class="btn btn-primary" disabled>Disabled</button>
+          </div>
+
+          <h3>Outline variants</h3>
+          <div class="demo">
+            <button class="btn btn-outline-primary">Primary</button>
+            <button class="btn btn-outline-success">Success</button>
+            <button class="btn btn-outline-error">Error</button>
+            <button class="btn btn-outline-warning">Warning</button>
+            <button class="btn btn-outline-info">Info</button>
+            <button class="btn btn-outline-dark">Dark</button>
+          </div>
+
+          <h3>Sizes</h3>
+          <div class="demo">
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary btn-md">Medium</button>
+            <button class="btn btn-primary">Default</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+          </div>
+
+          <h3>Block & round</h3>
+          <div class="demo demo-block">
+            <button class="btn btn-primary btn-block mb-3">
+              Full-width block button
+            </button>
+            <div class="d-flex gap-2">
+              <button class="btn btn-primary btn-round" aria-label="Add">+</button>
+              <button class="btn btn-success btn-round" aria-label="Confirm">✓</button>
+              <button class="btn btn-error btn-round" aria-label="Delete">✕</button>
+            </div>
+          </div>
+
+          <h3>Button group</h3>
+          <div class="demo">
+            <div class="btn-group" role="group" aria-label="Alignment">
+              <button class="btn btn-light">Left</button>
+              <button class="btn btn-light">Center</button>
+              <button class="btn btn-light">Right</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             FORMS
+             ==================================================== -->
+        <section id="forms" class="docs-section">
+          <h2>Forms</h2>
+          <p class="docs-section-tagline">
+            Native form controls, brand-tinted via <code>accent-color</code>.
+            Validation uses <code>:user-invalid</code> — it only kicks in
+            after the user interacts, so a pristine form never looks angry.
+          </p>
+
+          <h3>Inputs</h3>
+          <div class="demo demo-block demo-stack">
+            <div class="input-group">
+              <label for="i-name">Full name</label>
+              <input class="input" id="i-name" type="text" placeholder="Ada Lovelace" />
+              <small class="helper-text">Your legal name.</small>
+            </div>
+
+            <div class="input-group">
+              <label for="i-email">Email</label>
+              <input class="input" id="i-email" type="email" required placeholder="you@example.com" />
+              <small class="helper-text">Required. Try submitting an invalid address.</small>
+            </div>
+
+            <div class="input-group">
+              <label for="i-msg">Message <span class="badge badge-info">field-sizing: content</span></label>
+              <textarea class="textarea" id="i-msg" placeholder="Type a long message — the box grows as you type."></textarea>
+            </div>
+
+            <div class="input-group">
+              <label for="i-select">Topic</label>
+              <select class="select" id="i-select">
+                <option>Bug report</option>
+                <option>Feature request</option>
+                <option>Question</option>
+              </select>
+            </div>
+          </div>
+
+          <h3>Switches, checkboxes, radios</h3>
+          <div class="demo demo-stack">
+            <label class="switch">
+              <input type="checkbox" checked />
+              <span class="ml-2">Email notifications</span>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" />
+              <span class="ml-2">I agree to the terms</span>
+            </label>
+
+            <label class="checkbox">
+              <input type="checkbox" id="i-indeterminate" />
+              <span class="ml-2">Partially selected (indeterminate)</span>
+            </label>
+
+            <div class="d-flex gap-4">
+              <label class="radio">
+                <input type="radio" name="plan" checked />
+                <span class="ml-2">Free</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="plan" />
+                <span class="ml-2">Pro</span>
+              </label>
+              <label class="radio">
+                <input type="radio" name="plan" />
+                <span class="ml-2">Enterprise</span>
+              </label>
+            </div>
+          </div>
+
+          <h3>Range</h3>
+          <div class="demo">
+            <input class="range" type="range" min="0" max="100" value="40" aria-label="Volume" />
+          </div>
+        </section>
+
+        <!-- ====================================================
+             CARDS  (includes container-query demo)
+             ==================================================== -->
+        <section id="cards" class="docs-section">
+          <h2>Cards</h2>
+          <p class="docs-section-tagline">
+            Container queries in action — each card adapts its padding to
+            its own width, not the viewport.
+          </p>
+
+          <h3>Basic cards</h3>
+          <div class="demo demo-block">
+            <div class="row">
+              <div class="col-6 col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Simple card</h4>
+                    <p class="card-text">A card with just a body.</p>
+                    <button class="btn btn-primary btn-sm">Action</button>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-6">
-              <div class="p-3 surface-primary">
-                <p class="mb-2">Parent Column</p>
-                <div class="row">
-                  <div class="col-6">
-                    <div class="p-2 surface-secondary text-center">Nested</div>
+              <div class="col-6 col-md-4">
+                <div class="card">
+                  <div class="card-header">Header</div>
+                  <div class="card-body">
+                    <p class="card-text">Header + body + footer.</p>
                   </div>
-                  <div class="col-6">
-                    <div class="p-2 surface-tertiary text-center">Nested</div>
+                  <div class="card-footer">
+                    <a href="#" class="card-link">Read more</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Stats</h4>
+                    <p class="card-text text-2xl font-bold">1,284</p>
+                    <p class="card-text text-secondary">Active users this week.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Column Offsets -->
-        <div class="container mb-5">
-          <h3 class="border-bottom pb-2 mb-3">Column Offsets</h3>
-          <div class="row mb-3">
-            <div class="col-4">
-              <div class="p-3 surface-primary text-center">Column</div>
-            </div>
-            <div class="col-4 offset-4">
-              <div class="p-3 surface-secondary text-center">Offset Column</div>
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col-6 offset-3">
-              <div class="p-3 surface-tertiary text-center">
-                Centered Column
+          <h3 id="cq">Same card, two widths</h3>
+          <p class="docs-section-tagline">
+            Resize your window — both cards stay readable, but the wider one
+            picks up generous padding via <code>@container</code>.
+          </p>
+          <div class="demo demo-block">
+            <div class="cq-demo">
+              <div class="card">
+                <div class="card-header">Narrow</div>
+                <div class="card-body">
+                  <p class="card-text">Smaller padding because this card is &lt; 32rem wide.</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="card-header">Wider</div>
+                <div class="card-body">
+                  <p class="card-text">More padding kicks in at <code>@container (min-width: 32rem)</code>.</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Accordians -->
-    <section class="container mt-5">
-      <h2>Accordians</h2>
-      <details class="accordion-item">
-        <summary class="accordion-title">Accordion Title #1</summary>
-        <div class="accordion-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          urna diam, tincidunt nec porta sed, auctor id velit. Etiam venenatis
-          nisl ut orci consequat, vitae tempus quam commodo. Nulla non mauris
-          ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam
-          hendrerit, in facilisis elit sollicitudin. Mauris pulvinar pulvinar
-          mi, dictum tristique elit auctor quis. Maecenas ac ipsum ultrices,
-          porta turpis sit amet, congue turpis.
-        </div>
-      </details>
-
-      <details class="accordion-item">
-        <summary class="accordion-title">Accordion Title #2</summary>
-        <div class="accordion-content">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
-          urna diam, tincidunt nec porta sed, auctor id velit. Etiam venenatis
-          nisl ut orci consequat, vitae tempus quam commodo. Nulla non mauris
-          ipsum. Aliquam eu posuere orci. Nulla convallis lectus rutrum quam
-          hendrerit, in facilisis elit sollicitudin. Mauris pulvinar pulvinar
-          mi, dictum tristique elit auctor quis. Maecenas ac ipsum ultrices,
-          porta turpis sit amet, congue turpis.
-        </div>
-      </details>
-    </section>
-
-    <!-- Alert -->
-    <section class="container mt-5">
-      <h2>Alerts</h2>
-
-      <div class="alert alert-warning">
-        <span class="alert-icon material-symbols-rounded"> error </span
-        ><!-- Replace with your icon -->
-        <div class="alert-body">
-          <div class="alert-body-title">Attention needed</div>
-          <div class="alert-body-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-            pariatur, ipsum similique veniam quo totam eius aperiam dolorum.
+        <!-- ====================================================
+             ALERTS
+             ==================================================== -->
+        <section id="alerts" class="docs-section">
+          <h2>Alerts</h2>
+          <p class="docs-section-tagline">Inline contextual messaging.</p>
+          <div class="demo demo-block demo-stack">
+            <div class="alert alert-success" role="status"><strong>Success!</strong> Your changes are saved.</div>
+            <div class="alert alert-warning" role="alert"><strong>Heads up.</strong> Disk space is almost full.</div>
+            <div class="alert alert-danger" role="alert"><strong>Error!</strong> We couldn't process your request.</div>
+            <div class="alert alert-info" role="status"><strong>FYI</strong> — version 0.3.0 is now available.</div>
           </div>
-        </div>
-        <button class="alert-close">&times;</button>
-      </div>
-      <div class="alert alert-outline-danger">
-        <span class="alert-icon material-symbols-rounded"> error </span
-        ><!-- Replace with your icon -->
-        <div class="alert-body">
-          <div class="alert-body-title">
-            There were 2 errors with your form submission
+
+          <div class="demo demo-block demo-stack mt-3">
+            <div class="alert alert-outline-success" role="status">Outline success alert.</div>
+            <div class="alert alert-outline-warning" role="alert">Outline warning alert.</div>
+            <div class="alert alert-outline-danger" role="alert">Outline danger alert.</div>
+            <div class="alert alert-outline-info" role="status">Outline info alert.</div>
           </div>
-          <div class="alert-body-description">
-            <ul role="list">
-              <li>Your password must be at least 12 characters</li>
-              <li>Your password must include All Letters in capital</li>
+        </section>
+
+        <!-- ====================================================
+             BADGES & AVATARS & DIVIDERS
+             ==================================================== -->
+        <section id="badges" class="docs-section">
+          <h2>Badges, Avatars, Dividers</h2>
+
+          <h3>Badges</h3>
+          <div class="demo">
+            <span class="badge badge-primary">Primary</span>
+            <span class="badge badge-success">Success</span>
+            <span class="badge badge-error">Error</span>
+            <span class="badge badge-warning">Warning</span>
+            <span class="badge badge-info">Info</span>
+            <span class="badge badge-light">Light</span>
+            <span class="badge badge-dark">Dark</span>
+          </div>
+
+          <h3>Avatars</h3>
+          <div class="demo">
+            <div class="avatar avatar-sm" style="background-color: var(--accent-color); color:#fff; display:grid; place-items:center; font-weight:600;">AB</div>
+            <div class="avatar avatar-md" style="background-color: var(--accent-color); color:#fff; display:grid; place-items:center; font-weight:600;">CD</div>
+            <div class="avatar avatar-lg" style="background-color: var(--accent-color); color:#fff; display:grid; place-items:center; font-weight:600;">EF</div>
+            <div class="avatar avatar-xl" style="background-color: var(--accent-color); color:#fff; display:grid; place-items:center; font-weight:700;">GH</div>
+          </div>
+
+          <h3>Divider</h3>
+          <div class="demo demo-block">
+            <p>Above the divider.</p>
+            <div class="divider"></div>
+            <p class="m-0">Below the divider.</p>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             FEEDBACK: LOADER, PROGRESS, PAGINATION
+             ==================================================== -->
+        <section id="feedback" class="docs-section">
+          <h2>Loader, Progress, Pagination</h2>
+
+          <h3>Loaders</h3>
+          <div class="demo">
+            <div class="circular-loader-sm dark"></div>
+            <div class="circular-loader-md dark"></div>
+            <div class="circular-loader-lg dark"></div>
+            <div class="circular-loader-xl dark"></div>
+          </div>
+
+          <h3>Progress bars</h3>
+          <div class="demo demo-block demo-stack">
+            <div class="progress" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" style="width: 25%">25%</div>
+            </div>
+            <div class="progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-success" style="width: 60%">60%</div>
+            </div>
+            <div class="progress progress-striped progress-animated" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar progress-bar-info" style="width: 80%"></div>
+            </div>
+            <div class="progress progress-indeterminate" role="progressbar" aria-label="Loading">
+              <div class="progress-bar"></div>
+            </div>
+          </div>
+
+          <h3>Pagination</h3>
+          <div class="demo">
+            <nav aria-label="Pagination">
+              <ul class="pagination">
+                <li><a href="#" class="page-link" aria-label="Previous">‹</a></li>
+                <li><a href="#" class="page-link" aria-current="page">1</a></li>
+                <li><a href="#" class="page-link">2</a></li>
+                <li><a href="#" class="page-link">3</a></li>
+                <li><a href="#" class="page-link">4</a></li>
+                <li><a href="#" class="page-link" aria-label="Next">›</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <h3>Joined pagination</h3>
+          <div class="demo">
+            <nav aria-label="Pagination, joined">
+              <ul class="pagination pagination-joined">
+                <li><a href="#" class="page-link">‹</a></li>
+                <li><a href="#" class="page-link" aria-current="page">1</a></li>
+                <li><a href="#" class="page-link">2</a></li>
+                <li><a href="#" class="page-link">3</a></li>
+                <li><a href="#" class="page-link">›</a></li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             TABS & ACCORDION
+             ==================================================== -->
+        <section id="tabs" class="docs-section">
+          <h2>Tabs &amp; Accordion</h2>
+
+          <h3>Tabs</h3>
+          <div class="demo demo-block">
+            <div class="tabs-container">
+              <div class="tabs" role="tablist">
+                <a href="#tab-1" class="tab active" role="tab" aria-current="page" onclick="changeTab(event,'tab-1')">Overview</a>
+                <a href="#tab-2" class="tab" role="tab" onclick="changeTab(event,'tab-2')">Details</a>
+                <a href="#tab-3" class="tab" role="tab" onclick="changeTab(event,'tab-3')">Settings</a>
+              </div>
+            </div>
+            <div class="tab-content" id="tab-1">
+              <p class="mt-3">High-level overview content.</p>
+            </div>
+            <div class="tab-content" id="tab-2" style="display:none;">
+              <p class="mt-3">Details. Lots of them.</p>
+            </div>
+            <div class="tab-content" id="tab-3" style="display:none;">
+              <p class="mt-3">Settings panel.</p>
+            </div>
+          </div>
+
+          <h3>Accordion (native <code>&lt;details&gt;</code>)</h3>
+          <div class="demo demo-block">
+            <details class="accordion-item" open>
+              <summary class="accordion-title">What browsers do you support?</summary>
+              <div class="accordion-content">
+                <p>Baseline 2024+ — Safari 17.5+, Chrome 117+, Firefox 121+.</p>
+              </div>
+            </details>
+            <details class="accordion-item">
+              <summary class="accordion-title">Can I tree-shake unused styles?</summary>
+              <div class="accordion-content">
+                <p>
+                  Build from source — comment out the <code>@use</code> lines in
+                  <code>src/minimacss.scss</code> you don't need, then
+                  <code>npm run build</code>.
+                </p>
+              </div>
+            </details>
+            <details class="accordion-item">
+              <summary class="accordion-title">Does it work with React / Vue / Svelte?</summary>
+              <div class="accordion-content">
+                <p>It's plain CSS. It works with any framework that renders HTML.</p>
+              </div>
+            </details>
+          </div>
+
+          <h3>Segments</h3>
+          <div class="demo">
+            <div class="segmented-control">
+              <input type="radio" id="seg-a" name="seg" checked />
+              <label for="seg-a">Day</label>
+              <input type="radio" id="seg-b" name="seg" />
+              <label for="seg-b">Week</label>
+              <input type="radio" id="seg-c" name="seg" />
+              <label for="seg-c">Month</label>
+            </div>
+          </div>
+
+          <h3>Steps</h3>
+          <div class="demo demo-block">
+            <ul class="progress-stepper">
+              <li class="progress-step completed">
+                <a href="#">
+                  <span class="step-title">1. Account</span>
+                  <span class="step-description">Sign up for an account</span>
+                </a>
+              </li>
+              <li class="progress-step current">
+                <a href="#">
+                  <span class="step-title">2. Profile</span>
+                  <span class="step-description">Tell us about yourself</span>
+                </a>
+              </li>
+              <li class="progress-step upcoming">
+                <a href="#">
+                  <span class="step-title">3. Confirm</span>
+                  <span class="step-description">Review and finish</span>
+                </a>
+              </li>
             </ul>
           </div>
-        </div>
-        <button class="alert-close">&times;</button>
-      </div>
-      <div class="alert alert-outline-success">
-        <span class="alert-icon material-symbols-rounded"> error </span
-        ><!-- Replace with your icon -->
-        <div class="alert-body">
-          <div class="alert-body-title">Order Placed</div>
-          <div class="alert-body-description">
-            <p>
-              ipsum dolor sit amet consectetur adipisicing elit. Aliquid
-              pariatur, ipsum similique veniam.
+        </section>
+
+        <!-- ====================================================
+             OVERLAYS: MODAL, SLIDEOVER, TOAST
+             ==================================================== -->
+        <section id="overlay" class="docs-section">
+          <h2>Modal, Slideover, Toast</h2>
+          <p class="docs-section-tagline">
+            Modal uses the native <code>&lt;dialog&gt;</code> +
+            <code>@starting-style</code> +
+            <code>transition-behavior: allow-discrete</code> — it animates
+            both open and close, including from <code>display: none</code>.
+          </p>
+
+          <div class="demo">
+            <button class="btn btn-primary" onclick="document.getElementById('m').showModal()">
+              Open modal
+            </button>
+            <button class="btn btn-light" onclick="toggleSlideover('#sl-right')">
+              Open slideover
+            </button>
+            <button class="btn btn-success" onclick="addToast('Saved successfully', 'success')">
+              Show toast
+            </button>
+            <button class="btn btn-error" onclick="addToast('Something failed', 'danger', 'alert')">
+              Show error toast
+            </button>
+          </div>
+
+          <!-- Modal -->
+          <dialog id="m" class="modal modal-md">
+            <div class="modal-header">
+              <h3 class="m-0">Confirm action</h3>
+              <button class="close-icon" onclick="document.getElementById('m').close()" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>This is a fully native dialog. Try the Escape key.</p>
+              <p>Open it again to watch the open animation, and close it to watch the close animation — both work because we use <code>@starting-style</code> + <code>allow-discrete</code>.</p>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-light" onclick="document.getElementById('m').close()">Cancel</button>
+              <button class="btn btn-primary" onclick="document.getElementById('m').close()">Continue</button>
+            </div>
+          </dialog>
+
+          <!-- Slideover -->
+          <div id="sl-right" class="slideover right size-md">
+            <div class="slideover-header">
+              <h3 class="m-0">Slideover</h3>
+              <button class="close-icon" onclick="toggleSlideover('#sl-right')" aria-label="Close">&times;</button>
+            </div>
+            <div class="slideover-body">
+              <p>Slideovers are great for filters, settings, or details panes.</p>
+            </div>
+          </div>
+
+          <!-- Toast container -->
+          <div id="toast-host" class="toast-container toast-top-right"></div>
+        </section>
+
+        <!-- ====================================================
+             TABLE
+             ==================================================== -->
+        <section id="table" class="docs-section">
+          <h2>Table</h2>
+          <div class="demo demo-block">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Role</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>Ada Lovelace</td><td>Engineer</td><td><span class="badge badge-success">Active</span></td></tr>
+                <tr><td>2</td><td>Alan Turing</td><td>Cryptographer</td><td><span class="badge badge-success">Active</span></td></tr>
+                <tr><td>3</td><td>Grace Hopper</td><td>Compiler architect</td><td><span class="badge badge-warning">Away</span></td></tr>
+                <tr><td>4</td><td>Edsger Dijkstra</td><td>Theorist</td><td><span class="badge badge-light">Inactive</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             TOOLTIP & DROPDOWN
+             ==================================================== -->
+        <section id="tooltips" class="docs-section">
+          <h2>Tooltip &amp; Dropdown</h2>
+
+          <h3>Tooltip</h3>
+          <div class="demo">
+            <span class="tooltip" data-tooltip="Tooltip on top" data-placement="top">Hover me (top)</span>
+            <span class="tooltip" data-tooltip="Tooltip on right" data-placement="right">Hover me (right)</span>
+            <span class="tooltip" data-tooltip="Tooltip on bottom" data-placement="bottom">Hover me (bottom)</span>
+            <span class="tooltip" data-tooltip="Tooltip on left" data-placement="left">Hover me (left)</span>
+          </div>
+
+          <h3>Dropdown (native <code>&lt;details&gt;</code>)</h3>
+          <div class="demo">
+            <details class="dropdown">
+              <summary class="btn btn-light dropdown-toggle">Options</summary>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Edit</a>
+                <a class="dropdown-item" href="#">Duplicate</a>
+                <a class="dropdown-item" href="#">Archive</a>
+                <a class="dropdown-item" href="#">Delete</a>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             MODERN FEATURES — focused demos
+             ==================================================== -->
+        <section id="starting-style" class="docs-section">
+          <h2>@starting-style animations</h2>
+          <p class="docs-section-tagline">
+            Modal, slideover and toast all transition both directions —
+            including from <code>display: none</code> — by combining
+            <code>transition-behavior: allow-discrete</code> with a
+            <code>@starting-style</code> rule. Open and close any of the
+            overlays in the previous section to see it in action.
+          </p>
+        </section>
+
+        <section id="user-invalid" class="docs-section">
+          <h2>:user-invalid forms</h2>
+          <p class="docs-section-tagline">
+            The native pseudo-class only matches once the user has
+            interacted with the field. No JS class toggling. Try the form
+            below: empty + un-touched looks neutral; submit it to trigger
+            invalid styling.
+          </p>
+          <form class="demo demo-block demo-stack" id="ui-form">
+            <div class="input-group">
+              <label for="ui-name">Name (required)</label>
+              <input class="input" id="ui-name" type="text" required />
+            </div>
+            <div class="input-group">
+              <label for="ui-email">Email (required + format)</label>
+              <input class="input" id="ui-email" type="email" required />
+            </div>
+            <div class="input-group">
+              <label for="ui-url">URL (must be https)</label>
+              <input class="input" id="ui-url" type="url" pattern="https://.*" placeholder="https://..." />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </section>
+
+        <section id="fluid" class="docs-section">
+          <h2>Fluid spacing</h2>
+          <p class="docs-section-tagline">
+            <code>.py-fluid-xl</code>, <code>.px-fluid-lg</code> etc. scale
+            with viewport using <code>clamp()</code>. Resize your window to
+            watch the panel grow and shrink.
+          </p>
+          <div class="demo demo-block">
+            <div class="py-fluid-xl px-fluid-lg" style="background: color-mix(in oklch, var(--accent-color) 12%, transparent); border-radius: 0.75rem; text-align: center;">
+              <strong>Fluid hero panel</strong> — padding scales with viewport.
+            </div>
+          </div>
+        </section>
+
+        <section id="cascade" class="docs-section">
+          <h2>Cascade layers</h2>
+          <p class="docs-section-tagline">
+            Utilities live in <code>@layer utilities</code>; components in
+            <code>@layer components</code>. Utility classes win over
+            component styles without ever needing <code>!important</code>.
+            Here, the <code>.bg-success</code> utility overrides the
+            <code>.btn-primary</code> background — no specificity hacks.
+          </p>
+          <div class="demo">
+            <button class="btn btn-primary">Just .btn-primary</button>
+            <button class="btn btn-primary bg-success">.btn-primary + .bg-success utility wins</button>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             LAYOUT PRIMITIVES — .stack, .cluster, .center, .sidebar-layout, .switcher
+             ==================================================== -->
+        <section id="primitives" class="docs-section">
+          <h2>Layout primitives</h2>
+          <p class="docs-section-tagline">
+            One-line solutions for the layouts you currently write by hand.
+            Each takes a <code>--space</code> variable for instance-level
+            tuning.
+          </p>
+
+          <h3>.stack — vertical rhythm</h3>
+          <div class="demo demo-block">
+            <div class="stack" style="--space: 0.75rem;">
+              <div class="box">First item</div>
+              <div class="box">Second item</div>
+              <div class="box">Third item — same gap between siblings, every time.</div>
+            </div>
+          </div>
+
+          <h3>.cluster — wrap with gap</h3>
+          <div class="demo">
+            <div class="cluster">
+              <span class="badge badge-primary">design</span>
+              <span class="badge badge-success">ship</span>
+              <span class="badge badge-info">v0.3.0</span>
+              <span class="badge badge-warning">modern</span>
+              <span class="badge badge-light">framework</span>
+              <span class="badge badge-dark">minimal</span>
+            </div>
+          </div>
+
+          <h3>.sidebar-layout — responsive without media queries</h3>
+          <div class="demo demo-block">
+            <div class="sidebar-layout" style="--sidebar-w: 10rem; --content-min: 60%;">
+              <aside class="sidebar-side box">Sidebar</aside>
+              <main class="sidebar-main box">
+                Main content. When the page is too narrow for both to fit
+                with the content at <code>--content-min: 60%</code>, the
+                sidebar wraps to the top automatically.
+              </main>
+            </div>
+          </div>
+
+          <h3>.switcher — row → column at threshold</h3>
+          <div class="demo demo-block">
+            <div class="switcher" style="--threshold: 25rem;">
+              <div class="box">A</div>
+              <div class="box">B</div>
+              <div class="box">C</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             POPOVER + ANCHOR POSITIONING
+             ==================================================== -->
+        <section id="popovers" class="docs-section">
+          <h2>Popover &amp; Menu <span class="pill-jsfree">JS-free</span></h2>
+          <p class="docs-section-tagline">
+            Native <code>popover</code> attribute +
+            <code>popovertarget</code> button + CSS Anchor Positioning. The
+            browser handles open/close, light dismiss, escape-to-close,
+            focus restoration. Zero JavaScript.
+          </p>
+
+          <div class="demo">
+            <button
+              class="btn btn-light"
+              popovertarget="pop-actions"
+              style="anchor-name: --pop-actions;"
+            >
+              Actions ▾
+            </button>
+            <div
+              popover
+              id="pop-actions"
+              class="popover"
+              style="position-anchor: --pop-actions;"
+            >
+              <a class="popover-item" href="#">Edit</a>
+              <a class="popover-item" href="#">Duplicate</a>
+              <a class="popover-item" href="#">Archive</a>
+              <hr class="popover-divider" />
+              <a class="popover-item popover-item-danger" href="#">Delete</a>
+            </div>
+
+            <button
+              class="btn btn-light"
+              popovertarget="pop-help"
+              style="anchor-name: --pop-help;"
+            >
+              ? Help
+            </button>
+            <div
+              popover
+              id="pop-help"
+              class="popover popover-bottom-end"
+              style="position-anchor: --pop-help; max-width: 18rem;"
+            >
+              <div class="popover-header">Keyboard shortcuts</div>
+              <a class="popover-item">
+                Search&nbsp;
+                <span class="ms-auto"><kbd class="kbd">⌘</kbd>&nbsp;<kbd class="kbd">K</kbd></span>
+              </a>
+              <a class="popover-item">
+                New&nbsp;
+                <span class="ms-auto"><kbd class="kbd">⌘</kbd>&nbsp;<kbd class="kbd">N</kbd></span>
+              </a>
+              <a class="popover-item">
+                Save&nbsp;
+                <span class="ms-auto"><kbd class="kbd">⌘</kbd>&nbsp;<kbd class="kbd">S</kbd></span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             .field FORM PRIMITIVE
+             ==================================================== -->
+        <section id="field" class="docs-section">
+          <h2>Form .field <span class="pill-jsfree">JS-free</span></h2>
+          <p class="docs-section-tagline">
+            Auto-asterisk on required (<code>:has(:required)</code>).
+            Auto-invalid helper colour on <code>:has(:user-invalid)</code>.
+            No JavaScript to toggle <code>.is-invalid</code>.
+          </p>
+
+          <form class="demo demo-block demo-stack">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" class="input" type="text" required />
+              <small class="helper-text">Required — try submitting empty.</small>
+            </div>
+
+            <div class="field">
+              <label for="f-email">Work email</label>
+              <input id="f-email" class="input" type="email" required />
+              <small class="helper-text">Used for billing.</small>
+            </div>
+
+            <div class="field">
+              <label for="f-bio">Bio</label>
+              <textarea id="f-bio" class="textarea" placeholder="A few sentences about yourself"></textarea>
+              <small class="helper-text">Optional — no asterisk because it isn't required.</small>
+            </div>
+
+            <button class="btn btn-primary" type="submit" onclick="event.preventDefault()">Save</button>
+          </form>
+        </section>
+
+        <!-- ====================================================
+             INPUT AFFIXES + KBD
+             ==================================================== -->
+        <section id="affix" class="docs-section">
+          <h2>Input affixes &amp; <code>.kbd</code></h2>
+          <p class="docs-section-tagline">
+            Prefix/suffix slots that share a single focus ring via
+            <code>:has(:focus-visible)</code>. Native keyboard chip via
+            <code>.kbd</code>.
+          </p>
+
+          <div class="demo demo-block demo-stack">
+            <div class="input-affix">
+              <span class="input-affix-prefix">$</span>
+              <input class="input" type="number" placeholder="0.00" />
+              <span class="input-affix-suffix">USD</span>
+            </div>
+            <div class="input-affix">
+              <span class="input-affix-prefix">https://</span>
+              <input class="input" type="text" placeholder="your-site.com" />
+            </div>
+            <div class="input-affix">
+              <input class="input" type="email" placeholder="username" />
+              <span class="input-affix-suffix">@minimacss.dev</span>
+            </div>
+
+            <p class="m-0">
+              Press <kbd class="kbd">⌘</kbd> + <kbd class="kbd">K</kbd> to
+              search, or <kbd class="kbd">Esc</kbd> to dismiss this modal.
             </p>
-            <a href="">Download Invoice</a> <a href="" class="ml-3">Dismiss</a>
           </div>
-        </div>
-      </div>
-      <div class="alert alert-info">
-        <span class="alert-icon material-symbols-rounded"> error </span
-        ><!-- Replace with your icon -->
-        <div class="alert-body">
-          <div class="alert-body-title">New Update Received</div>
-          <div class="alert-body-description">
-            <p>A new software update is available. See what's new!</p>
-            <a href="">Get Details →</a>
-          </div>
-        </div>
-        <button class="alert-close">&times;</button>
-      </div>
-      <div class="alert alert-outline-info">
-        <span class="alert-icon material-symbols-rounded"> error </span
-        ><!-- Replace with your icon -->
-        <div class="alert-body">
-          <div class="alert-body-title">New Update Received</div>
-          <div class="alert-body-description">
-            <p>A new software update is available. See what's new!</p>
-            <a href="">Get Details →</a>
-          </div>
-        </div>
-        <button class="alert-close">&times;</button>
-      </div>
-    </section>
+        </section>
 
-    <!-- Table -->
-    <section class="container mt-5 mb-5">
-      <h2>Table</h2>
-      <div class="table-responsive rounded-sm">
-        <table class="table table-striped table-hover table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First Name</th>
-              <th scope="col">Last Name</th>
-              <th scope="col">Username</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
+        <!-- ====================================================
+             SKELETON + EMPTY STATE
+             ==================================================== -->
+        <section id="skeleton" class="docs-section">
+          <h2>Skeleton &amp; Empty state</h2>
+          <p class="docs-section-tagline">
+            Drop-in loading placeholders and "no data yet" panels. Skeleton
+            shimmer is automatically disabled under
+            <code>prefers-reduced-motion</code>.
+          </p>
 
+          <h3>Skeleton</h3>
+          <div class="demo demo-block">
+            <div class="cluster">
+              <div class="skeleton skeleton-circle" style="width: 3rem; height: 3rem;"></div>
+              <div class="stack" style="--space: 0.4rem; flex: 1;">
+                <div class="skeleton skeleton-text skeleton-text-md"></div>
+                <div class="skeleton skeleton-text skeleton-text-sm"></div>
+              </div>
+            </div>
+            <div class="skeleton skeleton-block mt-3"></div>
+          </div>
+
+          <h3>Empty state</h3>
+          <div class="demo demo-block">
+            <div class="card">
+              <div class="empty-state">
+                <div class="empty-state-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                </div>
+                <h3 class="empty-state-title">No orders yet</h3>
+                <p class="empty-state-description">
+                  When your customers place an order it'll appear here. Want
+                  to test the dashboard? Create a sample order.
+                </p>
+                <div class="empty-state-actions">
+                  <button class="btn btn-primary">Create test order</button>
+                  <button class="btn btn-light">Learn more</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ====================================================
+             SCROLL-SNAP
+             ==================================================== -->
+        <section id="scroll" class="docs-section">
+          <h2>Scroll-snap <span class="pill-jsfree">JS-free</span></h2>
+          <p class="docs-section-tagline">
+            CSS-only carousels and horizontal chip rows. Drag, swipe, or
+            arrow-key. Children snap to <code>start</code>,
+            <code>center</code>, or <code>end</code>.
+          </p>
+
+          <h3>Snap carousel</h3>
+          <div class="demo demo-block">
+            <div class="scroll-x snap-x" style="--scroll-gap: 0.75rem; padding: 0.5rem;">
+              <article class="card snap-start" style="flex: 0 0 14rem;">
+                <div class="card-body">
+                  <h4 class="card-title">Slide A</h4>
+                  <p class="card-text">Scroll right to see siblings snap.</p>
+                </div>
+              </article>
+              <article class="card snap-start" style="flex: 0 0 14rem;">
+                <div class="card-body">
+                  <h4 class="card-title">Slide B</h4>
+                  <p class="card-text">Each card snaps to start.</p>
+                </div>
+              </article>
+              <article class="card snap-start" style="flex: 0 0 14rem;">
+                <div class="card-body">
+                  <h4 class="card-title">Slide C</h4>
+                  <p class="card-text">No JavaScript carousel library.</p>
+                </div>
+              </article>
+              <article class="card snap-start" style="flex: 0 0 14rem;">
+                <div class="card-body">
+                  <h4 class="card-title">Slide D</h4>
+                  <p class="card-text">Just <code>scroll-snap-type</code>.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <h3>Horizontal chip row (hidden scrollbar)</h3>
+          <div class="demo">
+            <div class="scroll-x scroll-x-hide-scrollbar" style="--scroll-gap: 0.4rem;">
+              <span class="badge badge-light">All</span>
+              <span class="badge badge-primary">Design</span>
+              <span class="badge badge-light">Engineering</span>
+              <span class="badge badge-light">Product</span>
+              <span class="badge badge-light">Marketing</span>
+              <span class="badge badge-light">Operations</span>
+              <span class="badge badge-light">Support</span>
+              <span class="badge badge-light">Sales</span>
+              <span class="badge badge-light">Research</span>
+              <span class="badge badge-light">Legal</span>
+            </div>
+          </div>
+        </section>
+
+        <footer class="docs-footer">
+          <p>
+            MinimaCSS · MIT License ·
+            <a href="https://github.com/hardikforall/MinimaCSS">GitHub</a> ·
+            Built for Baseline&nbsp;2024+.
+          </p>
+        </footer>
+      </main>
+    </div>
+
+    <!-- ============================================================
+         BEHAVIOUR
+         ============================================================ -->
     <script>
-      var currentSlideoverelement;
-      function toggleSlideover(selector) {
-        if (selector) {
-          currentSlideoverelement = selector;
+      // -------- Theme switcher --------
+      const root = document.documentElement;
+      const inputs = {
+        light: document.getElementById("theme-light"),
+        dark: document.getElementById("theme-dark"),
+        system: document.getElementById("theme-system"),
+      };
+
+      function applyTheme(mode) {
+        if (mode === "system") {
+          root.removeAttribute("data-theme");
         } else {
-          selector = currentSlideoverelement;
+          root.setAttribute("data-theme", mode);
         }
-        var slideover = document.querySelector(selector);
-        var body = document.body;
-        slideover.classList.toggle("active");
-        // If the slideover is now active, prevent body scrolling
-        if (slideover.classList.contains("active")) {
-          body.classList.add("body-no-scroll");
-        } else {
-          body.classList.remove("body-no-scroll");
-        }
+        localStorage.setItem("minimacss-theme", mode);
       }
 
+      const saved = localStorage.getItem("minimacss-theme") || "system";
+      inputs[saved]?.checked || (inputs.system.checked = true);
+      applyTheme(saved);
+
+      for (const [mode, input] of Object.entries(inputs)) {
+        input.addEventListener("change", () => applyTheme(mode));
+      }
+
+      // -------- Tab switcher --------
       function changeTab(event, tabId) {
-        // Prevent the page from jumping when anchor is clicked
         event.preventDefault();
-
-        // Get all tabs and tab contents
-        const tabs = document.querySelectorAll(".tabs .tab");
-        const tabContents = document.querySelectorAll(".tab-content");
-
-        // Remove active class and aria-current from all tabs
-        tabs.forEach((tab) => {
+        document.querySelectorAll(".tabs .tab").forEach((tab) => {
           tab.classList.remove("active");
           tab.removeAttribute("aria-current");
         });
+        document.querySelectorAll(".tab-content").forEach((c) => (c.style.display = "none"));
+        const li = event.currentTarget.closest(".tab");
+        li.classList.add("active");
+        li.setAttribute("aria-current", "page");
+        const content = document.getElementById(tabId);
+        if (content) content.style.display = "block";
+      }
 
-        // Hide all tab contents
-        tabContents.forEach((content) => {
-          content.style.display = "none";
+      // -------- Slideover --------
+      function toggleSlideover(selector) {
+        const el = document.querySelector(selector);
+        if (!el) return;
+        el.classList.toggle("active");
+        document.body.classList.toggle("body-no-scroll", el.classList.contains("active"));
+      }
+
+      // -------- Toast --------
+      let toastId = 0;
+      function addToast(message, variant = "primary", role = "status") {
+        const host = document.getElementById("toast-host");
+        const t = document.createElement("div");
+        t.className = `toast toast-${variant}`;
+        t.setAttribute("role", role);
+        t.id = `toast-${++toastId}`;
+        t.innerHTML = `
+          <div style="flex:1;">
+            <div class="toast-title">${message}</div>
+          </div>
+          <button class="toast-close" aria-label="Dismiss">&times;</button>
+        `;
+        const close = () => {
+          t.classList.add("toast-dismissing");
+          t.addEventListener("transitionend", () => t.remove(), { once: true });
+        };
+        t.querySelector(".toast-close").addEventListener("click", close);
+        host.appendChild(t);
+        setTimeout(close, 4000);
+      }
+
+      // -------- Brand-color picker --------
+      // Drives `--accent-color` on :root. Everything else (hover, focus
+      // ring, link, nav, progress, toast) is derived from this via
+      // color-mix() in the framework's theme tokens, so changing this one
+      // value retints the entire UI.
+      const brandPicker = document.getElementById("brand-color");
+      if (brandPicker) {
+        const applyBrand = (val) => {
+          root.style.setProperty("--accent-color", val);
+          localStorage.setItem("minimacss-brand", val);
+        };
+        const saved = localStorage.getItem("minimacss-brand");
+        if (saved) {
+          brandPicker.value = saved;
+          applyBrand(saved);
+        }
+        brandPicker.addEventListener("input", (e) =>
+          applyBrand(e.target.value)
+        );
+      }
+
+      // -------- Indeterminate checkbox demo --------
+      document.addEventListener("DOMContentLoaded", () => {
+        const i = document.getElementById("i-indeterminate");
+        if (i) i.indeterminate = true;
+
+        // Prevent the :user-invalid form from actually submitting.
+        document.getElementById("ui-form").addEventListener("submit", (e) => {
+          e.preventDefault();
         });
 
-        // Set the clicked tab as active
-        event.currentTarget.classList.add("active");
-        event.currentTarget.setAttribute("aria-current", "page");
-
-        // Show the current tab's content
-        const activeTabContent = document.getElementById(tabId);
-        if (activeTabContent) {
-          activeTabContent.style.display = "block";
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        document.getElementById("myCheckbox").indeterminate = true;
-        const savedTheme =
-          localStorage.getItem("user-theme") || getSystemTheme();
-        setTheme(savedTheme);
-
-        // Initialize the correct radio button based on the saved theme
-        initializeRadioButtonState(savedTheme);
-
-        // Adding event listeners to the radio buttons
-        document
-          .getElementById("light_mode")
-          .addEventListener("change", () => changeTheme("light"));
-        document
-          .getElementById("dark_mode")
-          .addEventListener("change", () => changeTheme("dark"));
-        document
-          .getElementById("system_preference")
-          .addEventListener("change", () => changeTheme(getSystemTheme()));
+        // Highlight current section in the sidebar.
+        const sections = [...document.querySelectorAll(".docs-section, #hero")];
+        const links = new Map(
+          [...document.querySelectorAll(".docs-sidebar nav a")].map((a) => [
+            a.getAttribute("href").replace("#", ""),
+            a,
+          ])
+        );
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                links.forEach((a) => a.removeAttribute("aria-current"));
+                const link = links.get(entry.target.id);
+                if (link) link.setAttribute("aria-current", "true");
+              }
+            });
+          },
+          { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+        );
+        sections.forEach((s) => obs.observe(s));
       });
-
-      function getSystemTheme() {
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      }
-
-      function setTheme(theme) {
-        document.body.setAttribute("data-theme", theme);
-      }
-
-      function changeTheme(theme) {
-        setTheme(theme);
-        localStorage.setItem("user-theme", theme);
-      }
-
-      function initializeRadioButtonState(theme) {
-        if (theme === "light") {
-          document.getElementById("light_mode").checked = true;
-        } else if (theme === "dark") {
-          document.getElementById("dark_mode").checked = true;
-        } else {
-          document.getElementById("system_preference").checked = true;
-        }
-      }
     </script>
   </body>
 </html>

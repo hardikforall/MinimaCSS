@@ -1,0 +1,92 @@
+@use "../core" as *;
+
+@layer components {
+// Toast — transient notifications
+// Markup:
+//   <div class="toast-container toast-top-right">
+//     <div class="toast toast-success" role="status">…</div>
+//   </div>
+// For screen readers, use role="status" (polite) or role="alert" (assertive).
+
+.toast-container {
+  position: fixed;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  max-width: min(420px, 100vw);
+  pointer-events: none; // children re-enable
+
+  &.toast-top-right { top: 0; right: 0; }
+  &.toast-top-left { top: 0; left: 0; }
+  &.toast-bottom-right { bottom: 0; right: 0; }
+  &.toast-bottom-left { bottom: 0; left: 0; }
+  &.toast-top-center { top: 0; left: 50%; transform: translateX(-50%); }
+  &.toast-bottom-center { bottom: 0; left: 50%; transform: translateX(-50%); }
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--surface-primary-color);
+  color: var(--text-primary-color);
+  border: 1px solid var(--border-primary-color);
+  border-left: 4px solid var(--accent-color);
+  border-radius: $border-radius;
+  box-shadow: var(--shadow-lg);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.25s ease-out,
+    transform 0.25s ease-out;
+
+  // Animate in when the toast is first inserted into the DOM.
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  // Add `.toast-dismissing` (via JS) to play the exit animation, then
+  // remove the element on `transitionend`.
+  &.toast-dismissing {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+
+  .toast-title {
+    font-weight: 600;
+    margin-bottom: 0.125rem;
+  }
+
+  .toast-body {
+    flex: 1 1 auto;
+    font-size: 0.875rem;
+  }
+
+  .toast-close {
+    background: transparent;
+    border: 0;
+    color: var(--text-secondary-color);
+    cursor: pointer;
+    padding: 0;
+    font-size: 1.25rem;
+    line-height: 1;
+    min-height: auto; // overrides .btn min-height if applied as button
+
+    &:hover { color: var(--text-primary-color); }
+  }
+}
+
+// Variants — colored left accent + tinted background
+@each $name, $color in $colors {
+  .toast-#{$name} {
+    border-left-color: $color;
+  }
+}
+
+
+}

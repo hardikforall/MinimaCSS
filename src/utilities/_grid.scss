@@ -1,27 +1,30 @@
+@use "../core" as *;
+
+@layer utilities {
 .grid {
-  display: grid !important;
+  display: grid;
 }
 
 .grid-inline {
-  display: inline-grid !important;
+  display: inline-grid;
 }
 
 // Grid Template Columns
-@each $col in $grid-columns-row {
+@for $col from 1 through 12 {
   .grid-cols-#{$col} {
-    grid-template-columns: repeat($col, minmax(0, 1fr)) !important;
+    grid-template-columns: repeat($col, minmax(0, 1fr));
   }
 }
 
 // Grid Template Rows
-@each $row in $grid-columns-row {
+@for $row from 1 through 12 {
   // Assuming similar range as columns
   .grid-rows-#{$row} {
-    grid-template-rows: repeat($row, minmax(0, 1fr)) !important;
+    grid-template-rows: repeat($row, minmax(0, 1fr));
   }
 }
 
-@each $row in $grid-columns-row {
+@for $row from 1 through 12 {
   .col-span-#{$row} {
     grid-column: span #{$row} / span #{$row};
   }
@@ -37,98 +40,93 @@
 
 // Grid Gap Utilities
 @each $gap-name, $gap-size in $spacers {
-  .gap-#{$gap-name} {
-    gap: $gap-size !important;
-  }
-
-  .gap-x-#{$gap-name} {
-    column-gap: $gap-size !important;
-  }
-
-  .gap-y-#{$gap-name} {
-    row-gap: $gap-size !important;
-  }
+  $k: escape-class-key($gap-name);
+  .gap-#{$k} { gap: $gap-size; }
+  .gap-x-#{$k} { column-gap: $gap-size; }
+  .gap-y-#{$k} { row-gap: $gap-size; }
 }
 
 .grid-auto-flow-row {
-  grid-auto-flow: row !important;
+  grid-auto-flow: row;
 }
 
 .grid-auto-flow-column {
-  grid-auto-flow: column !important;
+  grid-auto-flow: column;
 }
 
 .grid-auto-flow-dense {
-  grid-auto-flow: dense !important;
+  grid-auto-flow: dense;
 }
 
 // Grid Alignment and Justification
 .align-grid-items-start {
-  align-items: start !important;
+  align-items: start;
 }
 
 .align-grid-items-end {
-  align-items: end !important;
+  align-items: end;
 }
 
 .align-grid-items-center {
-  align-items: center !important;
+  align-items: center;
 }
 
 .justify-grid-items-start {
-  justify-items: start !important;
+  justify-items: start;
 }
 
 .justify-grid-items-end {
-  justify-items: end !important;
+  justify-items: end;
 }
 
 .justify-grid-items-center {
-  justify-items: center !important;
+  justify-items: center;
 }
 
 .align-grid-content-start {
-  align-content: start !important;
+  align-content: start;
 }
 
 .align-grid-content-end {
-  align-content: end !important;
+  align-content: end;
 }
 
 .align-grid-content-center {
-  align-content: center !important;
+  align-content: center;
 }
 
 .align-grid-content-stretch {
-  align-content: stretch !important;
+  align-content: stretch;
 }
 
 .justify-grid-content-start {
-  justify-content: start !important;
+  justify-content: start;
 }
 
 .justify-grid-content-end {
-  justify-content: end !important;
+  justify-content: end;
 }
 
 .justify-grid-content-center {
-  justify-content: center !important;
+  justify-content: center;
 }
 
 .justify-grid-content-between {
-  justify-content: space-between !important;
+  justify-content: space-between;
 }
 
 .justify-grid-content-around {
-  justify-content: space-around !important;
+  justify-content: space-around;
 }
 
 @each $breakpoint, $bp-value in $breakpoints {
   @media (min-width: $bp-value) {
-    @each $col in $grid-columns-row {
+    @for $col from 1 through 12 {
       .grid-cols-#{$col}-#{$breakpoint} {
-        grid-template-columns: repeat($col, minmax(0, 1fr)) !important;
+        grid-template-columns: repeat($col, minmax(0, 1fr));
       }
     }
   }
+}
+
 }

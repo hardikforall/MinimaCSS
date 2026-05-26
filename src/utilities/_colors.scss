@@ -1,7 +1,10 @@
+@use "../core" as *;
+
+@layer utilities {
 // Text Color Utilities
 @each $color-name, $color-value in $colors {
   .text-#{$color-name} {
-    color: $color-value !important;
+    color: $color-value;
   }
 }
 
@@ -32,13 +35,15 @@
 // Background Color Utilities
 @each $color-name, $color-value in $colors {
   .bg-#{$color-name} {
-    background-color: $color-value !important;
+    background-color: $color-value;
   }
 }
 
 // Border Color Utilities
 @each $color-name, $color-value in $colors {
   .border-#{$color-name} {
-    border-color: $color-value !important;
+    border-color: $color-value;
   }
+}
+
 }

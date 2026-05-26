@@ -3,728 +3,1083 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard Example</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>MinimaCSS — Dashboard Example</title>
     <link rel="stylesheet" href="../dist/minimacss.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,300,1,-25"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
-    />
+    <style>
+      /* Example-page chrome only — none of this is part of the framework. */
+      :root {
+        --dash-sidebar-w: 16rem;
+      }
+
+      body {
+        background: var(--surface-secondary-color);
+      }
+
+      .dash {
+        display: grid;
+        grid-template-columns: var(--dash-sidebar-w) 1fr;
+        min-height: 100vh;
+      }
+
+      @media (max-width: 900px) {
+        .dash {
+          grid-template-columns: 1fr;
+        }
+        .dash-sidebar {
+          position: static !important;
+          height: auto !important;
+          border-right: 0 !important;
+          border-bottom: 1px solid var(--border-primary-color);
+        }
+      }
+
+      /* --- Sidebar --- */
+      .dash-sidebar {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        height: 100vh;
+        overflow-y: auto;
+        background: var(--surface-primary-color);
+        border-right: 1px solid var(--border-primary-color);
+        padding: 1.25rem 0.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .dash-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.25rem 0.5rem 1rem;
+        text-decoration: none;
+        color: var(--text-primary-color);
+      }
+      .dash-brand-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--accent-color);
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+        letter-spacing: -0.04em;
+        flex: 0 0 auto;
+      }
+      .dash-brand-name {
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .dash-section-label {
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-tertiary-color);
+        padding: 0.75rem 0.75rem 0.25rem;
+      }
+
+      .dash-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        color: var(--text-secondary-color);
+        text-decoration: none;
+        font-size: 0.9rem;
+        line-height: 1.2;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .dash-nav:hover {
+        background: var(--surface-secondary-color);
+        color: var(--text-primary-color);
+        text-decoration: none;
+      }
+      .dash-nav[aria-current="page"] {
+        background: color-mix(in oklch, var(--accent-color) 12%, transparent);
+        color: var(--accent-color);
+        font-weight: 500;
+      }
+      .dash-nav .icon {
+        flex: 0 0 auto;
+      }
+
+      .dash-spacer {
+        flex: 1 1 auto;
+      }
+
+      /* --- Topbar --- */
+      .dash-main {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .dash-topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: color-mix(
+          in srgb,
+          var(--surface-primary-color) 92%,
+          transparent
+        );
+        backdrop-filter: saturate(180%) blur(10px);
+        border-bottom: 1px solid var(--border-primary-color);
+        padding: 0.625rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .dash-search {
+        flex: 1 1 auto;
+        max-width: 28rem;
+        position: relative;
+      }
+      .dash-search .input {
+        padding-inline-start: 2.25rem;
+      }
+      .dash-search-icon {
+        position: absolute;
+        left: 0.625rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-secondary-color);
+        pointer-events: none;
+      }
+
+      /* Theme toggle — matches index.html exactly */
+      .docs-theme-toggle {
+        display: inline-flex;
+        align-items: center;
+        background: var(--surface-secondary-color);
+        border: 1px solid var(--border-primary-color);
+        border-radius: 999px;
+        padding: 3px;
+        gap: 2px;
+      }
+      .docs-theme-toggle input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .docs-theme-toggle label {
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 999px;
+        cursor: pointer;
+        color: var(--text-secondary-color);
+        margin: 0;
+        padding: 0;
+        line-height: 0;
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .docs-theme-toggle label:hover {
+        color: var(--text-primary-color);
+      }
+      .docs-theme-toggle input:checked + label {
+        background: var(--surface-primary-color);
+        color: var(--accent-color);
+        box-shadow: var(--shadow-sm);
+      }
+      .docs-theme-toggle input:focus-visible + label {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+      }
+      .docs-theme-toggle svg {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+      }
+
+      /* --- Content --- */
+      .dash-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .icon {
+        width: 1rem;
+        height: 1rem;
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .icon-lg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+
+      /* Trend pill (e.g. "+12%" in a stat card) */
+      .trend {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        padding: 0.125rem 0.5rem;
+        border-radius: 999px;
+      }
+      .trend-up {
+        color: var(--button-success-color);
+        background: color-mix(
+          in oklch,
+          var(--button-success-color) 14%,
+          transparent
+        );
+      }
+      .trend-down {
+        color: var(--button-error-color);
+        background: color-mix(
+          in oklch,
+          var(--button-error-color) 14%,
+          transparent
+        );
+      }
+
+      /* Activity list — built with framework tokens, no list-group dep */
+      .activity {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .activity > li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.875rem;
+        padding: 0.875rem 0;
+        border-bottom: 1px solid var(--border-primary-color);
+      }
+      .activity > li:last-child {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+      .activity > li:first-child {
+        padding-top: 0;
+      }
+      .activity .activity-title {
+        font-weight: 600;
+        margin: 0;
+      }
+      .activity .activity-meta {
+        font-size: 0.8125rem;
+        color: var(--text-secondary-color);
+      }
+
+      .product-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto auto;
+        align-items: center;
+        gap: 1rem;
+        padding-block: 0.75rem;
+        border-bottom: 1px solid var(--border-primary-color);
+      }
+      .product-row:last-child {
+        border-bottom: 0;
+      }
+      .product-bar {
+        width: 6rem;
+      }
+
+      /* Small adjustments so .card pads consistently in the stat grid */
+      .stat-grid .card {
+        height: 100%;
+      }
+
+      .text-secondary-soft {
+        color: var(--text-secondary-color);
+        font-size: 0.8125rem;
+      }
+    </style>
   </head>
   <body>
-    <div class="row">
-      <!-- Sidebar -->
-      <div class="col-12 col-md-3 col-lg-2 sidebar">
-        <div class="nav-vertical nav-primary h-full">
-          <div class="nav-container">
-            <!-- Logo -->
-            <div class="nav-logo">
-              <img
-                src="https://camo.githubusercontent.com/8ba94fc24ffdfa21108f8eaa0dd659eb1a694e554c26d741c4e69df769bb8e85/68747470733a2f2f692e6962622e636f2f424277374e4c642f4d2d322e706e67"
-                alt="Logo"
-                class="nav-logo-img"
-              />
-              <span class="nav-logo-text">MinimaCSS</span>
-            </div>
-            <!-- Navigation Links -->
-            <ul class="nav-links">
-              <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link active">
-                  <span class="material-symbols-rounded">dashboard</span>
-                  Dashboard
-                </a>
-              </li>
-              <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">
-                  <span class="material-symbols-rounded">person</span>
-                  Users
-                </a>
-              </li>
-              <li class="nav-links-item">
-                <details class="dropdown">
-                  <summary class="dropdown-toggle nav-links-item-link">
-                    <span class="material-symbols-rounded">inventory</span>
-                    Products
-                  </summary>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">All Products</a>
-                    <a class="dropdown-item" href="#">Add New</a>
-                    <a class="dropdown-item" href="#">Categories</a>
-                  </div>
-                </details>
-              </li>
-              <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">
-                  <span class="material-symbols-rounded">shopping_cart</span>
-                  Orders
-                </a>
-              </li>
-              <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">
-                  <span class="material-symbols-rounded">bar_chart</span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-links-item">
-                <a href="#" class="nav-links-item-link">
-                  <span class="material-symbols-rounded">settings</span>
-                  Settings
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <!-- ============================================================
+         SVG ICON SPRITE — referenced via <use href="#i-...">. Lets every
+         icon stay inline (no CDN font), tinted with `currentColor`, and
+         sized via CSS. All icons are 24x24 viewBox.
+         ============================================================ -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <symbol id="i-dashboard" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <rect x="3" y="3" width="7" height="9" rx="1.5" />
+          <rect x="14" y="3" width="7" height="5" rx="1.5" />
+          <rect x="14" y="12" width="7" height="9" rx="1.5" />
+          <rect x="3" y="16" width="7" height="5" rx="1.5" />
+        </symbol>
+        <symbol id="i-users" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M16 20v-1a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v1" />
+          <circle cx="9" cy="7" r="3.5" />
+          <path d="M22 20v-1a4 4 0 0 0-3-3.87" />
+          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        </symbol>
+        <symbol id="i-box" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M21 16V8a2 2 0 0 0-1-1.73L13 2.27a2 2 0 0 0-2 0L4 6.27A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73L11 21.73a2 2 0 0 0 2 0L20 17.73A2 2 0 0 0 21 16z" />
+          <polyline points="3.27,6.96 12,12.01 20.73,6.96" />
+          <line x1="12" y1="22.08" x2="12" y2="12" />
+        </symbol>
+        <symbol id="i-cart" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <circle cx="9" cy="21" r="1.4" />
+          <circle cx="20" cy="21" r="1.4" />
+          <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6" />
+        </symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+          <line x1="3" y1="20" x2="21" y2="20" />
+        </symbol>
+        <symbol id="i-settings" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </symbol>
+        <symbol id="i-search" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <circle cx="11" cy="11" r="7" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+          <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+        </symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <line x1="12" y1="5" x2="12" y2="19" />
+          <line x1="5" y1="12" x2="19" y2="12" />
+        </symbol>
+        <symbol id="i-trend-up" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+          <polyline points="17 6 23 6 23 12" />
+        </symbol>
+        <symbol id="i-trend-down" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <polyline points="23 18 13.5 8.5 8.5 13.5 1 6" />
+          <polyline points="17 18 23 18 23 12" />
+        </symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+          <circle cx="12" cy="12" r="3" />
+        </symbol>
+        <symbol id="i-edit" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+        </symbol>
+        <symbol id="i-info" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <circle cx="12" cy="12" r="10" />
+          <line x1="12" y1="16" x2="12" y2="12" />
+          <line x1="12" y1="8" x2="12.01" y2="8" />
+        </symbol>
+        <symbol id="i-arrow-up-right" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <path d="M7 17L17 7" />
+          <path d="M7 7h10v10" />
+        </symbol>
+      </defs>
+    </svg>
 
-      <!-- Main Content -->
-      <div class="col-12 col-md-9 col-lg-10 p-4">
-        <header class="mb-6 w-full">
-          <div class="card shadow-sm mb-4">
-            <div
-              class="card-body d-flex justify-content-between align-items-center"
+    <div class="dash">
+      <!-- ============================================================
+           SIDEBAR
+           ============================================================ -->
+      <aside class="dash-sidebar" aria-label="Primary navigation">
+        <a class="dash-brand" href="./index.html">
+          <span class="dash-brand-mark">M</span>
+          <span class="dash-brand-name">MinimaCSS</span>
+        </a>
+
+        <div class="dash-section-label">Workspace</div>
+        <a class="dash-nav" href="#" aria-current="page">
+          <svg class="icon"><use href="#i-dashboard" /></svg>
+          Dashboard
+        </a>
+        <a class="dash-nav" href="#">
+          <svg class="icon"><use href="#i-users" /></svg>
+          Users
+        </a>
+        <a class="dash-nav" href="#">
+          <svg class="icon"><use href="#i-box" /></svg>
+          Products
+        </a>
+        <a class="dash-nav" href="#">
+          <svg class="icon"><use href="#i-cart" /></svg>
+          Orders
+        </a>
+        <a class="dash-nav" href="#">
+          <svg class="icon"><use href="#i-chart" /></svg>
+          Reports
+        </a>
+
+        <div class="dash-section-label">Account</div>
+        <a class="dash-nav" href="#">
+          <svg class="icon"><use href="#i-settings" /></svg>
+          Settings
+        </a>
+
+        <div class="dash-spacer"></div>
+
+        <a class="dash-nav" href="./index.html">
+          <svg class="icon"><use href="#i-arrow-up-right" /></svg>
+          Component showcase
+        </a>
+        <a class="dash-nav" href="../docs/index.html">
+          <svg class="icon"><use href="#i-arrow-up-right" /></svg>
+          Documentation
+        </a>
+      </aside>
+
+      <!-- ============================================================
+           MAIN
+           ============================================================ -->
+      <div class="dash-main">
+        <!-- Topbar -->
+        <header class="dash-topbar">
+          <div class="dash-search">
+            <svg class="icon dash-search-icon"><use href="#i-search" /></svg>
+            <input
+              class="input"
+              type="search"
+              placeholder="Search orders, users, products…"
+              aria-label="Search"
+            />
+          </div>
+
+          <div class="docs-theme-toggle" role="radiogroup" aria-label="Theme">
+            <input type="radio" id="theme-light" name="theme" value="light" />
+            <label for="theme-light" title="Light">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M8 1v1.5M8 13.5V15M2.5 2.5l1 1M12.5 12.5l1 1M1 8h1.5M13.5 8H15M2.5 13.5l1-1M12.5 3.5l1-1"/></svg>
+            </label>
+            <input type="radio" id="theme-dark" name="theme" value="dark" />
+            <label for="theme-dark" title="Dark">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 9.3A6 6 0 1 1 6.7 2a4.7 4.7 0 0 0 7.3 7.3z"/></svg>
+            </label>
+            <input
+              type="radio"
+              id="theme-system"
+              name="theme"
+              value="system"
+              checked
+            />
+            <label for="theme-system" title="System">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.75" y="2.5" width="12.5" height="9" rx="1.25"/><path d="M5.5 14h5M8 11.5V14"/></svg>
+            </label>
+          </div>
+
+          <button
+            class="btn btn-light btn-round"
+            aria-label="Notifications"
+            title="3 unread notifications"
+          >
+            <svg class="icon"><use href="#i-bell" /></svg>
+          </button>
+
+          <details class="dropdown">
+            <summary
+              class="dropdown-toggle"
+              style="padding-right: 1.5rem; cursor: pointer;"
+              aria-label="Account menu"
             >
-              <div>
-                <h1 class="text-2xl font-bold mb-0">Dashboard Overview</h1>
+              <div
+                class="avatar avatar-sm avatar-primary"
+                style="display: grid; place-items: center; font-weight: 600;"
+              >
+                JD
               </div>
-              <div class="d-flex align-items-center">
-                <!-- Theme Switcher moved here -->
-                <div class="segmented-control small mr-4">
-                  <input type="radio" id="light_mode" name="theme_mode" />
-                  <label for="light_mode" title="Light Mode">
-                    <span class="material-symbols-rounded text-lg">
-                      light_mode
-                    </span>
-                  </label>
-                  <input type="radio" id="dark_mode" name="theme_mode" />
-                  <label for="dark_mode" title="Dark Mode">
-                    <span class="material-symbols-rounded text-lg">
-                      dark_mode
-                    </span>
-                  </label>
-                  <input
-                    type="radio"
-                    id="system_preference"
-                    name="theme_mode"
-                    checked
-                  />
-                  <label for="system_preference" title="System Preference">
-                    <span class="material-symbols-rounded text-lg">
-                      settings
-                    </span>
-                  </label>
-                </div>
-                <div
-                  class="tooltip mr-3 badge badge-pill badge-primary"
-                  data-tooltip="3 new notifications"
-                  data-placement="bottom"
-                >
-                  <span class="material-symbols-rounded">notifications</span>
-                </div>
-                <div class="dropdown">
-                  <button class="btn btn-link p-0 dropdown-toggle">
-                    <div class="avatar avatar-md">
-                      <img src="https://i.pravatar.cc/300" alt="User Avatar" />
-                    </div>
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right">
-                    <div class="dropdown-header">John Doe</div>
-                    <a class="dropdown-item" href="#">
-                      <span class="material-symbols-rounded mr-2">person</span>
-                      Profile
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <span class="material-symbols-rounded mr-2"
-                        >settings</span
-                      >
-                      Settings
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="#">
-                      <span class="material-symbols-rounded mr-2">logout</span>
-                      Logout
-                    </a>
-                  </div>
-                </div>
-              </div>
+            </summary>
+            <div class="dropdown-menu" style="right: 0;">
+              <a class="dropdown-item" href="#">My profile</a>
+              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" href="#">Billing</a>
+              <a class="dropdown-item" href="#" style="color: var(--button-error-color);">Sign out</a>
             </div>
-          </div>
-
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumbs">
-              <li class="breadcrumbs-item"><a href="#">Home</a></li>
-              <li class="breadcrumbs-item active" aria-current="page">
-                Dashboard
-              </li>
-            </ol>
-          </nav>
+          </details>
         </header>
 
-        <!-- Stats Cards -->
-        <div class="row mb-6">
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div
-                  class="d-flex justify-content-between align-items-center mb-3"
-                >
-                  <div class="text-muted">Total Users</div>
-                  <div class="avatar avatar-sm avatar-primary-outline">
-                    <span class="material-symbols-rounded">group</span>
-                  </div>
-                </div>
-                <div class="text-2xl font-bold">1,245</div>
-                <div class="text-success">
-                  <span class="material-symbols-rounded">trending_up</span>
-                  12% from last month
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div
-                  class="d-flex justify-content-between align-items-center mb-3"
-                >
-                  <div class="text-muted">Revenue</div>
-                  <div class="avatar avatar-sm avatar-success-outline">
-                    <span class="material-symbols-rounded">attach_money</span>
-                  </div>
-                </div>
-                <div class="text-2xl font-bold">$34,567</div>
-                <div class="text-success">
-                  <span class="material-symbols-rounded">trending_up</span>
-                  8% from last month
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div
-                  class="d-flex justify-content-between align-items-center mb-3"
-                >
-                  <div class="text-muted">Orders</div>
-                  <div class="avatar avatar-sm avatar-info-outline">
-                    <span class="material-symbols-rounded">shopping_bag</span>
-                  </div>
-                </div>
-                <div class="text-2xl font-bold">867</div>
-                <div class="text-danger">
-                  <span class="material-symbols-rounded">trending_down</span>
-                  3% from last month
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-sm-6 col-lg-3">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div
-                  class="d-flex justify-content-between align-items-center mb-3"
-                >
-                  <div class="text-muted">Conversion Rate</div>
-                  <div class="avatar avatar-sm avatar-warning-outline">
-                    <span class="material-symbols-rounded">percent</span>
-                  </div>
-                </div>
-                <div class="text-2xl font-bold">2.4%</div>
-                <div class="text-success">
-                  <span class="material-symbols-rounded">trending_up</span>
-                  0.5% from last month
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <!-- Content -->
+        <div class="dash-content">
+          <!-- Page header + breadcrumb -->
+          <div>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumbs">
+                <li class="breadcrumbs-item"><a href="#">Home</a></li>
+                <li class="breadcrumbs-item active" aria-current="page">
+                  Dashboard
+                </li>
+              </ol>
+            </nav>
 
-        <!-- Tabs Section -->
-        <div class="tabs-container mb-6">
-          <nav class="tabs tabs-pills" aria-label="Dashboard Tabs">
-            <a
-              href="#"
-              class="tab active d-flex align-items-center"
-              onclick="changeTab(event, 'tab-orders')"
-              aria-current="page"
-            >
-              <span class="material-symbols-rounded mr-2">receipt_long</span>
-              Recent Orders
-            </a>
-            <a
-              href="#"
-              class="tab d-flex align-items-center"
-              onclick="changeTab(event, 'tab-activity')"
-            >
-              <span class="material-symbols-rounded mr-2">history</span>
-              User Activity
-            </a>
-            <a
-              href="#"
-              class="tab d-flex align-items-center"
-              onclick="changeTab(event, 'tab-products')"
-            >
-              <span class="material-symbols-rounded mr-2">inventory_2</span>
-              Top Products
-            </a>
-          </nav>
-        </div>
-
-        <!-- Tab Content -->
-        <div id="tab-orders" class="tab-content">
-          <div class="card shadow-sm">
             <div
-              class="card-header d-flex justify-content-between align-items-center"
+              class="d-flex justify-content-between align-items-center mt-2"
+              style="flex-wrap: wrap; gap: 1rem;"
             >
-              <h2 class="text-xl font-bold mb-0">Recent Orders</h2>
-              <button class="btn btn-primary btn-sm">
-                <span class="material-symbols-rounded">add</span> New Order
+              <div>
+                <h1 class="mb-1" style="font-size: 1.75rem;">Dashboard overview</h1>
+                <p class="m-0 text-secondary-soft">
+                  A snapshot of activity across your workspace this week.
+                </p>
+              </div>
+              <button class="btn btn-primary">
+                <svg class="icon"><use href="#i-plus" /></svg>
+                New order
               </button>
             </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-hover table-striped">
-                  <thead>
-                    <tr>
-                      <th>Order ID</th>
-                      <th>Customer</th>
-                      <th>Date</th>
-                      <th>Amount</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>#ORD-001</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="avatar avatar-sm mr-2">
-                            <span>JD</span>
-                          </div>
-                          <span>John Doe</span>
-                        </div>
-                      </td>
-                      <td>May 15, 2023</td>
-                      <td>$120.50</td>
-                      <td>
-                        <span class="badge badge-success badge-pill">
-                          Completed
-                        </span>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded"
-                              >visibility</span
-                            >
-                          </button>
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded">edit</span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#ORD-002</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="avatar avatar-sm mr-2">
-                            <span>JS</span>
-                          </div>
-                          <span>Jane Smith</span>
-                        </div>
-                      </td>
-                      <td>May 14, 2023</td>
-                      <td>$75.20</td>
-                      <td>
-                        <span class="badge badge-success badge-pill">
-                          Completed
-                        </span>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded"
-                              >visibility</span
-                            >
-                          </button>
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded">edit</span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#ORD-003</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="avatar avatar-sm mr-2">
-                            <span>RJ</span>
-                          </div>
-                          <span>Robert Johnson</span>
-                        </div>
-                      </td>
-                      <td>May 14, 2023</td>
-                      <td>$246.00</td>
-                      <td>
-                        <span class="badge badge-warning badge-pill">
-                          Pending
-                        </span>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded"
-                              >visibility</span
-                            >
-                          </button>
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded">edit</span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#ORD-004</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="avatar avatar-sm mr-2">
-                            <span>ED</span>
-                          </div>
-                          <span>Emily Davis</span>
-                        </div>
-                      </td>
-                      <td>May 13, 2023</td>
-                      <td>$189.75</td>
-                      <td>
-                        <span class="badge badge-danger badge-pill">
-                          Cancelled
-                        </span>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded"
-                              >visibility</span
-                            >
-                          </button>
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded">edit</span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>#ORD-005</td>
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <div class="avatar avatar-sm mr-2">
-                            <span>MW</span>
-                          </div>
-                          <span>Michael Wilson</span>
-                        </div>
-                      </td>
-                      <td>May 13, 2023</td>
-                      <td>$87.30</td>
-                      <td>
-                        <span class="badge badge-success badge-pill">
-                          Completed
-                        </span>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded"
-                              >visibility</span
-                            >
-                          </button>
-                          <button class="btn btn-outline-primary btn-sm">
-                            <span class="material-symbols-rounded">edit</span>
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+          </div>
+
+          <!-- Stats grid — auto-fit means it reflows without media queries -->
+          <div
+            class="grid-auto-fit stat-grid"
+            style="--cell-min: 13rem; --grid-gutter: 1rem;"
+          >
+            <article class="card">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="text-secondary-soft">Total users</span>
+                  <div
+                    class="avatar avatar-sm avatar-primary-outline"
+                    style="display: grid; place-items: center;"
+                  >
+                    <svg class="icon"><use href="#i-users" /></svg>
+                  </div>
+                </div>
+                <div style="font-size: 1.75rem; font-weight: 700;">1,245</div>
+                <span class="trend trend-up mt-2">
+                  <svg class="icon"><use href="#i-trend-up" /></svg>
+                  12% from last month
+                </span>
               </div>
-              <div
-                class="d-flex justify-content-between align-items-center mt-4"
+            </article>
+
+            <article class="card">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="text-secondary-soft">Revenue</span>
+                  <div
+                    class="avatar avatar-sm avatar-success-outline"
+                    style="display: grid; place-items: center;"
+                  >
+                    <svg class="icon"><use href="#i-chart" /></svg>
+                  </div>
+                </div>
+                <div style="font-size: 1.75rem; font-weight: 700;">$34,567</div>
+                <span class="trend trend-up mt-2">
+                  <svg class="icon"><use href="#i-trend-up" /></svg>
+                  8% from last month
+                </span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="text-secondary-soft">Orders</span>
+                  <div
+                    class="avatar avatar-sm avatar-info-outline"
+                    style="display: grid; place-items: center;"
+                  >
+                    <svg class="icon"><use href="#i-cart" /></svg>
+                  </div>
+                </div>
+                <div style="font-size: 1.75rem; font-weight: 700;">867</div>
+                <span class="trend trend-down mt-2">
+                  <svg class="icon"><use href="#i-trend-down" /></svg>
+                  3% from last month
+                </span>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="card-body">
+                <div
+                  class="d-flex justify-content-between align-items-center mb-2"
+                >
+                  <span class="text-secondary-soft">Conversion rate</span>
+                  <div
+                    class="avatar avatar-sm avatar-warning-outline"
+                    style="display: grid; place-items: center;"
+                  >
+                    <svg class="icon"><use href="#i-chart" /></svg>
+                  </div>
+                </div>
+                <div style="font-size: 1.75rem; font-weight: 700;">2.4%</div>
+                <span class="trend trend-up mt-2">
+                  <svg class="icon"><use href="#i-trend-up" /></svg>
+                  0.5% from last month
+                </span>
+              </div>
+            </article>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tabs-container">
+            <div class="tabs" role="tablist">
+              <a
+                href="#tab-orders"
+                class="tab active"
+                role="tab"
+                aria-current="page"
+                onclick="changeTab(event, 'tab-orders')"
               >
-                <div>Showing 1 to 5 of 25 entries</div>
-                <div class="pagination">
-                  <a href="#" class="pagination-prev">&laquo;</a>
-                  <a href="#" class="pagination-item active">1</a>
-                  <a href="#" class="pagination-item">2</a>
-                  <a href="#" class="pagination-item">3</a>
-                  <a href="#" class="pagination-next">&raquo;</a>
+                Recent orders
+              </a>
+              <a
+                href="#tab-activity"
+                class="tab"
+                role="tab"
+                onclick="changeTab(event, 'tab-activity')"
+              >
+                User activity
+              </a>
+              <a
+                href="#tab-products"
+                class="tab"
+                role="tab"
+                onclick="changeTab(event, 'tab-products')"
+              >
+                Top products
+              </a>
+            </div>
+          </div>
+
+          <!-- Tab: Recent orders -->
+          <div id="tab-orders" class="tab-content">
+            <article class="card">
+              <div
+                class="card-header d-flex justify-content-between align-items-center"
+              >
+                <h2 class="m-0" style="font-size: 1.125rem;">Recent orders</h2>
+                <button class="btn btn-light btn-sm">Export CSV</button>
+              </div>
+              <div class="card-body" style="padding: 0;">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col" class="text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><code>#ORD-001</code></td>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                              class="avatar avatar-sm avatar-primary"
+                              style="display: grid; place-items: center; font-weight: 600;"
+                            >
+                              JD
+                            </div>
+                            <span>John Doe</span>
+                          </div>
+                        </td>
+                        <td>May 15, 2026</td>
+                        <td>$120.50</td>
+                        <td><span class="badge badge-success">Completed</span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button class="btn btn-light btn-sm" aria-label="View">
+                              <svg class="icon"><use href="#i-eye" /></svg>
+                            </button>
+                            <button class="btn btn-light btn-sm" aria-label="Edit">
+                              <svg class="icon"><use href="#i-edit" /></svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>#ORD-002</code></td>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                              class="avatar avatar-sm avatar-success"
+                              style="display: grid; place-items: center; font-weight: 600;"
+                            >
+                              JS
+                            </div>
+                            <span>Jane Smith</span>
+                          </div>
+                        </td>
+                        <td>May 14, 2026</td>
+                        <td>$75.20</td>
+                        <td><span class="badge badge-success">Completed</span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button class="btn btn-light btn-sm" aria-label="View">
+                              <svg class="icon"><use href="#i-eye" /></svg>
+                            </button>
+                            <button class="btn btn-light btn-sm" aria-label="Edit">
+                              <svg class="icon"><use href="#i-edit" /></svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>#ORD-003</code></td>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                              class="avatar avatar-sm avatar-info"
+                              style="display: grid; place-items: center; font-weight: 600;"
+                            >
+                              RJ
+                            </div>
+                            <span>Robert Johnson</span>
+                          </div>
+                        </td>
+                        <td>May 14, 2026</td>
+                        <td>$246.00</td>
+                        <td><span class="badge badge-warning">Pending</span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button class="btn btn-light btn-sm" aria-label="View">
+                              <svg class="icon"><use href="#i-eye" /></svg>
+                            </button>
+                            <button class="btn btn-light btn-sm" aria-label="Edit">
+                              <svg class="icon"><use href="#i-edit" /></svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>#ORD-004</code></td>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                              class="avatar avatar-sm avatar-warning"
+                              style="display: grid; place-items: center; font-weight: 600;"
+                            >
+                              ED
+                            </div>
+                            <span>Emily Davis</span>
+                          </div>
+                        </td>
+                        <td>May 13, 2026</td>
+                        <td>$189.75</td>
+                        <td><span class="badge badge-danger">Cancelled</span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button class="btn btn-light btn-sm" aria-label="View">
+                              <svg class="icon"><use href="#i-eye" /></svg>
+                            </button>
+                            <button class="btn btn-light btn-sm" aria-label="Edit">
+                              <svg class="icon"><use href="#i-edit" /></svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><code>#ORD-005</code></td>
+                        <td>
+                          <div class="d-flex align-items-center gap-2">
+                            <div
+                              class="avatar avatar-sm avatar-secondary"
+                              style="display: grid; place-items: center; font-weight: 600;"
+                            >
+                              MW
+                            </div>
+                            <span>Michael Wilson</span>
+                          </div>
+                        </td>
+                        <td>May 13, 2026</td>
+                        <td>$87.30</td>
+                        <td><span class="badge badge-success">Completed</span></td>
+                        <td class="text-right">
+                          <div class="btn-group">
+                            <button class="btn btn-light btn-sm" aria-label="View">
+                              <svg class="icon"><use href="#i-eye" /></svg>
+                            </button>
+                            <button class="btn btn-light btn-sm" aria-label="Edit">
+                              <svg class="icon"><use href="#i-edit" /></svg>
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-            </div>
+              <div
+                class="card-footer d-flex justify-content-between align-items-center"
+              >
+                <span class="text-secondary-soft">Showing 1 to 5 of 25</span>
+                <nav aria-label="Pagination">
+                  <ul class="pagination pagination-sm pagination-joined">
+                    <li><a href="#" class="page-link" aria-label="Previous">‹</a></li>
+                    <li><a href="#" class="page-link" aria-current="page">1</a></li>
+                    <li><a href="#" class="page-link">2</a></li>
+                    <li><a href="#" class="page-link">3</a></li>
+                    <li><a href="#" class="page-link" aria-label="Next">›</a></li>
+                  </ul>
+                </nav>
+              </div>
+            </article>
           </div>
-        </div>
 
-        <div id="tab-activity" class="tab-content" style="display: none">
-          <div class="card shadow-sm">
-            <div class="card-header">
-              <h2 class="text-xl font-bold mb-0">Recent User Activity</h2>
-            </div>
-            <div class="card-body p-4">
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-md mr-3">
-                      <img src="https://i.pravatar.cc/150?img=1" alt="User" />
+          <!-- Tab: User activity -->
+          <div id="tab-activity" class="tab-content" hidden>
+            <article class="card">
+              <div class="card-header">
+                <h2 class="m-0" style="font-size: 1.125rem;">Recent activity</h2>
+              </div>
+              <div class="card-body">
+                <ul class="activity">
+                  <li>
+                    <div
+                      class="avatar avatar-md avatar-primary"
+                      style="display: grid; place-items: center; font-weight: 600;"
+                    >
+                      JD
                     </div>
                     <div>
-                      <div class="font-bold">John Doe</div>
-                      <div>Updated their profile information</div>
-                      <div class="text-sm text-muted">2 hours ago</div>
+                      <div class="activity-title">John Doe</div>
+                      <div>Updated their profile information.</div>
+                      <div class="activity-meta">2 hours ago</div>
                     </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-md mr-3">
-                      <img src="https://i.pravatar.cc/150?img=5" alt="User" />
-                    </div>
-                    <div>
-                      <div class="font-bold">Jane Smith</div>
-                      <div>Purchased Premium Plan</div>
-                      <div class="text-sm text-muted">3 hours ago</div>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-md mr-3">
-                      <img src="https://i.pravatar.cc/150?img=8" alt="User" />
+                  </li>
+                  <li>
+                    <div
+                      class="avatar avatar-md avatar-success"
+                      style="display: grid; place-items: center; font-weight: 600;"
+                    >
+                      JS
                     </div>
                     <div>
-                      <div class="font-bold">Robert Johnson</div>
-                      <div>Left a review on Product X</div>
-                      <div class="text-sm text-muted">5 hours ago</div>
+                      <div class="activity-title">Jane Smith</div>
+                      <div>Purchased the Premium plan.</div>
+                      <div class="activity-meta">3 hours ago</div>
                     </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-md mr-3">
-                      <img src="https://i.pravatar.cc/150?img=9" alt="User" />
-                    </div>
-                    <div>
-                      <div class="font-bold">Emily Davis</div>
-                      <div>Requested a refund</div>
-                      <div class="text-sm text-muted">Yesterday</div>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-md mr-3">
-                      <img src="https://i.pravatar.cc/150?img=12" alt="User" />
+                  </li>
+                  <li>
+                    <div
+                      class="avatar avatar-md avatar-info"
+                      style="display: grid; place-items: center; font-weight: 600;"
+                    >
+                      RJ
                     </div>
                     <div>
-                      <div class="font-bold">Michael Wilson</div>
-                      <div>Created a new account</div>
-                      <div class="text-sm text-muted">Yesterday</div>
+                      <div class="activity-title">Robert Johnson</div>
+                      <div>Left a 5-star review on <strong>Wireless Keyboard</strong>.</div>
+                      <div class="activity-meta">5 hours ago</div>
                     </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer text-center">
-              <button class="btn btn-outline-primary">View All Activity</button>
-            </div>
+                  </li>
+                  <li>
+                    <div
+                      class="avatar avatar-md avatar-warning"
+                      style="display: grid; place-items: center; font-weight: 600;"
+                    >
+                      ED
+                    </div>
+                    <div>
+                      <div class="activity-title">Emily Davis</div>
+                      <div>Requested a refund for order <code>#ORD-004</code>.</div>
+                      <div class="activity-meta">Yesterday</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="avatar avatar-md avatar-secondary"
+                      style="display: grid; place-items: center; font-weight: 600;"
+                    >
+                      MW
+                    </div>
+                    <div>
+                      <div class="activity-title">Michael Wilson</div>
+                      <div>Created a new account.</div>
+                      <div class="activity-meta">Yesterday</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btn-light btn-sm">View all activity</button>
+              </div>
+            </article>
           </div>
-        </div>
 
-        <div id="tab-products" class="tab-content" style="display: none">
-          <div class="card shadow-sm">
-            <div class="card-header">
-              <h2 class="text-xl font-bold mb-0">Top Products</h2>
-            </div>
-            <div class="card-body p-4">
-              <ul class="list-group">
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm avatar-primary mr-3">
-                      <span class="material-symbols-rounded">headphones</span>
-                    </div>
-                    <span>Premium Headphones</span>
+          <!-- Tab: Top products -->
+          <div id="tab-products" class="tab-content" hidden>
+            <article class="card">
+              <div class="card-header">
+                <h2 class="m-0" style="font-size: 1.125rem;">Top products</h2>
+              </div>
+              <div class="card-body">
+                <div class="product-row">
+                  <div
+                    class="avatar avatar-sm avatar-primary"
+                    style="display: grid; place-items: center; font-weight: 600;"
+                  >
+                    PH
                   </div>
-                  <div>
-                    <span class="font-bold">$12,500</span>
-                    <div class="progress mt-2" style="width: 100px">
-                      <div class="progress-bar" style="width: 85%"></div>
-                    </div>
+                  <span>Premium Headphones</span>
+                  <span class="font-bold">$12,500</span>
+                  <div
+                    class="progress product-bar"
+                    role="progressbar"
+                    aria-valuenow="85"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar" style="width: 85%"></div>
                   </div>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm avatar-secondary mr-3">
-                      <span class="material-symbols-rounded">keyboard</span>
-                    </div>
-                    <span>Wireless Keyboard</span>
+                </div>
+                <div class="product-row">
+                  <div
+                    class="avatar avatar-sm avatar-info"
+                    style="display: grid; place-items: center; font-weight: 600;"
+                  >
+                    WK
                   </div>
-                  <div>
-                    <span class="font-bold">$8,750</span>
-                    <div class="progress mt-2" style="width: 100px">
-                      <div class="progress-bar" style="width: 70%"></div>
-                    </div>
+                  <span>Wireless Keyboard</span>
+                  <span class="font-bold">$8,750</span>
+                  <div
+                    class="progress product-bar"
+                    role="progressbar"
+                    aria-valuenow="70"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar progress-bar-info" style="width: 70%"></div>
                   </div>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm avatar-success mr-3">
-                      <span class="material-symbols-rounded">mouse</span>
-                    </div>
-                    <span>Ergonomic Mouse</span>
+                </div>
+                <div class="product-row">
+                  <div
+                    class="avatar avatar-sm avatar-success"
+                    style="display: grid; place-items: center; font-weight: 600;"
+                  >
+                    EM
                   </div>
-                  <div>
-                    <span class="font-bold">$7,200</span>
-                    <div class="progress mt-2" style="width: 100px">
-                      <div class="progress-bar" style="width: 60%"></div>
-                    </div>
+                  <span>Ergonomic Mouse</span>
+                  <span class="font-bold">$7,200</span>
+                  <div
+                    class="progress product-bar"
+                    role="progressbar"
+                    aria-valuenow="60"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar progress-bar-success" style="width: 60%"></div>
                   </div>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm avatar-info mr-3">
-                      <span class="material-symbols-rounded"
-                        >desktop_windows</span
-                      >
-                    </div>
-                    <span>4K Monitor</span>
+                </div>
+                <div class="product-row">
+                  <div
+                    class="avatar avatar-sm avatar-warning"
+                    style="display: grid; place-items: center; font-weight: 600;"
+                  >
+                    4K
                   </div>
-                  <div>
-                    <span class="font-bold">$6,800</span>
-                    <div class="progress mt-2" style="width: 100px">
-                      <div class="progress-bar" style="width: 55%"></div>
-                    </div>
+                  <span>4K Monitor</span>
+                  <span class="font-bold">$6,800</span>
+                  <div
+                    class="progress product-bar"
+                    role="progressbar"
+                    aria-valuenow="55"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar progress-bar-warning" style="width: 55%"></div>
                   </div>
-                </li>
-                <li
-                  class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                  <div class="d-flex align-items-center">
-                    <div class="avatar avatar-sm avatar-warning mr-3">
-                      <span class="material-symbols-rounded">laptop_mac</span>
-                    </div>
-                    <span>Laptop Stand</span>
+                </div>
+                <div class="product-row">
+                  <div
+                    class="avatar avatar-sm avatar-secondary"
+                    style="display: grid; place-items: center; font-weight: 600;"
+                  >
+                    LS
                   </div>
-                  <div>
-                    <span class="font-bold">$5,400</span>
-                    <div class="progress mt-2" style="width: 100px">
-                      <div class="progress-bar" style="width: 45%"></div>
-                    </div>
+                  <span>Laptop Stand</span>
+                  <span class="font-bold">$5,400</span>
+                  <div
+                    class="progress product-bar"
+                    role="progressbar"
+                    aria-valuenow="45"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  >
+                    <div class="progress-bar" style="width: 45%"></div>
                   </div>
-                </li>
-              </ul>
-            </div>
-            <div class="card-footer text-center">
-              <button class="btn btn-outline-primary">View All Products</button>
-            </div>
+                </div>
+              </div>
+              <div class="card-footer text-center">
+                <button class="btn btn-light btn-sm">View all products</button>
+              </div>
+            </article>
           </div>
-        </div>
 
-        <!-- Alert Section -->
-        <div class="mt-6">
-          <div class="alert alert-info">
-            <span class="alert-icon material-symbols-rounded">info</span>
+          <!-- System alert -->
+          <div class="alert alert-info" role="status">
+            <svg class="icon icon-lg alert-icon"><use href="#i-info" /></svg>
             <div class="alert-body">
-              <div class="alert-body-title">System Update</div>
+              <div class="alert-body-title">System update available</div>
               <div class="alert-body-description">
-                <p>
-                  A new software update is available. See what's new in version
-                  2.0!
-                </p>
-                <a href="#">View Details →</a>
+                MinimaCSS v0.3.0 is out. Take a look at the
+                <a href="../docs/index.html#/changelog">changelog</a> to see
+                what's new.
               </div>
             </div>
-            <button class="alert-close">&times;</button>
           </div>
         </div>
       </div>
     </div>
 
     <script>
-      // Theme Switcher
-      document.addEventListener("DOMContentLoaded", () => {
-        const savedTheme =
-          localStorage.getItem("user-theme") || getSystemTheme();
-        setTheme(savedTheme);
-        initializeRadioButtonState(savedTheme);
+      // -------- Theme switcher (on <html> so `color-scheme` cascades to
+      //          native form controls + scrollbars) --------
+      const root = document.documentElement;
+      const radios = {
+        light: document.getElementById("theme-light"),
+        dark: document.getElementById("theme-dark"),
+        system: document.getElementById("theme-system"),
+      };
 
-        document
-          .getElementById("light_mode")
-          .addEventListener("change", () => changeTheme("light"));
-        document
-          .getElementById("dark_mode")
-          .addEventListener("change", () => changeTheme("dark"));
-        document
-          .getElementById("system_preference")
-          .addEventListener("change", () => changeTheme(getSystemTheme()));
-      });
-
-      function getSystemTheme() {
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
+      function applyTheme(mode) {
+        if (mode === "system") root.removeAttribute("data-theme");
+        else root.setAttribute("data-theme", mode);
+        localStorage.setItem("minimacss-theme", mode);
       }
 
-      function setTheme(theme) {
-        document.body.setAttribute("data-theme", theme);
+      const saved = localStorage.getItem("minimacss-theme") || "system";
+      (radios[saved] || radios.system).checked = true;
+      applyTheme(saved);
+
+      for (const [mode, input] of Object.entries(radios)) {
+        input.addEventListener("change", () => applyTheme(mode));
       }
 
-      function changeTheme(theme) {
-        setTheme(theme);
-        localStorage.setItem("user-theme", theme);
-      }
-
-      function initializeRadioButtonState(theme) {
-        if (theme === "light") {
-          document.getElementById("light_mode").checked = true;
-        } else if (theme === "dark") {
-          document.getElementById("dark_mode").checked = true;
-        } else {
-          document.getElementById("system_preference").checked = true;
-        }
-      }
-
-      // Tab Functionality
+      // -------- Tab switcher --------
       function changeTab(event, tabId) {
         event.preventDefault();
-        const tabs = document.querySelectorAll(".tabs .tab");
-        const tabContents = document.querySelectorAll(".tab-content");
-
-        tabs.forEach((tab) => {
+        document.querySelectorAll(".tabs .tab").forEach((tab) => {
           tab.classList.remove("active");
           tab.removeAttribute("aria-current");
         });
-
-        tabContents.forEach((content) => {
-          content.style.display = "none";
-        });
-
+        document
+          .querySelectorAll(".tab-content")
+          .forEach((c) => (c.hidden = true));
         event.currentTarget.classList.add("active");
         event.currentTarget.setAttribute("aria-current", "page");
-
-        const activeTabContent = document.getElementById(tabId);
-        if (activeTabContent) {
-          activeTabContent.style.display = "block";
-        }
+        const content = document.getElementById(tabId);
+        if (content) content.hidden = false;
       }
     </script>
   </body>

@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 .tooltip {
   position: relative;
   display: inline-block;
@@ -11,7 +14,7 @@
     padding: $tooltip-padding;
     border-radius: $tooltip-border-radius;
     white-space: nowrap;
-    z-index: 1000;
+    z-index: var(--z-tooltip);
     opacity: 0;
     transition: opacity 0.3s;
     visibility: hidden;
@@ -108,4 +111,6 @@
   .tooltip::after {
     font-size: 0.75rem; /* Reduce font size */
   }
+}
+
 }

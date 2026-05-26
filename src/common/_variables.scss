@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // https://noeldelgado.github.io/shadowlord/#214ddf  15%
 
 $primary-50: #c8d3f7;
@@ -14,8 +16,8 @@ $primary-900: #0d1f59;
 $white: #ffffff;
 $black: #111a33;
 
-//dark-shades
-/* for grays https://noeldelgado.github.io/shadowlord/#182447 13.9% */
+// dark-shades — gray palette generated from $gray-700 (#182447) at 13.9%
+// using https://noeldelgado.github.io/shadowlord/
 $gray-50: #f9f9fa;
 $gray-100: #d9dbe0;
 $gray-200: #b9bcc7;
@@ -71,7 +73,15 @@ $blue-700: #1976d2;
 $blue-800: #1565c0;
 $blue-900: #0d47a1;
 
-$chevron-icon-data-url: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="%23cccccc" stroke-width="2" fill="none"/></svg>');
+$chevron-icon-data-url: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polyline points="2,4 6,8 10,4" stroke="%23787f94" stroke-width="2" fill="none"/></svg>');
+
+$container-max-widths: (
+  "sm": 540px,
+  "md": 720px,
+  "lg": 960px,
+  "xl": 1140px,
+  "xxl": 1320px,
+);
 
 $border-radius-small: 0.25rem;
 $border-radius: 0.5rem;
@@ -120,13 +130,18 @@ $breakpoints: (
   "xxl": 1400px,
 );
 
-$grid-columns-row: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-
+// Expanded spacing scale — half steps + extended range.
+// Keeps the 0–10 keys compatible with prior templates and adds finer grain
+// (0.5, 1.5, 2.5, 3.5) plus larger sizes for hero / section layouts.
 $spacers: (
   0: 0,
+  "0.5": 0.125rem, // 2px
   1: 0.25rem,
+  "1.5": 0.375rem, // 6px
   2: 0.5rem,
+  "2.5": 0.625rem, // 10px
   3: 1rem,
+  "3.5": 1.25rem, // 20px
   4: 1.5rem,
   5: 2rem,
   6: 2.5rem,
@@ -134,6 +149,24 @@ $spacers: (
   8: 3.5rem,
   9: 4rem,
   10: 4.5rem,
+  11: 5rem,
+  12: 6rem,
+  14: 7rem,
+  16: 8rem,
+  20: 10rem,
+  24: 12rem,
+  32: 16rem,
+  48: 24rem,
+  64: 32rem,
+);
+
+// Fluid spacing scale — for hero spacing that scales with viewport.
+$spacers-fluid: (
+  "sm": clamp(0.5rem, 1.5vw, 1rem),
+  "md": clamp(1rem, 3vw, 2rem),
+  "lg": clamp(2rem, 5vw, 4rem),
+  "xl": clamp(3rem, 8vw, 6rem),
+  "2xl": clamp(4rem, 12vw, 10rem),
 );
 
 $colors: (
@@ -189,11 +222,11 @@ $sizes: (
   "full": 100%,
   "vh": 100vh,
   "vw": 100vw,
-  "sm": map-get($breakpoints, "sm"),
-  "md": map-get($breakpoints, "md"),
-  "lg": map-get($breakpoints, "lg"),
-  "xl": map-get($breakpoints, "xl"),
-  "xxl": map-get($breakpoints, "xxl"),
+  "sm": map.get($breakpoints, "sm"),
+  "md": map.get($breakpoints, "md"),
+  "lg": map.get($breakpoints, "lg"),
+  "xl": map.get($breakpoints, "xl"),
+  "xxl": map.get($breakpoints, "xxl"),
 );
 
 $font-sizes: (
@@ -213,7 +246,7 @@ $font-sizes: (
   // 3X Large
   "4xl": 2.5rem,
   // 4X Large
-  "5xl": 3rem // 5X Large,,,
+  "5xl": 3rem, // 5X Large
 );
 
 $font-weights: (
@@ -237,7 +270,7 @@ $letter-spacings: (
   // Slightly wide letter spacing
   "wider": 0.05em,
   // Wider letter spacing
-  "widest": 0.1em // Widest letter spacing,,,
+  "widest": 0.1em, // Widest letter spacing
 );
 
 $line-heights: (

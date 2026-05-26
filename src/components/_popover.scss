@@ -1,0 +1,151 @@
+@use "../core" as *;
+
+// Popover + CSS Anchor Positioning — zero-JS menus, popovers, tooltips
+// =====================================================================
+//
+// Built on the native `popover` attribute + `popovertarget` button +
+// CSS Anchor Positioning. The browser handles open/close, light dismiss,
+// focus restoration, and stacking. No JavaScript required, no focus-trap
+// boilerplate, no z-index wars.
+//
+// Markup
+// ------
+//
+//   <button popovertarget="user-menu" style="anchor-name: --user-menu;">
+//     Menu
+//   </button>
+//
+//   <div popover id="user-menu" class="popover" style="position-anchor: --user-menu;">
+//     <a class="popover-item" href="#">Profile</a>
+//     <a class="popover-item" href="#">Settings</a>
+//     <div class="popover-divider"></div>
+//     <a class="popover-item popover-item-danger" href="#">Sign out</a>
+//   </div>
+//
+// Placement is set via `position-area` (formerly `inset-area`) — see the
+// modifier classes below. Default is `bottom`.
+
+@layer components {
+  // Reset the native popover defaults (full-viewport-sized, opaque).
+  [popover].popover {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    inset: unset;
+    width: auto;
+    height: auto;
+    max-width: min(20rem, 100vw);
+  }
+
+  .popover {
+    position: absolute;
+    position-area: bottom span-right;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+    margin: 0.375rem 0;
+
+    padding: 0.375rem;
+    background: var(--surface-primary-color);
+    color: var(--text-primary-color);
+    border: 1px solid var(--border-primary-color);
+    border-radius: $border-radius;
+    box-shadow: var(--elevation-3);
+    min-width: 10rem;
+    z-index: var(--z-popover);
+
+    // Entry/exit animation — pairs `@starting-style` with discrete
+    // transitions on `display` and `overlay` so both directions animate.
+    opacity: 0;
+    transform: translateY(-0.25rem) scale(0.98);
+    transition:
+      opacity var(--transition-fast) var(--ease),
+      transform var(--transition-fast) var(--ease),
+      overlay var(--transition-fast) var(--ease) allow-discrete,
+      display var(--transition-fast) var(--ease) allow-discrete;
+  }
+
+  .popover:popover-open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    .popover:popover-open {
+      opacity: 0;
+      transform: translateY(-0.25rem) scale(0.98);
+    }
+  }
+
+  // Placement modifiers
+  .popover-top { position-area: top span-right; }
+  .popover-top-end { position-area: top span-left; }
+  .popover-top-start { position-area: top span-right; }
+  .popover-bottom { position-area: bottom span-right; }
+  .popover-bottom-end { position-area: bottom span-left; }
+  .popover-bottom-start { position-area: bottom span-right; }
+  .popover-left { position-area: left span-bottom; }
+  .popover-right { position-area: right span-bottom; }
+
+  // Items
+  .popover-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: calc(#{$border-radius} - 0.25rem);
+    color: var(--text-primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    background: transparent;
+    border: 0;
+    width: 100%;
+    text-align: start;
+    cursor: pointer;
+    transition: background var(--transition-fast) var(--ease);
+  }
+
+  .popover-item:hover,
+  .popover-item:focus-visible {
+    background: var(--surface-secondary-color);
+    color: var(--text-primary-color);
+    text-decoration: none;
+    outline: 0;
+  }
+
+  .popover-item[aria-disabled="true"],
+  .popover-item:disabled {
+    color: var(--text-tertiary-color);
+    pointer-events: none;
+  }
+
+  .popover-item-danger {
+    color: var(--button-error-color);
+
+    &:hover,
+    &:focus-visible {
+      background: color-mix(
+        in oklch,
+        var(--button-error-color) 12%,
+        transparent
+      );
+      color: var(--button-error-color);
+    }
+  }
+
+  .popover-divider {
+    height: 1px;
+    background: var(--border-primary-color);
+    margin: 0.25rem 0;
+    border: 0;
+  }
+
+  .popover-header,
+  .popover-footer {
+    padding: 0.5rem 0.6rem;
+    font-size: 0.8125rem;
+    color: var(--text-secondary-color);
+  }
+}

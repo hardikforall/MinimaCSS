@@ -1,19 +1,22 @@
+@use "../core" as *;
+
+@layer utilities {
 // Show and Hide Utilities
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 .visible {
-  display: block !important;
+  display: block;
 }
 
-// Visibility Utilities
+// Visibility Utilities (keep occupied space; only toggle paint)
 .invisible {
-  visibility: hidden !important;
+  visibility: hidden;
 }
 
-.visible {
-  visibility: visible !important;
+.visibility-visible {
+  visibility: visible;
 }
 
 // Screen Reader Only Utility
@@ -24,7 +27,8 @@
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
   border: 0;
 }
 
@@ -33,10 +37,12 @@
 @each $breakpoint, $bp-value in $breakpoints {
   @media (min-width: $bp-value) {
     .hidden-#{$breakpoint} {
-      display: none !important;
+      display: none;
     }
     .visible-#{$breakpoint} {
-      display: block !important;
+      display: block;
     }
   }
+}
+
 }

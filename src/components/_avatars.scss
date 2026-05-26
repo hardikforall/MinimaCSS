@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer components {
 // Base avatar styles
 .avatar {
   display: inline-flex;
@@ -55,4 +58,6 @@
     border: 1px solid $color-value;
     background-color: hex-to-rgba($color-value, 0.1);
   }
+}
+
 }

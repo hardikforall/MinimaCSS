@@ -1,0 +1,87 @@
+@use "../core" as *;
+
+// Empty state
+// ===========
+//
+// Drop-in for "no data yet", "404", "no results", "no permissions" —
+// any place you'd otherwise leave a blank panel.
+//
+//   <div class="empty-state">
+//     <div class="empty-state-icon">
+//       <svg>…</svg>
+//     </div>
+//     <h3 class="empty-state-title">No orders yet</h3>
+//     <p class="empty-state-description">
+//       When your customers place an order it'll appear here.
+//     </p>
+//     <div class="empty-state-actions">
+//       <button class="btn btn-primary">Create test order</button>
+//     </div>
+//   </div>
+
+@layer components {
+  .empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    padding: clamp(2rem, 6vw, 4rem) 1.5rem;
+    color: var(--text-secondary-color);
+  }
+
+  .empty-state-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--surface-secondary-color);
+    color: var(--text-tertiary-color);
+    margin-block-end: 0.25rem;
+
+    > svg {
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+  }
+
+  .empty-state-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary-color);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .empty-state-description {
+    margin: 0;
+    max-inline-size: 32rem;
+    color: var(--text-secondary-color);
+    text-wrap: pretty;
+  }
+
+  .empty-state-actions {
+    margin-block-start: 0.5rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  // Compact variant for small panels
+  .empty-state-sm {
+    padding: 1.5rem 1rem;
+    gap: 0.5rem;
+
+    .empty-state-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+
+      > svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+  }
+}

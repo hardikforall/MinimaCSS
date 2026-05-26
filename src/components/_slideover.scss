@@ -1,8 +1,12 @@
+@use "../core" as *;
+@use "sass:map";
+
+@layer components {
 // Base slideover styles
 .slideover {
   position: fixed;
   background-color: var(--surface-primary-color);
-  z-index: 1040; // Make sure it's above most content
+  z-index: var(--z-modal);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   overflow-y: auto;
   transition: transform $slideover-transition-duration ease-in-out;
@@ -16,7 +20,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1030; // Backdrop should be below the slideover but above other content
+    z-index: var(--z-overlay);
     visibility: hidden; // Start hidden
     opacity: 0;
     transition: opacity $slideover-transition-duration ease-in-out;
@@ -64,7 +68,7 @@
   &.left {
     top: 0;
     bottom: 0;
-    max-width: map-get($slideover-sizes, "md"); // Default width
+    max-width: map.get($slideover-sizes, "md"); // Default width
     @each $size, $value in $slideover-sizes {
       &.size-#{$size} {
         max-width: $value;
@@ -77,7 +81,7 @@
   &.bottom {
     left: 0;
     right: 0;
-    height: map-get($slideover-sizes, "md"); // Default height
+    height: map.get($slideover-sizes, "md"); // Default height
     @each $size, $value in $slideover-sizes {
       &.size-#{$size} {
         height: $value;
@@ -140,4 +144,6 @@
 .body-no-scroll {
   overflow: hidden;
   width: 100%; // To prevent width re-adjustment when scrollbar disappears
+}
+
 }

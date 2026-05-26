@@ -1,5 +1,13 @@
+@use "../core" as *;
+
+@layer components {
 // Base card styles
+//
+// Each .card is its own query container, so any descendant can adjust to
+// the card's width (not the viewport). For example, place a .card inside
+// a narrow sidebar and a wide hero — its header padding adapts.
 .card {
+  container-type: inline-size;
   background-color: var(--card-bg-color);
   border: 1px solid var(--border-primary-color);
   border-radius: $border-radius;
@@ -55,4 +63,18 @@
       margin-right: 1.25rem;
     }
   }
+
+  // At ≥ 32rem the card has room for more generous padding.
+  @container (min-width: 32rem) {
+    .card-header,
+    .card-footer {
+      padding: 1rem 1.5rem;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+  }
+}
+
 }

@@ -1,25 +1,21 @@
+@use "../core" as *;
+
+@layer utilities {
 @each $position in $positions {
   .position-#{$position} {
-    position: $position !important;
+    position: $position;
   }
 }
 
 @each $size, $value in $spacers {
-  .top-#{$size} {
-    top: $value !important;
-  }
-
-  .right-#{$size} {
-    right: $value !important;
-  }
-
-  .bottom-#{$size} {
-    bottom: $value !important;
-  }
-
-  .left-#{$size} {
-    left: $value !important;
-  }
+  $k: escape-class-key($size);
+  .top-#{$k} { top: $value; }
+  .right-#{$k} { right: $value; }
+  .bottom-#{$k} { bottom: $value; }
+  .left-#{$k} { left: $value; }
+  .inset-#{$k} { inset: $value; }
+  .inset-x-#{$k} { inset-inline: $value; }
+  .inset-y-#{$k} { inset-block: $value; }
 }
 
 @for $i from 1 through 10 {
@@ -30,13 +26,13 @@
 
 @each $object-fit in $object-fits {
   .object-fit-#{$object-fit} {
-    object-fit: $object-fit !important;
+    object-fit: $object-fit;
   }
 }
 
 @each $object-position in $object-positions {
   .object-position-#{$object-position} {
-    object-position: $object-position !important;
+    object-position: $object-position;
   }
 }
 
@@ -55,4 +51,6 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
 }

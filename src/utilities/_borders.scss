@@ -1,7 +1,10 @@
+@use "../core" as *;
+
+@layer utilities {
 // Border Width Utilities
 @each $size, $value in $border-widths {
   .border-#{$size} {
-    border-width: $value !important;
+    border-width: $value;
     border-style: solid;
     border-color: var(--border-primary-color);
   }
@@ -10,14 +13,14 @@
 // Border Style Utilities
 @each $style in $border-styles {
   .border-#{$style} {
-    border-style: $style !important;
+    border-style: $style;
   }
 }
 
 // Border Radius Utilities
 @each $name, $value in $border-radius-values {
   .rounded-#{$name} {
-    border-radius: $value !important;
+    border-radius: $value;
   }
 }
 
@@ -26,22 +29,24 @@
 @each $side in $border-sides {
   @each $size, $value in $border-widths {
     .border-#{$side}-#{$size} {
-      border-#{$side}-width: $value !important;
+      border-#{$side}-width: $value;
     }
   }
 
   @each $color-name, $color-value in $colors {
     .border-#{$side}-#{$color-name} {
-      border-#{$side}-color: $color-value !important;
+      border-#{$side}-color: $color-value;
     }
   }
 }
 
 // Border Reset Utility
 .border-none {
-  border: none !important;
+  border: none;
 }
 
 .rounded-circle {
-  border-radius: 50% !important;
+  border-radius: 50%;
+}
+
 }

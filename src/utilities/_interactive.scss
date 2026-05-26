@@ -1,65 +1,68 @@
+@use "../core" as *;
+
+@layer utilities {
 // Hover State Utilities
 @each $color-name, $color-value in $colors {
   .hover-bg-#{$color-name}:hover {
-    background-color: $color-value !important;
+    background-color: $color-value;
   }
   .hover-text-#{$color-name}:hover {
-    color: $color-value !important;
+    color: $color-value;
   }
   .hover-border-#{$color-name}:hover {
-    border-color: $color-value !important;
+    border-color: $color-value;
   }
 }
 
 // Focus State Utilities
 @each $color-name, $color-value in $colors {
   .focus-bg-#{$color-name}:focus {
-    background-color: $color-value !important;
+    background-color: $color-value;
   }
   .focus-text-#{$color-name}:focus {
-    color: $color-value !important;
+    color: $color-value;
   }
   .focus-border-#{$color-name}:focus {
-    border-color: $color-value !important;
+    border-color: $color-value;
   }
 }
 
 // Active State Utilities
 @each $color-name, $color-value in $colors {
   .active-bg-#{$color-name}:active {
-    background-color: $color-value !important;
+    background-color: $color-value;
   }
   .active-text-#{$color-name}:active {
-    color: $color-value !important;
+    color: $color-value;
   }
   .active-border-#{$color-name}:active {
-    border-color: $color-value !important;
+    border-color: $color-value;
   }
 }
 
 // Cursor Utilities
 .cursor-pointer {
-  cursor: pointer !important;
+  cursor: pointer;
 }
 .cursor-default {
-  cursor: default !important;
+  cursor: default;
 }
 .cursor-move {
-  cursor: move !important;
+  cursor: move;
 }
 .cursor-not-allowed {
-  cursor: not-allowed !important;
+  cursor: not-allowed;
 }
 
 // Transition Utilities
 .transition {
-  transition: all 0.3s ease !important;
+  transition: all 0.3s ease;
 }
 .transition-fast {
-  transition: all 0.15s ease !important;
+  transition: all 0.15s ease;
 }
 .transition-slow {
-  transition: all 0.5s ease !important;
+  transition: all 0.5s ease;
 }
 
 // Transform Utilities
@@ -73,9 +76,11 @@
 // Opacity Utilities
 @for $i from 0 through 10 {
   .opacity-#{$i} {
-    opacity: $i * 0.1 !important;
+    opacity: $i * 0.1;
   }
 }
 .opacity-hover:hover {
-  opacity: 0.8 !important;
+  opacity: 0.8;
+}
+
 }

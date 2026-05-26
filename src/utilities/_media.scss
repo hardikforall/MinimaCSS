@@ -1,3 +1,6 @@
+@use "../core" as *;
+
+@layer utilities {
 // Responsive image
 .img-responsive {
   max-width: 100%;
@@ -9,41 +12,6 @@
   -moz-user-select: none;
   -webkit-user-drag: none;
   user-select: none;
-}
-
-// Aspect Ratio Boxes
-// Uses padding-top trick to maintain aspect ratio
-$aspect-ratios: (
-  "16-9": 56.25%,
-  // 16:9
-  "4-3": 75%,
-  // 4:3
-  "1-1": 100% // 1:1,,,
-);
-
-@each $ratio-name, $ratio in $aspect-ratios {
-  .aspect-#{$ratio-name} {
-    position: relative;
-    display: block;
-    width: 100%;
-
-    &::before {
-      content: "";
-      display: block;
-      padding-top: $ratio;
-    }
-
-    > img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
 }
 
 // Utility for image shapes
@@ -58,4 +26,25 @@ $aspect-ratios: (
   border-radius: $border-radius-small;
   max-width: 100%;
   height: auto;
+}
+
+// Modern aspect-ratio utilities (CSS `aspect-ratio` property — widely supported
+// since 2021). Prefer these over the padding-trick `.aspect-*` classes above.
+.ratio-square { aspect-ratio: 1 / 1; }
+.ratio-video { aspect-ratio: 16 / 9; }
+.ratio-4-3 { aspect-ratio: 4 / 3; }
+.ratio-3-2 { aspect-ratio: 3 / 2; }
+.ratio-21-9 { aspect-ratio: 21 / 9; }
+
+// Pointer events
+.pointer-events-none { pointer-events: none; }
+.pointer-events-auto { pointer-events: auto; }
+.pointer-events-all { pointer-events: all; }
+
+// User select
+.select-none { user-select: none; }
+.select-text { user-select: text; }
+.select-all { user-select: all; }
+.select-auto { user-select: auto; }
+
 }

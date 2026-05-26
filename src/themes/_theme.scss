@@ -1,0 +1,278 @@
+@use "../core" as *;
+
+// Modern token layer
+// ==================
+//
+// Every design token is declared ONCE using `light-dark(light, dark)`. The
+// active value is picked by the current `color-scheme`. We default to
+// `light dark` so the OS preference wins; the `[data-theme]` attribute
+// overrides by flipping `color-scheme` rather than redefining tokens.
+//
+// Hover, active, and focus tones are derived from a base color via
+// `color-mix(in oklch, …)` instead of being hand-tuned, so a brand colour
+// change in one place ripples through the whole system.
+
+:root {
+  color-scheme: light dark;
+
+  // Brand
+  --accent-color: #{$primary-500};
+  accent-color: var(--accent-color);
+  caret-color: var(--accent-color);
+
+  --light-color: #{$white};
+  --dark-color: #{$black};
+
+  // Surfaces
+  --surface-primary-color: light-dark(#{$white}, #{$gray-900});
+  --surface-secondary-color: light-dark(#{$gray-50}, #{$gray-700});
+  --surface-tertiary-color: light-dark(#{$gray-100}, #{$gray-600});
+
+  // Text
+  --text-primary-color: light-dark(#{$gray-700}, #{$primary-50});
+  --text-secondary-color: light-dark(
+    #{$gray-500},
+    #{hex-to-rgba($primary-50, 0.75)}
+  );
+  --text-tertiary-color: light-dark(
+    #{$gray-400},
+    #{hex-to-rgba($primary-50, 0.5)}
+  );
+
+  // Scrollbar
+  --scrollbarBG: var(--surface-secondary-color);
+  --thumbBG: var(--surface-tertiary-color);
+
+  // Borders
+  --border-primary-color: light-dark(#{$gray-100}, #{$gray-600});
+  --border-secondary-color: light-dark(#{$gray-200}, #{$gray-700});
+  --border-tertiary-color: light-dark(#{$gray-300}, #{$gray-800});
+
+  // Links & inline typography
+  --link-text-color: light-dark(#{$primary-600}, #{$primary-400});
+  --link-hover-color: light-dark(#{$primary-700}, #{$primary-500});
+  --blockquote-border-color: light-dark(#{$primary-600}, #{$primary-600});
+  --blockquote-text-color: var(--text-primary-color);
+  --blockquote-bg-color: var(--surface-secondary-color);
+  --hr-border-color: var(--border-primary-color);
+  --figcaption-text-color: var(--text-secondary-color);
+  --code-bg-color: var(--surface-secondary-color);
+
+  // Buttons — primary derives from --accent-color via color-mix()
+  --button-primary-color: var(--accent-color);
+  --button-primary-hover-color: color-mix(
+    in oklch,
+    var(--accent-color) 88%,
+    light-dark(black, white)
+  );
+  --button-primary-text-color: #{$white};
+  --button-primary-focus-ring-color: color-mix(
+    in oklch,
+    var(--accent-color) 35%,
+    transparent
+  );
+
+  // Button "highlight" top border — invisible in light, subtle in dark
+  --button-highlight-border-color: light-dark(
+    transparent,
+    #{hex-to-rgba($white, 0.2)}
+  );
+
+  --button-error-color: light-dark(#{$red-500}, #{$red-400});
+  --button-error-hover-color: color-mix(
+    in oklch,
+    var(--button-error-color) 88%,
+    light-dark(black, white)
+  );
+  --button-error-text-color: #{$white};
+  --button-error-focus-ring-color: color-mix(
+    in oklch,
+    var(--button-error-color) 35%,
+    transparent
+  );
+
+  --button-success-color: light-dark(#{$green-500}, #{$green-400});
+  --button-success-hover-color: color-mix(
+    in oklch,
+    var(--button-success-color) 88%,
+    light-dark(black, white)
+  );
+  --button-success-text-color: #{$white};
+  --button-success-focus-ring-color: color-mix(
+    in oklch,
+    var(--button-success-color) 35%,
+    transparent
+  );
+
+  --button-info-color: light-dark(#{$blue-500}, #{$blue-400});
+  --button-info-hover-color: color-mix(
+    in oklch,
+    var(--button-info-color) 88%,
+    light-dark(black, white)
+  );
+  --button-info-text-color: #{$white};
+  --button-info-focus-ring-color: color-mix(
+    in oklch,
+    var(--button-info-color) 35%,
+    transparent
+  );
+
+  --button-warning-color: #{$orange-400};
+  --button-warning-hover-color: color-mix(
+    in oklch,
+    var(--button-warning-color) 88%,
+    light-dark(black, white)
+  );
+  --button-warning-text-color: #{$white};
+  --button-warning-focus-ring-color: color-mix(
+    in oklch,
+    var(--button-warning-color) 35%,
+    transparent
+  );
+
+  // "Light" and "dark" button variants flip across the theme.
+  --button-light-color: light-dark(#{$gray-50}, #{$gray-600});
+  --button-light-hover-color: color-mix(
+    in oklch,
+    var(--button-light-color) 88%,
+    light-dark(black, white)
+  );
+  --button-light-text-color: light-dark(#{$gray-900}, #{$primary-50});
+  --button-light-focus-ring-color: color-mix(
+    in oklch,
+    var(--button-light-color) 50%,
+    transparent
+  );
+  // Dedicated border so `.btn-light` is visible against either surface
+  // tone — different enough from both the button bg and the surface bg.
+  --button-light-border-color: light-dark(#{$gray-200}, #{$gray-500});
+
+  --button-dark-color: #{$gray-600};
+  --button-dark-hover-color: color-mix(
+    in oklch,
+    var(--button-dark-color) 88%,
+    light-dark(black, white)
+  );
+  --button-dark-text-color: #{$white};
+  --button-dark-focus-ring-color: color-mix(
+    in oklch,
+    var(--button-dark-color) 50%,
+    transparent
+  );
+
+  --button-link-text-color: var(--accent-color);
+  --button-link-hover-color: var(--link-hover-color);
+
+  // Cards
+  --card-bg-color: var(--surface-primary-color);
+  --card-header-bg-color: var(--surface-secondary-color);
+  --card-footer-bg-color: var(--surface-secondary-color);
+
+  // Inputs
+  --input-bg-color: var(--surface-primary-color);
+  --input-focus-border-color: var(--accent-color);
+  --input-focus-ring-color: color-mix(
+    in oklch,
+    var(--accent-color) 25%,
+    transparent
+  );
+  --input-valid-text-color: light-dark(#{$green-500}, #{$green-400});
+  --input-valid-border-color: var(--input-valid-text-color);
+  --input-focus-valid-ring-color: color-mix(
+    in oklch,
+    var(--input-valid-border-color) 50%,
+    transparent
+  );
+  --input-invalid-text-color: light-dark(#{$red-500}, #{$red-400});
+  --input-invalid-border-color: var(--input-invalid-text-color);
+  --input-focus-invalid-ring-color: color-mix(
+    in oklch,
+    var(--input-invalid-border-color) 25%,
+    transparent
+  );
+  --input-disabled-bg-color: var(--surface-secondary-color);
+
+  // Table
+  --table-bg-color: var(--surface-primary-color);
+  --table-accent-bg-color: var(--surface-secondary-color);
+  --table-hover-bg-color: light-dark(
+    var(--surface-tertiary-color),
+    #{$gray-600}
+  );
+  --table-border-color: var(--border-primary-color);
+
+  // Nav (always tinted with brand)
+  --nav-primary-bg-color: var(--accent-color);
+  --nav-primary-text-color: #{$white};
+  --nav-primary-link-hover-color: #{hex-to-rgba($white, 0.2)};
+  --nav-primary-dropdown-link-color: var(--text-primary-color);
+  --nav-primary-dropdown-bg-color: var(--surface-secondary-color);
+
+  // Loader
+  --loader-light-bg-color: #{hex-to-rgba($white, 0.7)};
+  --loader-light-border-color: #{hex-to-rgba($white, 0.4)};
+  --loader-dark-bg-color: light-dark(
+    #{hex-to-rgba($primary-500, 0.5)},
+    #{hex-to-rgba($primary-300, 0.7)}
+  );
+  --loader-dark-border-color: light-dark(
+    #{hex-to-rgba($primary-500, 0.2)},
+    #{hex-to-rgba($primary-300, 0.4)}
+  );
+
+  // Z-index scale — explicit named layers so components don't fight.
+  // Use these instead of arbitrary z-index values.
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-popover: 1100;
+  --z-toast: 1200;
+  --z-tooltip: 1300;
+
+  // Surface elevation — combines shadow + border for layered surfaces.
+  // Use `box-shadow: var(--elevation-{N})`.
+  --elevation-0: 0 0 0 0 transparent;
+  --elevation-1: var(--shadow-sm);
+  --elevation-2: var(--shadow-default);
+  --elevation-3: var(--shadow-lg);
+  --elevation-4: var(--shadow-2xl);
+
+  // Consistent transition timing.
+  --transition-fast: 0.15s;
+  --transition: 0.25s;
+  --transition-slow: 0.4s;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Shadows — scaled darker in dark mode for visual punch
+  --shadow-sm: 0 1px 2px 0
+    light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.7));
+  --shadow-default: 0 1px 3px 0
+      light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+    0 1px 2px 0 light-dark(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.7));
+  --shadow-md: 0 4px 6px -1px
+      light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+    0 2px 4px -1px light-dark(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.7));
+  --shadow-lg: 0 10px 15px -3px
+      light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+    0 4px 6px -2px light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.7));
+  --shadow-xl: 0 20px 25px -5px
+      light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
+    0 10px 10px -5px light-dark(rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.5));
+  --shadow-2xl: 0 20px 25px -5px
+    light-dark(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.6));
+  --shadow-inner: inset 0 2px 4px 0
+    light-dark(rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.7));
+}
+
+// Explicit theme overrides — flip `color-scheme` so `light-dark()` resolves
+// to the right side. No token redefinition needed.
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}

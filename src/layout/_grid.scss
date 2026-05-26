@@ -1,232 +1,182 @@
-// Variables
-$grid-columns: 12;
-$grid-gutter-width: 15px; // Base gutter width for all breakpoints
+@use "../core" as *;
+@use "sass:map";
 
-// Mixins
-@mixin make-row() {
-  display: flex;
-  flex-wrap: wrap;
-  margin-right: calc(#{$grid-gutter-width} / -2);
-  margin-left: calc(#{$grid-gutter-width} / -2);
-}
+// Modern 12-column grid (CSS Grid + gap)
+// ======================================
+//
+// Previous versions used flexbox with negative margins and per-column
+// padding. This rewrite uses CSS Grid with the `gap` property — no more
+// margin math, no overflow on the row's parent, and gutters naturally
+// participate in the box model.
+//
+// Public API (unchanged for the common case):
+//   .row              -> 12-track grid
+//   .col-1 … .col-12  -> grid-column: span N
+//   .col-auto         -> grid-column: auto
+//   .col-{bp}-{N}     -> responsive span at min-width breakpoints
+//   .offset-{N}       -> push N columns to the right via grid-column-start
+//
+// New / behavioural changes:
+//   .col              -> spans 1 (was: flex-grow auto-fill).
+//                        For the old "equal-width siblings" behaviour, use
+//                        `.row-auto`.
+//   .row-auto         -> auto-flow grid where siblings split evenly
+//                        (grid-auto-flow: column; grid-auto-columns: 1fr).
+//   .row-no-gutters   -> sets --grid-gutter to 0
+//   .row-gutter-sm    -> tighter gutter
+//   .row-gutter-lg    -> looser gutter
 
-@mixin make-column($columns) {
-  flex: 0 0 calc((100% / #{$grid-columns}) * #{$columns});
-  max-width: calc((100% / #{$grid-columns}) * #{$columns});
-  padding-right: calc(#{$grid-gutter-width} / 2);
-  padding-left: calc(#{$grid-gutter-width} / 2);
-}
-
-// Container
-.container {
-  width: 100%;
-  padding-right: calc(#{$grid-gutter-width} * 1.5);
-  padding-left: calc(#{$grid-gutter-width} * 1.5);
-  margin-right: auto;
-  margin-left: auto;
-
-  @each $break, $size in $breakpoints {
-    @media (min-width: $size) {
-      max-width: if(
-        $break == "xxl",
-        1320px,
-        if(
-          $break == "xl",
-          1140px,
-          if(
-            $break == "lg",
-            960px,
-            if($break == "md", 720px, if($break == "sm", 540px, 100%))
-          )
-        )
-      );
-    }
+@layer components {
+  :root {
+    --grid-columns: 12;
+    --grid-gutter: 1rem;
   }
-}
 
-.container-fluid {
-  width: 100%;
-  padding-right: calc(#{$grid-gutter-width} / 2);
-  padding-left: calc(#{$grid-gutter-width} / 2);
-  margin-right: auto;
-  margin-left: auto;
-}
+  .container {
+    width: 100%;
+    padding-inline: calc(var(--grid-gutter) * 1.5);
+    margin-inline: auto;
 
-// Row
-.row {
-  @include make-row();
-}
-
-// Nested row fix
-.row .row {
-  margin-right: calc(#{$grid-gutter-width} / -4);
-  margin-left: calc(#{$grid-gutter-width} / -4);
-}
-
-// Row alignment utilities
-.row-start {
-  justify-content: flex-start;
-}
-
-.row-center {
-  justify-content: center;
-}
-
-.row-end {
-  justify-content: flex-end;
-}
-
-.row-around {
-  justify-content: space-around;
-}
-
-.row-between {
-  justify-content: space-between;
-}
-
-.row-evenly {
-  justify-content: space-evenly;
-}
-
-// Vertical alignment
-.row-items-start {
-  align-items: flex-start;
-}
-
-.row-items-center {
-  align-items: center;
-}
-
-.row-items-end {
-  align-items: flex-end;
-}
-
-// No gutters modifier
-.row-no-gutters {
-  margin-right: 0;
-  margin-left: 0;
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: 0;
-    padding-left: 0;
-  }
-}
-
-// Gutter size modifiers
-.row-gutter-sm {
-  margin-right: calc(#{$grid-gutter-width} / -4);
-  margin-left: calc(#{$grid-gutter-width} / -4);
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: calc(#{$grid-gutter-width} / 4);
-    padding-left: calc(#{$grid-gutter-width} / 4);
-  }
-}
-
-.row-gutter-lg {
-  margin-right: calc(#{$grid-gutter-width} * -1);
-  margin-left: calc(#{$grid-gutter-width} * -1);
-
-  > .col,
-  > [class*="col-"] {
-    padding-right: calc(#{$grid-gutter-width});
-    padding-left: calc(#{$grid-gutter-width});
-  }
-}
-
-// Auto-layout columns
-.col {
-  flex: 1 0 0%; // Grow, don't shrink, start at 0 width
-  max-width: 100%;
-  padding-right: calc(#{$grid-gutter-width} / 2);
-  padding-left: calc(#{$grid-gutter-width} / 2);
-}
-
-// Auto-sizing column that only takes up space it needs
-.col-auto {
-  flex: 0 0 auto; // Don't grow, don't shrink, auto width
-  width: auto;
-  max-width: 100%;
-  padding-right: calc(#{$grid-gutter-width} / 2);
-  padding-left: calc(#{$grid-gutter-width} / 2);
-}
-
-// Columns
-@for $i from 1 through $grid-columns {
-  .col-#{$i} {
-    @include make-column($i);
-  }
-}
-
-// Column offsets
-@for $i from 0 through ($grid-columns - 1) {
-  .offset-#{$i} {
-    margin-left: calc((100% / #{$grid-columns}) * #{$i});
-  }
-}
-
-// Order utilities
-@for $i from 1 through $grid-columns {
-  .order-#{$i} {
-    order: $i;
-  }
-}
-
-.order-first {
-  order: -1;
-}
-
-.order-last {
-  order: $grid-columns + 1;
-}
-
-// Responsive columns, offsets, and order
-@each $breakpoint, $breakpoint-width in $breakpoints {
-  @media (min-width: $breakpoint-width) {
-    // Responsive columns
-    .col-#{$breakpoint} {
-      flex: 1 0 0%;
-      max-width: 100%;
-      padding-right: calc(#{$grid-gutter-width} / 2);
-      padding-left: calc(#{$grid-gutter-width} / 2);
-    }
-
-    .col-#{$breakpoint}-auto {
-      flex: 0 0 auto;
-      width: auto;
-      max-width: 100%;
-      padding-right: calc(#{$grid-gutter-width} / 2);
-      padding-left: calc(#{$grid-gutter-width} / 2);
-    }
-
-    @for $i from 1 through $grid-columns {
-      .col-#{$breakpoint}-#{$i} {
-        @include make-column($i);
+    @each $break, $size in $breakpoints {
+      @media (min-width: $size) {
+        max-width: map.get($container-max-widths, $break);
       }
     }
+  }
 
-    // Responsive offsets
-    @for $i from 0 through ($grid-columns - 1) {
-      .offset-#{$breakpoint}-#{$i} {
-        margin-left: calc((100% / #{$grid-columns}) * #{$i});
+  .container-fluid {
+    width: 100%;
+    padding-inline: calc(var(--grid-gutter) / 2);
+    margin-inline: auto;
+  }
+
+  // 12-column grid (default)
+  .row {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr));
+    gap: var(--grid-gutter);
+  }
+
+  // Equal-width auto-flow row: each child takes 1fr, no track count needed.
+  .row-auto {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    gap: var(--grid-gutter);
+  }
+
+  // Justify / align utilities (work on both .row and .row-auto)
+  .row-start { justify-items: start; }
+  .row-center { justify-items: center; }
+  .row-end { justify-items: end; }
+  .row-stretch { justify-items: stretch; }
+
+  .row-items-start { align-items: start; }
+  .row-items-center { align-items: center; }
+  .row-items-end { align-items: end; }
+  .row-items-stretch { align-items: stretch; }
+
+  .row-around { justify-content: space-around; }
+  .row-between { justify-content: space-between; }
+  .row-evenly { justify-content: space-evenly; }
+
+  // Gutter modifiers
+  .row-no-gutters { --grid-gutter: 0; }
+  .row-gutter-sm { --grid-gutter: 0.5rem; }
+  .row-gutter-lg { --grid-gutter: 2rem; }
+
+  // Auto sizing — single column (override .col-{N} behavior).
+  .col {
+    grid-column: span 1;
+  }
+
+  .col-auto {
+    grid-column: auto;
+  }
+
+  // Columns
+  @for $i from 1 through 12 {
+    .col-#{$i} {
+      grid-column: span #{$i};
+    }
+  }
+
+  // Column offsets (push the start position right).
+  @for $i from 1 through 11 {
+    .offset-#{$i} {
+      grid-column-start: #{$i + 1};
+    }
+  }
+
+  .offset-0 {
+    grid-column-start: auto;
+  }
+
+  // Order
+  @for $i from 1 through 12 {
+    .order-#{$i} {
+      order: $i;
+    }
+  }
+
+  .order-first { order: -1; }
+  .order-last { order: 999; }
+
+  // Responsive columns, offsets, and order
+  @each $breakpoint, $breakpoint-width in $breakpoints {
+    @media (min-width: $breakpoint-width) {
+      .col-#{$breakpoint} {
+        grid-column: span 1;
       }
-    }
 
-    // Responsive order
-    @for $i from 1 through $grid-columns {
-      .order-#{$breakpoint}-#{$i} {
-        order: $i;
+      .col-#{$breakpoint}-auto {
+        grid-column: auto;
       }
-    }
 
-    .order-#{$breakpoint}-first {
-      order: -1;
-    }
+      @for $i from 1 through 12 {
+        .col-#{$breakpoint}-#{$i} {
+          grid-column: span #{$i};
+        }
+      }
 
-    .order-#{$breakpoint}-last {
-      order: $grid-columns + 1;
+      @for $i from 1 through 11 {
+        .offset-#{$breakpoint}-#{$i} {
+          grid-column-start: #{$i + 1};
+        }
+      }
+
+      .offset-#{$breakpoint}-0 {
+        grid-column-start: auto;
+      }
+
+      @for $i from 1 through 12 {
+        .order-#{$breakpoint}-#{$i} {
+          order: $i;
+        }
+      }
+
+      .order-#{$breakpoint}-first { order: -1; }
+      .order-#{$breakpoint}-last { order: 999; }
     }
+  }
+
+  // Modern bonus: auto-fit / auto-fill responsive grids — no media queries
+  // needed. `--cell-min` sets the smallest acceptable column width.
+  .grid-auto-fit {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(var(--cell-min, 16rem), 100%), 1fr)
+    );
+    gap: var(--grid-gutter);
+  }
+
+  .grid-auto-fill {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(var(--cell-min, 16rem), 100%), 1fr)
+    );
+    gap: var(--grid-gutter);
   }
 }

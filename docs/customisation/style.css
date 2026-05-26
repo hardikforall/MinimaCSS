@@ -625,6 +625,359 @@ body.sticky .sidebar-toggle {
   list-style-type: none;
 }
 
+/* ============================================================
+ * Docs polish layer — modern, quieter aesthetic to match the
+ * examples/index.html showcase. Loaded last so it overrides
+ * the legacy rules above without `!important`.
+ * ============================================================ */
+
+html { scroll-behavior: smooth; }
+body { scrollbar-gutter: stable; }
+
+/* --- Sidebar --- */
+
+.sidebar {
+  border-right: 1px solid var(--border-primary-color);
+  background: var(--surface-primary-color);
+  padding-top: 1.5rem;
+  width: 17rem;
+}
+
+.sidebar > h1 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 1.25rem 1rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar > h1 img {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  margin: 0;
+}
+
+.sidebar .sidebar-nav {
+  padding: 0 0.75rem 2.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sidebar ul li a {
+  padding: 0.35rem 0.6rem;
+  border-radius: 0.4rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary-color);
+  font-weight: 500;
+  line-height: 1.35;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* Override the legacy "filled accent" hover/active with the modern
+   tinted-accent treatment used on examples/index.html. */
+.sidebar ul li a:hover {
+  background: var(--surface-secondary-color);
+  color: var(--text-primary-color);
+  border-top: 0;
+}
+
+.sidebar ul li.active > :first-child:is(a) {
+  background: color-mix(in oklch, var(--accent-color) 12%, transparent);
+  color: var(--accent-color);
+  font-weight: 600;
+  border-top: 0;
+}
+
+.sidebar li > p {
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary-color);
+  margin: 1.25rem 0.6rem 0.4rem;
+}
+
+.sidebar-nav .app-sub-sidebar {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0 0 0 0.5rem;
+}
+
+.sidebar-nav .app-sub-sidebar li a {
+  font-size: 0.8125rem;
+  padding: 0.25rem 0.6rem;
+}
+
+/* Sidebar scrollbar tightening */
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb {
+  background: var(--border-primary-color);
+  border-radius: 6px;
+}
+
+/* --- Content / typography --- */
+
+.content {
+  left: 17rem;
+}
+
+.markdown-section {
+  max-width: 56rem;
+  padding: 3.5rem 2rem 4rem;
+  line-height: 1.65;
+}
+
+.markdown-section h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+
+.markdown-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2.5em 0 0.5em;
+  padding-top: 0.5em;
+  border-top: 1px solid var(--border-primary-color);
+  text-wrap: balance;
+}
+
+.markdown-section h2:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 1.5em;
+}
+
+.markdown-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.75em 0 0.4em;
+  color: var(--text-primary-color);
+}
+
+.markdown-section h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 1.25em 0 0.35em;
+  color: var(--text-secondary-color);
+}
+
+.markdown-section p {
+  margin: 0 0 1em;
+  text-wrap: pretty;
+}
+
+.markdown-section a {
+  color: var(--link-text-color);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklch, var(--link-text-color) 35%, transparent);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.15s;
+}
+
+.markdown-section a:hover {
+  text-decoration-color: var(--link-text-color);
+}
+
+/* Inline code */
+.markdown-section :not(pre) > code {
+  background: var(--surface-secondary-color);
+  border: 1px solid var(--border-primary-color);
+  padding: 0.1em 0.4em;
+  border-radius: 0.3rem;
+  font-size: 0.85em;
+  font-family: var(--font-family-mono);
+  color: var(--text-primary-color);
+}
+
+/* Code blocks */
+.markdown-section pre {
+  background: var(--surface-secondary-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 0.6rem;
+  padding: 1rem 1.1rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  overflow-x: auto;
+}
+
+.markdown-section pre > code {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Lists */
+.markdown-section ul,
+.markdown-section ol {
+  padding-left: 1.4em;
+  margin: 0 0 1em;
+}
+
+.markdown-section ul li,
+.markdown-section ol li {
+  margin-bottom: 0.3em;
+}
+
+/* Tables */
+.markdown-section table:not(.component-preview table) {
+  border: 1px solid var(--border-primary-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  font-size: 0.875rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.markdown-section th:not(.component-preview th),
+.markdown-section td:not(.component-preview td) {
+  border: 0;
+  border-bottom: 1px solid var(--border-primary-color);
+  padding: 0.6rem 0.875rem;
+  text-align: left;
+}
+
+.markdown-section thead th {
+  background: var(--surface-secondary-color);
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary-color);
+}
+
+.markdown-section tr:nth-child(2n):not(.component-preview tr) {
+  background: transparent;
+}
+
+.markdown-section tbody tr:hover {
+  background: var(--surface-secondary-color);
+}
+
+/* Blockquotes */
+.markdown-section blockquote {
+  border-left: 3px solid var(--accent-color);
+  background: color-mix(in oklch, var(--accent-color) 6%, transparent);
+  margin: 1rem 0 1.5rem;
+  padding: 0.875rem 1rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--text-primary-color);
+  font-style: normal;
+}
+
+.markdown-section blockquote p {
+  margin: 0;
+}
+
+/* Tip / Warn callouts — re-tone using framework tokens */
+.markdown-section p.tip {
+  background: color-mix(in oklch, var(--button-info-color) 8%, transparent);
+  border-left: 3px solid var(--button-info-color);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.875rem 1rem 0.875rem 2.5rem;
+  margin: 1.25rem 0;
+}
+
+.markdown-section p.tip:before {
+  background: var(--button-info-color);
+  color: #fff;
+  content: "i";
+  font-family: var(--font-family-mono);
+  font-weight: 700;
+  border-radius: 50%;
+  left: 0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.markdown-section p.tip code {
+  background: var(--surface-primary-color);
+  color: var(--text-primary-color);
+}
+
+.markdown-section p.warn {
+  background: color-mix(in oklch, var(--button-warning-color) 10%, transparent);
+  border-left: 3px solid var(--button-warning-color);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.875rem 1rem;
+}
+
+/* HR */
+.markdown-section hr:not(.component-preview table) {
+  border: 0;
+  height: 1px;
+  background: var(--border-primary-color);
+  margin: 2.5rem 0;
+}
+
+/* Copy button (docsify-copy-code) */
+.docsify-copy-code-button {
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+  padding: 0.25rem 0.6rem !important;
+  background: var(--surface-primary-color) !important;
+  color: var(--text-secondary-color) !important;
+  border: 1px solid var(--border-primary-color) !important;
+  border-radius: 0.375rem !important;
+  opacity: 0;
+  transition: opacity 0.15s, background 0.15s, color 0.15s !important;
+}
+
+.markdown-section pre:hover .docsify-copy-code-button,
+.docsify-copy-code-button:focus-visible {
+  opacity: 1;
+}
+
+.docsify-copy-code-button:hover {
+  background: var(--surface-secondary-color) !important;
+  color: var(--text-primary-color) !important;
+}
+
+/* Search */
+.search {
+  margin: 0 1rem !important;
+  padding: 0.25rem 0 !important;
+  border-bottom: 1px solid var(--border-primary-color) !important;
+}
+
+.search input {
+  background: var(--surface-secondary-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.6rem !important;
+  font-size: 0.875rem;
+}
+
+.search input:focus-visible {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.2rem var(--input-focus-ring-color);
+  outline: 0;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .content {
+    left: 0;
+  }
+  .markdown-section {
+    max-width: 100%;
+    padding: 3rem 1.25rem 3rem;
+  }
+}
+
 body.close .sidebar {
   transform: translateX(-300px);
 }
@@ -917,15 +1270,169 @@ section.cover blockquote > p > a:hover {
   gap: 0rem;
 }
 
-.theme-switcher {
-  position: fixed;
-  top: 10px;
-  right: 58px;
-  z-index: 1000;
+/* Cover page brand mark — replaces the externally-hosted PNG with an
+   inline rounded-square "M" matching the example header. Selectors are
+   scoped under `.cover` so they don't leak into the docs body. */
+section.cover .cover-mark {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 1.5rem;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 800;
+  font-size: 3.5rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  box-shadow: var(--shadow-lg);
 }
+
+/* The cover page picks up the docsify cover gradient (uses accent-color).
+   Re-tune the version badge and surrounding text so they're readable on
+   that gradient instead of vanishing into it. */
+section.cover h1 .badge {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  font-weight: 500;
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.2rem 0.55rem;
+}
+
+section.cover .cover-tagline {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.88);
+  max-width: 38rem;
+  margin: 0 auto;
+  text-wrap: balance;
+  text-align: center;
+}
+
+section.cover .cover-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin: 1.5rem auto 1.75rem;
+  max-width: 38rem;
+  text-align: center;
+}
+
+section.cover .cover-features .badge {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 500;
+}
+
+section.cover .cover-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+section.cover .cover-cta .btn {
+  text-decoration: none;
+}
+
+/* Top-bar — sits above the docsify app shell. Holds the live-example link
+   and the theme toggle. Aligns visually with examples/index.html. */
+.docs-topbar {
+  position: fixed;
+  top: 12px;
+  right: 64px;
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.docs-topbar-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.docs-topbar-link svg {
+  display: block;
+}
+
+/* Modern icon-pill theme toggle — matches examples/index.html exactly. */
+.docs-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: var(--surface-secondary-color);
+  border: 1px solid var(--border-primary-color);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.docs-theme-toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.docs-theme-toggle label {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--text-secondary-color);
+  transition:
+    background 0.15s,
+    color 0.15s;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.docs-theme-toggle label:hover {
+  color: var(--text-primary-color);
+}
+
+.docs-theme-toggle input:checked + label {
+  background: var(--surface-primary-color);
+  color: var(--accent-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.docs-theme-toggle input:focus-visible + label {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.docs-theme-toggle svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
 @media screen and (max-width: 768px) {
   body.close .app-nav,
-  body.close .theme-switcher {
+  body.close .docs-topbar {
+    display: none;
+  }
+  .docs-topbar {
+    right: 16px;
+  }
+  .docs-topbar-link span {
     display: none;
   }
   .component-preview {

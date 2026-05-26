@@ -17,10 +17,13 @@
   - [Dividers](components/dividers.md)
   - [Loaders](components/loaders.md)
   - [Modal](components/modal.md)
+  - [Pagination](components/pagination.md)
+  - [Progress](components/progress.md)
   - [Slideovers](components/slideovers.md)
   - [Steps](components/steps.md)
   - [Table](components/table.md)
   - [Tabs](components/tabs.md)
+  - [Toast](components/toast.md)
   - [Tooltip](components/tooltip.md)
 - Layout
   - [Grid](layout/grid.md)
@@ -40,8 +43,8 @@
 - Other
 - [Theme](theme.md)
 - [Customization](customization.md)
+- [Accessibility](accessibility.md)
 - [Best Practices](best-practices.md)
-- [Examples](examples.md)
 - [Troubleshooting](troubleshooting.md)
 - [Contribution](contribution.md)
 - [Changelog](changelog.md)

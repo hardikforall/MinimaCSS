@@ -1,6 +1,13 @@
+@use "../core" as *;
+
+@layer components {
 // Base modal styling
+// Built on the native <dialog> element. When the dialog is not open, the
+// browser keeps it `display: none` — so we deliberately do NOT set any
+// `display` or running `animation` at the base level (doing so causes a
+// page-load flash as the close animation runs against a visible element).
 .modal {
-  z-index: 999;
+  z-index: var(--z-modal);
   border: 0;
   border-radius: $border-radius;
   position: fixed;
@@ -9,10 +16,7 @@
   inset: 0;
   margin: auto;
   overflow: hidden;
-  animation: hideModal 0.5s ease normal;
-  transition: opacity 0.5s ease;
   border-block-start: 1px solid var(--border-primary-color);
-  display: block; // Fallback for browsers that don't support <dialog>
   overscroll-behavior: contain;
 
   &-header,
@@ -55,26 +59,54 @@
     text-align: end;
   }
 
-  &:not([open]) {
-    pointer-events: none;
-    opacity: 0;
+  // Modern entry / exit animation
+  // ------------------------------
+  // We transition `opacity`, `transform`, AND `display` + `overlay` using
+  // `transition-behavior: allow-discrete`. `@starting-style` gives us the
+  // pre-render state for the dialog when it first becomes visible (so the
+  // browser has something to transition FROM). This animates both opening
+  // AND closing — including from `display: none`.
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 0.25s ease-out,
+    transform 0.25s ease-out,
+    overlay 0.25s ease-out allow-discrete,
+    display 0.25s ease-out allow-discrete;
+
+  &[open] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @starting-style {
+    &[open] {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
   }
 
   &::backdrop {
-    backdrop-filter: blur(5px);
-    transition: backdrop-filter 0.5s ease;
-    background: rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    background: rgba(0, 0, 0, 0);
+    backdrop-filter: blur(0);
     overscroll-behavior: contain;
-  }
-
-  &[open] {
-    animation: showModal 0.5s forwards;
+    transition:
+      background-color 0.25s ease-out,
+      backdrop-filter 0.25s ease-out,
+      overlay 0.25s ease-out allow-discrete,
+      display 0.25s ease-out allow-discrete;
   }
 
   &[open]::backdrop {
-    opacity: 1;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+  }
+
+  @starting-style {
+    &[open]::backdrop {
+      background: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0);
+    }
   }
 }
 
@@ -90,22 +122,12 @@ html:has(.modal[open]) {
   }
 }
 
-@keyframes showModal {
-  0% {
-    transform: translateY(100%);
-  }
-}
-
-@keyframes hideModal {
-  to {
-    transform: scale(0.75);
-  }
-}
-
 // Size variations with default padding
 @each $size, $width in $modal-widths {
   .modal-#{$size} {
     max-inline-size: min($width, 95%);
     max-block-size: min(100%, 95%);
   }
+}
+
 }
